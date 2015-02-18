@@ -9,10 +9,11 @@ describe('AppController', function () {
             $scope = $rootScope.$new();
             AppCtrl = $controller('AppController', { $location: $location, $scope: $scope });
         }));
-
+        /*
         it('should pass a dummy test', inject(function () {
             expect(AppCtrl).toBeTruthy();
         }));
+*/
     });
 });
 
