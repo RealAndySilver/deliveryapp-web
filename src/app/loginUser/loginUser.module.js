@@ -1,6 +1,6 @@
 (function(module) {
 
-    module.config(function ($stateProvider) {
+    module.config(function($stateProvider) {
         $stateProvider.state('loginUser', {
             url: '/loginuser',
             views: {
@@ -9,7 +9,9 @@
                     templateUrl: 'loginUser/loginUser.tpl.html'
                 }
             },
-            data:{ pageTitle: 'LoginUser' }
+            data: {
+                pageTitle: 'LoginUser'
+            }
         });
     });
 
