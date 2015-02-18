@@ -7,7 +7,7 @@
 
 		function init() {
 			var response = LoginUserService.test('hello');
-			console.log('test response', response);
+			console.log('response', response);
 		}
 	}]);
 
