@@ -5816,12 +5816,16 @@ body .solo-box {
 md-toolbar.md-default-theme {
   background-color: #00bcd4;
 }
+header md-toolbar.md-default-theme {
+  height: 130px;
+}
 md-toolbar.md-default-theme h1 {
   margin: 0 auto;
   line-height: 64px;
+  font-family: 'IntriqueScriptPersonalUse';
 }
 body .solo-box {
-  height: 600px;
+  padding: 170px 0;
 }
 md-card {
   padding: 10px;

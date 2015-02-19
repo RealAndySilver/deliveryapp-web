@@ -1,1 +1,46 @@
-<h1>CreateUser</h1>
+<div layout="column" layout-align="center center" class="solo-box">
+	<md-card class="basic-form">
+		<div>
+			<md-toolbar>
+			    <div class="md-toolbar-tools" layout-align="center center">
+			    	<span class="md-flex">Registro</span>
+			    </div>
+			  </md-toolbar>
+		</div>
+	    <div>
+			<form name="loginForm" ng-submit="model.loginUser()" novalidate>
+				<md-input-container flex>
+					<label>Nombre</label>
+	            	<input name="name" ng-model="model.user.name" required>
+	        	</md-input-container>
+	        	<md-input-container flex>
+					<label>Apellido</label>
+	            	<input name="lastname" ng-model="model.lastname" required>
+	        	</md-input-container>
+				<md-input-container flex>
+					<label>Correo electrónico</label>
+	            	<input name="email" ng-model="model.user.email" required>
+	        	</md-input-container>
+	        	<md-input-container flex>
+					<label>Contraseña</label>
+	            	<input type="password" name="password" ng-model="model.user.password" required>
+	        	</md-input-container>
+	        	<md-input-container flex>
+					<label>Confirmar contraseña</label>
+	            	<input type="password" name="password" ng-model="model.user.password" required>
+	        	</md-input-container>
+	        	<md-input-container flex>
+					<label>Celular</label>
+	            	<input type="password" name="password" ng-model="model.user.password" required>
+	        	</md-input-container>
+	        	<md-input-container flex>
+	        		<md-button class="md-raised">Ingresar</md-button>
+	        	</md-input-container>
+			</form>
+	    </div>
+	    <md-divider></md-divider>
+	    <md-button class="md-primary v-margin-btn">¿Olvidaste tu contraseña?</md-button>
+	    <md-divider></md-divider>
+	    <md-button class="md-raised v-margin-btn" href="#">Crear nueva cuenta</md-button>
+	</md-card>
+</div>
