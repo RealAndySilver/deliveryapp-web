@@ -6,12 +6,13 @@
 		init();
 
 		function init() {
-			/*var response = LoginUserService.test('hello');
-			console.log('response', response);*/
+
 			model.loginUser = function() {
-				console.log('crear usuario');
-				console.log(model.user);
+				LoginUserService.loginUser(model.user.email, model.user.password, function(response) {
+					console.log(response);
+				});
 			};
+
 		}
 	}]);
 

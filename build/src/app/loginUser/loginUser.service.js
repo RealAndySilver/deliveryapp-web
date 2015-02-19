@@ -1,19 +1,33 @@
 (function(module) {
 
-	module.service('LoginUserService', function() {
+	module.service('LoginUserService', ['ServerComunicator', function(ServerComunicator) {
 		var model = this;
 
 		init();
 
 		function init() {
-			self.create = function() {
-			var type = "Login";
-			return $http({
-				method: 'GET',
-				url: endpoint + type + '/GetAll',
-			});
-		};
+
+			model.loginUser = function(email, password, callback) {
+				password = btoa(password);
+				var loginPromise = ServerComunicator.login(email, password);
+				loginPromise.then(
+					function success(response) {
+						callback({
+							response: response.data.status,
+							msg: 'succesful login',
+							data: response.data.response,
+						});
+					},
+					function error(e) {
+						callback({
+							response: false,
+							msg: 'failed login',
+							error: e,
+						});
+					});
+			};
+
 		}
-	});
+	}]);
 
 }(angular.module("appMensajeria.loginUser")));

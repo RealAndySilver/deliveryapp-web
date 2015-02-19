@@ -16,5 +16,5 @@
     });
 
 }(angular.module("appMensajeria.loginUser", [
-    'ui.router'
+    'ui.router',
 ])));

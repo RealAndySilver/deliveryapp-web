@@ -20,4 +20,5 @@
     'appMensajeria.loginUser',
     'appMensajeria.createUser',
     'ngMaterial',
+    'appMensajeria.serverComunicator',
 ])));
