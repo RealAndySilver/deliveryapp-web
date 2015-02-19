@@ -2,6 +2,7 @@
 <html ng-app="appMensajeria" ng-controller="AppController">
 <head>
     <title ng-bind="pageTitle"></title>
+    <meta charset="UTF8">
 
     <!-- font awesome from BootstrapCDN -->
     <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
@@ -39,31 +40,18 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angular_material/0.7.0/angular-material.min.js"></script>
 </head>
 <body>
-    <!-- <header>
-        <nav class="container navbar-default">
-            <ul class="nav navbar-nav">
-                <li ui-sref-active="active">
-                    <a ui-sref="home">Home</a>
-                </li>
-                <li ui-sref-active="active">
-                    <a ui-sref="about">About</a>
-                </li>
-            </ul>
-        </nav>
-    </header> -->
     <header>
         <md-toolbar layout="row">
           <button ng-click="toggleSidenav('left')" hide-gt-sm class="menuBtn">
             <span class="visually-hidden">Menu</span>
           </button>
-          <h1>MeNsAjErIa!!</h1>
+          <h1>Mensajería!</h1>
         </md-toolbar>
     </header>
 
     <div class="container" ui-view="main"></div>
 
-    <footer class="container">
-        (c) 2015 iAmStudio
-    </footer>
+    <!-- <footer class="container">
+    </footer> -->
 </body>
 </html>

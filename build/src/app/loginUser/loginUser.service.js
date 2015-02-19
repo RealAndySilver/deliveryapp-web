@@ -6,13 +6,13 @@
 		init();
 
 		function init() {
-			model.test = function(hello) {
-				console.log('Hello!');
-				if(hello !== 'hello') {
-					return false;
-				}
-				return true;
-			};
+			self.create = function() {
+			var type = "Login";
+			return $http({
+				method: 'GET',
+				url: endpoint + type + '/GetAll',
+			});
+		};
 		}
 	});
 

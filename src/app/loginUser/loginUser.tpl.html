@@ -1,1 +1,39 @@
-<h1>LoginUser</h1>
+<div layout="column" layout-align="center center" class="solo-box">
+	<md-card class="basic-form">
+		<div>
+			<md-toolbar>
+			    <div class="md-toolbar-tools" layout-align="center center">
+			    	<span class="md-flex">Iniciar Sesión</span>
+			    </div>
+			  </md-toolbar>
+		</div>
+	    <div>
+			<form name="loginForm" ng-submit="model.loginUser()" novalidate>
+				<md-input-container flex>
+					<label>Correo electrónico</label>
+	            	<input name="email" ng-model="model.user.email" required>
+	            	<!-- <div ng-messages="loginForm.email.$error">
+			          	<div ng-message="required">Este campo es requerido.</div>
+			        </div> -->
+	        	</md-input-container>
+	        	<md-input-container flex>
+					<label>Contraseña</label>
+	            	<input type="password" name="password" ng-model="model.user.password" required>
+	            	<!-- <div ng-messages="loginForm.password.$error">
+			        	<div ng-message="required">Este campo es requerido.</div>
+			        </div> -->
+	        	</md-input-container>
+	        	<!-- <div class="error warning" ng-show="loginForm.$invalid">
+				    <small class="error warning">Recuerda diligenciar todo el formulario para poder ingresar.</small>
+				</div> -->
+	        	<md-input-container flex>
+	        		<md-button class="md-raised">Ingresar</md-button>
+	        	</md-input-container>
+			</form>
+	    </div>
+	    <md-divider></md-divider>
+	    <md-button class="md-primary v-margin-btn">¿Olvidaste tu contraseña?</md-button>
+	    <md-divider></md-divider>
+	    <md-button class="md-raised v-margin-btn" href="#">Crear nueva cuenta</md-button>
+	</md-card>
+</div>

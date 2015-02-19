@@ -5796,13 +5796,44 @@ button.close {
  * Typography
  */
 @font-face {
-  font-family: 'Roboto';
+  font-family: 'Roboto', sans-serif;
   font-style: normal;
   font-weight: 400;
   src: local('Roboto Regular'), local('Roboto-Regular'), url(fonts/Roboto-Regular.woff) format('woff');
 }
+@font-face {
+  font-family: 'IntriqueScriptPersonalUse';
+  src: url('/src/assets/fonts/IntriqueScriptPersonalUse/IntriqueScriptPersonalUse.eot?#iefix') format('embedded-opentype'), url('/src/assets/fonts/IntriqueScriptPersonalUse/IntriqueScriptPersonalUse.woff') format('woff'), url('/src/assets/fonts/IntriqueScriptPersonalUse/IntriqueScriptPersonalUse.ttf') format('truetype'), url('/src/assets/fonts/IntriqueScriptPersonalUse/IntriqueScriptPersonalUse.svg#IntriqueScriptPersonalUse') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+/* Global styles */
+body,
+container,
+body .solo-box {
+  height: 100%;
+}
 md-toolbar.md-default-theme {
   background-color: #00bcd4;
+}
+md-toolbar.md-default-theme h1 {
+  margin: 0 auto;
+  line-height: 64px;
+}
+body .solo-box {
+  height: 600px;
+}
+md-card {
+  padding: 10px;
+}
+body md-card.basic-form {
+  width: 440px;
+}
+body md-card.basic-form .v-margin-btn {
+  margin: 10px 0;
+}
+body md-card.basic-form a {
+  text-decoration: none;
 }
 /**
  * Now that all app-wide styles have been applied, we can load the styles for
@@ -5814,4 +5845,14 @@ md-toolbar.md-default-theme {
   margin: 0 0 0 0;
 }
 /* Less file for loginUser*/
+body .solo-box form {
+  padding-top: 25px;
+}
+.solo-box form button.md-button {
+  width: 160px;
+  margin: 0 auto;
+  margin-top: 20px;
+  background: #00bcd4 !important;
+  color: white !important;
+}
 /* Less file for createUser*/

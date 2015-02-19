@@ -25,14 +25,52 @@
  */
 
 @font-face {
-  font-family: 'Roboto';
+  font-family: @sansFontFamily;
   font-style: normal;
   font-weight: 400;
   src: local('Roboto Regular'), local('Roboto-Regular'), url(fonts/Roboto-Regular.woff) format('woff');
 }
 
+@font-face { 
+	font-family: 'IntriqueScriptPersonalUse'; 
+	src: url('/src/assets/fonts/IntriqueScriptPersonalUse/IntriqueScriptPersonalUse.eot?#iefix') format('embedded-opentype'), url('/src/assets/fonts/IntriqueScriptPersonalUse/IntriqueScriptPersonalUse.woff') format('woff'), url('/src/assets/fonts/IntriqueScriptPersonalUse/IntriqueScriptPersonalUse.ttf') format('truetype'), url('/src/assets/fonts/IntriqueScriptPersonalUse/IntriqueScriptPersonalUse.svg#IntriqueScriptPersonalUse') format('svg'); 
+	font-weight: normal; 
+	font-style: normal; 
+}
+
+/* Global styles */
+
+body, container, body .solo-box {
+	height: 100%
+}
+
 md-toolbar.md-default-theme{
 	background-color: @primaryColor;
+}
+
+md-toolbar.md-default-theme h1{
+	margin: 0 auto;
+	line-height: 64px;
+}
+
+body .solo-box {
+	height: 600px;
+}
+
+md-card {
+	padding: 10px;
+}
+
+body md-card.basic-form {
+	width: 440px;
+}
+
+body md-card.basic-form .v-margin-btn{
+	margin: 10px 0; 
+}
+
+body md-card.basic-form a{
+	text-decoration: none;
 }
 
 /**

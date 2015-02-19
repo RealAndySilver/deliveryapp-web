@@ -6,8 +6,12 @@
 		init();
 
 		function init() {
-			var response = LoginUserService.test('hello');
-			console.log('response', response);
+			/*var response = LoginUserService.test('hello');
+			console.log('response', response);*/
+			model.loginUser = function() {
+				console.log('crear usuario');
+				console.log(model.user);
+			};
 		}
 	}]);
 

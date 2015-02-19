@@ -29,5 +29,44 @@ angular.module("home/home.tpl.html", []).run(["$templateCache", function($templa
 
 angular.module("loginUser/loginUser.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("loginUser/loginUser.tpl.html",
-    "<h1>LoginUser</h1>");
+    "<div layout=\"column\" layout-align=\"center center\" class=\"solo-box\">\n" +
+    "	<md-card class=\"basic-form\">\n" +
+    "		<div>\n" +
+    "			<md-toolbar>\n" +
+    "			    <div class=\"md-toolbar-tools\" layout-align=\"center center\">\n" +
+    "			    	<span class=\"md-flex\">Iniciar Sesión</span>\n" +
+    "			    </div>\n" +
+    "			  </md-toolbar>\n" +
+    "		</div>\n" +
+    "	    <div>\n" +
+    "			<form name=\"loginForm\" ng-submit=\"model.loginUser()\" novalidate>\n" +
+    "				<md-input-container flex>\n" +
+    "					<label>Correo electrónico</label>\n" +
+    "	            	<input name=\"email\" ng-model=\"model.user.email\" required>\n" +
+    "	            	<!-- <div ng-messages=\"loginForm.email.$error\">\n" +
+    "			          	<div ng-message=\"required\">Este campo es requerido.</div>\n" +
+    "			        </div> -->\n" +
+    "	        	</md-input-container>\n" +
+    "	        	<md-input-container flex>\n" +
+    "					<label>Contraseña</label>\n" +
+    "	            	<input type=\"password\" name=\"password\" ng-model=\"model.user.password\" required>\n" +
+    "	            	<!-- <div ng-messages=\"loginForm.password.$error\">\n" +
+    "			        	<div ng-message=\"required\">Este campo es requerido.</div>\n" +
+    "			        </div> -->\n" +
+    "	        	</md-input-container>\n" +
+    "	        	<!-- <div class=\"error warning\" ng-show=\"loginForm.$invalid\">\n" +
+    "				    <small class=\"error warning\">Recuerda diligenciar todo el formulario para poder ingresar.</small>\n" +
+    "				</div> -->\n" +
+    "	        	<md-input-container flex>\n" +
+    "	        		<md-button class=\"md-raised\">Ingresar</md-button>\n" +
+    "	        	</md-input-container>\n" +
+    "			</form>\n" +
+    "	    </div>\n" +
+    "	    <md-divider></md-divider>\n" +
+    "	    <md-button class=\"md-primary v-margin-btn\">¿Olvidaste tu contraseña?</md-button>\n" +
+    "	    <md-divider></md-divider>\n" +
+    "	    <md-button class=\"md-raised v-margin-btn\" href=\"#\">Crear nueva cuenta</md-button>\n" +
+    "	</md-card>\n" +
+    "</div>\n" +
+    "");
 }]);
