@@ -5801,6 +5801,9 @@ button.close {
   font-weight: 400;
   src: local('Roboto Regular'), local('Roboto-Regular'), url(fonts/Roboto-Regular.woff) format('woff');
 }
+md-toolbar.md-default-theme {
+  background-color: #00bcd4;
+}
 /**
  * Now that all app-wide styles have been applied, we can load the styles for
  * all the submodules and components we are using. 
@@ -5811,3 +5814,4 @@ button.close {
   margin: 0 0 0 0;
 }
 /* Less file for loginUser*/
+/* Less file for createUser*/

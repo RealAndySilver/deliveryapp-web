@@ -18,5 +18,6 @@
     'ui.router.state',
     'ui.router',
     'appMensajeria.loginUser',
-    'appMensajeria.loginUserService',
+    'appMensajeria.createUser',
+    'ngMaterial',
 ])));

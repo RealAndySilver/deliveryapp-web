@@ -1,10 +1,15 @@
-angular.module('templates-app', ['about/about.tpl.html', 'home/home.tpl.html', 'loginUser/loginUser.tpl.html']);
+angular.module('templates-app', ['about/about.tpl.html', 'createUser/createUser.tpl.html', 'home/home.tpl.html', 'loginUser/loginUser.tpl.html']);
 
 angular.module("about/about.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("about/about.tpl.html",
     "<h1>About</h1>\n" +
     "\n" +
     "<p>This is what this is about.</p>");
+}]);
+
+angular.module("createUser/createUser.tpl.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("createUser/createUser.tpl.html",
+    "<h1>CreateUser</h1>");
 }]);
 
 angular.module("home/home.tpl.html", []).run(["$templateCache", function($templateCache) {

@@ -9,11 +9,17 @@
     <!-- compiled CSS --><% styles.forEach( function ( file ) { %>
     <link rel="stylesheet" type="text/css" href="<%= file %>" /><% }); %>
 
+    <!-- Angulars Material CSS now available via Google CDN; version 0.7 used here -->
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/0.7.0/angular-material.min.css">
+
     <!-- compiled JavaScript --><% scripts.forEach( function ( file ) { %>
     <script type="text/javascript" src="<%= file %>"></script><% }); %>
+
+    <!-- Angular Material Javascript now available via Google CDN; version 0.7 used here -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angular_material/0.7.0/angular-material.min.js"></script>
 </head>
 <body>
-    <header>
+    <!-- <header>
         <nav class="container navbar-default">
             <ul class="nav navbar-nav">
                 <li ui-sref-active="active">
@@ -24,6 +30,14 @@
                 </li>
             </ul>
         </nav>
+    </header> -->
+    <header>
+        <md-toolbar layout="row">
+          <button ng-click="toggleSidenav('left')" hide-gt-sm class="menuBtn">
+            <span class="visually-hidden">Menu</span>
+          </button>
+          <h1>MeNsAjErIa!!</h1>
+        </md-toolbar>
     </header>
 
     <div class="container" ui-view="main"></div>

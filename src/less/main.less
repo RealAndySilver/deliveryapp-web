@@ -31,6 +31,9 @@
   src: local('Roboto Regular'), local('Roboto-Regular'), url(fonts/Roboto-Regular.woff) format('woff');
 }
 
+md-toolbar.md-default-theme{
+	background-color: @primaryColor;
+}
 
 /**
  * Now that all app-wide styles have been applied, we can load the styles for
@@ -41,4 +44,5 @@
 
 @import '../app/home/home.less';
 @import '../app/loginUser/loginUser.less';
+@import '../app/createUser/createUser.less';
 
