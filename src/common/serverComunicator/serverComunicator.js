@@ -8,6 +8,7 @@
 		init();
 
 		function init() {
+
 			model.login = function(email, password) {
 				return $http({
 					method: 'PUT',
@@ -16,6 +17,20 @@
 						password: password,
 					},
 					url: endpoint + 'User' + '/Login',
+				});
+			};
+
+			model.register = function(name, lastname, email, password, mobilephone) {
+				return $http({
+					method: 'POST',
+					data: {
+						name: name,
+						lastname: lastname,
+						email: email,
+						password: password,
+						mobilephone: mobilephone,
+					},
+					url: endpoint + 'User' + '/Create',
 				});
 			};
 		}

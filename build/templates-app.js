@@ -19,14 +19,14 @@ angular.module("createUser/createUser.tpl.html", []).run(["$templateCache", func
     "			  </md-toolbar>\n" +
     "		</div>\n" +
     "	    <div>\n" +
-    "			<form name=\"registerForm\" ng-submit=\"model.loginUser()\" novalidate>\n" +
+    "			<form name=\"registerForm\" ng-submit=\"model.createUser()\" novalidate>\n" +
     "				<md-input-container flex>\n" +
     "					<label>Nombre</label>\n" +
     "	            	<input name=\"name\" ng-model=\"model.user.name\" required>\n" +
     "	        	</md-input-container>\n" +
     "	        	<md-input-container flex>\n" +
     "					<label>Apellido</label>\n" +
-    "	            	<input name=\"lastname\" ng-model=\"model.lastname\" required>\n" +
+    "	            	<input name=\"lastname\" ng-model=\"model.user.lastname\" required>\n" +
     "	        	</md-input-container>\n" +
     "				<md-input-container flex>\n" +
     "					<label>Correo electrónico</label>\n" +
@@ -34,18 +34,18 @@ angular.module("createUser/createUser.tpl.html", []).run(["$templateCache", func
     "	        	</md-input-container>\n" +
     "	        	<md-input-container flex>\n" +
     "					<label>Contraseña</label>\n" +
-    "	            	<input type=\"password\" name=\"confirm_password\" ng-model=\"model.user.password\" required>\n" +
+    "	            	<input type=\"password\" name=\"password\" ng-model=\"model.user.password\" required>\n" +
     "	        	</md-input-container>\n" +
     "	        	<md-input-container flex>\n" +
     "					<label>Confirmar contraseña</label>\n" +
-    "	            	<input type=\"password\" name=\"password\" ng-model=\"model.user.password_verify\" data-password-verify=\"model.user.password\" confirmPassword=\"{{model.user.password}}\" required>\n" +
+    "	            	<input type=\"password\" name=\"confirm_password\" ng-model=\"model.user.password_verify\" data-password-verify=\"model.user.password\" confirmPassword=\"{{model.user.password}}\" required>\n" +
     "	            	<div class=\"error\" ng-show=\"registerForm.password.$dirty && registerForm.last_name.$invalid\">\n" +
     "						<small class=\"error\" ng-show=\"registerForm.confirm_password.$error.confirmPassword\">Las contraseñas no coinciden.</small>\n" +
     "					</div>\n" +
     "	        	</md-input-container>\n" +
     "	        	<md-input-container flex>\n" +
     "					<label>Celular</label>\n" +
-    "	            	<input name=\"phone\" ng-model=\"model.user.phone\" required>\n" +
+    "	            	<input name=\"mobilephone\" ng-model=\"model.user.mobilephone\" required>\n" +
     "	        	</md-input-container>\n" +
     "	        	<md-input-container flex>\n" +
     "	        		<md-button class=\"md-raised primary-btn\">Aceptar</md-button>\n" +
