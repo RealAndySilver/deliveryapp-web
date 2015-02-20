@@ -5839,6 +5839,21 @@ body md-card.basic-form .v-margin-btn {
 body md-card.basic-form a {
   text-decoration: none;
 }
+body .solo-box form {
+  padding-top: 25px;
+}
+.solo-box form button.md-button.primary-btn {
+  width: 160px;
+  margin: 0 auto;
+  margin-top: 20px;
+  background: #00bcd4 !important;
+  color: white !important;
+}
+.solo-box form button.md-button.md-warn {
+  width: 160px;
+  margin: 0 auto;
+  margin-top: 20px;
+}
 /**
  * Now that all app-wide styles have been applied, we can load the styles for
  * all the submodules and components we are using. 
@@ -5848,15 +5863,5 @@ body md-card.basic-form a {
 .homeClass {
   margin: 0 0 0 0;
 }
-/* Less file for loginUser*/
-body .solo-box form {
-  padding-top: 25px;
-}
-.solo-box form button.md-button {
-  width: 160px;
-  margin: 0 auto;
-  margin-top: 20px;
-  background: #00bcd4 !important;
-  color: white !important;
-}
+/* Less file for loginUser */
 /* Less file for createUser*/

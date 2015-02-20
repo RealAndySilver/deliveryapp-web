@@ -8,7 +8,7 @@
 			  </md-toolbar>
 		</div>
 	    <div>
-			<form name="loginForm" ng-submit="model.loginUser()" novalidate>
+			<form name="registerForm" ng-submit="model.loginUser()" novalidate>
 				<md-input-container flex>
 					<label>Nombre</label>
 	            	<input name="name" ng-model="model.user.name" required>
@@ -23,24 +23,24 @@
 	        	</md-input-container>
 	        	<md-input-container flex>
 					<label>Contraseña</label>
-	            	<input type="password" name="password" ng-model="model.user.password" required>
+	            	<input type="password" name="confirm_password" ng-model="model.user.password" required>
 	        	</md-input-container>
 	        	<md-input-container flex>
 					<label>Confirmar contraseña</label>
-	            	<input type="password" name="password" ng-model="model.user.password" required>
+	            	<input type="password" name="password" ng-model="model.user.password_verify" data-password-verify="model.user.password" confirmPassword="{{model.user.password}}" required>
+	            	<div class="error" ng-show="registerForm.password.$dirty && registerForm.last_name.$invalid">
+						<small class="error" ng-show="registerForm.confirm_password.$error.confirmPassword">Las contraseñas no coinciden.</small>
+					</div>
 	        	</md-input-container>
 	        	<md-input-container flex>
 					<label>Celular</label>
-	            	<input type="password" name="password" ng-model="model.user.password" required>
+	            	<input name="phone" ng-model="model.user.phone" required>
 	        	</md-input-container>
 	        	<md-input-container flex>
-	        		<md-button class="md-raised">Ingresar</md-button>
+	        		<md-button class="md-raised primary-btn">Aceptar</md-button>
+	        		<md-button class="md-raised md-warn">Cancelar</md-button>
 	        	</md-input-container>
 			</form>
 	    </div>
-	    <md-divider></md-divider>
-	    <md-button class="md-primary v-margin-btn">¿Olvidaste tu contraseña?</md-button>
-	    <md-divider></md-divider>
-	    <md-button class="md-raised v-margin-btn" href="#">Crear nueva cuenta</md-button>
 	</md-card>
 </div>

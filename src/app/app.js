@@ -21,4 +21,5 @@
     'appMensajeria.createUser',
     'ngMaterial',
     'appMensajeria.serverComunicator',
+    'appMensajeria.confirmPassword',
 ])));
