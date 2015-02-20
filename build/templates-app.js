@@ -53,6 +53,10 @@ angular.module("createUser/createUser.tpl.html", []).run(["$templateCache", func
     "	        	</md-input-container>\n" +
     "			</form>\n" +
     "	    </div>\n" +
+    "	    <md-divider></md-divider>\n" +
+    "	    <md-card>	\n" +
+    "			<span>Al registrarte en MensajeriApp, tu aceptas nuestros <a href=\"\">Términos y Condiciones</a>. Tus datos estan bajo política de privacidad.</span>\n" +
+    "		</md-card>\n" +
     "	</md-card>\n" +
     "</div>");
 }]);
