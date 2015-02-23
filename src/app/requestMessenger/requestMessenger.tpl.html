@@ -9,22 +9,55 @@
 		</div>
 	    <div>
 			<form name="requestMessengerForm" ng-submit="model.requestMessenger()" novalidate>
-				<md-input-container flex>
-					<label>Correo electrónico</label>
-	            	<input name="email" ng-model="model.user.email" required>
-	        	</md-input-container>
-	        	<md-input-container flex>
-					<label>Contraseña</label>
-	            	<input type="password" name="password" ng-model="model.user.password" required>
-	        	</md-input-container>
+				<md-card>
+					<md-input-container flex>
+						<label>Nombre de Servicio</label>
+		            	<input name="email" ng-model="model.user.item_name" required>
+		        	</md-input-container>
+		        	<md-input-container flex>
+						<label>Dirección de Recogida</label>
+		            	<input name="email" ng-model="model.user.pickup_object" required>
+		        	</md-input-container>
+		        	<md-input-container flex>
+						<label>Dirección de Entrega</label>
+		            	<input name="email" ng-model="model.user.delivery_object" required>
+		        	</md-input-container>
+		        	<md-switch aria-label="Ida y Vuelta">
+					    Ida y Vuelta
+					</md-switch>
+					<md-button class="md-raised v-margin-btn" href="#">Historial de direcciones</md-button>
+				</md-card>
+				<md-card>
+					<md-input-container flex>
+						<label>Dia y hora de Recogida</label>
+		            	<input name="email" type="date" ng-model="model.user.date1" required>
+		        	</md-input-container>
+		        	<md-input-container flex>
+						<label>Dia y hora de Entrega</label>
+		            	<input name="email" type="date" ng-model="model.user.date2" required>
+		        	</md-input-container>
+		        	<md-input-container flex>
+						<label>Valor declarado de la mercancia</label>
+		            	<input name="email" ng-model="model.user.name" placeholder="min. $1.000" required>
+		        	</md-input-container>
+		        	<md-input-container flex>
+						<label>Instrucciones para mensajero</label>
+		            	<textarea name="email" ng-model="model.user.name" required></textarea>
+		        	</md-input-container>
+				</md-card>
+				<md-toolbar class="md-primary" layout-align="center center">
+				    <span layout-align="center center">
+				    	Valor del servicio
+				    </span>
+				    <span layout-align="center center">
+				    	COP $1.000
+				    </span>
+				</md-toolbar>
 	        	<md-input-container flex>
 	        		<md-button class="md-raised primary-btn">Ingresar</md-button>
 	        	</md-input-container>
 			</form>
 	    </div>
 	    <md-divider></md-divider>
-	    <md-button class="md-primary v-margin-btn">¿Olvidaste tu contraseña?</md-button>
-	    <md-divider></md-divider>
-	    <md-button class="md-raised v-margin-btn" href="#">Crear nueva cuenta</md-button>
 	</md-card>
 </div>

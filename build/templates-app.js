@@ -133,23 +133,56 @@ angular.module("requestMessenger/requestMessenger.tpl.html", []).run(["$template
     "		</div>\n" +
     "	    <div>\n" +
     "			<form name=\"requestMessengerForm\" ng-submit=\"model.requestMessenger()\" novalidate>\n" +
-    "				<md-input-container flex>\n" +
-    "					<label>Correo electrónico</label>\n" +
-    "	            	<input name=\"email\" ng-model=\"model.user.email\" required>\n" +
-    "	        	</md-input-container>\n" +
-    "	        	<md-input-container flex>\n" +
-    "					<label>Contraseña</label>\n" +
-    "	            	<input type=\"password\" name=\"password\" ng-model=\"model.user.password\" required>\n" +
-    "	        	</md-input-container>\n" +
+    "				<md-card>\n" +
+    "					<md-input-container flex>\n" +
+    "						<label>Nombre de Servicio</label>\n" +
+    "		            	<input name=\"email\" ng-model=\"model.user.item_name\" required>\n" +
+    "		        	</md-input-container>\n" +
+    "		        	<md-input-container flex>\n" +
+    "						<label>Dirección de Recogida</label>\n" +
+    "		            	<input name=\"email\" ng-model=\"model.user.pickup_object\" required>\n" +
+    "		        	</md-input-container>\n" +
+    "		        	<md-input-container flex>\n" +
+    "						<label>Dirección de Entrega</label>\n" +
+    "		            	<input name=\"email\" ng-model=\"model.user.delivery_object\" required>\n" +
+    "		        	</md-input-container>\n" +
+    "		        	<md-switch aria-label=\"Ida y Vuelta\">\n" +
+    "					    Ida y Vuelta\n" +
+    "					</md-switch>\n" +
+    "					<md-button class=\"md-raised v-margin-btn\" href=\"#\">Historial de direcciones</md-button>\n" +
+    "				</md-card>\n" +
+    "				<md-card>\n" +
+    "					<md-input-container flex>\n" +
+    "						<label>Dia y hora de Recogida</label>\n" +
+    "		            	<input name=\"email\" type=\"date\" ng-model=\"model.user.date1\" required>\n" +
+    "		        	</md-input-container>\n" +
+    "		        	<md-input-container flex>\n" +
+    "						<label>Dia y hora de Entrega</label>\n" +
+    "		            	<input name=\"email\" type=\"date\" ng-model=\"model.user.date2\" required>\n" +
+    "		        	</md-input-container>\n" +
+    "		        	<md-input-container flex>\n" +
+    "						<label>Valor declarado de la mercancia</label>\n" +
+    "		            	<input name=\"email\" ng-model=\"model.user.name\" placeholder=\"min. $1.000\" required>\n" +
+    "		        	</md-input-container>\n" +
+    "		        	<md-input-container flex>\n" +
+    "						<label>Instrucciones para mensajero</label>\n" +
+    "		            	<textarea name=\"email\" ng-model=\"model.user.name\" required></textarea>\n" +
+    "		        	</md-input-container>\n" +
+    "				</md-card>\n" +
+    "				<md-toolbar class=\"md-primary\" layout-align=\"center center\">\n" +
+    "				    <span layout-align=\"center center\">\n" +
+    "				    	Valor del servicio\n" +
+    "				    </span>\n" +
+    "				    <span layout-align=\"center center\">\n" +
+    "				    	COP $1.000\n" +
+    "				    </span>\n" +
+    "				</md-toolbar>\n" +
     "	        	<md-input-container flex>\n" +
     "	        		<md-button class=\"md-raised primary-btn\">Ingresar</md-button>\n" +
     "	        	</md-input-container>\n" +
     "			</form>\n" +
     "	    </div>\n" +
     "	    <md-divider></md-divider>\n" +
-    "	    <md-button class=\"md-primary v-margin-btn\">¿Olvidaste tu contraseña?</md-button>\n" +
-    "	    <md-divider></md-divider>\n" +
-    "	    <md-button class=\"md-raised v-margin-btn\" href=\"#\">Crear nueva cuenta</md-button>\n" +
     "	</md-card>\n" +
     "</div>\n" +
     "");

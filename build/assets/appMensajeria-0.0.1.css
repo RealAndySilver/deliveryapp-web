@@ -5822,7 +5822,7 @@ header md-toolbar.md-default-theme {
 header h1 {
   font-size: 76px;
 }
-md-toolbar.md-default-theme h1 {
+header md-toolbar.md-default-theme h1 {
   margin: 0 auto;
   line-height: 64px;
   font-family: 'IntriqueScriptPersonalUse';
@@ -5835,6 +5835,9 @@ md-card {
 }
 body md-card.basic-form {
   width: 440px;
+}
+label {
+  margin-bottom: 15px;
 }
 body md-card.basic-form .v-margin-btn {
   margin: 10px 0;
