@@ -1,14 +1,14 @@
 (function(app) {
 
-    app.config(function ($stateProvider, $urlRouterProvider) {
+    app.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
         $urlRouterProvider.otherwise('/loginuser');
-    });
+    }]);
 
     app.run(function () {});
 
-    app.controller('AppController', function ($scope) {
+    app.controller('AppController', ['$scope', function ($scope) {
 
-    });
+    }]);
 
 }(angular.module("appMensajeria", [
     'appMensajeria.home',
