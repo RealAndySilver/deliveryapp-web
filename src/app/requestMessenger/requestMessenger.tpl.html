@@ -22,7 +22,7 @@
 						<label>Dirección de Entrega</label>
 		            	<input name="email" ng-model="model.user.delivery_object" required>
 		        	</md-input-container>
-		        	<md-switch aria-label="Ida y Vuelta">
+		        	<md-switch aria-label="Ida y Vuelta" ng-model="model.user.roundtrip">
 					    Ida y Vuelta
 					</md-switch>
 					<md-button class="md-raised v-margin-btn" href="#">Historial de direcciones</md-button>
@@ -30,19 +30,19 @@
 				<md-card>
 					<md-input-container flex>
 						<label>Dia y hora de Recogida</label>
-		            	<input name="email" type="date" ng-model="model.user.date1" required>
+		            	<input name="email" type="date" ng-model="model.user.pickup_time" required>
 		        	</md-input-container>
 		        	<md-input-container flex>
 						<label>Dia y hora de Entrega</label>
-		            	<input name="email" type="date" ng-model="model.user.date2" required>
+		            	<input name="email" type="date" ng-model="model.user.deadline" required>
 		        	</md-input-container>
 		        	<md-input-container flex>
 						<label>Valor declarado de la mercancia</label>
-		            	<input name="email" ng-model="model.user.name" placeholder="min. $1.000" required>
+		            	<input name="email" ng-model="model.user.declared_value" placeholder="min. $1.000" required>
 		        	</md-input-container>
 		        	<md-input-container flex>
 						<label>Instrucciones para mensajero</label>
-		            	<textarea name="email" ng-model="model.user.name" required></textarea>
+		            	<textarea name="email" ng-model="model.user.instructions" required></textarea>
 		        	</md-input-container>
 				</md-card>
 				<md-toolbar class="md-primary" layout-align="center center">
@@ -54,7 +54,7 @@
 				    </span>
 				</md-toolbar>
 	        	<md-input-container flex>
-	        		<md-button class="md-raised primary-btn">Ingresar</md-button>
+	        		<md-button class="md-raised primary-btn">Solicitar</md-button>
 	        	</md-input-container>
 			</form>
 	    </div>
