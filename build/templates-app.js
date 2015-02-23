@@ -142,6 +142,9 @@ angular.module("requestMessenger/requestMessenger.tpl.html", []).run(["$template
     "						<label>Dirección de Recogida</label>\n" +
     "		            	<input name=\"email\" ng-model=\"model.user.pickup_object\" required>\n" +
     "		        	</md-input-container>\n" +
+    "		        	<md-content ng-show=\"model.user.pickup_object\" class=\"md-padding\" style=\"height: 360px;padding: 14px;\">\n" +
+    "						<iframe src=\"https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3976.5706071034724!2d-74.06260575081787!3d4.670375197953802!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0000000000000000%3A0x8fc525db6fc7f9d7!2seltomacorriente!5e0!3m2!1sen!2s!4v1424727802971\" width=\"100%\" height=\"350\" frameborder=\"0\" style=\"border:0\"></iframe>\n" +
+    "		        	</md-content>\n" +
     "		        	<md-input-container flex>\n" +
     "						<label>Dirección de Entrega</label>\n" +
     "		            	<input name=\"email\" ng-model=\"model.user.delivery_object\" required>\n" +

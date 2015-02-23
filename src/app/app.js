@@ -23,4 +23,5 @@
     'appMensajeria.serverComunicator',
     'appMensajeria.confirmPassword',
     'appMensajeria.requestMessenger',
+    'appMensajeria.userMap',
 ])));
