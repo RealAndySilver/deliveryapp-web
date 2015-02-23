@@ -1,4 +1,4 @@
-angular.module('templates-app', ['about/about.tpl.html', 'createUser/createUser.tpl.html', 'home/home.tpl.html', 'loginUser/loginUser.tpl.html']);
+angular.module('templates-app', ['about/about.tpl.html', 'createUser/createUser.tpl.html', 'home/home.tpl.html', 'loginUser/loginUser.tpl.html', 'requestMessenger/requestMessenger.tpl.html']);
 
 angular.module("about/about.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("about/about.tpl.html",
@@ -106,6 +106,41 @@ angular.module("loginUser/loginUser.tpl.html", []).run(["$templateCache", functi
     "	        	<!-- <div class=\"error warning\" ng-show=\"loginForm.$invalid\">\n" +
     "				    <small class=\"error warning\">Recuerda diligenciar todo el formulario para poder ingresar.</small>\n" +
     "				</div> -->\n" +
+    "	        	<md-input-container flex>\n" +
+    "	        		<md-button class=\"md-raised primary-btn\">Ingresar</md-button>\n" +
+    "	        	</md-input-container>\n" +
+    "			</form>\n" +
+    "	    </div>\n" +
+    "	    <md-divider></md-divider>\n" +
+    "	    <md-button class=\"md-primary v-margin-btn\">¿Olvidaste tu contraseña?</md-button>\n" +
+    "	    <md-divider></md-divider>\n" +
+    "	    <md-button class=\"md-raised v-margin-btn\" href=\"#\">Crear nueva cuenta</md-button>\n" +
+    "	</md-card>\n" +
+    "</div>\n" +
+    "");
+}]);
+
+angular.module("requestMessenger/requestMessenger.tpl.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("requestMessenger/requestMessenger.tpl.html",
+    "<div layout=\"column\" layout-align=\"center center\" class=\"solo-box\">\n" +
+    "	<md-card class=\"basic-form\">\n" +
+    "		<div>\n" +
+    "			<md-toolbar>\n" +
+    "			    <div class=\"md-toolbar-tools\" layout-align=\"center center\">\n" +
+    "			    	<span class=\"md-flex\">Solicitar Servicio</span>\n" +
+    "			    </div>\n" +
+    "			  </md-toolbar>\n" +
+    "		</div>\n" +
+    "	    <div>\n" +
+    "			<form name=\"requestMessengerForm\" ng-submit=\"model.requestMessenger()\" novalidate>\n" +
+    "				<md-input-container flex>\n" +
+    "					<label>Correo electrónico</label>\n" +
+    "	            	<input name=\"email\" ng-model=\"model.user.email\" required>\n" +
+    "	        	</md-input-container>\n" +
+    "	        	<md-input-container flex>\n" +
+    "					<label>Contraseña</label>\n" +
+    "	            	<input type=\"password\" name=\"password\" ng-model=\"model.user.password\" required>\n" +
+    "	        	</md-input-container>\n" +
     "	        	<md-input-container flex>\n" +
     "	        		<md-button class=\"md-raised primary-btn\">Ingresar</md-button>\n" +
     "	        	</md-input-container>\n" +

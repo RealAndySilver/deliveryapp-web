@@ -5803,7 +5803,7 @@ button.close {
 }
 @font-face {
   font-family: 'IntriqueScriptPersonalUse';
-  src: url('/src/assets/fonts/IntriqueScriptPersonalUse/IntriqueScriptPersonalUse.eot?#iefix') format('embedded-opentype'), url('/src/assets/fonts/IntriqueScriptPersonalUse/IntriqueScriptPersonalUse.woff') format('woff'), url('/src/assets/fonts/IntriqueScriptPersonalUse/IntriqueScriptPersonalUse.ttf') format('truetype'), url('/src/assets/fonts/IntriqueScriptPersonalUse/IntriqueScriptPersonalUse.svg#IntriqueScriptPersonalUse') format('svg');
+  src: url('../assets/fonts/IntriqueScriptPersonalUse/IntriqueScriptPersonalUse.eot?#iefix') format('embedded-opentype'), url('../assets/fonts/IntriqueScriptPersonalUse/IntriqueScriptPersonalUse.woff') format('woff'), url('../assets/fonts/IntriqueScriptPersonalUse/IntriqueScriptPersonalUse.ttf') format('truetype'), url('../assets/fonts/IntriqueScriptPersonalUse/IntriqueScriptPersonalUse.svg#IntriqueScriptPersonalUse') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -5818,6 +5818,9 @@ md-toolbar.md-default-theme {
 }
 header md-toolbar.md-default-theme {
   height: 130px;
+}
+header h1 {
+  font-size: 76px;
 }
 md-toolbar.md-default-theme h1 {
   margin: 0 auto;
@@ -5865,3 +5868,4 @@ body .solo-box form {
 }
 /* Less file for loginUser */
 /* Less file for createUser*/
+/* Less file for requestMessenger*/

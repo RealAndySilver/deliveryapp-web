@@ -22,4 +22,5 @@
     'ngMaterial',
     'appMensajeria.serverComunicator',
     'appMensajeria.confirmPassword',
+    'appMensajeria.requestMessenger',
 ])));
