@@ -10,6 +10,7 @@
     "angular-bootstrap": "~0.10.0",
     "angular-ui-router": "~0.2.7",
     "angular-material": "master",
-    "hammerjs": "~2.0.4"
+    "hammerjs": "~2.0.4",
+    "jquery": "~2.1.3"
   }
 }

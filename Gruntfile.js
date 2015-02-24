@@ -86,6 +86,7 @@ module.exports = function(grunt) {
                 'vendor/angular-material/angular-material.min.js',
                 'vendor/angular-animate/angular-animate.min.js',
                 'vendor/angular-aria/angular-aria.min.js',
+                'vendor/jquery/dist/jquery.min.js',
             ],
             css: [
 

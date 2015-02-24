@@ -17,6 +17,7 @@ module.exports = function ( karma ) {
                 'vendor/angular-material/angular-material.min.js',
                 'vendor/angular-animate/angular-animate.min.js',
                 'vendor/angular-aria/angular-aria.min.js',
+                'vendor/jquery/dist/jquery.min.js',
                 'build/templates-app.js',
                 'build/templates-common.js',
                 'vendor/angular-mocks/angular-mocks.js',
