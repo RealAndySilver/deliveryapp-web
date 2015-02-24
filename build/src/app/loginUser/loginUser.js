@@ -1,6 +1,6 @@
 (function(module) {
 
-	module.controller('LoginUserController', ['LoginUserService', function(LoginUserService) {
+	module.controller('LoginUserController', ['LoginUserService','$state', function(LoginUserService, $state) {
 		var model = this;
 
 		init();
@@ -11,6 +11,9 @@
 				LoginUserService.loginUser(model.user.email, model.user.password, function(response) {
 					console.log(response);
 				});
+			};
+			model.newAccount = function() {
+				$state.go('createUser');
 			};
 
 		}

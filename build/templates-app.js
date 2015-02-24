@@ -114,7 +114,7 @@ angular.module("loginUser/loginUser.tpl.html", []).run(["$templateCache", functi
     "	    <md-divider></md-divider>\n" +
     "	    <md-button class=\"md-primary v-margin-btn\">¿Olvidaste tu contraseña?</md-button>\n" +
     "	    <md-divider></md-divider>\n" +
-    "	    <md-button class=\"md-raised v-margin-btn\" href=\"#\">Crear nueva cuenta</md-button>\n" +
+    "	    <md-button class=\"md-raised v-margin-btn\" ng-click=\"model.newAccount()\">Crear nueva cuenta</md-button>\n" +
     "	</md-card>\n" +
     "</div>\n" +
     "");
