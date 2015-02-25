@@ -21,7 +21,7 @@
 					"<br>Longitude: " + position.coords.longitude;
 			};
 
-			$scope.$watch('lat', onChange);
+			/*$scope.$watch('lat', onChange);
 			$scope.$watch('lng', onChange);
 
 			$scope.ome = 'location';
@@ -50,7 +50,7 @@
 					}
 					console.log('ome', $scope.ome);
 				});
-			}
+			}*/
 
 			model.requestMessenger = function() {
 				console.log('objeto servicio ', model.user);

@@ -24,17 +24,14 @@
 			var initialMarker = [];
 			$scope.map = new google.maps.Map(document.getElementById('map'), mapOptions);
 
-			//google.maps.event.addListener($scope.map, 'click', addPoint);
+			google.maps.event.addListener($scope.map, 'click', addPoint);
 
-			//cargar ubicación en mapa
-			/*var createMarker = function(lat, lng) {
+			function addPoint(event) {
 				var marker = new google.maps.Marker({
+					position: event.latLng,
 					map: $scope.map,
-					position: new google.maps.LatLng(lat, lng),
-					//title: info.name +' '+ info.lastname
 				});
-				initialMarker.push(marker);
-			};*/
+			}
 		}
 	}]);
 
