@@ -18,6 +18,8 @@
 
     <!-- Angular Material Javascript now available via Google CDN; version 0.7 used here -->
     <script src="https://ajax.googleapis.com/ajax/libs/angular_material/0.7.0/angular-material.min.js"></script>
+
+    <!-- Librerias del API de Google Maps -->
     <script src="https://maps.googleapis.com/maps/api/js?key=&sensor=false&extension=.js"></script>
     <script type="text/javascript" src="http://www.google.com/jsapi"></script>
 </head>
@@ -30,11 +32,6 @@
           <h1>MensajeriApp</h1>
         </md-toolbar>
     </header>
-
-    <input type="number" ng-model="lat">
-    <input type="number" ng-model="lng">
-    <input type="text" ng-model="ome">
-    {{ome}}
 
     <div class="container" ui-view="main"></div>
 
