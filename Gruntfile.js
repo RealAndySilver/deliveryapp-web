@@ -87,6 +87,7 @@ module.exports = function(grunt) {
                 'vendor/angular-animate/angular-animate.min.js',
                 'vendor/angular-aria/angular-aria.min.js',
                 'vendor/jquery/dist/jquery.min.js',
+                'vendor/angular-reverse-geocode/angular-reverse-geocode.js'
             ],
             css: [
 

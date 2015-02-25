@@ -18,6 +18,7 @@ module.exports = function ( karma ) {
                 'vendor/angular-animate/angular-animate.min.js',
                 'vendor/angular-aria/angular-aria.min.js',
                 'vendor/jquery/dist/jquery.min.js',
+                'vendor/angular-reverse-geocode/angular-reverse-geocode.js',
                 'build/templates-app.js',
                 'build/templates-common.js',
                 'vendor/angular-mocks/angular-mocks.js',
