@@ -6,6 +6,10 @@
 			templateUrl: 'userMap/userMap.tpl.html',
 			controller: 'UserMapController',
 			controllerAs: 'mapCtrl',
+			scope: {
+				lat: "=",
+				lon: "=",
+			},
 		};
 	});
 
@@ -15,23 +19,34 @@
 		init();
 
 		function init() {
-			var mapOptions = {
-				zoom: 5,
-				center: new google.maps.LatLng(4.6777333, -74.0956373),
-				mapTypeId: google.maps.MapTypeId.ROADMAP
-			};
 
-			var initialMarker = [];
-			$scope.map = new google.maps.Map(document.getElementById('map'), mapOptions);
+			function latLngCallback(newValue) {
+				console.log('watching latlong', $scope.lat, $scope.lon);
 
-			google.maps.event.addListener($scope.map, 'click', addPoint);
+				if (!$scope.map) {
+					var mapOptions = {
+						zoom: 15,
+						center: new google.maps.LatLng($scope.lat, $scope.lon),
+						mapTypeId: google.maps.MapTypeId.ROADMAP
+					};
 
-			function addPoint(event) {
-				var marker = new google.maps.Marker({
-					position: event.latLng,
-					map: $scope.map,
-				});
+					//var initialMarker = [];
+					$scope.map = new google.maps.Map(document.getElementById('map'), mapOptions);
+				}
+
+				addPoint();
+
+				$scope.map.panTo(new google.maps.LatLng($scope.lat, $scope.lon));
+
+				function addPoint(event) {
+					var marker = new google.maps.Marker({
+						position: new google.maps.LatLng($scope.lat, $scope.lon),
+						map: $scope.map,
+					});
+				}
 			}
+
+			$scope.$watch('lat', latLngCallback);
 		}
 	}]);
 

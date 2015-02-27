@@ -1,25 +1,44 @@
 (function(module) {
 
-	module.controller('RequestMessengerController', ['$scope', function($scope) {
+	module.controller('RequestMessengerController', ['$scope', '$mdDialog', function($scope, $mdDialog) {
 		var model = this;
+
+		$scope.position = {
+			lat: 0,
+			lng: 0
+		};
 
 		init();
 
 		function init() {
-			var x = document.getElementById("geo-cositas");
+			$scope.showAlert = function() {
+				$mdDialog.show(
+					$mdDialog.alert()
+					//.title('Permiso de Localización')
+					.content('Recuerda activar el permiso para Localización en la barra superior derecha.')
+					.ariaLabel('Allow user geolocation')
+					.ok('Aceptar')
+					//.targetEvent(ev)
+				);
+			};
+
+			$scope.showAlert();
 
 			model.getLocation = function() {
 				if (navigator.geolocation) {
 					navigator.geolocation.getCurrentPosition(model.showPosition);
 				} else {
-					x.innerHTML = "Geolocation is not supported by this browser.";
+					alert("Geolocation is not supported by this browser.");
 				}
 			};
 
 			model.showPosition = function(position) {
-				x.innerHTML = "Latitude: " + position.coords.latitude +
-					"<br>Longitude: " + position.coords.longitude;
+				$scope.position.lat = position.coords.latitude;
+				$scope.position.lng = position.coords.longitude;
+				console.log("Latitude: " + position.coords.latitude + " Longitude: " + position.coords.longitude);
 			};
+
+			model.getLocation();
 
 			/*$scope.$watch('lat', onChange);
 			$scope.$watch('lng', onChange);

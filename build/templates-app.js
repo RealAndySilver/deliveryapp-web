@@ -138,16 +138,16 @@ angular.module("requestMessenger/requestMessenger.tpl.html", []).run(["$template
     "						<label>Nombre de Servicio</label>\n" +
     "		            	<input name=\"email\" ng-model=\"model.user.item_name\" required>\n" +
     "		        	</md-input-container>\n" +
-    "		        	<md-input-container flex id=\"geo-cositas\">\n" +
+    "		        	<md-input-container flex>\n" +
     "						<label>Dirección de Recogida</label>\n" +
-    "		            	<input name=\"email\" ng-model=\"model.user.pickup_object\" required ng-click=\"model.getLocation()\">\n" +
+    "		            	<input name=\"email\" ng-model=\"model.user.pickup_object\" required ng-click=\"model.pickUpMap()\">\n" +
     "		        	</md-input-container>\n" +
     "		        	<md-content ng-if=\"model.user.pickup_object\" class=\"md-padding\" style=\"height: 360px;padding: 14px;\">\n" +
     "		        		<!-- <input type=\"number\" ng-model=\"lat\">\n" +
     "						<input type=\"number\" ng-model=\"lng\"> -->\n" +
     "						<!-- <input type=\"text\" ng-model=\"ome\"> -->\n" +
     "						<!-- {{ome}} -->\n" +
-    "						<user-map class=\"map-container\">\n" +
+    "						<user-map class=\"map-container\" lat=\"position.lat\" lon=\"position.lng\">\n" +
     "							<div class=\"map\" id=\"map\" ng-cloak></div>\n" +
     "						</user-map>\n" +
     "		        	</md-content>\n" +
