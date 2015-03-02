@@ -19,9 +19,9 @@
 		            	<input name="email" ng-model="pickup_object" required ng-click="model.pickUpMap()">
 		        	</md-input-container>
 		        	<md-content ng-if="pickup_object" class="md-padding" style="height: 360px;padding: 14px;">
-						<user-map class="map-container" lat="position.lat" lon="position.lng">
+						<pickup-map class="map-container" lat="position.lat" lon="position.lng">
 							<div class="map" id="map" ng-cloak></div>
-						</user-map>
+						</pickup-map>
 		        	</md-content>
 		        	<md-input-container flex>
 						<label>Dirección de Entrega</label>

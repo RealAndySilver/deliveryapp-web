@@ -1,10 +1,10 @@
 (function(module) {
 
-	module.directive('userMap', function() {
+	module.directive('pickupMap', function() {
 		return {
 			restrict: 'E',
 			templateUrl: 'userMap/userMap.tpl.html',
-			controller: 'UserMapController',
+			controller: 'PickupMapController',
 			controllerAs: 'mapCtrl',
 			scope: {
 				lat: "=",
@@ -13,7 +13,7 @@
 		};
 	});
 
-	module.controller('UserMapController', ['$scope', function($scope) {
+	module.controller('PickupMapController', ['$scope', function($scope) {
 		var model = this;
 
 		init();

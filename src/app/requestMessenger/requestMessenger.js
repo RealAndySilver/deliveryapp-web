@@ -43,16 +43,7 @@
 			};
 
 			model.getLocation();
-
-			// $scope.$watch('lat', onChange);
-			// $scope.$watch('lng', onChange);
-
 			$scope.pickup_object = '';
-
-			// $scope.lat = 40.730885;
-			// $scope.lng = -73.997383;
-
-			//onChange();
 
 			function onChange() {
 				var geocoder = new google.maps.Geocoder();
@@ -77,6 +68,7 @@
 			}
 
 			model.requestMessenger = function() {
+				model.user.pickup_object = $scope.pickup_object;
 				console.log('objeto servicio ', model.user);
 			};
 		}
