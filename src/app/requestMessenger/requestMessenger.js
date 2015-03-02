@@ -15,9 +15,10 @@
 				$mdDialog.show(
 					$mdDialog.alert()
 					//.title('Permiso de Localización')
-					.content('Recuerda activar el permiso para Localización en la barra superior derecha.')
+					.content('Recuerda activar el permiso para localización en la barra superior derecha.')
 					.ariaLabel('Allow user geolocation')
 					.ok('Aceptar')
+					.disableParentScroll(false)
 					//.targetEvent(ev)
 				);
 			};
@@ -35,41 +36,45 @@
 			model.showPosition = function(position) {
 				$scope.position.lat = position.coords.latitude;
 				$scope.position.lng = position.coords.longitude;
+				onChange();
+				$scope.$watch('lat', onChange);
+				$scope.$watch('lng', onChange);
 				console.log("Latitude: " + position.coords.latitude + " Longitude: " + position.coords.longitude);
 			};
 
 			model.getLocation();
 
-			/*$scope.$watch('lat', onChange);
-			$scope.$watch('lng', onChange);
+			// $scope.$watch('lat', onChange);
+			// $scope.$watch('lng', onChange);
 
-			$scope.ome = 'location';
+			$scope.pickup_object = '';
 
-			$scope.lat = 40.730885;
-			$scope.lng = -73.997383;
+			// $scope.lat = 40.730885;
+			// $scope.lng = -73.997383;
 
-			onChange();
+			//onChange();
 
 			function onChange() {
 				var geocoder = new google.maps.Geocoder();
-				var latlng = new google.maps.LatLng($scope.lat, $scope.lng);
+				var latlng = new google.maps.LatLng($scope.position.lat, $scope.position.lng);
 				geocoder.geocode({
 					'latLng': latlng
 				}, function(results, status) {
 					console.log('results', results);
-					console.log('status', status);
+					//console.log('status', status);
 					if (status == google.maps.GeocoderStatus.OK) {
 						if (results[0]) {
-							$scope.ome = results[0].formatted_address;
+							var res = results[0].formatted_address.split(", ", 3);
+							$scope.pickup_object = res[0];
 						} else {
-							$scope.ome = 'Location not found';
+							$scope.pickup_object = 'Location not found';
 						}
 					} else {
-						$scope.ome = 'Geocoder failed due to: ' + status;
+						$scope.pickup_object = 'Geocoder failed due to: ' + status;
 					}
-					console.log('ome', $scope.ome);
+					console.log('pickup_object', $scope.pickup_object);
 				});
-			}*/
+			}
 
 			model.requestMessenger = function() {
 				console.log('objeto servicio ', model.user);
