@@ -49,7 +49,7 @@ angular.module("createUser/createUser.tpl.html", []).run(["$templateCache", func
     "	        	</md-input-container>\n" +
     "	        	<md-input-container flex>\n" +
     "	        		<md-button class=\"md-raised primary-btn\">Aceptar</md-button>\n" +
-    "	        		<md-button class=\"md-raised md-warn\">Cancelar</md-button>\n" +
+    "	        		<md-button class=\"md-raised md-warn\" ng-click=\"model.cancel()\">Cancelar</md-button>\n" +
     "	        	</md-input-container>\n" +
     "			</form>\n" +
     "	    </div>\n" +
@@ -136,7 +136,7 @@ angular.module("requestMessenger/requestMessenger.tpl.html", []).run(["$template
     "				<md-card>\n" +
     "					<md-input-container flex>\n" +
     "						<label>Nombre de Servicio</label>\n" +
-    "		            	<input name=\"email\" ng-model=\"model.user.item_name\" required>\n" +
+    "		            	<input name=\"email\" ng-model=\"model.delivery.item_name\" required>\n" +
     "		        	</md-input-container>\n" +
     "		        	<md-input-container flex>\n" +
     "						<label>Dirección de Recogida</label>\n" +
@@ -149,9 +149,9 @@ angular.module("requestMessenger/requestMessenger.tpl.html", []).run(["$template
     "		        	</md-content>\n" +
     "		        	<md-input-container flex>\n" +
     "						<label>Dirección de Entrega</label>\n" +
-    "		            	<input name=\"email\" ng-model=\"model.user.delivery_object\" required>\n" +
+    "		            	<input name=\"email\" ng-model=\"model.delivery.delivery_object\" required>\n" +
     "		        	</md-input-container>\n" +
-    "		        	<md-switch aria-label=\"Ida y Vuelta\" ng-model=\"model.user.roundtrip\">\n" +
+    "		        	<md-switch aria-label=\"Ida y Vuelta\" ng-model=\"model.delivery.roundtrip\">\n" +
     "					    Ida y Vuelta\n" +
     "					</md-switch>\n" +
     "					<md-button class=\"md-raised v-margin-btn\" href=\"#\">Historial de direcciones</md-button>\n" +
@@ -159,19 +159,19 @@ angular.module("requestMessenger/requestMessenger.tpl.html", []).run(["$template
     "				<md-card>\n" +
     "					<md-input-container flex>\n" +
     "						<label>Dia y hora de Recogida</label>\n" +
-    "		            	<input name=\"email\" type=\"date\" ng-model=\"model.user.pickup_time\" required>\n" +
+    "		            	<input name=\"email\" type=\"date\" ng-model=\"model.delivery.pickup_time\" required>\n" +
     "		        	</md-input-container>\n" +
     "		        	<md-input-container flex>\n" +
     "						<label>Dia y hora de Entrega</label>\n" +
-    "		            	<input name=\"email\" type=\"date\" ng-model=\"model.user.deadline\" required>\n" +
+    "		            	<input name=\"email\" type=\"date\" ng-model=\"model.delivery.deadline\" required>\n" +
     "		        	</md-input-container>\n" +
     "		        	<md-input-container flex>\n" +
     "						<label>Valor declarado de la mercancia</label>\n" +
-    "		            	<input name=\"email\" ng-model=\"model.user.declared_value\" placeholder=\"min. $1.000\" required>\n" +
+    "		            	<input name=\"email\" ng-model=\"model.delivery.declared_value\" placeholder=\"min. $1.000\" required>\n" +
     "		        	</md-input-container>\n" +
     "		        	<md-input-container flex>\n" +
     "						<label>Instrucciones para mensajero</label>\n" +
-    "		            	<textarea name=\"email\" ng-model=\"model.user.instructions\" required></textarea>\n" +
+    "		            	<textarea name=\"email\" ng-model=\"model.delivery.instructions\" required></textarea>\n" +
     "		        	</md-input-container>\n" +
     "				</md-card>\n" +
     "				<md-toolbar class=\"md-primary\" layout-align=\"center center\">\n" +

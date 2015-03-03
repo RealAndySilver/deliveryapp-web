@@ -33,6 +33,14 @@
 					url: endpoint + 'User' + '/Create',
 				});
 			};
+
+			model.requestMessenger = function(delivery) {
+				return $http({
+					method: 'POST',
+					data: delivery,
+					url: endpoint + 'DeliveryItem' + '/Create',
+				});
+			};
 		}
 	}]);
 

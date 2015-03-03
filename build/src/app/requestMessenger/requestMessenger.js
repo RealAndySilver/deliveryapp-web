@@ -1,6 +1,6 @@
 (function(module) {
 
-	module.controller('RequestMessengerController', ['$scope', '$mdDialog', function($scope, $mdDialog) {
+	module.controller('RequestMessengerController', ['$scope', '$mdDialog', 'RequestMessengerService', function($scope, $mdDialog, RequestMessengerService) {
 		var model = this;
 
 		$scope.position = {
@@ -14,12 +14,10 @@
 			$scope.showAlert = function() {
 				$mdDialog.show(
 					$mdDialog.alert()
-					//.title('Permiso de Localización')
 					.content('Recuerda activar el permiso para localización en la barra superior derecha.')
 					.ariaLabel('Allow user geolocation')
 					.ok('Aceptar')
 					.disableParentScroll(false)
-					//.targetEvent(ev)
 				);
 			};
 
@@ -51,8 +49,7 @@
 				geocoder.geocode({
 					'latLng': latlng
 				}, function(results, status) {
-					console.log('results', results);
-					//console.log('status', status);
+					//console.log('results', results);
 					if (status == google.maps.GeocoderStatus.OK) {
 						if (results[0]) {
 							var res = results[0].formatted_address.split(", ", 3);
@@ -68,8 +65,11 @@
 			}
 
 			model.requestMessenger = function() {
-				model.user.pickup_object = $scope.pickup_object;
-				console.log('objeto servicio ', model.user);
+				model.delivery.pickup_object = $scope.pickup_object;
+				console.log('objeto servicio ', model.delivery);
+				RequestMessengerService.requestMessenger(model.delivery, function(response) {
+					console.log(response);
+				});
 			};
 		}
 	}]);

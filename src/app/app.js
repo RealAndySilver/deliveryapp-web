@@ -10,6 +10,9 @@
 
     });
 
+    //inicializa el usuario que se va a guardar en local storage
+    app.value('User', {});
+
 }(angular.module("appMensajeria", [
     'appMensajeria.home',
     'appMensajeria.about',
@@ -25,4 +28,5 @@
     'appMensajeria.requestMessenger',
     'appMensajeria.userMap',
     'angularReverseGeocode',
+    'appMensajeria.session',
 ])));
