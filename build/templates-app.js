@@ -140,9 +140,9 @@ angular.module("requestMessenger/requestMessenger.tpl.html", []).run(["$template
     "		        	</md-input-container>\n" +
     "		        	<md-input-container flex>\n" +
     "						<label>Dirección de Recogida</label>\n" +
-    "		            	<input name=\"email\" ng-model=\"pickup_object\" required ng-click=\"model.pickUpMap()\">\n" +
+    "		            	<input name=\"email\" ng-model=\"pickup_address\" required ng-click=\"model.pickUpMap()\">\n" +
     "		        	</md-input-container>\n" +
-    "		        	<md-content ng-if=\"pickup_object\" class=\"md-padding\" style=\"height: 360px;padding: 14px;\">\n" +
+    "		        	<md-content ng-if=\"pickup_address\" class=\"md-padding\" style=\"height: 360px;padding: 14px;\">\n" +
     "						<pickup-map class=\"map-container\" lat=\"position.lat\" lon=\"position.lng\">\n" +
     "							<div class=\"map\" id=\"map\" ng-cloak></div>\n" +
     "						</pickup-map>\n" +
