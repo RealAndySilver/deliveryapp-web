@@ -136,21 +136,22 @@ angular.module("requestMessenger/requestMessenger.tpl.html", []).run(["$template
     "				<md-card>\n" +
     "					<md-input-container flex>\n" +
     "						<label>Nombre de Servicio</label>\n" +
-    "		            	<input name=\"email\" ng-model=\"model.delivery.item_name\" required>\n" +
+    "		            	<input name=\"item_name\" ng-model=\"model.delivery.item_name\" required>\n" +
     "		        	</md-input-container>\n" +
     "		        	<md-input-container flex>\n" +
     "						<label>Dirección de Recogida</label>\n" +
-    "		            	<input name=\"email\" ng-model=\"pickup_address\" required ng-click=\"model.pickUpMap()\">\n" +
+    "		            	<input name=\"pickup_address\" ng-model=\"pickup_address\" required ng-click=\"model.pickUpMap()\">\n" +
     "		        	</md-input-container>\n" +
     "		        	<md-content ng-if=\"pickup_address\" class=\"md-padding\" style=\"height: 360px;padding: 14px;\">\n" +
-    "						<pickup-map class=\"map-container\" lat=\"position.lat\" lon=\"position.lng\">\n" +
-    "							<div class=\"map\" id=\"map\" ng-cloak></div>\n" +
-    "						</pickup-map>\n" +
+    "						<pickup-map class=\"map-container\" lat=\"position.lat\" lon=\"position.lng\"></pickup-map>\n" +
     "		        	</md-content>\n" +
     "		        	<md-input-container flex>\n" +
     "						<label>Dirección de Entrega</label>\n" +
-    "		            	<input name=\"email\" ng-model=\"model.delivery.delivery_object\" required>\n" +
+    "		            	<input name=\"delivery_address\" ng-model=\"delivery_address\" required>\n" +
     "		        	</md-input-container>\n" +
+    "		        	<md-content ng-if=\"delivery_address\" class=\"md-padding\" style=\"height: 360px;padding: 14px;\">\n" +
+    "						<delivery-map class=\"map-container\" callback=\"setLatLong(lat, lon)\"></delivery-map>\n" +
+    "		        	</md-content>\n" +
     "		        	<md-switch aria-label=\"Ida y Vuelta\" ng-model=\"model.delivery.roundtrip\">\n" +
     "					    Ida y Vuelta\n" +
     "					</md-switch>\n" +
@@ -159,19 +160,19 @@ angular.module("requestMessenger/requestMessenger.tpl.html", []).run(["$template
     "				<md-card>\n" +
     "					<md-input-container flex>\n" +
     "						<label>Dia y hora de Recogida</label>\n" +
-    "		            	<input name=\"email\" type=\"date\" ng-model=\"model.delivery.pickup_time\" required>\n" +
+    "		            	<input name=\"pickup_time\" type=\"date\" ng-model=\"model.delivery.pickup_time\" required>\n" +
     "		        	</md-input-container>\n" +
     "		        	<md-input-container flex>\n" +
     "						<label>Dia y hora de Entrega</label>\n" +
-    "		            	<input name=\"email\" type=\"date\" ng-model=\"model.delivery.deadline\" required>\n" +
+    "		            	<input name=\"deadline\" type=\"date\" ng-model=\"model.delivery.deadline\" required>\n" +
     "		        	</md-input-container>\n" +
     "		        	<md-input-container flex>\n" +
     "						<label>Valor declarado de la mercancia</label>\n" +
-    "		            	<input name=\"email\" ng-model=\"model.delivery.declared_value\" placeholder=\"min. $1.000\" required>\n" +
+    "		            	<input name=\"declared_value\" ng-model=\"model.delivery.declared_value\" placeholder=\"min. $1.000\" required>\n" +
     "		        	</md-input-container>\n" +
     "		        	<md-input-container flex>\n" +
     "						<label>Instrucciones para mensajero</label>\n" +
-    "		            	<textarea name=\"email\" ng-model=\"model.delivery.instructions\" required></textarea>\n" +
+    "		            	<textarea name=\"instructions\" ng-model=\"model.delivery.instructions\" required></textarea>\n" +
     "		        	</md-input-container>\n" +
     "				</md-card>\n" +
     "				<md-toolbar class=\"md-primary\" layout-align=\"center center\">\n" +

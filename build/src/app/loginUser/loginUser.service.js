@@ -14,14 +14,14 @@
 					function success(response) {
 						callback({
 							response: response.data.status,
-							msg: 'succesful login',
+							msg: response.data.message,
 							data: response.data.response,
 						});
 					},
 					function error(e) {
 						callback({
 							response: false,
-							msg: 'failed login',
+							msg: response.data.message,
 							error: e,
 						});
 					});

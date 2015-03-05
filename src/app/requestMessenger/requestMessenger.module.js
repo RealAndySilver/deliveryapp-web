@@ -2,7 +2,7 @@
 
     module.config(function ($stateProvider) {
         $stateProvider.state('requestMessenger', {
-            url: '/requestmessenger/:id',
+            url: '/requestmessenger',
             views: {
                 "main": {
                     controller: 'RequestMessengerController as model',

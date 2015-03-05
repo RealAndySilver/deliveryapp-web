@@ -13,14 +13,14 @@
 					function success(response) {
 						callback({
 							response: response.data.status,
-							msg: 'succesful request',
+							msg: response.data.message,
 							data: response.data.response,
 						});
 					},
 					function error(e) {
 						callback({
 							response: false,
-							msg: 'failed request',
+							msg: response.data.message,
 							error: e,
 						});
 					});
