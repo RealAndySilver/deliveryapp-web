@@ -87,13 +87,16 @@ module.exports = function(grunt) {
                 'vendor/angular-animate/angular-animate.min.js',
                 'vendor/angular-aria/angular-aria.min.js',
                 'vendor/jquery/dist/jquery.min.js',
-                'vendor/angular-reverse-geocode/angular-reverse-geocode.js'
+                'vendor/angular-reverse-geocode/angular-reverse-geocode.js',
+                'vendor/md-date-time/dist/md-date-time.js',
+                'vendor/md-date-time/dist/md-date-time.css',
+                'vendor/angular-material/angular-material.min.css',
             ],
             css: [
-
+                'vendor/md-date-time/dist/md-date-time.css',
+                'vendor/angular-material/angular-material.min.css',
             ],
             assets: [
-                'vendor/angular-material/angular-material.min.css',
                 'vendor/angular-animate/angular-animate.min.js.map',
                 'vendor/angular-aria/angular-aria.min.js.map',
                 'vendor/hammerjs/hammer.min.map',

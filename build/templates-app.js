@@ -123,7 +123,7 @@ angular.module("loginUser/loginUser.tpl.html", []).run(["$templateCache", functi
 angular.module("requestMessenger/requestMessenger.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("requestMessenger/requestMessenger.tpl.html",
     "<div layout=\"column\" layout-align=\"center center\" class=\"solo-box\">\n" +
-    "	<md-card class=\"basic-form\">\n" +
+    "	<md-card class=\"big-form\">\n" +
     "		<div>\n" +
     "			<md-toolbar>\n" +
     "			    <div class=\"md-toolbar-tools\" layout-align=\"center center\">\n" +
@@ -132,7 +132,7 @@ angular.module("requestMessenger/requestMessenger.tpl.html", []).run(["$template
     "			  </md-toolbar>\n" +
     "		</div>\n" +
     "	    <div>\n" +
-    "			<form name=\"requestMessengerForm\" ng-submit=\"model.requestMessenger()\" novalidate>\n" +
+    "			<form name=\"requestMessengerForm\" novalidate>\n" +
     "				<md-card>\n" +
     "					<md-input-container flex>\n" +
     "						<label>Nombre de Servicio</label>\n" +
@@ -157,15 +157,17 @@ angular.module("requestMessenger/requestMessenger.tpl.html", []).run(["$template
     "					</md-switch>\n" +
     "					<md-button class=\"md-raised v-margin-btn\" href=\"#\">Historial de direcciones</md-button>\n" +
     "				</md-card>\n" +
-    "				<md-card>\n" +
+    "				<md-card class=\"top-fix\">\n" +
     "					<md-input-container flex>\n" +
     "						<label>Dia y hora de Recogida</label>\n" +
-    "		            	<input name=\"pickup_time\" type=\"date\" ng-model=\"model.delivery.pickup_time\" required>\n" +
+    "						<input type=\"date\" name=\"pickup_time\" ng-model=\"pickup_time\" required>\n" +
     "		        	</md-input-container>\n" +
+    "		        	<!-- <time-date-picker ng-model=\"pickup_time\"></time-date-picker> -->\n" +
     "		        	<md-input-container flex>\n" +
     "						<label>Dia y hora de Entrega</label>\n" +
-    "		            	<input name=\"deadline\" type=\"date\" ng-model=\"model.delivery.deadline\" required>\n" +
+    "						<input type=\"date\" name=\"deadline\" ng-model=\"deadline\" required>\n" +
     "		        	</md-input-container>\n" +
+    "		        	<!-- <time-date-picker ng-model=\"deadline\"></time-date-picker> -->\n" +
     "		        	<md-input-container flex>\n" +
     "						<label>Valor declarado de la mercancia</label>\n" +
     "		            	<input name=\"declared_value\" ng-model=\"model.delivery.declared_value\" placeholder=\"min. $1.000\" required>\n" +
@@ -180,11 +182,11 @@ angular.module("requestMessenger/requestMessenger.tpl.html", []).run(["$template
     "				    	Valor del servicio\n" +
     "				    </span>\n" +
     "				    <span layout-align=\"center center\">\n" +
-    "				    	COP $1.000\n" +
+    "				    	$1.000\n" +
     "				    </span>\n" +
     "				</md-toolbar>\n" +
     "	        	<md-input-container flex>\n" +
-    "	        		<md-button class=\"md-raised primary-btn\">Solicitar</md-button>\n" +
+    "	        		<md-button class=\"md-raised primary-btn\" ng-click=\"model.requestMessenger()\">Solicitar</md-button>\n" +
     "	        	</md-input-container>\n" +
     "			</form>\n" +
     "	    </div>\n" +

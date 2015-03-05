@@ -29,4 +29,5 @@
     'appMensajeria.userMap',
     'angularReverseGeocode',
     'appMensajeria.session',
+    'mdDateTime',
 ])));
