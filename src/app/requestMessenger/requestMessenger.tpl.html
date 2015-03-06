@@ -53,12 +53,12 @@
 		            	<textarea name="instructions" ng-model="model.delivery.instructions" required></textarea>
 		        	</md-input-container>
 				</md-card>
-				<md-toolbar class="md-primary" layout-align="center center">
+				<md-toolbar ng-show="pickup_address && delivery_address" class="md-primary" layout-align="center center">
 				    <span layout-align="center center">
 				    	Valor del servicio
 				    </span>
 				    <span layout-align="center center">
-				    	$ {{deliveryPrice}}
+				    	COP {{deliveryPrice}}
 				    </span>
 				</md-toolbar>
 	        	<md-input-container flex>

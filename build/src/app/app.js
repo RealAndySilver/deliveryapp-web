@@ -31,4 +31,5 @@
     'appMensajeria.session',
     'mdDateTime',
     'appMensajeria.getPrice',
+    'appMensajeria.getAddresses',
 ])));

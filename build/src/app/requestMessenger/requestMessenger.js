@@ -116,16 +116,14 @@
 				if (destinationLat !== 0) {
 					loc1 = $scope.position.lat + "," + $scope.position.lng;
 					loc2 = destinationLat + "," + destinationLon;
-					console.log('parametros de distancia ', loc1 + "/" + loc2);
+					//console.log('parametros de distancia ', loc1 + "/" + loc2);
 					GetPrice.getPrice(loc1, loc2, function(response) {
 						console.log(response);
 						$scope.deliveryPrice = response.data;
-						console.log('precioo ', $scope.deliveryPrice);
 					});
 				} else {
 					console.log('no estan todos los paarmetros requeridos');
 				}
-
 			}
 
 
@@ -142,6 +140,7 @@
 				model.delivery.delivery_object.address = $scope.delivery_address;
 				model.delivery.delivery_object.lat = $scope.deliverLat;
 				model.delivery.delivery_object.lon = $scope.deliverLon;
+				model.delivery.price_to_pay = $scope.deliveryPrice;
 				model.delivery.user_info = $scope.currentUser;
 				model.delivery.user_id = $scope.currentUser._id;
 				console.log('objeto servicio ', model.delivery);

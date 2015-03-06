@@ -177,12 +177,12 @@ angular.module("requestMessenger/requestMessenger.tpl.html", []).run(["$template
     "		            	<textarea name=\"instructions\" ng-model=\"model.delivery.instructions\" required></textarea>\n" +
     "		        	</md-input-container>\n" +
     "				</md-card>\n" +
-    "				<md-toolbar class=\"md-primary\" layout-align=\"center center\">\n" +
+    "				<md-toolbar ng-show=\"pickup_address && delivery_address\" class=\"md-primary\" layout-align=\"center center\">\n" +
     "				    <span layout-align=\"center center\">\n" +
     "				    	Valor del servicio\n" +
     "				    </span>\n" +
     "				    <span layout-align=\"center center\">\n" +
-    "				    	$ {{deliveryPrice}}\n" +
+    "				    	COP {{deliveryPrice}}\n" +
     "				    </span>\n" +
     "				</md-toolbar>\n" +
     "	        	<md-input-container flex>\n" +
