@@ -1,6 +1,6 @@
 (function(module) {
 
-	module.controller('RequestMessengerController', ['$scope', '$mdDialog', 'RequestMessengerService', 'Session', '$stateParams', function($scope, $mdDialog, RequestMessengerService, Session, $stateParams) {
+	module.controller('RequestMessengerController', ['$scope', '$mdDialog', 'RequestMessengerService', 'Session', 'GetPrice', '$stateParams', function($scope, $mdDialog, RequestMessengerService, Session, GetPrice, $stateParams) {
 		var model = this;
 
 		init();
@@ -101,7 +101,37 @@
 					geocodeDelivery();
 				});
 				console.log('setLatLong:', 'lat', $scope.deliverLat, 'lon', $scope.deliverLon);
+				getDistance($scope.deliverLat, $scope.deliverLon);
 			};
+
+			$scope.distance = {
+				pickupLatitud: $scope.position.lat,
+				pickupLongitud: $scope.position.lng,
+				deliveryLatitud: $scope.deliverLat,
+				deliveryLongitud: $scope.deliverLon,
+			};
+			//$scope.$watch('distance', getDistance);
+
+			function getDistance(destinationLat, destinationLon) {
+				if (destinationLat !== 0) {
+					loc1 = $scope.position.lat + "," + $scope.position.lng;
+					loc2 = destinationLat + "," + destinationLon;
+					console.log('parametros de distancia ', loc1 + "/" + loc2);
+					GetPrice.getPrice(loc1, loc2, function(response) {
+						console.log(response);
+						$scope.deliveryPrice = response.data;
+						console.log('precioo ', $scope.deliveryPrice);
+					});
+				} else {
+					console.log('no estan todos los paarmetros requeridos');
+				}
+
+			}
+
+
+			/*if ($scope.distance) {
+				getDistance();
+			}*/
 
 			model.requestMessenger = function() {
 				model.delivery.pickup_object = {};

@@ -182,7 +182,7 @@ angular.module("requestMessenger/requestMessenger.tpl.html", []).run(["$template
     "				    	Valor del servicio\n" +
     "				    </span>\n" +
     "				    <span layout-align=\"center center\">\n" +
-    "				    	$1.000\n" +
+    "				    	$ {{deliveryPrice}}\n" +
     "				    </span>\n" +
     "				</md-toolbar>\n" +
     "	        	<md-input-container flex>\n" +

@@ -30,4 +30,5 @@
     'angularReverseGeocode',
     'appMensajeria.session',
     'mdDateTime',
+    'appMensajeria.getPrice',
 ])));

@@ -41,6 +41,17 @@
 					url: endpoint + 'DeliveryItem' + '/Create',
 				});
 			};
+
+			model.getPrice = function(loc1, loc2) {
+				return $http({
+					method: 'GET',
+					data: {
+						loc1: loc1,
+						loc2: loc2,
+					},
+					url: endpoint + 'GetPrice' +  "/" + loc1 + "/" + loc2,
+				});
+			};
 		}
 	}]);
 
