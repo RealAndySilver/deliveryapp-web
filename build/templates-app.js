@@ -149,7 +149,7 @@ angular.module("requestMessenger/requestMessenger.tpl.html", []).run(["$template
     "						<label>Dirección de Entrega</label>\n" +
     "		            	<input name=\"delivery_address\" ng-model=\"delivery_address\" required>\n" +
     "		        	</md-input-container>\n" +
-    "		        	<md-content ng-if=\"delivery_address\" class=\"md-padding\" style=\"height: 360px;padding: 14px;\">\n" +
+    "		        	<md-content ng-if=\"pickup_address\" class=\"md-padding\" style=\"height: 360px;padding: 14px;\">\n" +
     "						<delivery-map class=\"map-container\" callback=\"setLatLong(lat, lon)\"></delivery-map>\n" +
     "		        	</md-content>\n" +
     "		        	<md-switch aria-label=\"Ida y Vuelta\" ng-model=\"model.delivery.roundtrip\">\n" +
@@ -160,14 +160,14 @@ angular.module("requestMessenger/requestMessenger.tpl.html", []).run(["$template
     "				<md-card class=\"top-fix\">\n" +
     "					<md-input-container flex>\n" +
     "						<label>Dia y hora de Recogida</label>\n" +
-    "						<input type=\"date\" name=\"pickup_time\" ng-model=\"pickup_time\" required>\n" +
+    "						<!-- <input type=\"date\" name=\"pickup_time\" ng-model=\"pickup_time\" required> -->\n" +
     "		        	</md-input-container>\n" +
-    "		        	<!-- <time-date-picker ng-model=\"pickup_time\"></time-date-picker> -->\n" +
+    "		        	<time-date-picker ng-model=\"model.delivery.pickup_time\" required></time-date-picker>\n" +
     "		        	<md-input-container flex>\n" +
     "						<label>Dia y hora de Entrega</label>\n" +
-    "						<input type=\"date\" name=\"deadline\" ng-model=\"deadline\" required>\n" +
+    "						<!-- <input type=\"date\" name=\"deadline\" ng-model=\"deadline\" required> -->\n" +
     "		        	</md-input-container>\n" +
-    "		        	<!-- <time-date-picker ng-model=\"deadline\"></time-date-picker> -->\n" +
+    "		        	<time-date-picker ng-model=\"model.delivery.deadline\" required></time-date-picker>\n" +
     "		        	<md-input-container flex>\n" +
     "						<label>Valor declarado de la mercancia</label>\n" +
     "		            	<input name=\"declared_value\" ng-model=\"model.delivery.declared_value\" placeholder=\"min. $1.000\" required>\n" +

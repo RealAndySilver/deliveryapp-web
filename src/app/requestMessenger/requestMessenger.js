@@ -9,7 +9,7 @@
 			$scope.showAlert = function() {
 				$mdDialog.show(
 					$mdDialog.alert()
-					.content('Recuerda activar el permiso para localización en la barra superior derecha.')
+					.content('Recuerda activar el permiso para utilizar tu ubicación en la barra superior.')
 					.ariaLabel('Allow user geolocation')
 					.ok('Aceptar')
 					.disableParentScroll(false)
@@ -114,19 +114,10 @@
 				model.delivery.delivery_object.lon = $scope.deliverLon;
 				model.delivery.user_info = $scope.currentUser;
 				model.delivery.user_id = $scope.currentUser._id;
-
-				console.log('fecha recogida antes ', $scope.pickup_time);
-				console.log('fecha entrega antes ', $scope.deadline);
-
-				console.log('fecha recogida despues ', new Date($scope.pickup_time));
-				console.log('fecha entrega despues ', new Date($scope.deadline));
-
-				// model.delivery.pickup_time = new Date($scope.pickup_time);
-				// model.delivery.deadline = new Date($scope.deadline);
 				console.log('objeto servicio ', model.delivery);
-				/*RequestMessengerService.requestMessenger(model.delivery, function(response) {
+				RequestMessengerService.requestMessenger(model.delivery, function(response) {
 					console.log(response);
-				});*/
+				});
 			};
 		}
 	}]);

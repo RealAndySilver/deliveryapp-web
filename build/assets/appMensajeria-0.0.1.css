@@ -5883,6 +5883,9 @@ md-input-container {
 /* Less file for loginUser */
 /* Less file for createUser*/
 /* Less file for requestMessenger*/
+.time-date > .control > .slider > .time-control > .time-inputs > input {
+  width: 9.5rem !important;
+}
 /* Less file for userMap*/
 .map-container {
   height: 100%;
