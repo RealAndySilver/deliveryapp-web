@@ -5,7 +5,7 @@
 			    <div class="md-toolbar-tools" layout-align="center center">
 			    	<span class="md-flex">Solicitar Servicio</span>
 			    </div>
-			  </md-toolbar>
+			</md-toolbar>
 		</div>
 	    <div>
 			<form name="requestMessengerForm" novalidate>
@@ -31,7 +31,7 @@
 		        	<md-switch aria-label="Ida y Vuelta" ng-model="model.delivery.roundtrip">
 					    Ida y Vuelta
 					</md-switch>
-					<md-button class="md-raised v-margin-btn" href="#">Historial de direcciones</md-button>
+					<md-button class="md-raised v-margin-btn" ng-click="showAddresses($event)">Historial de direcciones</md-button>
 				</md-card>
 				<md-card class="top-fix">
 					<md-input-container flex>

@@ -1,13 +1,16 @@
 (function(module) {
 
-    module.controller('GetAddressesController', function () {
-        var model = this;
+	module.controller('GetAddressesController', function() {
+		var model = this;
 
-        init();
+		init();
 
-        function init() {
+		function init() {
+			var maxAddresses = 10;
+			var pickupAddresses = [];
+			var deliveryAddresses = [];
 
-        }
-    });
+		}
+	});
 
-}(angular.module("appMensajeria.getAddresses")));
+}(angular.module("appMensajeria.getAddresses", [])));

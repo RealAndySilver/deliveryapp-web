@@ -17,6 +17,19 @@
 			};
 			$scope.showAlert();
 
+			$scope.showAddresses = function() {
+				$mdDialog.show({
+						//controller: DialogController,
+						templateUrl: 'getAddresses/getAddresses.tpl.html',
+						//targetEvent: ev,
+					});
+					/*.then(function(answer) {
+						$scope.alert = 'You said the information was "' + answer + '".';
+					}, function() {
+						$scope.alert = 'You cancelled the dialog.';
+					});*/
+			};
+
 			model.getCurrentUser = function() {
 				$scope.currentUser = Session.getUser();
 			};

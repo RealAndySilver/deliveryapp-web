@@ -129,7 +129,7 @@ angular.module("requestMessenger/requestMessenger.tpl.html", []).run(["$template
     "			    <div class=\"md-toolbar-tools\" layout-align=\"center center\">\n" +
     "			    	<span class=\"md-flex\">Solicitar Servicio</span>\n" +
     "			    </div>\n" +
-    "			  </md-toolbar>\n" +
+    "			</md-toolbar>\n" +
     "		</div>\n" +
     "	    <div>\n" +
     "			<form name=\"requestMessengerForm\" novalidate>\n" +
@@ -155,7 +155,7 @@ angular.module("requestMessenger/requestMessenger.tpl.html", []).run(["$template
     "		        	<md-switch aria-label=\"Ida y Vuelta\" ng-model=\"model.delivery.roundtrip\">\n" +
     "					    Ida y Vuelta\n" +
     "					</md-switch>\n" +
-    "					<md-button class=\"md-raised v-margin-btn\" href=\"#\">Historial de direcciones</md-button>\n" +
+    "					<md-button class=\"md-raised v-margin-btn\" ng-click=\"showAddresses($event)\">Historial de direcciones</md-button>\n" +
     "				</md-card>\n" +
     "				<md-card class=\"top-fix\">\n" +
     "					<md-input-container flex>\n" +
