@@ -1,11 +1,29 @@
 (function(module) {
 
-	module.controller('LoginUserController', ['LoginUserService', '$state', 'User', 'Session', function(LoginUserService, $state, User, Session) {
+	module.controller('LoginUserController', ['LoginUserService', '$state', '$mdDialog', 'User', 'Session', 'RecoverPassword', function(LoginUserService, $state, $mdDialog, User, Session, RecoverPassword) {
 		var model = this;
 
 		init();
 
 		function init() {
+			model.loginAlert = function() {
+				$mdDialog.show(
+					$mdDialog.alert()
+					.content('Usuario o contraseña incorrectos.')
+					.ariaLabel('login validation')
+					.ok('Aceptar')
+					.disableParentScroll(false)
+				);
+			};
+			model.recoverAlert = function() {
+				$mdDialog.show(
+					$mdDialog.alert()
+					.content('Te hemos enviado un correo electrónico para que puedas recuperar tu contraseña.')
+					.ariaLabel('recover password')
+					.ok('Aceptar')
+					.disableParentScroll(false)
+				);
+			};
 
 			model.loginUser = function() {
 				LoginUserService.loginUser(model.user.email, model.user.password, function(response) {
@@ -14,9 +32,11 @@
 					if (response.data) {
 						User = user;
 						Session.setUser(User);
-						$state.go('requestMessenger', {id: user._id});
+						$state.go('requestMessenger', {
+							id: user._id
+						});
 					} else {
-						console.log('respuesta de servidor ', response);
+						model.loginAlert();
 					}
 				});
 			};
@@ -25,9 +45,20 @@
 				$state.go('createUser');
 			};
 
+			model.recoverPassword = function(email) {
+				console.log('el email que me llega ', email);
+				RecoverPassword.recoverPassword(email, function(response) {
+					console.log(response);
+					if (response) {
+						model.recoverAlert();
+					}
+				});
+			};
+
 			model.forgotPassword = function(email) {
 				if (email) {
 					console.log('email de usuario ', email);
+					model.recoverPassword(email);
 				} else {
 					console.log('MOSTRAR VENTANA PARA INTRODUCIR EMAIL');
 				}
