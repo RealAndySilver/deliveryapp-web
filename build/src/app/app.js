@@ -1,14 +1,14 @@
 (function(app) {
 
-    app.config(function($stateProvider, $urlRouterProvider) {
+    app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
         $urlRouterProvider.otherwise('/loginuser');
-    });
+    }]);
 
     app.run(function() {});
 
-    app.controller('AppController', function($scope) {
+    app.controller('AppController', ['$scope', function($scope) {
 
-    });
+    }]);
 
     //inicializa el usuario que se va a guardar en local storage
     app.value('User', {});
