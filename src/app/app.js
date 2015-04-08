@@ -32,4 +32,5 @@
     'mdDateTime',
     'appMensajeria.getPrice',
     'appMensajeria.getAddresses',
+    'appMensajeria.recoverPassword',
 ])));

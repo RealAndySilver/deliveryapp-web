@@ -14,16 +14,23 @@
 					if (response.data) {
 						User = user;
 						Session.setUser(User);
-						
 						$state.go('requestMessenger', {id: user._id});
+					} else {
+						console.log('respuesta de servidor ', response);
 					}
-					//console.log('user id ', user._id);
-					//$state.go('requestmessenger', {id: user._id});
 				});
 			};
 
 			model.newAccount = function() {
 				$state.go('createUser');
+			};
+
+			model.forgotPassword = function(email) {
+				if (email) {
+					console.log('email de usuario ', email);
+				} else {
+					console.log('MOSTRAR VENTANA PARA INTRODUCIR EMAIL');
+				}
 			};
 
 		}

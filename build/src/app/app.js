@@ -1,14 +1,14 @@
 (function(app) {
 
-    app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
+    app.config(function($stateProvider, $urlRouterProvider) {
         $urlRouterProvider.otherwise('/loginuser');
-    }]);
+    });
 
     app.run(function() {});
 
-    app.controller('AppController', ['$scope', function($scope) {
+    app.controller('AppController', function($scope) {
 
-    }]);
+    });
 
     //inicializa el usuario que se va a guardar en local storage
     app.value('User', {});
@@ -32,4 +32,5 @@
     'mdDateTime',
     'appMensajeria.getPrice',
     'appMensajeria.getAddresses',
+    'appMensajeria.recoverPassword',
 ])));
