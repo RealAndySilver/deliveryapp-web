@@ -33,4 +33,5 @@
     'appMensajeria.getPrice',
     'appMensajeria.getAddresses',
     'appMensajeria.recoverPassword',
+    'appMensajeria.searchingMessenger',
 ])));
