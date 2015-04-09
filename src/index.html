@@ -26,12 +26,37 @@
 <body>
     <header>
         <md-toolbar layout="row" layout-align="center center">
-          <button ng-click="toggleSidenav('left')" hide-gt-sm class="menuBtn">
-            <span class="visually-hidden">Menu</span>
-          </button>
           <h1>MensajeriApp</h1>
         </md-toolbar>
     </header>
+    <md-list>
+        <div class="btns-container">
+            <md-item>
+              <md-button class="md-grid-item-content" ng-click="listItemClick($index)">
+                <md-icon>ICONO</md-icon>
+                <div class="md-grid-text"> PERFIL </div>
+              </md-button>
+            </md-item>
+            <md-item>
+              <md-button class="md-grid-item-content" ng-click="listItemClick($index)">
+                <md-icon>ICONO</md-icon>
+                <div class="md-grid-text"> HISTORIAL </div>
+              </md-button>
+            </md-item>
+            <md-item>
+              <md-button class="md-grid-item-content" ng-click="listItemClick($index)">
+                <md-icon>ICONO</md-icon>
+                <div class="md-grid-text"> MENSAJERIAPP </div>
+              </md-button>
+            </md-item>
+            <md-item>
+              <md-button class="md-grid-item-content" ng-click="listItemClick($index)">
+                <md-icon>ICONO</md-icon>
+                <div class="md-grid-text"> SALIR </div>
+              </md-button>
+            </md-item>
+        </div>
+    </md-list>
 
     <div class="container" ui-view="main"></div>
 
