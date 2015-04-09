@@ -13,6 +13,9 @@
     //inicializa el usuario que se va a guardar en local storage
     app.value('User', {});
 
+    app.value('PickupAddresses', []);
+    app.value('DeliveryAddresses', []);
+
 }(angular.module("appMensajeria", [
     'appMensajeria.home',
     'appMensajeria.about',

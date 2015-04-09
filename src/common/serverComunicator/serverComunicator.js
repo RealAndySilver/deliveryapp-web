@@ -3,7 +3,7 @@
 	module.service('ServerComunicator', ['$http', function($http) {
 		var model = this;
 		var endpoint = "http://192.241.187.135:2000/api_1.0/";
-		//var endpoint = "http://192.168.0.32:2000/api_1.0/";
+		//var endpoint = "http://local.andres/api_1.0/";
 
 		init();
 

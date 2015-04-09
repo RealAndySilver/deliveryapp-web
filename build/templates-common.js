@@ -9,95 +9,41 @@ angular.module("getAddresses/getAddresses.tpl.html", []).run(["$templateCache", 
     "    </div>\n" +
     "  </md-toolbar>\n" +
     "  <md-content>\n" +
+    "\n" +
     "    <md-subheader class=\"md-primary\">Direcciones de Recogida</md-subheader>\n" +
     "    <md-list>	\n" +
     "      <!-- <md-item ng-repeat=\"item in todos\"> -->\n" +
-    "      <md-item>\n" +
-    "        <md-item-content>\n" +
-    "          <div class=\"md-tile-content\">\n" +
-    "            <p>\n" +
-    "              calle 125 #45-98\n" +
-    "            </p>\n" +
-    "          </div>\n" +
-    "        </md-item-content>\n" +
-    "        <md-divider inset></md-divider>\n" +
-    "      </md-item>\n" +
-    "\n" +
-    "      <md-item>\n" +
-    "        <md-item-content>\n" +
-    "          <div class=\"md-tile-content\">\n" +
-    "            <p>\n" +
-    "              calle 125 #45-98\n" +
-    "            </p>\n" +
-    "          </div>\n" +
-    "        </md-item-content>\n" +
-    "        <md-divider inset></md-divider>\n" +
-    "      </md-item>\n" +
-    "      <md-item>\n" +
-    "        <md-item-content>\n" +
-    "          <div class=\"md-tile-content\">\n" +
-    "            <p>\n" +
-    "              calle 125 #45-98\n" +
-    "            </p>\n" +
-    "          </div>\n" +
-    "        </md-item-content>\n" +
-    "        <md-divider inset></md-divider>\n" +
-    "      </md-item>\n" +
-    "      <md-item>\n" +
-    "        <md-item-content>\n" +
-    "          <div class=\"md-tile-content\">\n" +
-    "            <p>\n" +
-    "              calle 125 #45-98\n" +
-    "            </p>\n" +
-    "          </div>\n" +
-    "        </md-item-content>\n" +
-    "        <md-divider inset></md-divider>\n" +
-    "      </md-item>\n" +
-    "      <md-item>\n" +
-    "        <md-item-content>\n" +
-    "          <div class=\"md-tile-content\">\n" +
-    "            <p>\n" +
-    "              calle 125 #45-98\n" +
-    "            </p>\n" +
-    "          </div>\n" +
-    "        </md-item-content>\n" +
-    "        <md-divider inset></md-divider>\n" +
-    "      </md-item>\n" +
-    "      <md-item>\n" +
-    "        <md-item-content>\n" +
-    "          <div class=\"md-tile-content\">\n" +
-    "            <p>\n" +
-    "              calle 125 #45-98\n" +
-    "            </p>\n" +
-    "          </div>\n" +
-    "        </md-item-content>\n" +
-    "        <md-divider inset></md-divider>\n" +
-    "      </md-item>\n" +
-    "      <md-item>\n" +
-    "        <md-item-content>\n" +
-    "          <div class=\"md-tile-content\">\n" +
-    "            <p>\n" +
-    "              calle 125 #45-98\n" +
-    "            </p>\n" +
-    "          </div>\n" +
-    "        </md-item-content>\n" +
-    "        <md-divider inset></md-divider>\n" +
-    "      </md-item>\n" +
-    "      <md-item>\n" +
-    "        <md-item-content>\n" +
-    "          <div class=\"md-tile-content\">\n" +
-    "            <p>\n" +
-    "              calle 125 #45-98\n" +
-    "            </p>\n" +
-    "          </div>\n" +
-    "        </md-item-content>\n" +
-    "        <md-divider inset></md-divider>\n" +
-    "      </md-item>\n" +
-    "\n" +
-    "      \n" +
-    "        <md-divider inset></md-divider>\n" +
+    "	      <md-item>\n" +
+    "	        <md-item-content>\n" +
+    "	          <div class=\"md-tile-content\">\n" +
+    "	            <p>\n" +
+    "	              calle 125 #45-98\n" +
+    "	            </p>\n" +
+    "	          </div>\n" +
+    "	        </md-item-content>\n" +
+    "	        <md-divider inset></md-divider>\n" +
+    "	      </md-item>\n" +
+    "          <md-divider inset></md-divider>\n" +
     "      </md-item>\n" +
     "    </md-list>\n" +
+    "\n" +
+    "	<md-subheader class=\"md-primary\">Direcciones de Entrega</md-subheader>\n" +
+    "    <md-list>	\n" +
+    "      <!-- <md-item ng-repeat=\"item in todos\"> -->\n" +
+    "	      <md-item>\n" +
+    "	        <md-item-content>\n" +
+    "	          <div class=\"md-tile-content\">\n" +
+    "	            <p>\n" +
+    "	              carrera 14 #3-76\n" +
+    "	            </p>\n" +
+    "	          </div>\n" +
+    "	        </md-item-content>\n" +
+    "	        <md-divider inset></md-divider>\n" +
+    "	      </md-item>\n" +
+    "          <md-divider inset></md-divider>\n" +
+    "      </md-item>\n" +
+    "    </md-list>	\n" +
+    "\n" +
     "  </md-content>\n" +
     "</md-dialog>");
 }]);

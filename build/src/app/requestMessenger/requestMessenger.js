@@ -19,15 +19,15 @@
 
 			$scope.showAddresses = function() {
 				$mdDialog.show({
-						//controller: DialogController,
-						templateUrl: 'getAddresses/getAddresses.tpl.html',
-						//targetEvent: ev,
-					});
-					/*.then(function(answer) {
-						$scope.alert = 'You said the information was "' + answer + '".';
-					}, function() {
-						$scope.alert = 'You cancelled the dialog.';
-					});*/
+					controller: 'GetAddressesController',
+					templateUrl: 'getAddresses/getAddresses.tpl.html',
+					//targetEvent: ev,
+				});
+				/*.then(function(answer) {
+					$scope.alert = 'You said the information was "' + answer + '".';
+				}, function() {
+					$scope.alert = 'You cancelled the dialog.';
+				});*/
 			};
 
 			model.getCurrentUser = function() {
@@ -123,42 +123,69 @@
 				deliveryLatitud: $scope.deliverLat,
 				deliveryLongitud: $scope.deliverLon,
 			};
-			//$scope.$watch('distance', getDistance);
 
 			function getDistance(destinationLat, destinationLon) {
-				if (destinationLat !== 0) {
-					loc1 = $scope.position.lat + "," + $scope.position.lng;
-					loc2 = destinationLat + "," + destinationLon;
-					//console.log('parametros de distancia ', loc1 + "/" + loc2);
-					GetPrice.getPrice(loc1, loc2, function(response) {
-						console.log(response);
-						$scope.deliveryPrice = response.data;
-					});
-				} else {
-					console.log('no estan todos los paarmetros requeridos');
+					console.log('entra a esta función');
+					var loc1 = '';
+					var loc2 = '';
+					if (destinationLat !== 0) {
+						loc1 = $scope.position.lat + "," + $scope.position.lng;
+						loc2 = destinationLat + "," + destinationLon;
+						GetPrice.getPrice(loc1, loc2, function(response) {
+							$scope.deliveryPrice = response.data;
+							console.log(response);
+						});
+					} else {
+						console.log('no estan todos los paarmetros requeridos');
+					}
 				}
-			}
+				//$scope.$watch('distance', getDistance);
 
-
-			/*if ($scope.distance) {
-				getDistance();
-			}*/
-
+			var maxAddresses = 10;
+			$scope.pickupAddresses = [];
+			$scope.deliveryAddresses = [];
 			model.requestMessenger = function() {
 				model.delivery.pickup_object = {};
 				model.delivery.pickup_object.address = $scope.pickup_address;
 				model.delivery.pickup_object.lat = $scope.position.lat;
 				model.delivery.pickup_object.lon = $scope.position.lng;
+				/*if (model.delivery.pickup_object) {
+					//$scope.pickupItem = model.delivery.pickup_object;
+					$scope.pickupAddress.push(model.delivery.pickup_object);
+					//console.log($scope.pickupAddress);
+				}*/
+
 				model.delivery.delivery_object = {};
 				model.delivery.delivery_object.address = $scope.delivery_address;
 				model.delivery.delivery_object.lat = $scope.deliverLat;
 				model.delivery.delivery_object.lon = $scope.deliverLon;
+				/*if (model.delivery.delivery_object) {
+					//$scope.deliveryItem = model.delivery.delivery_object;
+					$scope.deliveryAddresses.push(model.delivery.delivery_object);
+					//console.log($scope.deliveryAddresses);
+				}*/
+
 				model.delivery.price_to_pay = $scope.deliveryPrice;
 				model.delivery.user_info = $scope.currentUser;
 				model.delivery.user_id = $scope.currentUser._id;
+				//console.log('objeto arrays direcciones ', $scope.pickupItem, $scope.deliveryItem);
 				console.log('objeto servicio ', model.delivery);
 				RequestMessengerService.requestMessenger(model.delivery, function(response) {
 					console.log(response);
+					if (response.data) {
+						$mdDialog.show(
+							$mdDialog.alert()
+							.content(response.msg)
+							.ariaLabel('Succesful request')
+							.ok('Aceptar')
+							.disableParentScroll(false)
+						);
+					}
+					var pickupItem = response.data;
+					/*if (response.data) {
+						User = user;
+						Session.setUser(User);
+					}*/
 				});
 			};
 		}

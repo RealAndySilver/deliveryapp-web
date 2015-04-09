@@ -14,11 +14,11 @@
 					if (response.data) {
 						User = user;
 						Session.setUser(User);
-						
-						$state.go('requestMessenger', {id: user._id});
+
+						$state.go('requestMessenger', {
+							id: user._id
+						});
 					}
-					//console.log('user id ', user._id);
-					//$state.go('requestmessenger', {id: user._id});
 				});
 			};
 
