@@ -150,13 +150,9 @@
 				model.delivery.delivery_object.lat = $scope.deliverLat;
 				model.delivery.delivery_object.lon = $scope.deliverLon;
 
-				model.delivery.pickup_time = new Date(model.delivery.pickup_time);
-				model.delivery.deadline = new Date(model.delivery.deadline);
-
 				model.delivery.price_to_pay = $scope.deliveryPrice;
 				model.delivery.user_info = $scope.currentUser;
 				model.delivery.user_id = $scope.currentUser._id;
-				//console.log('objeto arrays direcciones ', $scope.pickupItem, $scope.deliveryItem);
 				console.log('objeto servicio ', model.delivery);
 				RequestMessengerService.requestMessenger(model.delivery, function(response) {
 					console.log(response);
