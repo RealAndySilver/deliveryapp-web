@@ -31,4 +31,4 @@
 		};
 	});
 
-}(angular.module("appMensajeria.confirmPassword")));
+}(angular.module("appMensajeria.confirmPassword", [])));

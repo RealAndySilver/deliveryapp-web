@@ -23,11 +23,6 @@
 					templateUrl: 'getAddresses/getAddresses.tpl.html',
 					//targetEvent: ev,
 				});
-				/*.then(function(answer) {
-					$scope.alert = 'You said the information was "' + answer + '".';
-				}, function() {
-					$scope.alert = 'You cancelled the dialog.';
-				});*/
 			};
 
 			model.getCurrentUser = function() {
@@ -149,21 +144,14 @@
 				model.delivery.pickup_object.address = $scope.pickup_address;
 				model.delivery.pickup_object.lat = $scope.position.lat;
 				model.delivery.pickup_object.lon = $scope.position.lng;
-				/*if (model.delivery.pickup_object) {
-					//$scope.pickupItem = model.delivery.pickup_object;
-					$scope.pickupAddress.push(model.delivery.pickup_object);
-					//console.log($scope.pickupAddress);
-				}*/
 
 				model.delivery.delivery_object = {};
 				model.delivery.delivery_object.address = $scope.delivery_address;
 				model.delivery.delivery_object.lat = $scope.deliverLat;
 				model.delivery.delivery_object.lon = $scope.deliverLon;
-				/*if (model.delivery.delivery_object) {
-					//$scope.deliveryItem = model.delivery.delivery_object;
-					$scope.deliveryAddresses.push(model.delivery.delivery_object);
-					//console.log($scope.deliveryAddresses);
-				}*/
+
+				model.delivery.pickup_time = new Date(model.delivery.pickup_time);
+				model.delivery.deadline = new Date(model.delivery.deadline);
 
 				model.delivery.price_to_pay = $scope.deliveryPrice;
 				model.delivery.user_info = $scope.currentUser;
@@ -173,15 +161,11 @@
 				RequestMessengerService.requestMessenger(model.delivery, function(response) {
 					console.log(response);
 					if (response.data) {
-						$mdDialog.show(
-							$mdDialog.alert()
-							.content(response.msg)
-							.ariaLabel('Succesful request')
-							.ok('Aceptar')
-							.disableParentScroll(false)
-						);
 					}
-					var pickupItem = response.data;
+					var pickupItem = response.data.pickup_object;
+					var deliveryItem = response.data.delivery_object;
+					console.log('pickupItem ', pickupItem);
+					console.log('deliveryItem ', deliveryItem);
 					/*if (response.data) {
 						User = user;
 						Session.setUser(User);

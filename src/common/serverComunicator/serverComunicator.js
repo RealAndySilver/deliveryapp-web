@@ -34,6 +34,14 @@
 				});
 			};
 
+			model.recoverPassword = function(email) {
+				return $http({
+					method: 'GET',
+					data: email,
+					url: endpoint + 'User' + '/Recover/' + email,
+				});
+			};
+
 			model.requestMessenger = function(delivery) {
 				return $http({
 					method: 'POST',

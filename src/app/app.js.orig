@@ -1,0 +1,45 @@
+(function(app) {
+
+    app.config(function($stateProvider, $urlRouterProvider) {
+        $urlRouterProvider.otherwise('/loginuser');
+    });
+
+    app.run(function() {});
+
+    app.controller('AppController', function($scope) {
+
+    });
+
+    //inicializa el usuario que se va a guardar en local storage
+    app.value('User', {});
+
+    app.value('PickupAddresses', []);
+    app.value('DeliveryAddresses', []);
+
+}(angular.module("appMensajeria", [
+    'appMensajeria.home',
+    'appMensajeria.about',
+    'templates-app',
+    'templates-common',
+    'ui.router.state',
+    'ui.router',
+    'appMensajeria.loginUser',
+    'appMensajeria.createUser',
+    'ngMaterial',
+    'appMensajeria.serverComunicator',
+    'appMensajeria.confirmPassword',
+    'appMensajeria.requestMessenger',
+    'appMensajeria.userMap',
+    'angularReverseGeocode',
+    'appMensajeria.session',
+    'mdDateTime',
+<<<<<<< HEAD
+    'appMensajeria.getPrice',
+    'appMensajeria.getAddresses',
+=======
+    'appMensajeria.getPrice',
+    'appMensajeria.getAddresses',
+    'appMensajeria.recoverPassword',
+    'appMensajeria.searchingMessenger',
+>>>>>>> a3edb9c6cc6bb35952da9f29ec0fe217f157ab6e
+])));

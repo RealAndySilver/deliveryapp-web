@@ -6274,6 +6274,10 @@ header md-toolbar.md-default-theme h1 {
   line-height: 64px;
   font-family: 'IntriqueScriptPersonalUse';
 }
+body md-list .btns-container {
+  width: 465px;
+  margin: 0 auto;
+}
 body .solo-box {
   padding: 170px 0;
 }
@@ -6333,6 +6337,8 @@ md-input-container {
 .time-date > .control > .slider > .time-control > .time-inputs > input {
   width: 9.5rem !important;
 }
+/* Less file for recoverPassword*/
+/* Less file for searchingMessenger*/
 /* Less file for userMap*/
 .map-container {
   height: 100%;

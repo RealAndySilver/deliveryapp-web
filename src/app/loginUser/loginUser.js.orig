@@ -24,13 +24,6 @@
 					.disableParentScroll(false)
 				);
 			};
-			/*model.recoverDialog = function(ev) {
-				$mdDialog.show({
-						//controller: RecoverPasswordController,
-						templateUrl: 'recoverPassword.tmpl.html',
-						targetEvent: ev,
-					});
-			};*/
 
 			model.loginUser = function() {
 				LoginUserService.loginUser(model.user.email, model.user.password, function(response) {
@@ -39,11 +32,18 @@
 					if (response.data) {
 						User = user;
 						Session.setUser(User);
+<<<<<<< HEAD
+
+						$state.go('requestMessenger', {
+							id: user._id
+						});
+=======
 						$state.go('requestMessenger', {
 							id: user._id
 						});
 					} else {
 						model.loginAlert();
+>>>>>>> a3edb9c6cc6bb35952da9f29ec0fe217f157ab6e
 					}
 				});
 			};
@@ -53,8 +53,9 @@
 			};
 
 			model.recoverPassword = function(email) {
+				console.log('el email que me llega ', email);
 				RecoverPassword.recoverPassword(email, function(response) {
-					//console.log(response);
+					console.log(response);
 					if (response) {
 						model.recoverAlert();
 					}
@@ -67,7 +68,6 @@
 					model.recoverPassword(email);
 				} else {
 					console.log('MOSTRAR VENTANA PARA INTRODUCIR EMAIL');
-					//model.recoverDialog();
 				}
 			};
 

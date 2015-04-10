@@ -1,4 +1,4 @@
-angular.module('templates-app', ['about/about.tpl.html', 'createUser/createUser.tpl.html', 'home/home.tpl.html', 'loginUser/loginUser.tpl.html', 'requestMessenger/requestMessenger.tpl.html']);
+angular.module('templates-app', ['about/about.tpl.html', 'createUser/createUser.tpl.html', 'home/home.tpl.html', 'loginUser/loginUser.tpl.html', 'loginUser/recoverDialog.tpl.html', 'recoverPassword/recoverPassword.tpl.html', 'requestMessenger/requestMessenger.tpl.html', 'searchingMessenger/searchingMessenger.tpl.html']);
 
 angular.module("about/about.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("about/about.tpl.html",
@@ -112,12 +112,22 @@ angular.module("loginUser/loginUser.tpl.html", []).run(["$templateCache", functi
     "			</form>\n" +
     "	    </div>\n" +
     "	    <md-divider></md-divider>\n" +
-    "	    <md-button class=\"md-primary v-margin-btn\">¿Olvidaste tu contraseña?</md-button>\n" +
+    "	    <md-button class=\"md-primary v-margin-btn\" ng-click=\"model.forgotPassword(model.user.email)\">¿Olvidaste tu contraseña?</md-button>\n" +
     "	    <md-divider></md-divider>\n" +
     "	    <md-button class=\"md-raised v-margin-btn\" ng-click=\"model.newAccount()\">Crear nueva cuenta</md-button>\n" +
     "	</md-card>\n" +
     "</div>\n" +
     "");
+}]);
+
+angular.module("loginUser/recoverDialog.tpl.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("loginUser/recoverDialog.tpl.html",
+    "<div class=\"hero-unit\">tod bien todo bonito</div>");
+}]);
+
+angular.module("recoverPassword/recoverPassword.tpl.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("recoverPassword/recoverPassword.tpl.html",
+    "<h1>RecoverPassword</h1>");
 }]);
 
 angular.module("requestMessenger/requestMessenger.tpl.html", []).run(["$templateCache", function($templateCache) {
@@ -194,4 +204,9 @@ angular.module("requestMessenger/requestMessenger.tpl.html", []).run(["$template
     "	</md-card>\n" +
     "</div>\n" +
     "");
+}]);
+
+angular.module("searchingMessenger/searchingMessenger.tpl.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("searchingMessenger/searchingMessenger.tpl.html",
+    "<h1>SearchingMessenger</h1>");
 }]);
