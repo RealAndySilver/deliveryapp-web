@@ -170,12 +170,10 @@ angular.module("requestMessenger/requestMessenger.tpl.html", []).run(["$template
     "				<md-card class=\"top-fix\">\n" +
     "					<md-input-container flex>\n" +
     "						<label>Dia y hora de Recogida</label>\n" +
-    "						<!-- <input type=\"date\" name=\"pickup_time\" ng-model=\"pickup_time\" required> -->\n" +
     "		        	</md-input-container>\n" +
     "		        	<time-date-picker ng-model=\"model.delivery.pickup_time\" required></time-date-picker>\n" +
     "		        	<md-input-container flex>\n" +
     "						<label>Dia y hora de Entrega</label>\n" +
-    "						<!-- <input type=\"date\" name=\"deadline\" ng-model=\"deadline\" required> -->\n" +
     "		        	</md-input-container>\n" +
     "		        	<time-date-picker ng-model=\"model.delivery.deadline\" required></time-date-picker>\n" +
     "		        	<md-input-container flex>\n" +
@@ -189,10 +187,10 @@ angular.module("requestMessenger/requestMessenger.tpl.html", []).run(["$template
     "				</md-card>\n" +
     "				<md-toolbar ng-show=\"pickup_address && delivery_address\" class=\"md-primary\" layout-align=\"center center\">\n" +
     "				    <span layout-align=\"center center\">\n" +
-    "				    	Valor del servicio\n" +
+    "				    	VALOR DE SERVICIO\n" +
     "				    </span>\n" +
-    "				    <span layout-align=\"center center\">\n" +
-    "				    	COP {{deliveryPrice}}\n" +
+    "				    <span layout-align=\"center center\" id=\"value_delivery\">\n" +
+    "				    	<span ng-show=\"currency\">COP</span> {{deliveryPrice}}\n" +
     "				    </span>\n" +
     "				</md-toolbar>\n" +
     "	        	<md-input-container flex>\n" +

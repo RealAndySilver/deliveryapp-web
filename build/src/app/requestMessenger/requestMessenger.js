@@ -127,7 +127,12 @@
 						loc1 = $scope.position.lat + "," + $scope.position.lng;
 						loc2 = destinationLat + "," + destinationLon;
 						GetPrice.getPrice(loc1, loc2, function(response) {
-							$scope.deliveryPrice = response.data;
+							if (response.response) {
+								$scope.deliveryPrice = response.data;
+							} else {
+								$scope.currency = false;
+								$scope.deliveryPrice = response.msg;
+							}
 							console.log(response);
 						});
 					} else {

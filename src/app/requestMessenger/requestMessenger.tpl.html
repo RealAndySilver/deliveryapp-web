@@ -36,12 +36,10 @@
 				<md-card class="top-fix">
 					<md-input-container flex>
 						<label>Dia y hora de Recogida</label>
-						<!-- <input type="date" name="pickup_time" ng-model="pickup_time" required> -->
 		        	</md-input-container>
 		        	<time-date-picker ng-model="model.delivery.pickup_time" required></time-date-picker>
 		        	<md-input-container flex>
 						<label>Dia y hora de Entrega</label>
-						<!-- <input type="date" name="deadline" ng-model="deadline" required> -->
 		        	</md-input-container>
 		        	<time-date-picker ng-model="model.delivery.deadline" required></time-date-picker>
 		        	<md-input-container flex>
@@ -55,10 +53,10 @@
 				</md-card>
 				<md-toolbar ng-show="pickup_address && delivery_address" class="md-primary" layout-align="center center">
 				    <span layout-align="center center">
-				    	Valor del servicio
+				    	VALOR DE SERVICIO
 				    </span>
-				    <span layout-align="center center">
-				    	COP {{deliveryPrice}}
+				    <span layout-align="center center" id="value_delivery">
+				    	<span ng-show="currency">COP</span> {{deliveryPrice}}
 				    </span>
 				</md-toolbar>
 	        	<md-input-container flex>
