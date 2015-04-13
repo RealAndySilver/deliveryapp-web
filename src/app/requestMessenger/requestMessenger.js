@@ -128,11 +128,12 @@
 						loc2 = destinationLat + "," + destinationLon;
 						GetPrice.getPrice(loc1, loc2, function(response) {
 							if (response.response) {
+								$scope.currency = true;
 								$scope.deliveryPrice = response.data;
-							} else {
+							} /*else {
 								$scope.currency = false;
 								$scope.deliveryPrice = response.msg;
-							}
+							}*/
 							console.log(response);
 						});
 					} else {
@@ -141,9 +142,6 @@
 				}
 				//$scope.$watch('distance', getDistance);
 
-			var maxAddresses = 10;
-			$scope.pickupAddresses = [];
-			$scope.deliveryAddresses = [];
 			var pickupItem = {};
 			var deliveryItem = {};
 			model.requestMessenger = function() {
@@ -168,8 +166,12 @@
 					if (response.response) {
 						console.log('pickupItem ', pickupItem);
 						console.log('deliveryItem ', deliveryItem);
-						console.log('ARRAY PICKUP', PickupAddresses);
-						console.log('ARRAY DELIVERY ', DeliveryAddresses);
+						PickupAddresses.push(pickupItem);
+						DeliveryAddresses.push(deliveryItem);
+						console.log('ARRAY RECOGIDA ', PickupAddresses);
+						console.log('ARRAY ENTREGA ', DeliveryAddresses);
+						//console.log('ARRAY PICKUP', PickupAddresses);
+						//console.log('ARRAY DELIVERY ', DeliveryAddresses);
 						//User = user;
 						//Session.setUser(User);
 					}
