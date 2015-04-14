@@ -1,6 +1,6 @@
 (function(module) {
 
-	module.controller('RequestMessengerController', ['$scope', '$mdDialog', 'RequestMessengerService', 'Session', 'GetPrice', '$stateParams', 'PickupAddresses', 'DeliveryAddresses', function($scope, $mdDialog, RequestMessengerService, Session, GetPrice, $stateParams, PickupAddresses, DeliveryAddresses) {
+	module.controller('RequestMessengerController', ['$scope', '$mdDialog', 'RequestMessengerService', 'Session', 'GetPrice', '$stateParams', 'PickupAddresses', 'DeliveryAddresses', 'SaveAddresses', function($scope, $mdDialog, RequestMessengerService, Session, GetPrice, $stateParams, PickupAddresses, DeliveryAddresses, SaveAddresses) {
 		var model = this;
 
 		init();
@@ -164,14 +164,13 @@
 					var pickupItem = response.data.pickup_object;
 					var deliveryItem = response.data.delivery_object;
 					if (response.response) {
-						console.log('pickupItem ', pickupItem);
-						console.log('deliveryItem ', deliveryItem);
+						//console.log('pickupItem ', pickupItem);
+						//console.log('deliveryItem ', deliveryItem);
+						SaveAddresses.save(pickupItem, deliveryItem);
 						PickupAddresses.push(pickupItem);
 						DeliveryAddresses.push(deliveryItem);
-						console.log('ARRAY RECOGIDA ', PickupAddresses);
-						console.log('ARRAY ENTREGA ', DeliveryAddresses);
-						//console.log('ARRAY PICKUP', PickupAddresses);
-						//console.log('ARRAY DELIVERY ', DeliveryAddresses);
+						//console.log('ARRAY RECOGIDA ', PickupAddresses);
+						//console.log('ARRAY ENTREGA ', DeliveryAddresses);
 						//User = user;
 						//Session.setUser(User);
 					}

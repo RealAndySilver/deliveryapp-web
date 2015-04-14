@@ -13,17 +13,15 @@
 		};
 	});
 
-	module.controller('GetAddressesController', ['$scope', function($scope) {
+	module.controller('GetAddressesController', ['$scope', 'PickupAddresses', 'DeliveryAddresses', function($scope, PickupAddresses, DeliveryAddresses) {
 		var model = this;
 
 		init();
 
 		function init() {
-			console.log('objeto arrays direcciones en el new scope ', $scope.pickupAddresses, $scope.deliveryAddresses);
-
 			var maxAddresses = 10;
-			var pickupAddresses = [];
-			var deliveryAddresses = [];
+			//console.log('recogida ', PickupAddresses);
+			//console.log('entrega ', DeliveryAddresses);
 
 		}
 	}]);
