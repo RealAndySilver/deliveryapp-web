@@ -1,6 +1,6 @@
 (function(module) {
 
-	module.controller('RequestMessengerController', ['$scope', '$mdDialog', 'RequestMessengerService', 'Session', 'GetPrice', '$stateParams', 'PickupAddresses', 'DeliveryAddresses', 'SaveAddresses', function($scope, $mdDialog, RequestMessengerService, Session, GetPrice, $stateParams, PickupAddresses, DeliveryAddresses, SaveAddresses) {
+	module.controller('RequestMessengerController', ['$scope', '$mdDialog', 'RequestMessengerService', 'Session', 'GetPrice', '$stateParams', '$state', 'PickupAddresses', 'DeliveryAddresses', 'SaveAddresses', function($scope, $mdDialog, RequestMessengerService, Session, GetPrice, $stateParams, $state, PickupAddresses, DeliveryAddresses, SaveAddresses) {
 		var model = this;
 
 		init();
@@ -169,6 +169,9 @@
 						SaveAddresses.save(pickupItem, deliveryItem);
 						PickupAddresses.push(pickupItem);
 						DeliveryAddresses.push(deliveryItem);
+						$state.go('searchingMessenger', {
+							delivery_id: response.data._id
+						});
 						//console.log('ARRAY RECOGIDA ', PickupAddresses);
 						//console.log('ARRAY ENTREGA ', DeliveryAddresses);
 						//User = user;

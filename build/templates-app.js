@@ -206,5 +206,23 @@ angular.module("requestMessenger/requestMessenger.tpl.html", []).run(["$template
 
 angular.module("searchingMessenger/searchingMessenger.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("searchingMessenger/searchingMessenger.tpl.html",
-    "<h1>SearchingMessenger</h1>");
+    "<div layout=\"column\" layout-align=\"center center\" class=\"solo-box\">\n" +
+    "	<md-card class=\"basic-form\">\n" +
+    "		<div>\n" +
+    "			<md-toolbar>\n" +
+    "			    <div class=\"md-toolbar-tools\" layout-align=\"center center\">\n" +
+    "			    	<span class=\"md-flex\">Encontrando mensajero</span>\n" +
+    "			    </div>\n" +
+    "			  </md-toolbar>\n" +
+    "		</div>\n" +
+    "	    <div>\n" +
+    "			<p class=\"hero-unit\">Esperá mientras buscamos un servicio home!</p>\n" +
+    "			<img src=\"http://www.cheapfirstbusinessflights.com/images/blue_loader.gif\">\n" +
+    "	    </div>\n" +
+    "	    <md-divider></md-divider>\n" +
+    "	    <md-button class=\"md-raised md-warn\" ng-click=\"model.cancel()\">Cancelar</md-button>\n" +
+    "	</md-card>\n" +
+    "</div>\n" +
+    "\n" +
+    "");
 }]);

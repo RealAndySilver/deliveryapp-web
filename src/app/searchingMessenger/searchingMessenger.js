@@ -1,13 +1,15 @@
 (function(module) {
 
-    module.controller('SearchingMessengerController', function () {
-        var model = this;
+	module.controller('SearchingMessengerController', ['$scope', '$stateParams', function($scope, $stateParams) {
+		var model = this;
 
-        init();
+		init();
 
-        function init() {
+		function init() {
+			var deliveryId = $stateParams.delivery_id;
+			console.log('id de servicio ', deliveryId);
 
-        }
-    });
+		}
+	}]);
 
 }(angular.module("appMensajeria.searchingMessenger")));

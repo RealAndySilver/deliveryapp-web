@@ -2,7 +2,7 @@
 
     module.config(function ($stateProvider) {
         $stateProvider.state('searchingMessenger', {
-            url: '/searchingmessenger',
+            url: '/searchingmessenger/:delivery_id',
             views: {
                 "main": {
                     controller: 'SearchingMessengerController as model',
