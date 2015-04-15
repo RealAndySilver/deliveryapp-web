@@ -211,13 +211,17 @@ angular.module("searchingMessenger/searchingMessenger.tpl.html", []).run(["$temp
     "		<div>\n" +
     "			<md-toolbar>\n" +
     "			    <div class=\"md-toolbar-tools\" layout-align=\"center center\">\n" +
-    "			    	<span class=\"md-flex\">Encontrando mensajero</span>\n" +
+    "			    	<span class=\"md-flex\">Buscando mensajero</span>\n" +
     "			    </div>\n" +
     "			  </md-toolbar>\n" +
     "		</div>\n" +
     "	    <div>\n" +
-    "			<p class=\"hero-unit\">Esperá mientras buscamos un servicio home!</p>\n" +
-    "			<img src=\"http://www.cheapfirstbusinessflights.com/images/blue_loader.gif\">\n" +
+    "			<md-subheader id=\"search_label\" class=\"md-primary\" layout-align=\"center center\">\n" +
+    "				En este momento estamos buscando un mensajero cercano a ti, por favor espera un momento.\n" +
+    "			</md-subheader>\n" +
+    "			<md-card id=\"search_loading\">\n" +
+    "				<img src=\"https://enroll.clearme.com/ClearMe/images/please_wait.gif\">\n" +
+    "			</md-card>\n" +
     "	    </div>\n" +
     "	    <md-divider></md-divider>\n" +
     "	    <md-button class=\"md-raised md-warn\" ng-click=\"model.cancel()\">Cancelar</md-button>\n" +
