@@ -3,19 +3,19 @@
   "version": "0.0.1",
   "_comment": "Any dependencies added here require a manual edit to vendor_files in /Gruntfile.js and (??? verify the following) /build/karma-unit.js (e.g 'vendor/angular-resource/angular-resource.js')",
   "devDependencies": {
-    "angular": "~1.3.0",
-    "angular-resource": "~1.2.9",
-    "angular-mocks": "~1.2.9",
-    "bootstrap": "~3.1",
-    "angular-bootstrap": "~0.10.0",
-    "angular-ui-router": "~0.2.7",
-    "angular-material": "master",
-    "hammerjs": "~2.0.4",
-    "jquery": "~2.1.3",
-    "angular-reverse-geocode": "*",
-    "md-date-time": "~0.0.12"
+    "angular": "1.3.14",
+    "angular-resource": "1.3.14",
+    "angular-mocks": "1.3.14",
+    "bootstrap": "*",
+    "angular-bootstrap": "0.10.0",
+    "angular-ui-router": "0.2.13",
+    "angular-material": "0.8.1",
+    "hammerjs": "2.0.4",
+    "jquery": "2.1.3",
+    "angular-reverse-geocode": "master",
+    "md-date-time": "0.0.12"
   },
   "resolutions": {
-    "angular": "1.3.x"
+    "angular": "1.3.14"
   }
 }
