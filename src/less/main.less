@@ -66,8 +66,24 @@ header md-toolbar.md-default-theme h1{
 	font-family: 'IntriqueScriptPersonalUse';
 }
 
+body .btns-container {
+	margin-top: 5px;
+  padding: 20px 20px 0 20px;
+	text-align: justify;
+
+	&:after {
+		  content: '';
+		  display: inline-block;
+		  width: 100%;
+	}
+}
+
+body md-item {
+	display: inline-block;
+}
+
 body md-list .btns-container {
-	width: 465px;
+		width: 465px;
   	margin: 0 auto;
   	background-color: @primaryColor;
 }
@@ -79,8 +95,10 @@ body md-list .btns-container svg {
 
 body md-list .btns-container .md-grid-text {
 	color: white;
+	/*
 	margin-top: -15px;
   	margin-bottom: -5px;
+  	*/
 }
 
 body .solo-box {
