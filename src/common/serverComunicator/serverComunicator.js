@@ -57,9 +57,17 @@
 						loc1: loc1,
 						loc2: loc2,
 					},
-					url: endpoint + 'GetPrice' +  "/" + loc1 + "/" + loc2,
+					url: endpoint + 'GetPrice' + "/" + loc1 + "/" + loc2,
 				});
 			};
+
+			model.getDeliveryItemDetails = function(id) {
+				return $http({
+					method: 'GET',
+					url: endpoint + 'DeliveryItem' + "/" + id,
+				});
+			};
+
 		}
 	}]);
 
