@@ -34,14 +34,14 @@
 
 			model.loginUser = function() {
 				LoginUserService.loginUser(model.user.email, model.user.password, function(response) {
-					console.log(response);
+					//console.log(response);
 					var user = response.data;
 					if (response.data) {
 						User = user;
+						console.log(User);
 						Session.setUser(User);
-						$state.go('requestMessenger', {
-							id: user._id
-						});
+						//$state.go('requestMessenger', {id: user._id});
+						$state.go('profile');
 					} else {
 						model.loginAlert();
 					}

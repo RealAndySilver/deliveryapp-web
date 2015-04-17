@@ -68,6 +68,37 @@
 				});
 			};
 
+			model.deleteDeliveryItem = function(idItem, idUser) {
+				return $http({
+					method: 'DELETE',
+					url: endpoint + 'DeliveryItem/Delete' + "/" + idItem + "/" + idUser,
+				});
+			};
+
+			model.restartDeliveryItem = function(idItem, idUser) {
+				return $http({
+					method: 'PUT',
+					data: {
+						"user_id": idUser,
+						
+					},
+					url: endpoint + 'DeliveryItem/Restart' + "/" + idItem,
+				});
+			};
+
+			model.updateProfile = function(idUser,name,lastname,mobilephone) {
+				return $http({
+					method: 'PUT',
+					data: {
+						"name": name,
+						"lastname": lastname,
+						"mobilephone": mobilephone,
+						
+					},
+					url: endpoint + 'User/Update' + "/" + idUser,
+				});
+			};
+
 		}
 	}]);
 

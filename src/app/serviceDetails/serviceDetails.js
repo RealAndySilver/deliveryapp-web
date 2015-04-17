@@ -1,8 +1,12 @@
 (function(module) {
 
-	module.controller('ServiceDetailsController', ["$state", "$stateParams", "DetailsDeliveryItemService", function($state, $stateParams, DetailsDeliveryItemService) {
+	module.controller('ServiceDetailsController', ["$state", '$mdDialog', "$stateParams", "DetailsDeliveryItemService", "User", function($state, $mdDialog, $stateParams, DetailsDeliveryItemService, User) {
 		var model = this;
 		model.messengerBool = false;
+		model.leftTime = "10s";
+		model.code = "aaaa";
+
+		model.deliveryItemInfo = {};
 
 
 		init();
@@ -13,31 +17,38 @@
 				DetailsDeliveryItemService.serviceDetails($stateParams.id, function(response) {
 					console.log(response);
 
+					model.deliveryItemInfo = response.data;
+					console.log(model.deliveryItemInfo);
+
+
 
 					if (response.data.messenger_info) {
 						model.messengerBool = true;
-						model.serviceName = response.data["item_name"];
-						model.pickupAddress = response.data.pickup_object["address"];
-						model.deliveryAddress = response.data.delivery_object["address"];
-						model.pickupDate = response.data["pickup_time"];
-						model.serviceCost = response.data["price_to_pay"];
-						model.messengerName = response.data.messenger_info["name"] + response.data.messenger_info["lastname"];
-						model.messengerMobilephone = response.data.messenger_info["mobilephone"];
-						model.messengerImage = response.data.messenger_info["url"];
+
 					} else {
 						model.messengerBool = false;
-						console.log("no ahi mensajero");
+
 					}
 
-					if(response.data.images.length!==0){
-						console.log(response.data.images.length);
-						model.imageBool=true;
-						model.images=response.data.images;
-						//Mostar las imagenes
+					if (response.data.images.length !== 0) {
+
+						model.imageBool = true;
+						model.images = response.data.images;
+					} else {
+						model.imageBool = false;
+
 					}
-					else{
-						model.imageBool=false;
-						console.log(response.data.images.length);
+
+					if (response.data["overall_status"] == "aborted") {
+						console.log(response.data["overall_status"]);
+						model.serviceStatus = traslateStatusFunction(response.data["overall_status"]);
+						model.setAvailableButtonBool = true;
+						//Poner la razon por la cual se aborto el servicio
+
+					} else {
+						model.serviceStatus = traslateStatusFunction(response.data["status"]);
+						model.setAvailableButtonBool = false;
+
 					}
 
 
@@ -46,7 +57,89 @@
 
 			model.serviceDetails();
 
+			model.cancelService = function() {
+				var confirm = $mdDialog.confirm()
+					//.parent(angular.element(document.body))
+					.title('Alerta')
+					.content('Deseas cancelar el servicio.')
+					.ariaLabel('')
+					.ok('Cancelar')
+					.cancel('Volver');
+				//.targetEvent(ev);
+				$mdDialog.show(confirm).then(function() {
+					
+					model.deleteDeliveryItem = function() {
+						DetailsDeliveryItemService.deleteDeliveryItem(model.deliveryItemInfo._id,model.deliveryItemInfo.user_id, function(response) {
+							model.code = 'You decided to get rid of your debt.';
+							$state.go('requestMessenger');
+							console.log(response);
+						});
+					};
+					model.deleteDeliveryItem();
+				});
+			};
+
+
+			model.restartService = function() {
+				var confirm = $mdDialog.confirm()
+					//.parent(angular.element(document.body))
+					.title('Alerta')
+					.content('Deseas reiniciar el servicio.')
+					.ariaLabel('')
+					.ok('Reiniciar')
+					.cancel('Volver');
+				//.targetEvent(ev);
+				$mdDialog.show(confirm).then(function() {
+					
+					model.restartDeliveryItem = function() {
+						DetailsDeliveryItemService.restartDeliveryItem(model.deliveryItemInfo._id,model.deliveryItemInfo.user_id, function(response) {
+							model.code = 'You decided to get rid of your debt.';
+							
+							console.log(response);
+						});
+					};
+					model.restartDeliveryItem();
+				});
+			};
+
+
+
+
+
+
 		}
 	}]);
 
 }(angular.module("appMensajeria.serviceDetails")));
+
+function cancelService() {
+
+}
+
+function traslateStatusFunction(status) {
+	var traslateStatus = "";
+	if (status == "accepted") {
+		traslateStatus = "Aceptado";
+	} else
+	if (status == "in-transit") {
+		traslateStatus = "En tránsito";
+	} else
+	if (status == "returning") {
+		traslateStatus = "Volviendo";
+	} else
+	if (status == "returned") {
+		//cancelService.setVisibility(View.GONE);
+		traslateStatus = "Finalizado";
+	} else
+	if (status == "delivered") {
+		//cancelService.setVisibility(View.GONE);
+		traslateStatus = "Finalizado";
+
+	} else
+	if (status == "aborted") {
+		//cancelService.setVisibility(View.GONE);
+		traslateStatus = "Abortado";
+
+	}
+	return traslateStatus;
+}

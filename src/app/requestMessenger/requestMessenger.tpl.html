@@ -14,17 +14,21 @@
 						<label>Nombre de Servicio</label>
 		            	<input name="item_name" ng-model="model.delivery.item_name" required>
 		        	</md-input-container>
+
 		        	<md-input-container flex>
 						<label>Dirección de Recogida</label>
 		            	<input name="pickup_address" ng-model="pickup_address" required ng-click="model.pickUpMap()">
 		        	</md-input-container>
+
 		        	<md-content ng-if="pickup_address" class="md-padding" style="height: 360px;padding: 14px;">
 						<pickup-map class="map-container" lat="position.lat" lon="position.lng"></pickup-map>
 		        	</md-content>
+
 		        	<md-input-container flex>
 						<label>Dirección de Entrega</label>
 		            	<input name="delivery_address" ng-model="delivery_address" required>
 		        	</md-input-container>
+
 		        	<md-content ng-if="pickup_address" class="md-padding" style="height: 360px;padding: 14px;">
 						<delivery-map class="map-container" callback="setLatLong(lat, lon)"></delivery-map>
 		        	</md-content>
@@ -33,6 +37,7 @@
 					</md-switch>
 					<md-button class="md-raised v-margin-btn" ng-click="showAddresses($event)">Historial de direcciones</md-button>
 				</md-card>
+				
 				<md-card class="top-fix">
 					<md-input-container flex>
 						<label>Dia y hora de Recogida</label>

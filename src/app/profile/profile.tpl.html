@@ -1,0 +1,25 @@
+<div layout="column" layout-align="center center" class="solo-box">
+	<md-card class="big-form">
+		<div>
+			<md-toolbar>
+			    <div class="md-toolbar-tools" layout-align="center center">
+			    	<span class="md-flex">Mi perfil</span>
+			    </div>
+			  </md-toolbar>
+		</div>
+
+		<label>Nombre:</label>
+		<md-input-container flex>  <input name="newName" ng-model="model.User.name" required>  </md-input-container>
+
+		<label>Apellido:</label>
+		<md-input-container flex>  <input name="newLastname" ng-model="model.User.lastname"  required>  </md-input-container>
+
+		<label>Número Celular:</label>
+		<md-input-container flex>  <input name="newMobilephone" ng-model="model.User.mobilephone" required>  </md-input-container>
+	   
+	    <md-button class="md-raised v-margin-btn">Actualizar mis datos<md-button>
+	    
+	</md-card>
+
+	<md-button class="md-raised v-margin-btn">Cambiar Contraseña</md-button>
+</div>

@@ -10,47 +10,74 @@
 		
 		<md-card id="serviceDetailsContainer" ng-show="model.messengerBool">
 			<label>Nombre de Servicio</label>
-			<h6 ng-model="model.serviceName">{{model.serviceName}}</h6>
+			<h6 >{{model.deliveryItemInfo.item_name}}</h6>
+			<md-divider></md-divider>
 			<label>Lugar de Recogida</label>
-			<h6 ng-model="model.pickupAddress">{{model.pickupAddress}}</h6>
+			<h6 >{{model.deliveryItemInfo.pickup_object.address}}</h6>
+			<md-divider></md-divider>
 			<label>Lugar de Entrega</label>
-			<h6 ng-model="model.deliveryAddress">{{model.deliveryAddress}}</h6>
+			<h6 >{{model.deliveryItemInfo.delivery_object.address}}</h6>
+			<md-divider></md-divider>
 			<label>Fecha de Recogida</label>
-			<h6 ng-model="model.pickupDate">{{model.pickupDate}}</h6>
+			<h6 >{{model.deliveryItemInfo.pickup_time}}</h6>
+			<md-divider></md-divider>
 			<label>Valor Aproximado del Servicio</label>
-			<h6 ng-model="model.serviceCost">{{model.serviceCost}}</h6>
+			<h6 model.deliveryItemInfo.price_to_pay}}</h6>
 		</md-card>
+
 		<md-card id="findingMessengerContainer" ng-show="!model.messengerBool">
-		<p>Estamos encontrando un mensajero para tu servicio. Si deseas puedes salir de esta pantalla y acceder al estado del servicio desde el menú "EL MENUUUUUUU"</p>
-		<br/>
-		<md-progress-circular md-mode="indeterminate" ></md-progress-circular>
-		<br/>
-		<p>Buscando Mensajero</p>
+			<p>Estamos encontrando un mensajero para tu servicio. Si deseas puedes salir de esta pantalla y acceder al estado del servicio desde el menú "EL MENUUUUUUU"</p>
+			<br/>
+			<md-progress-circular md-mode="indeterminate" ></md-progress-circular>
+			<br/>
+			<p>Buscando Mensajero</p>
 		</md-card>
+
 		<md-card id="messengerInfoContainer" ng-show="model.messengerBool">
 		<div >
 			<div class="img-text-container">
-				<img ng-src="{{model.messengerImage}}">
-				<div>
+				<img ng-src="{{model.deliveryItemInfo.messenger_info.url}}">
+				<div id="dataContainer">
 					<label>Conductor</label><br>
-					<label ng-model="model.messengerName">{{model.messengerName}}</label><br>
-					<label ng-model="model.messengerMobilephone">{{model.messengerMobilephone}}</label><br>
+					<label ng-model="model.messengerName">{{model.deliveryItemInfo.messenger_info.name}} {{model.deliveryItemInfo.messenger_info.lastname}}</label><br>
+					<label ng-model="model.messengerMobilephone">{{model.deliveryItemInfo.messenger_info.mobilephone}}</label><br>
 				</div>
+			</div>
+			<div id="ETA-plates">
+				<md-card>
+				ETA
+				<br/>
+				{{model.leftTime}}
+				</md-card>
+				<md-card>
+				Placas
+				<br/>
+				{{model.deliveryItemInfo.messenger_info.plate}}
+				</md-card>
+				<md-card>
+				Código
+				<br/>
+				{{model.code}}
+				</md-card>
+				
 			</div>
 		</div>
 		</md-card>
 		<md-card id="photoContainer" ng-show="model.imageBool">
 			<label>Fotos del Servicio</label>
 			<ul>
-				<li ng-repeat="images in model.images"></li>
+				<li ng-repeat="image in model.images">
+					<img src="{{image.url}}">
+				</li>
 			</ul>
 		</md-card>
 		<md-card id="serviceStatusContainer" ng-show="model.messengerBool">
 			<label>Estado actual del Servicio</label><br/>
 			<label ng-model="model.serviceStatus">{{model.serviceStatus}}</label><br/>
+			<h6 ng-show="model.setAvailableButtonBool">{{model.deliveryItemInfo.abort_reason}}</h6>
 		
 		</md-card>
-		<button>Reactivar Servicio</button>
-		<button>Cancelar Servicio</button>
+		<md-button class="md-raised v-margin-btn"  ng-show="model.setAvailableButtonBool" ng-click="model.restartService()">Reactivar Servicio</md-button>
+		<md-button class="md-raised v-margin-btn" ng-click="model.cancelService()">Cancelar Servicio</md-button>
 	</md-card>
 	<div>
