@@ -67,9 +67,9 @@
 					.cancel('Volver');
 				//.targetEvent(ev);
 				$mdDialog.show(confirm).then(function() {
-					
+
 					model.deleteDeliveryItem = function() {
-						DetailsDeliveryItemService.deleteDeliveryItem(model.deliveryItemInfo._id,model.deliveryItemInfo.user_id, function(response) {
+						DetailsDeliveryItemService.deleteDeliveryItem(model.deliveryItemInfo._id, model.deliveryItemInfo.user_id, function(response) {
 							model.code = 'You decided to get rid of your debt.';
 							$state.go('requestMessenger');
 							console.log(response);
@@ -90,20 +90,15 @@
 					.cancel('Volver');
 				//.targetEvent(ev);
 				$mdDialog.show(confirm).then(function() {
-					
+
 					model.restartDeliveryItem = function() {
-						DetailsDeliveryItemService.restartDeliveryItem(model.deliveryItemInfo._id,model.deliveryItemInfo.user_id, function(response) {
-							model.code = 'You decided to get rid of your debt.';
-							
+						DetailsDeliveryItemService.restartDeliveryItem(model.deliveryItemInfo._id, model.deliveryItemInfo.user_id, function(response) {
 							console.log(response);
 						});
 					};
 					model.restartDeliveryItem();
 				});
 			};
-
-
-
 
 
 
