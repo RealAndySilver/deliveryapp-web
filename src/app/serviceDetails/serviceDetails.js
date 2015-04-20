@@ -107,9 +107,6 @@
 
 }(angular.module("appMensajeria.serviceDetails")));
 
-function cancelService() {
-
-}
 
 function traslateStatusFunction(status) {
 	var traslateStatus = "";

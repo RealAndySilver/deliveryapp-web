@@ -99,6 +99,18 @@
 				});
 			};
 
+			model.changePassword = function(idUser,oldPass,newPass) {
+				return $http({
+					method: 'PUT',
+					data: {
+						"password" : oldPass,
+						"new_password" : newPass,
+						
+					},
+					url: endpoint + 'User/Password' + "/" + idUser,
+				});
+			};
+
 		}
 	}]);
 

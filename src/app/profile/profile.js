@@ -1,6 +1,6 @@
 (function(module) {
 
-	module.controller('ProfileController', ["Session", 'ProfileService', function(Session, ProfileService) {
+	module.controller('ProfileController', ["Session", 'ProfileService', "$state", function(Session, ProfileService,$state) {
 		var model = this;
 		model.User = (Session.getUser());
 
@@ -16,6 +16,10 @@
 				});
 			};
 			model.updateProfile();
+
+			model.goChangePassword=function () {
+				$state.go('changePassword', {id: model.User["_id"]});
+			};
 
 		}
 	}]);
