@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="appMensajeria" ng-controller="AppController">
+<html ng-app="appMensajeria" ng-controller="AppController as model">
 <head>
     <title ng-bind="pageTitle"></title>
     <meta charset="UTF8">
@@ -32,31 +32,43 @@
     <md-list>
         <div class="btns-container">
             <md-item>
-              <md-button class="md-grid-item-content" ng-click="listItemClick($index)">
+              <md-button class="md-grid-item-content">
                 <svg viewBox="0 0 24 24">
                     <path fill="#FFFFFF" d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z" />
                 </svg>
                 <div class="md-grid-text"> PERFIL </div>
               </md-button>
             </md-item>
+
             <md-item>
-              <md-button class="md-grid-item-content" ng-click="listItemClick($index)">
+              <md-button class="md-grid-item-content" ng-click="model.goRequestService()">
+                <svg viewBox="0 0 24 24">
+                    <path fill="#FFFFFF" d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z" />
+                </svg>
+                <div class="md-grid-text"> SOLICITAR SERVICIO </div>
+              </md-button>
+            </md-item>
+
+            <md-item>
+              <md-button class="md-grid-item-content">
                 <svg viewBox="0 0 24 24">
                     <path fill="#FFFFFF" d="M20,2V4H18V8.41L14.41,12L18,15.59V20H20V22H4V20H6V15.59L9.59,12L6,8.41V4H4V2H20M16,16.41L13,13.41V10.59L16,7.59V4H8V7.59L11,10.59V13.41L8,16.41V17H10L12,15L14,17H16V16.41M12,9L10,7H14L12,9Z" />
                 </svg>
                 <div class="md-grid-text"> HISTORIAL </div>
               </md-button>
             </md-item>
+
             <md-item>
-              <md-button class="md-grid-item-content" ng-click="listItemClick($index)">
+              <md-button class="md-grid-item-content">
                 <svg viewBox="0 0 24 24">
                     <path fill="#FFFFFF" d="M18,22A2,2 0 0,0 20,20V4C20,2.89 19.1,2 18,2H12V9L9.5,7.5L7,9V2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18Z" />
                 </svg>
                 <div class="md-grid-text"> MENSAJERIAPP </div>
               </md-button>
             </md-item>
+
             <md-item>
-              <md-button class="md-grid-item-content" ng-click="listItemClick($index)">
+              <md-button class="md-grid-item-content">
                 <svg viewBox="0 0 24 24">
                     <path fill="#FFFFFF" d="M17,17.25V14H10V10H17V6.75L22.25,12L17,17.25M13,2A2,2 0 0,1 15,4V8H13V4H4V20H13V16H15V20A2,2 0 0,1 13,22H4A2,2 0 0,1 2,20V4A2,2 0 0,1 4,2H13Z" />
                 </svg>

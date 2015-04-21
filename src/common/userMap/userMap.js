@@ -54,7 +54,7 @@
 			controller: 'DeliveryMapController',
 			//controllerAs: 'mapCtrl',
 			scope: {
-				setLatLong:'&callback',
+				setLatLong: '&callback',
 			},
 		};
 	});
@@ -76,10 +76,25 @@
 			myListener = google.maps.event.addListener($scope.deliveryMap, 'click', function(event) {
 				placeMarker(event.latLng);
 				google.maps.event.removeListener(myListener);
-				$scope.setLatLong({ lat:event.latLng.lat(), lon:event.latLng.lng() });
+				$scope.setLatLong({
+					lat: event.latLng.lat(),
+					lon: event.latLng.lng()
+				});
 				//console.log('coordenadas de recogida ', event.latLng.lat(), event.latLng.lng());
 				$scope.$digest();
 			});
+			var id = 0;
+
+			google.maps.event.addListener($scope.deliveryMap, 'center_changed', function() {
+				clearTimeout(id);
+				// 3 seconds after the center of the map has changed, pan back to the
+				// marker.
+				//console.log('center change', $scope.deliveryMap.getCenter().lat(), $scope.deliveryMap.getCenter().lng());
+				id = window.setTimeout(function() {
+					$scope.setLatLong({lat: $scope.deliveryMap.getCenter().lat(), lon: $scope.deliveryMap.getCenter().lng()});
+				}, 300);
+			});
+
 
 			function placeMarker(location) {
 				var marker = new google.maps.Marker({
@@ -88,6 +103,9 @@
 					draggable: true
 				});
 				$scope.deliveryMap.setCenter(location);
+
+				return marker;
+
 				//console.log('coordenadas de recogida ', marker.position.lat, marker.position.lng);
 				//var markerPosition = marker.getPosition();
 				/*populateInputs(markerPosition);

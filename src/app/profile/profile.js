@@ -15,7 +15,7 @@
 					console.log(response);
 				});
 			};
-			model.updateProfile();
+			//model.updateProfile();
 
 			model.goChangePassword=function () {
 				$state.go('changePassword', {id: model.User["_id"]});

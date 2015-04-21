@@ -108,7 +108,6 @@
 					$scope.deliverLon = parseFloat(lon);
 					geocodeDelivery();
 				});
-				console.log('setLatLong:', 'lat', $scope.deliverLat, 'lon', $scope.deliverLon);
 				getDistance($scope.deliverLat, $scope.deliverLon);
 			};
 
