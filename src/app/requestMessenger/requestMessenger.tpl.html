@@ -20,17 +20,13 @@
 		            	<input name="pickup_address" ng-model="pickup_address" required >
 		        	</md-input-container>
 
-		        	<md-content ng-if="pickup_address" class="md-padding" style="height: 360px;padding: 14px;">
-						<pickup-map class="map-container" lat="position.lat" lon="position.lng"></pickup-map>
-		        	</md-content>
-
 		        	<md-input-container flex>
 						<label>Dirección de Entrega</label>
 		            	<input name="delivery_address" ng-model="delivery_address" required>
 		        	</md-input-container>
 
 		        	<md-content ng-if="pickup_address" class="md-padding" style="height: 360px;padding: 14px;">
-						<delivery-map class="map-container" callback="setLatLong(lat, lon)"></delivery-map>
+						<delivery-map class="map-container" callback="setLatLong(lat, lon,valueBool)"></delivery-map>
 		        	</md-content>
 		        	<md-switch aria-label="Ida y Vuelta" ng-model="model.delivery.roundtrip">
 					    Ida y Vuelta

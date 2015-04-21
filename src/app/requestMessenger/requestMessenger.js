@@ -82,9 +82,28 @@
 
 			$scope.delivery_address = '';
 
+			function assignToPickupAddress(value) {
+				$scope.pickup_address = value;
+			}
+
+			function assignToDeliveryAddress(value) {
+				$scope.delivery_address = value;
+			}  
+
 			function geocodeDelivery() {
 				var geocoder = new google.maps.Geocoder();
 				var latlng = new google.maps.LatLng($scope.deliverLat, $scope.deliverLon);
+
+				//VALORAR EN QUE FIELD PONER LA DIRECCION
+				var fielToPutData;
+
+				if ($scope.valueBool) {
+					fielToPutData = assignToPickupAddress;
+				} else {
+					fielToPutData = assignToDeliveryAddress;
+				}
+
+
 				geocoder.geocode({
 					'latLng': latlng
 				}, function(results, status) {
@@ -92,20 +111,26 @@
 					if (status == google.maps.GeocoderStatus.OK) {
 						if (results[0]) {
 							var res = results[0].formatted_address.split(", ", 3);
-							$scope.delivery_address = res[0];
+							fielToPutData(res[0]);
+							//$scope.delivery_address = res[0];
 						} else {
-							$scope.delivery_address = 'Location not found';
+							fielToPutData('Location not found');
+							//$scope.delivery_address = 'Location not found';
 						}
 					} else {
-						$scope.delivery_address = 'Geocoder failed due to: ' + status;
+						fielToPutData('Geocoder failed due to: ' + status);
+						//$scope.delivery_address = 'Geocoder failed due to: ' + status;
 					}
 				});
 			}
 
-			$scope.setLatLong = function(lat, lon) {
+			$scope.setLatLong = function(lat, lon, valueBool) {
 				$scope.$apply(function() {
 					$scope.deliverLat = parseFloat(lat);
 					$scope.deliverLon = parseFloat(lon);
+					$scope.valueBool = valueBool;
+					console.log("VALOR DEL BOOL", $scope.valueBool);
+
 					geocodeDelivery();
 				});
 				getDistance($scope.deliverLat, $scope.deliverLon);
@@ -129,7 +154,8 @@
 							if (response.response) {
 								$scope.currency = true;
 								$scope.deliveryPrice = response.data;
-							} /*else {
+							}
+							/*else {
 								$scope.currency = false;
 								$scope.deliveryPrice = response.msg;
 							}*/
