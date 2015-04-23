@@ -1,0 +1,20 @@
+<div layout="column" layout-align="center center" class="solo-box">
+	<md-card class="big-form">
+		<div>
+			<md-toolbar>
+			    <div class="md-toolbar-tools" layout-align="center center">
+			    	<span class="md-flex">Servicios Abortados</span>
+			    </div>
+			  </md-toolbar>
+		</div >
+			<md-card class="md-default-theme" ng-repeat="item in model.deliveryItems" ng-click="model.goToServiceDetails(item._id)">
+				<label> Pedido</label>			
+				{{item.item_name}}			
+				<label> Dirección de recogida</label>
+				{{item.pickup_object.address}}
+				<label> Dirección de Entrega</label>
+				{{item.delivery_object.address}}
+
+			</md-card>
+	</md-card>
+</div>

@@ -88,7 +88,7 @@
 
 			function assignToDeliveryAddress(value) {
 				$scope.delivery_address = value;
-			}  
+			}
 
 			function geocodeDelivery() {
 				var geocoder = new google.maps.Geocoder();
@@ -136,12 +136,12 @@
 				getDistance($scope.deliverLat, $scope.deliverLon);
 			};
 
-			$scope.distance = {
+			/*$scope.distance = {
 				pickupLatitud: $scope.position.lat,
 				pickupLongitud: $scope.position.lng,
 				deliveryLatitud: $scope.deliverLat,
 				deliveryLongitud: $scope.deliverLon,
-			};
+			};*/
 
 			function getDistance(destinationLat, destinationLon) {
 					console.log('entra a esta función');
@@ -162,7 +162,7 @@
 							console.log(response);
 						});
 					} else {
-						console.log('no estan todos los paarmetros requeridos');
+						console.log('no estan todos los parámetros requeridos');
 					}
 				}
 				//$scope.$watch('distance', getDistance);

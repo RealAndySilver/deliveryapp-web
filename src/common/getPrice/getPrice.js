@@ -8,6 +8,8 @@
 		function init() {
 
 			model.getPrice = function(loc1, loc2, callback) {
+				console.log("LOC 1",loc1);
+				console.log("LOC 2",loc2);
 				var getPricePromise = ServerComunicator.getPrice(loc1, loc2);
 				getPricePromise.then(
 					function success(response) {

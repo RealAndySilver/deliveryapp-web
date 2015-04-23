@@ -15,12 +15,10 @@
 
 			model.serviceDetails = function() {
 				DetailsDeliveryItemService.serviceDetails($stateParams.id, function(response) {
-					console.log(response);
+					//console.log(response);
 
 					model.deliveryItemInfo = response.data;
 					console.log(model.deliveryItemInfo);
-
-
 
 					if (response.data.messenger_info) {
 						model.messengerBool = true;
@@ -49,6 +47,13 @@
 						model.serviceStatus = traslateStatusFunction(response.data["status"]);
 						model.setAvailableButtonBool = false;
 
+					}
+
+					if(response.data["status"] == "returned" || response.data["status"] == "delivered"){
+						model.showCancelButtonBool=false;
+					}
+					else{
+						model.showCancelButtonBool=true;
 					}
 
 

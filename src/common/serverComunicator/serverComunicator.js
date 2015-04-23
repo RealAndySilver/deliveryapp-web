@@ -118,6 +118,20 @@
 				});
 			};
 
+			model.getCompletedDeliveryItems = function(idUser) {
+				return $http({
+					method: 'GET',
+					url: endpoint + 'User/FinishedDeliveries' + "/" + idUser,
+				});
+			};
+
+			model.getAbortedDeliveryItems = function(idUser) {
+				return $http({
+					method: 'GET',
+					url: endpoint + 'DeliveryItem/UserAborted' + "/" + idUser,
+				});
+			};
+
 		}
 	}]);
 

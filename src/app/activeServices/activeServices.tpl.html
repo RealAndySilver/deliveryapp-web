@@ -7,7 +7,8 @@
 			    </div>
 			  </md-toolbar>
 		</div >
-			<md-card class="md-default-theme" ng-repeat="item in model.deliveryItems" ng-click="model.goToServiceDetails(item._id)">
+			<label> SERVICIOS DISPONIBLES</label>
+			<md-card class="md-default-theme" ng-repeat="item in model.deliveryItems" ng-show="item.status == 'available'"   ng-click="model.goToServiceDetails(item._id)">
 				<label> Pedido</label>			
 				{{item.item_name}}			
 				<label> Dirección de recogida</label>
@@ -17,9 +18,15 @@
 
 			</md-card>
 
-		
-	    
-	</md-card>
+			<label> SERVICIOS ACEPTADOS</label>
+			<md-card class="md-default-theme" ng-repeat="item in model.deliveryItems" ng-show="item.status != 'available'"   ng-click="model.goToServiceDetails(item._id)">
+				<label> Pedido</label>			
+				{{item.item_name}}			
+				<label> Dirección de recogida</label>
+				{{item.pickup_object.address}}
+				<label> Dirección de Entrega</label>
+				{{item.delivery_object.address}}
 
-	
+			</md-card>
+		</md-card>
 </div>

@@ -25,7 +25,7 @@
 		            	<input name="delivery_address" ng-model="delivery_address" required>
 		        	</md-input-container>
 
-		        	<md-content ng-if="pickup_address" class="md-padding" style="height: 360px;padding: 14px;">
+		        	<md-content ng-if="pickup_address" class="md-padding" style="height: 400px;padding: 14px;">
 						<delivery-map class="map-container" callback="setLatLong(lat, lon,valueBool)"></delivery-map>
 		        	</md-content>
 		        	<md-switch aria-label="Ida y Vuelta" ng-model="model.delivery.roundtrip">
