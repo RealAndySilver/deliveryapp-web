@@ -111,6 +111,13 @@
 				});
 			};
 
+			model.getActiveDeliveryItems = function(idUser) {
+				return $http({
+					method: 'GET',
+					url: endpoint + 'DeliveryItem/UserActive' + "/" + idUser,
+				});
+			};
+
 		}
 	}]);
 

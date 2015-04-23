@@ -58,11 +58,13 @@
 			google.maps.event.addListener($scope.deliveryMap, 'center_changed', function() {
 				clearTimeout(id);
 				if ($scope.pickupBool) {
-					centerLonPickup = $scope.deliveryMap.getCenter().lat();
-					centerLatPickup = $scope.deliveryMap.getCenter().lng();
+					centerLatPickup = $scope.deliveryMap.getCenter().lat();
+					centerLonPickup = $scope.deliveryMap.getCenter().lng();
+					
 				} else {
-					centerLonDelivery = $scope.deliveryMap.getCenter().lat();
-					centerLatDelivery = $scope.deliveryMap.getCenter().lng();
+					centerLatDelivery = $scope.deliveryMap.getCenter().lat();
+					centerLonDelivery = $scope.deliveryMap.getCenter().lng();
+					
 				}
 
 				id = setTimeout(function() {
