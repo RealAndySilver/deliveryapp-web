@@ -20,8 +20,8 @@
 
 		function init() {
 			var maxAddresses = 10;
-			//console.log('recogida ', PickupAddresses);
-			//console.log('entrega ', DeliveryAddresses);
+			console.log('DIRECCIONEs recogida ', PickupAddresses);
+			console.log('DIRECCIONES entrega ', DeliveryAddresses);
 
 		}
 	}]);

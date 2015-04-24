@@ -27,7 +27,7 @@
 			<h6 >{{model.deliveryItemInfo.delivery_object.address}}</h6>
 			<md-divider></md-divider>
 			<label>Fecha de Recogida</label>
-			<h6 >{{model.deliveryItemInfo.pickup_time}}</h6>
+			<h6 >{{model.pickupDate | date:'dd/MM/yyyy hh:mma'}}</h6>
 			<md-divider></md-divider>
 			<label>Valor Aproximado del Servicio</label>
 			<h6 >{{model.deliveryItemInfo.price_to_pay}}</h6>
@@ -49,7 +49,7 @@
 				<md-card>
 				ETA
 				<br/>
-				{{model.leftTime}}
+				{{model.leftTime}} min
 				</md-card>
 				<md-card>
 				Placas

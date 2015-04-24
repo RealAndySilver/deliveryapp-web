@@ -162,8 +162,8 @@
 			model.requestMessenger = function() {
 				model.delivery.pickup_object = {};
 				model.delivery.pickup_object.address = $scope.pickup_address;
-				model.delivery.pickup_object.lat = $scope.position.lat;
-				model.delivery.pickup_object.lon = $scope.position.lng;
+				model.delivery.pickup_object.lat = $scope.pickupLat;
+				model.delivery.pickup_object.lon = $scope.pickupLon;
 
 				model.delivery.delivery_object = {};
 				model.delivery.delivery_object.address = $scope.delivery_address;
@@ -182,8 +182,8 @@
 						SaveAddresses.save(pickupItem, deliveryItem);
 						PickupAddresses.push(pickupItem);
 						DeliveryAddresses.push(deliveryItem);
-						$state.go('searchingMessenger', {
-							delivery_id: response.data._id
+						$state.go('serviceDetails', {
+							id: response.data._id
 						});
 						//console.log('ARRAY RECOGIDA ', PickupAddresses);
 						//console.log('ARRAY ENTREGA ', DeliveryAddresses);

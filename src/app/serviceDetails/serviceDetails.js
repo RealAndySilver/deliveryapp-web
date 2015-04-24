@@ -18,8 +18,17 @@
 					//console.log(response);
 
 					model.deliveryItemInfo = response.data;
-					console.log(model.deliveryItemInfo);
+					console.log("EL RESPONSE", model.deliveryItemInfo);
 
+					model.pickupDate = new Date(model.deliveryItemInfo["pickup_time"]);
+					model.estimated = new Date(model.deliveryItemInfo["estimated"]);
+					nowDate=new Date();
+					console.log(nowDate.getTime());
+					model.leftTime = parseInt((model.estimated.getTime() - nowDate.getTime())/60000);
+					if(model.leftTime<0){
+						model.leftTime="Retrasado";
+					}
+					
 					if (response.data.messenger_info) {
 						model.messengerBool = true;
 
