@@ -1,6 +1,39 @@
 (function(module) {
 
-	module.controller('RequestMessengerController', ['$scope', '$mdDialog', 'RequestMessengerService', 'Session', 'GetPrice', '$stateParams', '$state', 'PickupAddresses', 'DeliveryAddresses', 'SaveAddresses', function($scope, $mdDialog, RequestMessengerService, Session, GetPrice, $stateParams, $state, PickupAddresses, DeliveryAddresses, SaveAddresses) {
+	module.service('GetAllAddressService', ['PickupAddresses', 'DeliveryAddresses', function(PickupAddresses, DeliveryAddresses) {
+		var model = this;
+
+		var MAX_ADDRESS = 3;
+
+		model.save = function(pickupItem, deliveryItem) {
+
+			localStorage.getItem('key');
+
+			if (PickupAddresses.length = 0) {
+				PickupAddresses = localStorage.getItem('PickupAddresses');
+				DeliveryAddresses = localStorage.getItem('DeliveryAddresses');
+			}
+
+			PickupAddresses.splice(0, 0, pickupItem);
+			DeliveryAddresses.splice(0, 0, deliveryItem);
+
+			if (PickupAddresses.length > MAX_ADDRESS) {
+				PickupAddresses.pop();
+			}
+
+			if (DeliveryAddresses.length > MAX_ADDRESS) {
+				DeliveryAddresses.pop();
+			}
+
+			localStorage.setItem('PickupAddresses', JSON.stringify(PickupAddresses));
+			localStorage.setItem('DeliveryAddresses', JSON.stringify(DeliveryAddresses));
+
+			console.log('DIRECCIONEs recogida ', PickupAddresses);
+			console.log('DIRECCIONES entrega ', DeliveryAddresses);
+		};
+	}]);
+
+	module.controller('RequestMessengerController', ['$scope', '$mdDialog', 'RequestMessengerService', 'Session', 'GetPrice', '$stateParams', '$state', 'PickupAddresses', 'DeliveryAddresses', 'GetAllAddressService', function($scope, $mdDialog, RequestMessengerService, Session, GetPrice, $stateParams, $state, PickupAddresses, DeliveryAddresses, GetAllAddressService) {
 		var model = this;
 
 		init();
@@ -30,43 +63,7 @@
 			};
 			model.getCurrentUser();
 
-			/*model.getLocation = function() {
-				if (navigator.geolocation) {
-					navigator.geolocation.getCurrentPosition(model.pickupPosition);
-				} else {
-					alert("Geolocation is not supported by this browser.");
-				}
-			};
-
-			model.pickupPosition = function(position) {
-				$scope.position.lat = position.coords.latitude;
-				$scope.position.lng = position.coords.longitude;
-				geocodePickup();
-				$scope.$watch('lat', geocodePickup);
-				$scope.$watch('lng', geocodePickup);
-			};
-			model.getLocation();
-
-			$scope.pickup_address = '';
-
-			function geocodePickup() {
-				var geocoder = new google.maps.Geocoder();
-				var latlng = new google.maps.LatLng($scope.position.lat, $scope.position.lng);
-				geocoder.geocode({
-					'latLng': latlng
-				}, function(results, status) {
-					if (status == google.maps.GeocoderStatus.OK) {
-						if (results[0]) {
-							var res = results[0].formatted_address.split(", ", 3);
-							$scope.pickup_address = res[0];
-						} else {
-							$scope.pickup_address = 'Location not found';
-						}
-					} else {
-						$scope.pickup_address = 'Geocoder failed due to: ' + status;
-					}
-				});
-			}*/
+			
 			$scope.pickupLat = 0;
 			$scope.pickupLon = 0;
 
@@ -135,27 +132,27 @@
 			};
 
 			function getDistance(pickupLat, pickupLon, destinationLat, destinationLon) {
-					console.log('entra a esta función');
-					var loc1 = '';
-					var loc2 = '';
-					if (destinationLat !== 0) {
-						loc1 = pickupLat + "," + pickupLon;
-						loc2 = destinationLat + "," + destinationLon;
-						GetPrice.getPrice(loc1, loc2, function(response) {
-							if (response.response) {
-								$scope.currency = true;
-								$scope.deliveryPrice = response.data;
-							}
-							/*else {
-								$scope.currency = false;
-								$scope.deliveryPrice = response.msg;
-							}*/
-							console.log(response);
-						});
-					} else {
-						console.log('no estan todos los parámetros requeridos');
-					}
+				console.log('entra a esta función');
+				var loc1 = '';
+				var loc2 = '';
+				if (destinationLat !== 0) {
+					loc1 = pickupLat + "," + pickupLon;
+					loc2 = destinationLat + "," + destinationLon;
+					GetPrice.getPrice(loc1, loc2, function(response) {
+						if (response.response) {
+							$scope.currency = true;
+							$scope.deliveryPrice = response.data;
+						}
+						/*else {
+							$scope.currency = false;
+							$scope.deliveryPrice = response.msg;
+						}*/
+						console.log(response);
+					});
+				} else {
+					console.log('no estan todos los parámetros requeridos');
 				}
+			}
 
 			var pickupItem = {};
 			var deliveryItem = {};
@@ -179,16 +176,15 @@
 					var pickupItem = response.data.pickup_object;
 					var deliveryItem = response.data.delivery_object;
 					if (response.response) {
-						SaveAddresses.save(pickupItem, deliveryItem);
-						PickupAddresses.push(pickupItem);
-						DeliveryAddresses.push(deliveryItem);
+						//SaveAddresses.save(pickupItem, deliveryItem);
+						// PickupAddresses.push(pickupItem);
+						// DeliveryAddresses.push(deliveryItem);
+
+						GetAllAddressService.save(pickupItem, deliveryItem);
+
 						$state.go('serviceDetails', {
 							id: response.data._id
 						});
-						//console.log('ARRAY RECOGIDA ', PickupAddresses);
-						//console.log('ARRAY ENTREGA ', DeliveryAddresses);
-						//User = user;
-						//Session.setUser(User);
 					}
 				});
 			};

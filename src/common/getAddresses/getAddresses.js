@@ -13,16 +13,13 @@
 		};
 	});
 
-	module.controller('GetAddressesController', ['$scope', 'PickupAddresses', 'DeliveryAddresses', function($scope, PickupAddresses, DeliveryAddresses) {
+	module.controller('GetAddressesController', ['$scope', 'PickupAddresses', 'DeliveryAddresses', 'WhatDaPutas', function($scope, PickupAddresses, DeliveryAddresses, WhatDaPutas) {
 		var model = this;
 
 		init();
 
 		function init() {
 			var maxAddresses = 10;
-			console.log('DIRECCIONEs recogida ', PickupAddresses);
-			console.log('DIRECCIONES entrega ', DeliveryAddresses);
-
 		}
 	}]);
 
