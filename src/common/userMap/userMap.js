@@ -28,6 +28,34 @@
 
 			$scope.pickupBool = true;
 			$scope.deliveryBool = false;
+			/////////////
+
+			model.getLocation = function() {
+				if (navigator.geolocation) {
+					navigator.geolocation.getCurrentPosition(model.pickupPosition);
+				} else {
+					alert("Geolocation is not supported by this browser.");
+				}
+			};
+
+			model.pickupPosition = function(position) {
+				centerLatPickup = position.coords.latitude;
+				centerLonPickup = position.coords.longitude;
+
+				centerLatDelivery = position.coords.latitude;
+				centerLonDelivery = position.coords.longitude;
+
+				$scope.setLatLong({
+					lat1: centerLatPickup,
+					lon1: centerLonPickup,
+
+					lat2: centerLatDelivery,
+					lon2: centerLonDelivery,
+					valueBool: $scope.pickupBool,
+				});
+			};
+			model.getLocation();
+			/////////////
 
 			$scope.pickupOrDeliveryAddress = function() {
 
@@ -47,8 +75,8 @@
 			};
 
 			var mapOptions = {
-				zoom: 12,
-				center: new google.maps.LatLng(4.6683, -74.0620),
+				zoom: 15,
+				center: new google.maps.LatLng(centerLatPickup, centerLonPickup),
 				mapTypeId: google.maps.MapTypeId.ROADMAP
 			};
 
@@ -60,17 +88,20 @@
 				if ($scope.pickupBool) {
 					centerLatPickup = $scope.deliveryMap.getCenter().lat();
 					centerLonPickup = $scope.deliveryMap.getCenter().lng();
-					
+
 				} else {
 					centerLatDelivery = $scope.deliveryMap.getCenter().lat();
 					centerLonDelivery = $scope.deliveryMap.getCenter().lng();
-					
+
 				}
 
 				id = setTimeout(function() {
 					$scope.setLatLong({
-						lat: $scope.deliveryMap.getCenter().lat(),
-						lon: $scope.deliveryMap.getCenter().lng(),
+						lat1: centerLatPickup,
+						lon1: centerLonPickup,
+
+						lat2: centerLatDelivery,
+						lon2: centerLonDelivery,
 						valueBool: $scope.pickupBool,
 					});
 				}, 300);

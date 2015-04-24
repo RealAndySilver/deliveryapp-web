@@ -30,7 +30,7 @@
 			};
 			model.getCurrentUser();
 
-			model.getLocation = function() {
+			/*model.getLocation = function() {
 				if (navigator.geolocation) {
 					navigator.geolocation.getCurrentPosition(model.pickupPosition);
 				} else {
@@ -66,12 +66,9 @@
 						$scope.pickup_address = 'Geocoder failed due to: ' + status;
 					}
 				});
-			}
-
-			$scope.position = {
-				lat: 0,
-				lng: 0
-			};
+			}*/
+			$scope.pickupLat = 0;
+			$scope.pickupLon = 0;
 
 			$scope.deliverLat = 0;
 			$scope.deliverLon = 0;
@@ -92,14 +89,13 @@
 
 			function geocodeDelivery() {
 				var geocoder = new google.maps.Geocoder();
-				var latlng = new google.maps.LatLng($scope.deliverLat, $scope.deliverLon);
-
-				//VALORAR EN QUE FIELD PONER LA DIRECCION
+				var latlng = "";
 				var fielToPutData;
-
 				if ($scope.valueBool) {
+					latlng = new google.maps.LatLng($scope.pickupLat, $scope.pickupLon);
 					fielToPutData = assignToPickupAddress;
 				} else {
+					latlng = new google.maps.LatLng($scope.deliverLat, $scope.deliverLon);
 					fielToPutData = assignToDeliveryAddress;
 				}
 
@@ -110,7 +106,7 @@
 					//console.log('results', results);
 					if (status == google.maps.GeocoderStatus.OK) {
 						if (results[0]) {
-							var res = results[0].formatted_address.split(", ", 3);
+							var res = results[0].formatted_address.split(" a ", 1);
 							fielToPutData(res[0]);
 							//$scope.delivery_address = res[0];
 						} else {
@@ -124,31 +120,26 @@
 				});
 			}
 
-			$scope.setLatLong = function(lat, lon, valueBool) {
+			$scope.setLatLong = function(lat1, lon1, lat2, lon2, valueBool) {
 				$scope.$apply(function() {
-					$scope.deliverLat = parseFloat(lat);
-					$scope.deliverLon = parseFloat(lon);
+					$scope.pickupLat = parseFloat(lat1);
+					$scope.pickupLon = parseFloat(lon1);
+					$scope.deliverLat = parseFloat(lat2);
+					$scope.deliverLon = parseFloat(lon2);
 					$scope.valueBool = valueBool;
 					console.log("VALOR DEL BOOL", $scope.valueBool);
 
 					geocodeDelivery();
 				});
-				getDistance($scope.deliverLat, $scope.deliverLon);
+				getDistance($scope.pickupLat, $scope.pickupLon, $scope.deliverLat, $scope.deliverLon);
 			};
 
-			/*$scope.distance = {
-				pickupLatitud: $scope.position.lat,
-				pickupLongitud: $scope.position.lng,
-				deliveryLatitud: $scope.deliverLat,
-				deliveryLongitud: $scope.deliverLon,
-			};*/
-
-			function getDistance(destinationLat, destinationLon) {
+			function getDistance(pickupLat, pickupLon, destinationLat, destinationLon) {
 					console.log('entra a esta función');
 					var loc1 = '';
 					var loc2 = '';
 					if (destinationLat !== 0) {
-						loc1 = $scope.position.lat + "," + $scope.position.lng;
+						loc1 = pickupLat + "," + pickupLon;
 						loc2 = destinationLat + "," + destinationLon;
 						GetPrice.getPrice(loc1, loc2, function(response) {
 							if (response.response) {
@@ -165,7 +156,6 @@
 						console.log('no estan todos los parámetros requeridos');
 					}
 				}
-				//$scope.$watch('distance', getDistance);
 
 			var pickupItem = {};
 			var deliveryItem = {};
@@ -189,8 +179,6 @@
 					var pickupItem = response.data.pickup_object;
 					var deliveryItem = response.data.delivery_object;
 					if (response.response) {
-						//console.log('pickupItem ', pickupItem);
-						//console.log('deliveryItem ', deliveryItem);
 						SaveAddresses.save(pickupItem, deliveryItem);
 						PickupAddresses.push(pickupItem);
 						DeliveryAddresses.push(deliveryItem);
