@@ -4,14 +4,18 @@
 		var model = this;
 
 		var MAX_ADDRESS = 3;
+		console.log("EL VALUE DE LAS DIRECCIONES", PickupAddresses);
 
 		model.save = function(pickupItem, deliveryItem) {
 
-			localStorage.getItem('key');
-
-			if (PickupAddresses.length = 0) {
+			if (PickupAddresses.length === 0) {
 				PickupAddresses = localStorage.getItem('PickupAddresses');
 				DeliveryAddresses = localStorage.getItem('DeliveryAddresses');
+				if(PickupAddresses===null)
+				{
+					PickupAddresses=[];
+					DeliveryAddresses=[];
+				}
 			}
 
 			PickupAddresses.splice(0, 0, pickupItem);
@@ -19,9 +23,6 @@
 
 			if (PickupAddresses.length > MAX_ADDRESS) {
 				PickupAddresses.pop();
-			}
-
-			if (DeliveryAddresses.length > MAX_ADDRESS) {
 				DeliveryAddresses.pop();
 			}
 
@@ -31,14 +32,25 @@
 			console.log('DIRECCIONEs recogida ', PickupAddresses);
 			console.log('DIRECCIONES entrega ', DeliveryAddresses);
 		};
+
+
 	}]);
 
 	module.controller('RequestMessengerController', ['$scope', '$mdDialog', 'RequestMessengerService', 'Session', 'GetPrice', '$stateParams', '$state', 'PickupAddresses', 'DeliveryAddresses', 'GetAllAddressService', function($scope, $mdDialog, RequestMessengerService, Session, GetPrice, $stateParams, $state, PickupAddresses, DeliveryAddresses, GetAllAddressService) {
 		var model = this;
 
+		model.pickUpAddressSave = JSON.parse(localStorage.getItem('PickupAddresses'));
+		model.deliveryAddressSave = JSON.parse(localStorage.getItem('DeliveryAddresses'));
+
+		console.log("LO GUARDARDO EN EL LOCAL", model.pickUpAddressSave);
+
 		init();
 
+		model.pickup = {};
+		model.delivery = {};
+
 		function init() {
+
 			$scope.showAlert = function() {
 				$mdDialog.show(
 					$mdDialog.alert()
@@ -63,7 +75,7 @@
 			};
 			model.getCurrentUser();
 
-			
+
 			$scope.pickupLat = 0;
 			$scope.pickupLon = 0;
 
@@ -87,13 +99,13 @@
 			function geocodeDelivery() {
 				var geocoder = new google.maps.Geocoder();
 				var latlng = "";
-				var fielToPutData;
+				var fieldToPutData;
 				if ($scope.valueBool) {
 					latlng = new google.maps.LatLng($scope.pickupLat, $scope.pickupLon);
-					fielToPutData = assignToPickupAddress;
+					fieldToPutData = assignToPickupAddress;
 				} else {
 					latlng = new google.maps.LatLng($scope.deliverLat, $scope.deliverLon);
-					fielToPutData = assignToDeliveryAddress;
+					fieldToPutData = assignToDeliveryAddress;
 				}
 
 
@@ -104,14 +116,14 @@
 					if (status == google.maps.GeocoderStatus.OK) {
 						if (results[0]) {
 							var res = results[0].formatted_address.split(" a ", 1);
-							fielToPutData(res[0]);
+							fieldToPutData(res[0]);
 							//$scope.delivery_address = res[0];
 						} else {
-							fielToPutData('Location not found');
+							fieldToPutData('Location not found');
 							//$scope.delivery_address = 'Location not found';
 						}
 					} else {
-						fielToPutData('Geocoder failed due to: ' + status);
+						fieldToPutData('Geocoder failed due to: ' + status);
 						//$scope.delivery_address = 'Geocoder failed due to: ' + status;
 					}
 				});
@@ -176,9 +188,6 @@
 					var pickupItem = response.data.pickup_object;
 					var deliveryItem = response.data.delivery_object;
 					if (response.response) {
-						//SaveAddresses.save(pickupItem, deliveryItem);
-						// PickupAddresses.push(pickupItem);
-						// DeliveryAddresses.push(deliveryItem);
 
 						GetAllAddressService.save(pickupItem, deliveryItem);
 
@@ -188,7 +197,41 @@
 					}
 				});
 			};
+
+			model.showAddressBool = false;
+
+			model.isShowing = function() {
+				console.log("ISHOWING", model.showAddressBool);
+				if (model.showAddressBool) {
+					model.showAddressBool = false;
+				} else {
+					model.showAddressBool = true;
+				}
+			};
+
+			$scope.useAddress = function(delivery) {
+				var confirm = $mdDialog.confirm()
+					.title(' ')
+					.content('Como deseas usar esta dirección?')
+					.ariaLabel('')
+					.ok('Recogida')
+					.cancel('Entrega');
+				$mdDialog.show(confirm).then(function() {
+					$scope.pickupLat = delivery["lat"];
+					$scope.pickupLon = delivery["lon"];
+
+					model.pickup = {
+						lat: delivery['lat'],
+						lng: delivery['lon']
+					};
+					$scope.valueBool = true;
+					console.log("ENTRO ");
+					geocodeDelivery();
+				});
+			};
 		}
+
+
 	}]);
 
 }(angular.module("appMensajeria.requestMessenger")));

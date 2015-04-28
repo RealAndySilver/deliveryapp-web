@@ -13,7 +13,7 @@
 		};
 	});
 
-	module.controller('GetAddressesController', ['$scope', 'PickupAddresses', 'DeliveryAddresses', 'WhatDaPutas', function($scope, PickupAddresses, DeliveryAddresses, WhatDaPutas) {
+	module.controller('GetAddressesController', ['$scope', 'PickupAddresses', 'DeliveryAddresses', function($scope, PickupAddresses, DeliveryAddresses) {
 		var model = this;
 
 		init();

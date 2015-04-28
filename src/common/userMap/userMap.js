@@ -7,6 +7,8 @@
 			controller: 'DeliveryMapController',
 			//controllerAs: 'mapCtrl',
 			scope: {
+				pickup: '=',
+				delivery: '=',
 				setLatLong: '&callback',
 			},
 		};
@@ -24,10 +26,27 @@
 
 		init();
 
+		$scope.$watch('delivery', function(newValue) {
+			if (newValue.lat) {
+				centerLatDelivery = $scope.delivery.lat;
+				centerLonDelivery = $scope.delivery.lng;
+
+				$scope.deliveryMap.panTo(new google.maps.LatLng(centerLatDelivery, centerLonDelivery));
+			}
+		});
+
+		$scope.$watch('pickup', function(newValue) {
+			if (newValue.lat) {
+				centerLatPickup = $scope.pickup.lat;
+				centerLonPickup = $scope.pickup.lng;
+
+				$scope.deliveryMap.panTo(new google.maps.LatLng(centerLatPickup, centerLonPickup));
+			}
+		});
+
 		function init() {
 
 			$scope.pickupBool = true;
-			$scope.deliveryBool = false;
 			/////////////
 
 			model.getLocation = function() {

@@ -26,12 +26,23 @@
 		        	</md-input-container>
 
 		        	<md-content  class="md-padding" style="height: 400px;padding: 14px;">
-						<delivery-map class="map-container" callback="setLatLong(lat1, lon1,lat2, lon2,valueBool)"></delivery-map>
+						<delivery-map class="map-container" callback="setLatLong(lat1, lon1,lat2, lon2,valueBool)" delivery="model.delivery" pickup="model.pickup"></delivery-map>
 		        	</md-content>
 		        	<md-switch aria-label="Ida y Vuelta" ng-model="model.delivery.roundtrip">
 					    Ida y Vuelta
 					</md-switch>
-					<md-button class="md-raised v-margin-btn" ng-click="showAddresses($event)">Historial de direcciones</md-button>
+					<md-button class="md-raised v-margin-btn"  ng-click= "model.isShowing()">Historial de direcciones</md-button>
+
+					<md-card ng-show="model.showAddressBool">
+						<label>Direcciones de Recogida</label>
+						<ul>
+							<li ng-repeat="pickup in model.pickUpAddressSave" ng-click="useAddress(pickup)"><a href>{{pickup.address}}</a></li>
+						</ul>
+						<label>Direcciones de Entrega</label>
+						<ul>
+							<li ng-repeat="delivery in model.deliveryAddressSave" ng-click="useAddress(delivery)"><a href>{{delivery.address}}</a></li>
+						</ul>
+					</md-card>
 				</md-card>
 				
 				<md-card class="top-fix">
