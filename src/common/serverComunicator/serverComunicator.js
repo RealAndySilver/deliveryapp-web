@@ -80,32 +80,32 @@
 					method: 'PUT',
 					data: {
 						"user_id": idUser,
-						
+
 					},
 					url: endpoint + 'DeliveryItem/Restart' + "/" + idItem,
 				});
 			};
 
-			model.updateProfile = function(idUser,name,lastname,mobilephone) {
+			model.updateProfile = function(idUser, name, lastname, mobilephone) {
 				return $http({
 					method: 'PUT',
 					data: {
 						"name": name,
 						"lastname": lastname,
 						"mobilephone": mobilephone,
-						
+
 					},
 					url: endpoint + 'User/Update' + "/" + idUser,
 				});
 			};
 
-			model.changePassword = function(idUser,oldPass,newPass) {
+			model.changePassword = function(idUser, oldPass, newPass) {
 				return $http({
 					method: 'PUT',
 					data: {
-						"password" : oldPass,
-						"new_password" : newPass,
-						
+						"password": oldPass,
+						"new_password": newPass,
+
 					},
 					url: endpoint + 'User/Password' + "/" + idUser,
 				});
@@ -129,6 +129,19 @@
 				return $http({
 					method: 'GET',
 					url: endpoint + 'DeliveryItem/UserAborted' + "/" + idUser,
+				});
+			};
+
+			model.ratingMessenger = function(idItem,idUser,numberStars,review) {
+				return $http({
+					method: 'PUT',
+					data: {
+						"user_id": idUser,
+						"rating": numberStars,
+						"review": review,
+
+					},
+					url: endpoint + 'DeliveryItem/Rate' + "/" + idItem,
 				});
 			};
 

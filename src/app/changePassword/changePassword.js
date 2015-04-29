@@ -1,6 +1,6 @@
 (function(module) {
 
-	module.controller('ChangePasswordController', ["$stateParams", "ChangePasswordService", function($stateParams, ChangePasswordService) {
+	module.controller('ChangePasswordController', ["$state","$stateParams", "ChangePasswordService", function($state,$stateParams, ChangePasswordService) {
 		var model = this;
 		var proceed = false;
 
@@ -20,6 +20,7 @@
 				if (proceed === true) {
 					ChangePasswordService.changePass($stateParams.id, model.oldPass, model.repeatNewPass, function(response) {
 						console.log(response);
+						$state.go("profile");
 					});
 				}
 

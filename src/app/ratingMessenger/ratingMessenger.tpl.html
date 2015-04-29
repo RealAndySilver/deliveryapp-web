@@ -1,0 +1,21 @@
+<div layout="column" layout-align="center center" class="solo-box">
+	<md-card class="big-form">
+		<div>
+			<md-toolbar>
+			    <div class="md-toolbar-tools" layout-align="center center">
+			    	<span class="md-flex">Calificar Mensajero</span>
+			    </div>
+			  </md-toolbar>
+		</div>
+
+		<rating value="rate" max="max" readonly="false"  on-leave="overStar = null"></rating>
+   		 {{rate}}
+
+		<md-input-container flex>
+					<label>Opiniones</label>
+	            	<input name="email" ng-model="model.review" required>
+	     </md-input-container>
+	    <md-button class="md-raised v-margin-btn" ng-click	="model.ratingMessenger()" >Calificar<md-button>
+	    
+	</md-card>
+</div>

@@ -18,17 +18,16 @@
 					//console.log(response);
 
 					model.deliveryItemInfo = response.data;
-					console.log("EL RESPONSE", model.deliveryItemInfo);
+					console.log("EL deliveryItemInfo", model.deliveryItemInfo);
 
 					model.pickupDate = new Date(model.deliveryItemInfo["pickup_time"]);
 					model.estimated = new Date(model.deliveryItemInfo["estimated"]);
-					nowDate=new Date();
-					console.log(nowDate.getTime());
-					model.leftTime = parseInt((model.estimated.getTime() - nowDate.getTime())/60000);
-					if(model.leftTime<0){
-						model.leftTime="Retrasado";
+					nowDate = new Date();
+					model.leftTime = parseInt((model.estimated.getTime() - nowDate.getTime()) / 60000);
+					if (model.leftTime < 0) {
+						model.leftTime = "Retrasado";
 					}
-					
+
 					if (response.data.messenger_info) {
 						model.messengerBool = true;
 
@@ -58,12 +57,19 @@
 
 					}
 
-					if(response.data["status"] == "returned" || response.data["status"] == "delivered"){
-						model.showCancelButtonBool=false;
+					if (response.data["status"] == "returned" || response.data["status"] == "delivered") {
+						model.showCancelButtonBool = false;
+						if (model.deliveryItemInfo.rated === false) {
+							$state.go('ratingMessenger', {
+								idItem: response.data["_id"]
+							});
+						}
+					} else {
+						model.showCancelButtonBool = true;
 					}
-					else{
-						model.showCancelButtonBool=true;
-					}
+
+					console.log("RATED", model.deliveryItemInfo["rated"]);
+
 
 
 				});

@@ -61,14 +61,6 @@
 			};
 			$scope.showAlert();
 
-			$scope.showAddresses = function() {
-				$mdDialog.show({
-					controller: 'GetAddressesController',
-					templateUrl: 'getAddresses/getAddresses.tpl.html',
-					//targetEvent: ev,
-				});
-			};
-
 			model.getCurrentUser = function() {
 				$scope.currentUser = Session.getUser();
 			};
@@ -80,10 +72,6 @@
 
 			$scope.deliverLat = 0;
 			$scope.deliverLon = 0;
-
-			$scope.showValues = function() {
-				alert('deliverLon: ' + $scope.deliverLon + ', deliverLat: ' + $scope.deliverLat);
-			};
 
 			$scope.delivery_address = '';
 
