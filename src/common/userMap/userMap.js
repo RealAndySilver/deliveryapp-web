@@ -25,24 +25,27 @@
 		//var centerLonDelivery = 0;
 
 		init();
+		$scope.$watch('pickup', function(newValue) {
+			if (newValue.lat) {
+				centerLatPickup = $scope.pickup.lat;
+				centerLonPickup = $scope.pickup.lng;
+				$scope.pickupBool = true;
+
+				$scope.deliveryMap.panTo(new google.maps.LatLng(centerLatPickup, centerLonPickup));
+			}
+		});
 
 		$scope.$watch('delivery', function(newValue) {
 			if (newValue.lat) {
 				centerLatDelivery = $scope.delivery.lat;
 				centerLonDelivery = $scope.delivery.lng;
+				$scope.pickupBool = false;
 
 				$scope.deliveryMap.panTo(new google.maps.LatLng(centerLatDelivery, centerLonDelivery));
 			}
 		});
 
-		$scope.$watch('pickup', function(newValue) {
-			if (newValue.lat) {
-				centerLatPickup = $scope.pickup.lat;
-				centerLonPickup = $scope.pickup.lng;
-
-				$scope.deliveryMap.panTo(new google.maps.LatLng(centerLatPickup, centerLonPickup));
-			}
-		});
+		
 
 		function init() {
 
@@ -72,7 +75,10 @@
 					lon2: centerLonDelivery,
 					valueBool: $scope.pickupBool,
 				});
+
 			};
+
+
 			model.getLocation();
 			/////////////
 

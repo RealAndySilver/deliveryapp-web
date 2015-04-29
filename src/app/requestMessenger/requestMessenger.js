@@ -11,10 +11,9 @@
 			if (PickupAddresses.length === 0) {
 				PickupAddresses = localStorage.getItem('PickupAddresses');
 				DeliveryAddresses = localStorage.getItem('DeliveryAddresses');
-				if(PickupAddresses===null)
-				{
-					PickupAddresses=[];
-					DeliveryAddresses=[];
+				if (PickupAddresses === null) {
+					PickupAddresses = [];
+					DeliveryAddresses = [];
 				}
 			}
 
@@ -209,25 +208,54 @@
 				}
 			};
 
-			$scope.useAddress = function(delivery) {
-				var confirm = $mdDialog.confirm()
-					.title(' ')
-					.content('Como deseas usar esta dirección?')
-					.ariaLabel('')
-					.ok('Recogida')
-					.cancel('Entrega');
-				$mdDialog.show(confirm).then(function() {
-					$scope.pickupLat = delivery["lat"];
-					$scope.pickupLon = delivery["lon"];
+			function DialogController($scope, $mdDialog) {
+				$scope.hide = function() {
+					$mdDialog.hide();
+				};
+				$scope.cancel = function() {
+					$mdDialog.cancel();
+				};
+				$scope.answer = function(answer) {
+					$mdDialog.hide(answer);
+				};
+			}
 
-					model.pickup = {
-						lat: delivery['lat'],
-						lng: delivery['lon']
-					};
-					$scope.valueBool = true;
-					console.log("ENTRO ");
-					geocodeDelivery();
-				});
+			$scope.useAddress = function(delivery) {
+				$mdDialog.show({
+						controller: DialogController,
+						templateUrl: 'requestMessenger/customDialogUseAddress.tpl.html',
+
+					})
+					.then(function(answer) {
+
+						//AQUI SE METE LA LOGICA DE LO QUE QUIERO HACER
+						if (answer === "pickup") {
+							$scope.pickupLat = delivery["lat"];
+							$scope.pickupLon = delivery["lon"];
+
+							model.pickup = {
+								lat: delivery['lat'],
+								lng: delivery['lon']
+							};
+							$scope.valueBool = true;
+							console.log("ENTRO ");
+							geocodeDelivery();
+						} else if (answer === "delivery") {
+
+							$scope.deliverLat = delivery["lat"];
+							$scope.deliverLon = delivery["lon"];
+
+							model.delivery = {
+								lat: delivery['lat'],
+								lng: delivery['lon']
+							};
+							$scope.valueBool = false;
+							console.log("ENTRO ");
+							geocodeDelivery();
+						}
+
+					});
+
 			};
 		}
 
