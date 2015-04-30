@@ -35,9 +35,11 @@
 
 			model.loading = function() {
 				console.log("ENTRO ");
+				//$mdDialog.escapeToClose(false);
 				$mdDialog.show({
 						controller: DialogController,
 						templateUrl: 'alerts/loadingDialog.tpl.html',
+						
 
 					})
 					.then(function(answer) {
@@ -45,7 +47,7 @@
 						//AQUI SE METE LA LOGICA DE LO QUE QUIERO HACER
 						if (answer === "cancel") {
 							model.cancel();
-							
+
 						}
 					});
 			};

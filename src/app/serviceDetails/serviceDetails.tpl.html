@@ -17,20 +17,20 @@
 		</md-card>
 		
 		<md-card id="serviceDetailsContainer" ng-show="model.messengerBool">
-			<label>Nombre de Servicio</label>
-			<h6 >{{model.deliveryItemInfo.item_name}}</h6>
+			<label class="titleField">Nombre de Servicio</label>
+			<h6 class="textField" >{{model.deliveryItemInfo.item_name}}</h6>
 			<md-divider></md-divider>
-			<label>Lugar de Recogida</label>
-			<h6 >{{model.deliveryItemInfo.pickup_object.address}}</h6>
+			<label class="titleField">Lugar de Recogida</label>
+			<h6  class="textField" >{{model.deliveryItemInfo.pickup_object.address}}</h6>
 			<md-divider></md-divider>
-			<label>Lugar de Entrega</label>
-			<h6 >{{model.deliveryItemInfo.delivery_object.address}}</h6>
+			<label class="titleField">Lugar de Entrega</label>
+			<h6  class="textField" >{{model.deliveryItemInfo.delivery_object.address}}</h6>
 			<md-divider></md-divider>
-			<label>Fecha de Recogida</label>
-			<h6 >{{model.pickupDate | date:'dd/MM/yyyy hh:mma'}}</h6>
+			<label class="titleField">Fecha de Recogida</label>
+			<h6  class="textField" >{{model.pickupDate | date:'dd/MM/yyyy hh:mma'}}</h6>
 			<md-divider></md-divider>
-			<label>Valor Aproximado del Servicio</label>
-			<h6 >{{model.deliveryItemInfo.price_to_pay}}</h6>
+			<label class="titleField">Valor Aproximado del Servicio</label>
+			<h6  class="textField" >{{model.deliveryItemInfo.price_to_pay}}</h6>
 		</md-card>
 
 		
@@ -46,17 +46,17 @@
 				</div>
 			</div>
 			<div id="ETA-plates">
-				<md-card>
+				<md-card class="inline-cards">
 				ETA
 				<br/>
 				{{model.leftTime}} min
 				</md-card>
-				<md-card>
+				<md-card class="inline-cards">
 				Placas
 				<br/>
 				{{model.deliveryItemInfo.messenger_info.plate}}
 				</md-card>
-				<md-card>
+				<md-card class="inline-cards">
 				Código
 				<br/>
 				{{model.code}}
