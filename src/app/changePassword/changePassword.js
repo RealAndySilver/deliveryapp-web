@@ -1,6 +1,6 @@
 (function(module) {
 
-	module.controller('ChangePasswordController', ["$state","$stateParams", "ChangePasswordService", function($state,$stateParams, ChangePasswordService) {
+	module.controller('ChangePasswordController', ["$state", "$stateParams", "ChangePasswordService", "$mdDialog","AlertsService", function($state, $stateParams, ChangePasswordService, $mdDialog,AlertsService) {
 		var model = this;
 		var proceed = false;
 
@@ -14,18 +14,24 @@
 					proceed = true;
 				} else {
 					proceed = false;
+					AlertsService.showAlert("Las contraseñas no coinciden", "");
 				}
 
-				console.log(proceed);
 				if (proceed === true) {
 					ChangePasswordService.changePass($stateParams.id, model.oldPass, model.repeatNewPass, function(response) {
 						console.log(response);
-						$state.go("profile");
+						if (response.response) {
+							AlertsService.showAlert("Contraseña actualizada correctamente", "goProfile");
+						} else {
+							AlertsService.showAlert(response.msg, "");
+						}
+
 					});
 				}
 
 			};
 
+			
 
 		}
 	}]);

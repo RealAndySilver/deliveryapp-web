@@ -1,6 +1,6 @@
 (function(module) {
 
-	module.controller('AbortedServicesController', ["AbortedServicesService", "Session", "$state", function(AbortedServicesService, Session, $state) {
+	module.controller('AbortedServicesController', ["AbortedServicesService", "Session", "$state", "$mdDialog","AlertsService", function(AbortedServicesService, Session, $state, $mdDialog,AlertsService) {
 		var model = this;
 		model.User = (Session.getUser());
 
@@ -11,7 +11,12 @@
 			model.getAbortedServices = function() {
 				AbortedServicesService.getAbortedServices(model.User["_id"], function(response) {
 					model.deliveryItems = response.data;
-					console.log(model.deliveryItems);
+					console.log(response.data);
+					if(!response.data){
+						AlertsService.showAlert(response.msg, "");
+					}else if(model.deliveryItems.length===0){
+						AlertsService.showAlert("No se encontraron servicios Abortados","");
+					}
 				});
 			};
 			model.getAbortedServices();
@@ -21,7 +26,7 @@
 					id: idObject
 				});
 			};
-
+			
 		}
 	}]);
 

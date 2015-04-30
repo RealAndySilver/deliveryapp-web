@@ -1,20 +1,12 @@
 (function(module) {
 
-	module.controller('LoginUserController', ['LoginUserService', '$state', '$mdDialog', 'User', 'Session', 'RecoverPassword', function(LoginUserService, $state, $mdDialog, User, Session, RecoverPassword) {
+	module.controller('LoginUserController', ['LoginUserService', '$state', '$mdDialog', 'User', 'Session', 'RecoverPassword','AlertsService', function(LoginUserService, $state, $mdDialog, User, Session, RecoverPassword,AlertsService) {
 		var model = this;
 
 		init();
 
 		function init() {
-			model.loginAlert = function() {
-				$mdDialog.show(
-					$mdDialog.alert()
-					.content('Usuario o contraseña incorrectos.')
-					.ariaLabel('login validation')
-					.ok('Aceptar')
-					.disableParentScroll(false)
-				);
-			};
+			
 			model.recoverAlert = function() {
 				$mdDialog.show(
 					$mdDialog.alert()
@@ -24,27 +16,24 @@
 					.disableParentScroll(false)
 				);
 			};
-			/*model.recoverDialog = function(ev) {
-				$mdDialog.show({
-						//controller: RecoverPasswordController,
-						templateUrl: 'recoverPassword.tmpl.html',
-						targetEvent: ev,
-					});
-			};*/
 
 			model.loginUser = function() {
 				LoginUserService.loginUser(model.user.email, model.user.password, function(response) {
-					//console.log(response);
+					console.log(response);
 					var user = response.data;
-					if (response.data) {
+
+					if (!response.response) {
+						AlertsService.showAlert(response.msg, "");
+					} else if (response.data) {
 						User = user;
 						console.log(User);
 						Session.setUser(User);
-						//$state.go('requestMessenger', {id: user._id});
 						$state.go('profile');
 					} else {
-						model.loginAlert();
+						AlertsService.showAlert('Usuario o contraseña incorrectos.','');
 					}
+
+					
 				});
 			};
 
