@@ -115,6 +115,7 @@ body md-card.basic-form {
 
 body md-card.big-form {
 	width: 620px;
+	padding: 0;
 }
 
 label {
@@ -154,6 +155,29 @@ md-input-container {
 .top-fix {
 	margin-top: 30px;
 }
+/* TAMAÑO DE LOS TEXTOS QUE SE MUESTRAN AL USUARIO SE USA EN DETALLES DEL SERVICIO*/
+.titleField{
+	font-size: 15px;
+	color: #696969;
+}
+.textField{
+	font-size: 20px;
+}
+/* TEXTO DENTRO DE ALGUNAS CARTA COMO PROFILE*/
+.titleInsideCards{
+
+	font-size: 18px;
+	color: #878787;
+	margin-bottom: 0px; 
+}
+.textInsideCards{
+	margin-top: 0px;
+	margin-bottom: 15px;
+
+	font-size: 20px;
+}
+
+
 
 /**
  * Now that all app-wide styles have been applied, we can load the styles for
@@ -167,7 +191,6 @@ md-input-container {
 @import '../app/createUser/createUser.less';
 @import '../app/requestMessenger/requestMessenger.less';
 @import '../app/recoverPassword/recoverPassword.less';
-@import '../app/searchingMessenger/searchingMessenger.less';
 @import '../common/userMap/userMap.less';
 @import '../app/serviceDetails/serviceDetails.less';
 @import '../app/profile/profile.less';

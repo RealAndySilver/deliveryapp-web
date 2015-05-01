@@ -9,23 +9,27 @@
 		</div >
 			<label> SERVICIOS DISPONIBLES</label>
 			<md-card class="md-default-theme" ng-repeat="item in model.deliveryItems" ng-show="item.status == 'available'"   ng-click="model.goToServiceDetails(item._id)">
-				<label> Pedido</label>			
-				{{item.item_name}}			
-				<label> Dirección de recogida</label>
-				{{item.pickup_object.address}}
-				<label> Dirección de Entrega</label>
-				{{item.delivery_object.address}}
+				<div id="containerInfo">
+					<label class="titleInsideCards"> Pedido</label>			
+					<h6 class="textInsideCards">{{item.item_name}}</h6>		
+					<label class="titleInsideCards"> Dirección de recogida</label>
+					<h6 class="textInsideCards">{{item.pickup_object.address}}</h6>
+					<label class="titleInsideCards"> Dirección de Entrega</label>
+					<h6 class="textInsideCards">{{item.delivery_object.address}}</h6>
+				</div>
 
 			</md-card>
 
 			<label> SERVICIOS ACEPTADOS</label>
 			<md-card class="md-default-theme" ng-repeat="item in model.deliveryItems" ng-show="item.status != 'available'"   ng-click="model.goToServiceDetails(item._id)">
-				<label> Pedido</label>			
-				{{item.item_name}}			
-				<label> Dirección de recogida</label>
-				{{item.pickup_object.address}}
-				<label> Dirección de Entrega</label>
-				{{item.delivery_object.address}}
+				<div id="containerInfo">
+					<label class="titleInsideCards"> Pedido</label>			
+					<h6 class="textInsideCards">{{item.item_name}}</h6>		
+					<label class="titleInsideCards"> Dirección de recogida</label>
+					<h6 class="textInsideCards">{{item.pickup_object.address}}</h6>
+					<label class="titleInsideCards"> Dirección de Entrega</label>
+					<h6 class="textInsideCards">{{item.delivery_object.address}}</h6>
+				</div>
 
 			</md-card>
 		</md-card>

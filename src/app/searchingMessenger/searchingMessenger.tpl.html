@@ -1,0 +1,22 @@
+<div layout="column" layout-align="center center" class="solo-box">
+	<md-card class="basic-form">
+		<div>
+			<md-toolbar>
+			    <div class="md-toolbar-tools" layout-align="center center">
+			    	<span class="md-flex">Buscando mensajero</span>
+			    </div>
+			  </md-toolbar>
+		</div>
+	    <div>
+			<md-subheader id="search_label" class="md-primary" layout-align="center center">
+				En este momento estamos buscando un mensajero cercano a ti, por favor espera un momento.
+			</md-subheader>
+			<md-card id="search_loading">
+				<img src="https://enroll.clearme.com/ClearMe/images/please_wait.gif">
+			</md-card>
+	    </div>
+	    <md-divider></md-divider>
+	    <md-button class="md-raised md-warn" ng-click="model.cancel()">Cancelar</md-button>
+	</md-card>
+</div>
+

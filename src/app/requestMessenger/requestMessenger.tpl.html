@@ -11,36 +11,36 @@
 			<form name="requestMessengerForm" novalidate>
 				<md-card>
 					<md-input-container flex>
-						<label>Nombre de Servicio</label>
+						<label class="titleField">Nombre de Servicio</label>
 		            	<input name="item_name" ng-model="model.delivery.item_name" required>
 		        	</md-input-container>
 
 		        	<md-input-container flex>
-						<label>Dirección de Recogida</label>
-		            	<input name="pickup_address" ng-model="pickup_address" required >
+						<label  class="titleField">Dirección de Recogida</label>
+		            	<input class=" textField"name="pickup_address" ng-model="pickup_address" required >
 		        	</md-input-container>
 
 		        	<md-input-container flex>
-						<label>Dirección de Entrega</label>
-		            	<input name="delivery_address" ng-model="delivery_address" required>
+						<label  class="titleField">Dirección de Entrega</label>
+		            	<input class=" textField" name="delivery_address" ng-model="delivery_address" required>
 		        	</md-input-container>
 
 		        	<md-content  class="md-padding" style="height: 400px;padding: 14px;">
 						<delivery-map class="map-container" callback="setLatLong(lat1, lon1,lat2, lon2,valueBool)" delivery="model.delivery" pickup="model.pickup"></delivery-map>
 		        	</md-content>
-		        	<md-switch aria-label="Ida y Vuelta" ng-model="model.delivery.roundtrip">
+		        	<md-switch class="titleField" aria-label="Ida y Vuelta" ng-model="model.delivery.roundtrip">
 					    Ida y Vuelta
 					</md-switch>
-					<md-button class="md-raised v-margin-btn"  ng-click= "model.isShowing()">Historial de direcciones</md-button>
+					<md-button class="md-raised primary-btn"  id="buttonHistoryAddress" ng-click= "model.isShowing()">Historial de direcciones</md-button>
 
 					<md-card ng-show="model.showAddressBool">
-						<label>Direcciones de Recogida</label>
+						<label class="titleField">Direcciones de Recogida</label>
 						<ul>
-							<li ng-repeat="pickup in model.pickUpAddressSave" ng-click="useAddress(pickup)"><a href>{{pickup.address}}</a></li>
+							<li ng-repeat="pickup in model.pickUpAddressSave" ng-click="useAddress(pickup)"><a class=" textField" href>{{pickup.address}}</a></li>
 						</ul>
-						<label>Direcciones de Entrega</label>
+						<label class="titleField" >Direcciones de Entrega</label>
 						<ul>
-							<li ng-repeat="delivery in model.deliveryAddressSave" ng-click="useAddress(delivery)"><a href>{{delivery.address}}</a></li>
+							<li ng-repeat="delivery in model.deliveryAddressSave" ng-click="useAddress(delivery)"><a class=" textField" href>{{delivery.address}}</a></li>
 						</ul>
 					</md-card>
 				</md-card>
@@ -55,7 +55,7 @@
 		        	</md-input-container>
 		        	<time-date-picker ng-model="model.delivery.deadline" required></time-date-picker>
 		        	<md-input-container flex>
-						<label>Valor declarado de la mercancia</label>
+						<label >Valor declarado de la mercancia</label>
 		            	<input name="declared_value" ng-model="model.delivery.declared_value" placeholder="min. $1.000" required>
 		        	</md-input-container>
 		        	<md-input-container flex>

@@ -38,28 +38,30 @@
 		<md-card id="messengerInfoContainer" ng-show="model.messengerBool">
 		<div >
 			<div class="img-text-container">
-				<img ng-src="{{model.deliveryItemInfo.messenger_info.url}}">
+				<img id="profilePicMessenger" ng-src="{{model.deliveryItemInfo.messenger_info.url}}">
+				<br/>
 				<div id="dataContainer">
-					<label>Conductor</label><br>
-					<label ng-model="model.messengerName">{{model.deliveryItemInfo.messenger_info.name}} {{model.deliveryItemInfo.messenger_info.lastname}}</label><br>
-					<label ng-model="model.messengerMobilephone">{{model.deliveryItemInfo.messenger_info.mobilephone}}</label><br>
+					<label class="titleField">Conductor</label><br>
+					<label class="textField" ng-model="model.messengerName">{{model.deliveryItemInfo.messenger_info.name}} {{model.deliveryItemInfo.messenger_info.lastname}}</label><br>
+					<label class="titleField">Teléfono: </label>
+					<label class="textField" ng-model="model.messengerMobilephone">{{model.deliveryItemInfo.messenger_info.mobilephone}}</label><br>
 				</div>
 			</div>
 			<div id="ETA-plates">
 				<md-card class="inline-cards">
-				ETA
-				<br/>
-				{{model.leftTime}} min
+					<h6 class="titleField" >ETA</h6>
+					<br/>
+					<h6 class="textField">{{model.leftTime}} min</h6>
 				</md-card>
 				<md-card class="inline-cards">
-				Placas
-				<br/>
-				{{model.deliveryItemInfo.messenger_info.plate}}
+					<h6 class="titleField">Placas</h6>
+					<br/>
+					<h6 class="textField">{{model.deliveryItemInfo.messenger_info.plate}}</h6>
 				</md-card>
 				<md-card class="inline-cards">
-				Código
-				<br/>
-				{{model.code}}
+					<h6 class="titleField">Código</h6>
+					<br/>
+					<h6 class="textField">{{model.code}}</h6>
 				</md-card>
 				
 			</div>
@@ -79,7 +81,7 @@
 			<h6 ng-show="model.setAvailableButtonBool">{{model.deliveryItemInfo.abort_reason}}</h6>
 		
 		</md-card>
-		<md-button class="md-raised v-margin-btn"  ng-show="model.setAvailableButtonBool" ng-click="model.restartService()">Reactivar Servicio</md-button>
-		<md-button class="md-raised v-margin-btn" ng-click="model.cancelService()" ng-show="model.showCancelButtonBool">Cancelar Servicio</md-button>
+		<md-button class="md-raised primary-btn" ng-show="model.setAvailableButtonBool" ng-click="model.restartService()">Reactivar Servicio</md-button>
+		<md-button class="md-raised primary-btn" ng-click="model.cancelService()" ng-show="model.showCancelButtonBool">Cancelar Servicio</md-button>
 	</md-card>
 	<div>
