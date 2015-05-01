@@ -10,6 +10,7 @@
 			console.log($stateParams.id);
 
 			model.changePass = function() {
+
 				if (model.repeatNewPass === model.newPass) {
 					proceed = true;
 				} else {
@@ -18,8 +19,10 @@
 				}
 
 				if (proceed === true) {
+					AlertsService.loading();
 					ChangePasswordService.changePass($stateParams.id, model.oldPass, model.repeatNewPass, function(response) {
 						console.log(response);
+						AlertsService.cancel();
 						if (response.response) {
 							AlertsService.showAlert("Contraseña actualizada correctamente", "goProfile");
 						} else {

@@ -9,9 +9,11 @@
         function init() {
 
             model.getActiveServices = function() {
+                AlertsService.loading();
                 ActiveServicesService.getActiveServices(model.User["_id"], function(response) {
                     model.deliveryItems = response.data;
                     console.log(model.deliveryItems);
+                    AlertsService.cancel();
                     if(!response.data){
                         AlertsService.showAlert(response.msg, "");
                     }else if(model.deliveryItems.length===0){

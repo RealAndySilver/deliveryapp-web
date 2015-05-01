@@ -18,9 +18,11 @@
 			};
 
 			model.loginUser = function() {
+				AlertsService.loading();
 				LoginUserService.loginUser(model.user.email, model.user.password, function(response) {
 					console.log(response);
 					var user = response.data;
+					AlertsService.cancel();
 
 					if (!response.response) {
 						AlertsService.showAlert(response.msg, "");

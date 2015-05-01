@@ -35,7 +35,7 @@
 
 	}]);
 
-	module.controller('RequestMessengerController', ['$scope', '$mdDialog', 'RequestMessengerService', 'Session', 'GetPrice', '$stateParams', '$state', 'PickupAddresses', 'DeliveryAddresses', 'GetAllAddressService', function($scope, $mdDialog, RequestMessengerService, Session, GetPrice, $stateParams, $state, PickupAddresses, DeliveryAddresses, GetAllAddressService) {
+	module.controller('RequestMessengerController', ['$scope', '$mdDialog', 'RequestMessengerService', 'Session', 'GetPrice', '$stateParams', '$state', 'PickupAddresses', 'DeliveryAddresses', 'GetAllAddressService', "AlertsService", function($scope, $mdDialog, RequestMessengerService, Session, GetPrice, $stateParams, $state, PickupAddresses, DeliveryAddresses, GetAllAddressService, AlertsService) {
 		var model = this;
 
 		model.pickUpAddressSave = JSON.parse(localStorage.getItem('PickupAddresses'));
@@ -156,6 +156,8 @@
 			var pickupItem = {};
 			var deliveryItem = {};
 			model.requestMessenger = function() {
+
+
 				model.delivery.pickup_object = {};
 				model.delivery.pickup_object.address = $scope.pickup_address;
 				model.delivery.pickup_object.lat = $scope.pickupLat;
@@ -170,18 +172,25 @@
 				model.delivery.user_info = $scope.currentUser;
 				model.delivery.user_id = $scope.currentUser._id;
 				console.log('objeto servicio ', model.delivery);
+
+				AlertsService.loading();
 				RequestMessengerService.requestMessenger(model.delivery, function(response) {
 					console.log(response);
+					AlertsService.cancel();
 					var pickupItem = response.data.pickup_object;
 					var deliveryItem = response.data.delivery_object;
 					if (response.response) {
 
 						GetAllAddressService.save(pickupItem, deliveryItem);
-
+						
 						$state.go('serviceDetails', {
 							id: response.data._id
 						});
 					}
+					else{
+						AlertsService.showAlert(response.msg, "");
+					}
+
 				});
 			};
 

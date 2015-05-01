@@ -9,9 +9,13 @@
 
 		function init() {
 			model.getAbortedServices = function() {
+
+				AlertsService.loading();
+
 				AbortedServicesService.getAbortedServices(model.User["_id"], function(response) {
 					model.deliveryItems = response.data;
 					console.log(response.data);
+					AlertsService.cancel();
 					if(!response.data){
 						AlertsService.showAlert(response.msg, "");
 					}else if(model.deliveryItems.length===0){

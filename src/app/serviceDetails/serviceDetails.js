@@ -1,6 +1,6 @@
 (function(module) {
 
-	module.controller('ServiceDetailsController', ["$state", '$mdDialog', "$stateParams", "DetailsDeliveryItemService", "User", function($state, $mdDialog, $stateParams, DetailsDeliveryItemService, User) {
+	module.controller('ServiceDetailsController', ["$state", '$mdDialog', "$stateParams", "DetailsDeliveryItemService", "User", "AlertsService", function($state, $mdDialog, $stateParams, DetailsDeliveryItemService, User, AlertsService) {
 		var model = this;
 		model.messengerBool = false;
 		model.leftTime = "10s";
@@ -87,10 +87,11 @@
 					.cancel('Volver');
 				//.targetEvent(ev);
 				$mdDialog.show(confirm).then(function() {
-
+					AlertsService.loading();
 					model.deleteDeliveryItem = function() {
 						DetailsDeliveryItemService.deleteDeliveryItem(model.deliveryItemInfo._id, model.deliveryItemInfo.user_id, function(response) {
 							model.code = 'You decided to get rid of your debt.';
+							AlertsService.cancel();
 							$state.go('requestMessenger');
 							console.log(response);
 						});
@@ -110,8 +111,9 @@
 					.cancel('Volver');
 				//.targetEvent(ev);
 				$mdDialog.show(confirm).then(function() {
-
+					AlertsService.loading();
 					model.restartDeliveryItem = function() {
+						AlertsService.cancel();
 						DetailsDeliveryItemService.restartDeliveryItem(model.deliveryItemInfo._id, model.deliveryItemInfo.user_id, function(response) {
 							console.log(response);
 						});
