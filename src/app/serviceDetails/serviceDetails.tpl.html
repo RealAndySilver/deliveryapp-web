@@ -20,15 +20,19 @@
 			<label class="titleField">Nombre de Servicio</label>
 			<h6 class="textField" >{{model.deliveryItemInfo.item_name}}</h6>
 			<md-divider></md-divider>
+
 			<label class="titleField">Lugar de Recogida</label>
 			<h6  class="textField" >{{model.deliveryItemInfo.pickup_object.address}}</h6>
 			<md-divider></md-divider>
+
 			<label class="titleField">Lugar de Entrega</label>
 			<h6  class="textField" >{{model.deliveryItemInfo.delivery_object.address}}</h6>
 			<md-divider></md-divider>
+
 			<label class="titleField">Fecha de Recogida</label>
 			<h6  class="textField" >{{model.pickupDate | date:'dd/MM/yyyy hh:mma'}}</h6>
 			<md-divider></md-divider>
+
 			<label class="titleField">Valor Aproximado del Servicio</label>
 			<h6  class="textField" >{{model.deliveryItemInfo.price_to_pay}}</h6>
 		</md-card>
@@ -36,36 +40,36 @@
 		
 
 		<md-card id="messengerInfoContainer" ng-show="model.messengerBool">
-		<div >
-			<div class="img-text-container">
-				<img id="profilePicMessenger" ng-src="{{model.deliveryItemInfo.messenger_info.url}}">
-				<br/>
-				<div id="dataContainer">
-					<label class="titleField">Conductor</label><br>
-					<label class="textField" ng-model="model.messengerName">{{model.deliveryItemInfo.messenger_info.name}} {{model.deliveryItemInfo.messenger_info.lastname}}</label><br>
-					<label class="titleField">Teléfono: </label>
-					<label class="textField" ng-model="model.messengerMobilephone">{{model.deliveryItemInfo.messenger_info.mobilephone}}</label><br>
+			<div >
+				<div class="img-text-container">
+					<img id="profilePicMessenger" ng-src="{{model.deliveryItemInfo.messenger_info.url}}">
+					<br/>
+					<div id="dataContainer">
+						<label class="titleField">Conductor</label><br>
+						<label class="textField" ng-model="model.messengerName">{{model.deliveryItemInfo.messenger_info.name}} {{model.deliveryItemInfo.messenger_info.lastname}}</label><br>
+						<label class="titleField">Teléfono: </label>
+						<label class="textField" ng-model="model.messengerMobilephone">{{model.deliveryItemInfo.messenger_info.mobilephone}}</label><br>
+					</div>
+				</div>
+				<div id="ETA-plates">
+					<md-card class="inline-cards">
+						<h6 class="titleField" >ETA</h6>
+						<br/>
+						<h6 class="textField">{{model.leftTime}} min</h6>
+					</md-card>
+					<md-card class="inline-cards">
+						<h6 class="titleField">Placas</h6>
+						<br/>
+						<h6 class="textField">{{model.deliveryItemInfo.messenger_info.plate}}</h6>
+					</md-card>
+					<md-card class="inline-cards">
+						<h6 class="titleField">Código</h6>
+						<br/>
+						<h6 class="textField">{{model.code}}</h6>
+					</md-card>
+					
 				</div>
 			</div>
-			<div id="ETA-plates">
-				<md-card class="inline-cards">
-					<h6 class="titleField" >ETA</h6>
-					<br/>
-					<h6 class="textField">{{model.leftTime}} min</h6>
-				</md-card>
-				<md-card class="inline-cards">
-					<h6 class="titleField">Placas</h6>
-					<br/>
-					<h6 class="textField">{{model.deliveryItemInfo.messenger_info.plate}}</h6>
-				</md-card>
-				<md-card class="inline-cards">
-					<h6 class="titleField">Código</h6>
-					<br/>
-					<h6 class="textField">{{model.code}}</h6>
-				</md-card>
-				
-			</div>
-		</div>
 		</md-card>
 		<md-card id="photoContainer" ng-show="model.imageBool">
 			<label>Fotos del Servicio</label>
@@ -76,8 +80,8 @@
 			</ul>
 		</md-card>
 		<md-card id="serviceStatusContainer" ng-show="model.messengerBool">
-			<label>Estado actual del Servicio</label><br/>
-			<label ng-model="model.serviceStatus">{{model.serviceStatus}}</label><br/>
+			<label class="titleField">Estado actual del Servicio</label><br/>
+			<h6 id="serviceStatus" ng-model="model.serviceStatus">{{model.serviceStatus}}</h6><br/>
 			<h6 ng-show="model.setAvailableButtonBool">{{model.deliveryItemInfo.abort_reason}}</h6>
 		
 		</md-card>
