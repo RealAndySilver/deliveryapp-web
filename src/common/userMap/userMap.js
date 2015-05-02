@@ -16,11 +16,11 @@
 
 	module.controller('DeliveryMapController', ['$scope', function($scope) {
 		var model = this;
-		var centerLatPickup = 4.6683;
-		var centerLonPickup = -74.0620;
+		var centerLatPickup = 0;
+		var centerLonPickup = 0;
 
-		var centerLatDelivery = 4.6683;
-		var centerLonDelivery = -74.0620;
+		var centerLatDelivery = 0;
+		var centerLonDelivery = 0;
 		//var centerLatDelivery = 0;
 		//var centerLonDelivery = 0;
 
