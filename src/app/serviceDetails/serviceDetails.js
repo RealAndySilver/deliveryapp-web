@@ -1,8 +1,9 @@
 (function(module) {
 
-	module.controller('ServiceDetailsController', ["$state", '$mdDialog', "$stateParams", "DetailsDeliveryItemService", "User", "AlertsService", function($state, $mdDialog, $stateParams, DetailsDeliveryItemService, User, AlertsService) {
+	module.controller('ServiceDetailsController', ["$scope", "$state", '$mdDialog', "$stateParams", "DetailsDeliveryItemService", "User", "AlertsService", "$interval", function($scope, $state, $mdDialog, $stateParams, DetailsDeliveryItemService, User, AlertsService, $interval) {
 		var model = this;
 		model.messengerBool = false;
+		model.reloadBool = false;
 		model.leftTime = "10s";
 		model.code = "aaaa";
 
@@ -10,8 +11,26 @@
 
 
 		init();
+		//REVISAR EL RELOAD
+
+		$scope.$watch('reloadBool', function(val) {
+			console.log("ENTRO AL WATCH");
+				if(val === true) {
+					$interval(reloadPage, 5000);
+					
+				} 
+			
+		});
+		
+
+		function reloadPage() {
+			console.log("RECARGOOOOO");
+			window.location.reload();
+		}
+
 
 		function init() {
+
 
 			model.serviceDetails = function() {
 				DetailsDeliveryItemService.serviceDetails($stateParams.id, function(response) {
@@ -30,11 +49,14 @@
 
 					if (response.data.messenger_info) {
 						model.messengerBool = true;
+						model.reloadBool = false;
 
 					} else {
 						model.messengerBool = false;
+						model.reloadBool = true;
 
 					}
+					console.log("RELOAD BOOL", model.reloadBool);
 
 					if (response.data.images.length !== 0) {
 
@@ -67,12 +89,9 @@
 					} else {
 						model.showCancelButtonBool = true;
 					}
-
-					console.log("RATED", model.deliveryItemInfo["rated"]);
-
-
-
 				});
+
+
 			};
 
 			model.serviceDetails();
@@ -116,6 +135,7 @@
 						AlertsService.cancel();
 						DetailsDeliveryItemService.restartDeliveryItem(model.deliveryItemInfo._id, model.deliveryItemInfo.user_id, function(response) {
 							console.log(response);
+							$state.go('abortedServices');
 						});
 					};
 					model.restartDeliveryItem();

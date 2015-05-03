@@ -1,6 +1,6 @@
 (function(module) {
 
-	module.service('AlertsService', ['$mdDialog', function($mdDialog) {
+	module.service('AlertsService', ['$mdDialog',"$state", function($mdDialog,$state) {
 		var model = this;
 		var confirm;
 
