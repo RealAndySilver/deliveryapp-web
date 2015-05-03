@@ -5,7 +5,7 @@
 			restrict: 'E',
 			templateUrl: 'userMap/deliveryMap.tpl.html',
 			controller: 'DeliveryMapController',
-			//controllerAs: 'mapCtrl',
+			controllerAs: 'model',
 			scope: {
 				pickup: '=',
 				delivery: '=',
@@ -21,10 +21,9 @@
 
 		var centerLatDelivery = 0;
 		var centerLonDelivery = 0;
-		//var centerLatDelivery = 0;
-		//var centerLonDelivery = 0;
 
 		init();
+
 		$scope.$watch('pickup', function(newValue) {
 			if (newValue.lat) {
 				centerLatPickup = $scope.pickup.lat;
@@ -49,7 +48,7 @@
 
 		function init() {
 
-			$scope.pickupBool = true;
+			$scope.pickupBool = false;
 			/////////////
 
 			model.getLocation = function() {
@@ -75,6 +74,7 @@
 					lon2: centerLonDelivery,
 					valueBool: $scope.pickupBool,
 				});
+				model.pickupOrDeliveryAddress();
 
 			};
 
@@ -82,7 +82,7 @@
 			model.getLocation();
 			/////////////
 
-			$scope.pickupOrDeliveryAddress = function() {
+			model.pickupOrDeliveryAddress = function() {
 
 				console.log("Antes", $scope.pickupBool);
 				if ($scope.pickupBool) {
@@ -98,6 +98,7 @@
 				console.log("DESPUES", $scope.deliveryMap.getCenter());
 
 			};
+			//model.pickupOrDeliveryAddress();
 
 			var mapOptions = {
 				zoom: 15,

@@ -1,11 +1,13 @@
 (function(module) {
 
-	module.controller('LoginUserController', ['LoginUserService', '$state', '$mdDialog', 'User', 'Session', 'RecoverPassword','AlertsService', function(LoginUserService, $state, $mdDialog, User, Session, RecoverPassword,AlertsService) {
+	module.controller('LoginUserController', ['LoginUserService', '$state', '$mdDialog', 'User', 'Session', 'RecoverPassword','AlertsService',"ShowMenu", function(LoginUserService, $state, $mdDialog, User, Session, RecoverPassword,AlertsService,ShowMenu) {
 		var model = this;
 
 		init();
 
 		function init() {
+			console.log("SHOW MENU ANTES");
+			console.log("SHOW MENU ANTES", ShowMenu);
 			
 			model.recoverAlert = function() {
 				$mdDialog.show(
@@ -27,6 +29,9 @@
 					if (!response.response) {
 						AlertsService.showAlert(response.msg, "");
 					} else if (response.data) {
+						
+						ShowMenu=true;
+						console.log("SHOW MENU DESPUES", ShowMenu);
 						User = user;
 						console.log(User);
 						Session.setUser(User);
