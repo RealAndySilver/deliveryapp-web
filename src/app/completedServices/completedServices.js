@@ -1,6 +1,6 @@
 (function(module) {
 
-	module.controller('CompletedServicesController', ["Session", 'CompletedServicesService','$state','AlertsService', function(Session, CompletedServicesService,$state,AlertsService) {
+	module.controller('CompletedServicesController', ["Session", 'CompletedServicesService', '$state', 'AlertsService', function(Session, CompletedServicesService, $state, AlertsService) {
 		var model = this;
 		model.User = (Session.getUser());
 
@@ -14,18 +14,20 @@
 					model.deliveryItems = response.data;
 					console.log(model.deliveryItems);
 					AlertsService.cancel();
-					if(!response.data){
+					if (!response.data) {
 						AlertsService.showAlert(response.msg, "");
-					}else if(model.deliveryItems.length===0){
-						AlertsService.showAlert("No se encontraron servicios Completados","");
+					} else if (model.deliveryItems.length === 0) {
+						AlertsService.showAlert("No se encontraron servicios Completados", "");
 					}
 				});
 			};
 			model.getCompletedServices();
 
-			model.goToServiceDetails=function (idObject){
-                $state.go('serviceDetails', {id: idObject});
-            };
+			model.goToServiceDetails = function(idObject) {
+				$state.go('serviceDetails', {
+					id: idObject
+				});
+			};
 
 		}
 	}]);

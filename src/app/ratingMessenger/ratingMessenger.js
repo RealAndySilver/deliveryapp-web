@@ -40,7 +40,7 @@
 						} else {
 							AlertsService.showAlert(response.msg, "");
 						}
-					$state.go("profile");
+					$state.go("requestMessenger");
 
 				});
 			};

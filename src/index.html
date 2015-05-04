@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="appMensajeria" ng-controller="AppController as model">
+<html ng-app="appMensajeria" ng-controller="AppController as app">
 <head>
     <title ng-bind="pageTitle"></title>
     <meta charset="UTF8">
@@ -30,9 +30,9 @@
         </md-toolbar>
     </header>
     <md-list>
-        <div class="btns-container" >
+        <div class="btns-container"  ng-show="app.getVisibility()">
             <md-item>
-              <md-button class="md-grid-item-content" ng-click="model.goProfile()">
+              <md-button class="md-grid-item-content" ng-click="app.goProfile()">
                 <svg viewBox="0 0 24 24">
                     <path fill="#FFFFFF" d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z" />
                 </svg>
@@ -41,7 +41,7 @@
             </md-item>
 
             <md-item>
-              <md-button class="md-grid-item-content" ng-click="model.goRequestService()">
+              <md-button class="md-grid-item-content" ng-click="app.goRequestService()">
                 <svg viewBox="0 0 24 24">
                     <path fill="#FFFFFF" d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z" />
                 </svg>
@@ -51,7 +51,7 @@
 
 
             <md-item>
-              <md-button class="md-grid-item-content" ng-click="model.goActiveServices()">
+              <md-button class="md-grid-item-content" ng-click="app.goActiveServices()">
                 <svg viewBox="0 0 24 24">
                     <path fill="#FFFFFF" d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z" />
                 </svg>
@@ -61,7 +61,7 @@
 
 
             <md-item>
-              <md-button class="md-grid-item-content" ng-click="model.goCompletedServices()">
+              <md-button class="md-grid-item-content" ng-click="app.goCompletedServices()">
                 <svg viewBox="0 0 24 24">
                     <path fill="#FFFFFF" d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z" />
                 </svg>
@@ -71,7 +71,7 @@
 
 
             <md-item>
-              <md-button class="md-grid-item-content" ng-click="model.goAbortedServices()">
+              <md-button class="md-grid-item-content" ng-click="app.goAbortedServices()">
                 <svg viewBox="0 0 24 24">
                     <path fill="#FFFFFF" d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z" />
                 </svg>
@@ -81,7 +81,7 @@
 
 
             <md-item>
-              <md-button class="md-grid-item-content" ng-click="model.goTermsConditions()">
+              <md-button class="md-grid-item-content" ng-click="app.goTermsConditions()">
                 <svg viewBox="0 0 24 24">
                     <path fill="#FFFFFF" d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z" />
                 </svg>
@@ -92,7 +92,7 @@
 
 
             <md-item>
-              <md-button class="md-grid-item-content" ng-click="model.logOut()">
+              <md-button class="md-grid-item-content" ng-click="app.logOut()">
                 <svg viewBox="0 0 24 24">
                     <path fill="#FFFFFF" d="M17,17.25V14H10V10H17V6.75L22.25,12L17,17.25M13,2A2,2 0 0,1 15,4V8H13V4H4V20H13V16H15V20A2,2 0 0,1 13,22H4A2,2 0 0,1 2,20V4A2,2 0 0,1 4,2H13Z" />
                 </svg>

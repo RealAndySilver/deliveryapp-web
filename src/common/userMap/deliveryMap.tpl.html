@@ -1,7 +1,7 @@
 <div>
 	<div>
-		<button ng-click="model.pickupOrDeliveryAddress()"> Recogida</button>
-		<button ng-click="deliveryBool"> Entrega</button>
+		<md-button class="md-raised mapButtons" ng-class="{'primary-btn':pickupBool}" ng-click="model.pickupOrDeliveryAddress()"> Recogida</md-button>
+		<md-button class="md-raised mapButtons" ng-class="{'primary-btn':!pickupBool}" ng-click="deliveryBool" ng-click="model.pickupOrDeliveryAddress()"> Entrega</md-button>
 	</div>
 	
 	<div id="delmap" class="map"></div>

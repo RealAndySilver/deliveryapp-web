@@ -6,6 +6,7 @@
 		model.reloadBool = false;
 		model.leftTime = "10s";
 		model.code = "aaaa";
+		model.showCancelButtonBool = true;
 
 		var id;
 
@@ -57,6 +58,7 @@
 					}
 
 					if (response.data["overall_status"] == "aborted") {
+
 						console.log(response.data["overall_status"]);
 						model.serviceStatus = traslateStatusFunction(response.data["overall_status"]);
 						model.setAvailableButtonBool = true;
@@ -78,6 +80,17 @@
 					} else {
 						model.showCancelButtonBool = true;
 					}
+
+					if (response.data.status !== "available" && response.data.status !== "accepted") {
+						model.showCancelButtonBool = false;
+					}else{
+						model.showCancelButtonBool = true;
+					}
+					if (response.data["overall_status"] == "aborted") {
+						model.showCancelButtonBool = true;
+					}else{
+						model.showCancelButtonBool = false;
+					}
 				});
 			}
 
@@ -98,7 +111,7 @@
 						DetailsDeliveryItemService.deleteDeliveryItem(model.deliveryItemInfo._id, model.deliveryItemInfo.user_id, function(response) {
 							model.code = 'You decided to get rid of your debt.';
 							AlertsService.cancel();
-							$state.go('requestMessenger');
+							$state.go('profile');
 							console.log(response);
 						});
 					};
