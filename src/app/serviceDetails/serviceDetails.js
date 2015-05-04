@@ -7,32 +7,19 @@
 		model.leftTime = "10s";
 		model.code = "aaaa";
 
+		var id;
+
 		model.deliveryItemInfo = {};
 
 
 		init();
-		//REVISAR EL RELOAD
-
-		$scope.$watch('reloadBool', function(val) {
-			console.log("ENTRO AL WATCH");
-				if(val === true) {
-					$interval(reloadPage, 5000);
-					
-				} 
-			
-		});
-		
-
-		function reloadPage() {
-			console.log("RECARGOOOOO");
-			window.location.reload();
-		}
-
 
 		function init() {
+			id = $interval(serviceDetails, 5000);
 
+			model.serviceDetails = serviceDetails;
 
-			model.serviceDetails = function() {
+			function serviceDetails() {
 				DetailsDeliveryItemService.serviceDetails($stateParams.id, function(response) {
 					//console.log(response);
 
@@ -50,11 +37,13 @@
 					if (response.data.messenger_info) {
 						model.messengerBool = true;
 						model.reloadBool = false;
-
 					} else {
 						model.messengerBool = false;
 						model.reloadBool = true;
+					}
 
+					if (!model.reloadBool) {
+						$interval.cancel(id);
 					}
 					console.log("RELOAD BOOL", model.reloadBool);
 
@@ -90,9 +79,7 @@
 						model.showCancelButtonBool = true;
 					}
 				});
-
-
-			};
+			}
 
 			model.serviceDetails();
 

@@ -9,22 +9,22 @@
 		</div>
 
 		<div id="infoContainer">
+			<form>
 				<label class="titleField">Nombre:</label>
-			<md-input-container flex>  <input class="textField" name="newName" ng-model="model.User.name" required>  </md-input-container>
+				<md-input-container flex>  <input class="textField" name="newName" ng-model="model.User.name" required>  </md-input-container>
 
-			<label class="titleField">Apellido:</label>
-			<md-input-container flex>  <input class="textField" name="newLastname" ng-model="model.User.lastname"  required>  </md-input-container>
+				<label class="titleField">Apellido:</label>
+				<md-input-container flex>  <input class="textField" name="newLastname" ng-model="model.User.lastname"  required>  </md-input-container>
 
-			<label class="titleField">Número Celular:</label>
-			<md-input-container flex>  <input class="textField" name="newMobilephone" ng-model="model.User.mobilephone" required>  </md-input-container>
-		   
-		    <md-button class="md-raised primary-btn" ng-click	="model.updateProfile()" >Actualizar mis datos<md-button>
+				<label class="titleField">Número Celular:</label>
+				<md-input-container flex>  <input class="textField" name="newMobilephone" ng-model="model.User.mobilephone" required>  </md-input-container>
+			   
+			    <md-button class="md-raised primary-btn" ng-click	="model.updateProfile()" >Actualizar mis datos<md-button>
 
 		</div>
-
-		
-	    
+		    
 	</md-card>
 
-	<md-button class="md-raised primary-btn" ng-click= "model.goChangePassword()" >Cambiar Contraseña</md-button>
+		<md-button class="md-raised primary-btn" ng-click= "model.goChangePassword()" >Cambiar Contraseña</md-button>
+	</form>
 </div>
