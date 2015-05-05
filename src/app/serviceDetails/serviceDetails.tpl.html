@@ -76,12 +76,15 @@
 			</div>
 		</md-card>
 		<md-card id="photoContainer" ng-show="model.imageBool">
-			<label>Fotos del Servicio</label>
-			<ul>
-				<li ng-repeat="image in model.images">
-					<img src="{{image.url}}">
-				</li>
-			</ul>
+			<label class="titleField">Fotos del Servicio</label>
+			<div>
+				<ul class="gallery-container" style="width:{{model.images.length * 100}}px">
+					<li class="img-resize" ng-repeat="image in model.images">
+						<img   ng-src="{{image.url}}" ng-click="model.showBigImage(image.url)">
+					</li>
+				</ul>
+			</div>
+							
 		</md-card>
 		<md-card id="serviceStatusContainer" ng-show="model.messengerBool">
 			<label class="titleField">Estado actual del Servicio:</label><br/>

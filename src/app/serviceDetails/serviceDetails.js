@@ -155,9 +155,30 @@
 				$state.reload();
 			};
 
+			model.showBigImage = function(url) {
+				console.log('url', url);
+				model.currentUrl=url;
+				
+				$mdDialog.show({
+						controller: 'DialogController',
+						templateUrl: 'serviceDetails/showBigImage.tpl.html',
+						resolve: {
+							'imageUrl': function() {
+								return url;
+							}
+						}
 
+					})
+					.then(function(answer) {
 
+						
+					});
+			};
 		}
+	}]);
+
+	module.controller('DialogController', ['$scope', 'imageUrl', function($scope, imageUrl) {
+		$scope.currentUrl=imageUrl;
 	}]);
 
 }(angular.module("appMensajeria.serviceDetails")));
