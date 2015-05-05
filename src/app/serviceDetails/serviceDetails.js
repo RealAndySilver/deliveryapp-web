@@ -82,9 +82,9 @@
 					}
 
 					if (response.data.status !== "available" && response.data.status !== "accepted") {
-						model.showCancelButtonBool = false;
-					} else {
 						model.showCancelButtonBool = true;
+					} else {
+						model.showCancelButtonBool = false;
 					}
 					if (response.data["overall_status"] == "aborted") {
 						model.showCancelButtonBool = true;
