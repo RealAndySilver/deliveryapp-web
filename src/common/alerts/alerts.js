@@ -25,6 +25,9 @@
 					if (action === "goHome") {
 						$state.go("loginUser");
 					}
+					if (action === "goAborted") {
+						$state.go("abortedServices");
+					}
 				}, function() {
 					//$scope.alert = 'You decided to keep your debt.';
 				});

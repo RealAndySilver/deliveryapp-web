@@ -83,12 +83,12 @@
 
 					if (response.data.status !== "available" && response.data.status !== "accepted") {
 						model.showCancelButtonBool = false;
-					}else{
+					} else {
 						model.showCancelButtonBool = true;
 					}
 					if (response.data["overall_status"] == "aborted") {
 						model.showCancelButtonBool = true;
-					}else{
+					} else {
 						model.showCancelButtonBool = false;
 					}
 				});
@@ -109,10 +109,14 @@
 					AlertsService.loading();
 					model.deleteDeliveryItem = function() {
 						DetailsDeliveryItemService.deleteDeliveryItem(model.deliveryItemInfo._id, model.deliveryItemInfo.user_id, function(response) {
-							model.code = 'You decided to get rid of your debt.';
-							AlertsService.cancel();
-							$state.go('profile');
+
 							console.log(response);
+							if (response.response) {
+								AlertsService.cancel();
+								AlertsService.showAlert("El servicio fue eliminado correctamente", "goProfile");
+							} else {
+								AlertsService.showAlert(response.msg, "");
+							}
 						});
 					};
 					model.deleteDeliveryItem();
@@ -132,14 +136,23 @@
 				$mdDialog.show(confirm).then(function() {
 					AlertsService.loading();
 					model.restartDeliveryItem = function() {
-						AlertsService.cancel();
+
 						DetailsDeliveryItemService.restartDeliveryItem(model.deliveryItemInfo._id, model.deliveryItemInfo.user_id, function(response) {
 							console.log(response);
-							$state.go('abortedServices');
+							if (response.response) {
+								AlertsService.cancel();
+								AlertsService.showAlert("El servicio está disponible de nuevo", "goAborted");
+							} else {
+								AlertsService.showAlert(response.msg, "");
+							}
 						});
 					};
 					model.restartDeliveryItem();
 				});
+			};
+
+			model.reload=function(){
+				$state.reload();
 			};
 
 

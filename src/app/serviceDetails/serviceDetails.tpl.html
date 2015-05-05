@@ -3,7 +3,11 @@
 		<div>
 			<md-toolbar>
 			    <div class="md-toolbar-tools" layout-align="center center">
-			    	<span class="md-flex">Detalles del Servicio</span>
+			    	<span class="md-flex" id="titleServiceDetails">Detalles del Servicio</span>
+			    	
+			    	<md-button id="reloadButton" ng-click="model.reload()">
+			    		<i class="fa fa-refresh  fa-lg"></i>
+			    	</md-button>
 			    </div>
 			</md-toolbar>
 		</div>
@@ -82,7 +86,7 @@
 		<md-card id="serviceStatusContainer" ng-show="model.messengerBool">
 			<label class="titleField">Estado actual del Servicio:</label><br/>
 			<h6 id="serviceStatus" ng-model="model.serviceStatus">{{model.serviceStatus}}</h6><br/>
-			<h6 ng-show="model.setAvailableButtonBool" class="textField">Razon: {{model.deliveryItemInfo.abort_reason}}</h6>
+			<h6 ng-show="model.setAvailableButtonBool" class="textField">Razón: {{model.deliveryItemInfo.abort_reason}}</h6>
 		
 		</md-card>
 		<md-button id="blueButton" ng-show="model.setAvailableButtonBool" ng-click="model.restartService()">Reactivar Servicio</md-button>
