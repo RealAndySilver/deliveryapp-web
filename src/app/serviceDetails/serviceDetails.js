@@ -16,7 +16,11 @@
 		init();
 
 		function init() {
-			id = $interval(serviceDetails, 5000);
+
+			$scope.$on("$stateChangeStart",function(){
+				clearInterval(id);
+			});
+			id = setInterval(serviceDetails, 5000);
 
 			model.serviceDetails = serviceDetails;
 
@@ -44,7 +48,7 @@
 					}
 
 					if (!model.reloadBool) {
-						$interval.cancel(id);
+						clearInterval(id);
 					}
 					console.log("RELOAD BOOL", model.reloadBool);
 
@@ -69,7 +73,6 @@
 						model.setAvailableButtonBool = false;
 
 					}
-
 					if (response.data["status"] == "returned" || response.data["status"] == "delivered") {
 						model.showCancelButtonBool = false;
 						if (model.deliveryItemInfo.rated === false) {
@@ -81,16 +84,14 @@
 						model.showCancelButtonBool = true;
 					}
 
-					if (response.data.status !== "available" && response.data.status !== "accepted") {
+
+					if (response.data.status == "available" || response.data.status == "accepted" || response.data["overall_status"] == "aborted") {
 						model.showCancelButtonBool = true;
 					} else {
 						model.showCancelButtonBool = false;
 					}
-					if (response.data["overall_status"] == "aborted") {
-						model.showCancelButtonBool = true;
-					} else {
-						model.showCancelButtonBool = false;
-					}
+
+					console.log("SHOW CANCEL", model.showCancelButtonBool);
 				});
 			}
 
@@ -151,14 +152,14 @@
 				});
 			};
 
-			model.reload=function(){
+			model.reload = function() {
 				$state.reload();
 			};
 
 			model.showBigImage = function(url) {
 				console.log('url', url);
-				model.currentUrl=url;
-				
+				model.currentUrl = url;
+
 				$mdDialog.show({
 						controller: 'DialogController',
 						templateUrl: 'serviceDetails/showBigImage.tpl.html',
@@ -171,14 +172,14 @@
 					})
 					.then(function(answer) {
 
-						
+
 					});
 			};
 		}
 	}]);
 
 	module.controller('DialogController', ['$scope', 'imageUrl', function($scope, imageUrl) {
-		$scope.currentUrl=imageUrl;
+		$scope.currentUrl = imageUrl;
 	}]);
 
 }(angular.module("appMensajeria.serviceDetails")));
