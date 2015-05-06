@@ -16,6 +16,8 @@
 					DeliveryAddresses = [];
 				}
 			}
+			console.log("EL VALUE DE LAS DIRECCIONES DESPUES", PickupAddresses);
+			console.log("TAMAÑO DE LOS ARRAYS",PickupAddresses.length);
 
 			PickupAddresses.splice(0, 0, pickupItem);
 			DeliveryAddresses.splice(0, 0, deliveryItem);
@@ -49,6 +51,8 @@
 		model.delivery = {};
 
 		function init() {
+
+			model.roundtrip = false;
 
 			$scope.showAlert = function() {
 				$mdDialog.show(
@@ -167,6 +171,8 @@
 				model.delivery.delivery_object.address = $scope.delivery_address;
 				model.delivery.delivery_object.lat = $scope.deliverLat;
 				model.delivery.delivery_object.lon = $scope.deliverLon;
+
+				model.delivery.roundtrip=model.roundtrip;
 
 				model.delivery.price_to_pay = $scope.deliveryPrice;
 				model.delivery.user_info = $scope.currentUser;
