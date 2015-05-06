@@ -1,6 +1,6 @@
 (function(module) {
 
-	module.service('AlertsService', ['$mdDialog',"$state", function($mdDialog,$state) {
+	module.service('AlertsService', ['$mdDialog', "$state", function($mdDialog, $state) {
 		var model = this;
 		var confirm;
 
@@ -34,6 +34,17 @@
 			};
 
 			//////////////////////////////////////
+			model.showSimpleAlert = function(message) {
+				$mdDialog.show(
+					$mdDialog.alert()
+					.title("Alerta")
+					.content(message)
+					.ariaLabel('Alert Dialog Demo')
+					.ok("Ok")
+				);
+			};
+
+			//////////////////////////////////////
 
 
 			model.loading = function() {
@@ -42,7 +53,7 @@
 				$mdDialog.show({
 						controller: DialogController,
 						templateUrl: 'alerts/loadingDialog.tpl.html',
-						
+
 
 					})
 					.then(function(answer) {

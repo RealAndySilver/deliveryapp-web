@@ -13,18 +13,22 @@
 					<label>Nombre</label>
 	            	<input name="name" ng-model="model.user.name" required>
 	        	</md-input-container>
+
 	        	<md-input-container flex>
 					<label>Apellido</label>
 	            	<input name="lastname" ng-model="model.user.lastname" required>
 	        	</md-input-container>
+
 				<md-input-container flex>
 					<label>Correo electrónico</label>
-	            	<input name="email" ng-model="model.user.email" required>
+	            	<input name="email" ng-model="model.user.email" ng-pattern="/^[A-Za-z0-9._%+]+@[A-Za-z0-9]+\.[A-Za-z]{1,5}$/" required>
 	        	</md-input-container>
+
 	        	<md-input-container flex>
 					<label>Contraseña</label>
 	            	<input type="password" name="password" ng-model="model.user.password" required>
 	        	</md-input-container>
+
 	        	<md-input-container flex>
 					<label>Confirmar contraseña</label>
 	            	<input type="password" name="confirm_password" ng-model="model.user.password_verify" data-password-verify="model.user.password" confirmPassword="{{model.user.password}}" required>
@@ -32,10 +36,12 @@
 						<small class="error" ng-show="registerForm.confirm_password.$error.confirmPassword">Las contraseñas no coinciden.</small>
 					</div>
 	        	</md-input-container>
+
 	        	<md-input-container flex>
 					<label>Celular</label>
 	            	<input name="mobilephone" ng-model="model.user.mobilephone" required>
 	        	</md-input-container>
+
 	        	<md-input-container flex>
 	        		<md-button class="md-raised primary-btn">Aceptar</md-button>
 	        		<md-button class="md-raised md-warn" ng-click="model.cancel()">Cancelar</md-button>

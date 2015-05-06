@@ -1,12 +1,12 @@
 (function(module) {
 
-	module.controller('LoginUserController', ['LoginUserService', '$state', '$mdDialog', 'User', 'Session', 'RecoverPassword','AlertsService', function(LoginUserService, $state, $mdDialog, User, Session, RecoverPassword,AlertsService) {
+	module.controller('LoginUserController', ['LoginUserService', '$state', '$mdDialog', 'User', 'Session', 'RecoverPassword', 'AlertsService', "$scope", function(LoginUserService, $state, $mdDialog, User, Session, RecoverPassword, AlertsService, $scope) {
 		var model = this;
 
 		init();
 
 		function init() {
-			
+
 			model.recoverAlert = function() {
 				$mdDialog.show(
 					$mdDialog.alert()
@@ -18,27 +18,33 @@
 			};
 
 			model.loginUser = function() {
-				AlertsService.loading();
-				LoginUserService.loginUser(model.user.email, model.user.password, function(response) {
-					console.log(response);
-					var user = response.data;
-					AlertsService.cancel();
 
-					if (!response.response) {
-						AlertsService.showAlert(response.msg, "");
-					} else if (response.data) {
-						
-						
-						User = user;
-						console.log(User);
-						Session.setUser(User);
-						$state.go('profile');
-					} else {
-						AlertsService.showAlert('Usuario o contraseña incorrectos.','');
-					}
+				if ($scope.loginForm.$valid) {
+					AlertsService.loading();
+					LoginUserService.loginUser(model.user.email, model.user.password, function(response) {
+						console.log(response);
+						var user = response.data;
+						AlertsService.cancel();
 
-					
-				});
+						if (!response.response) {
+							AlertsService.showAlert(response.msg, "");
+						} else if (response.data) {
+
+
+							User = user;
+							console.log(User);
+							Session.setUser(User);
+							$state.go('profile');
+						} else {
+							AlertsService.showAlert('Usuario o contraseña incorrectos.', '');
+						}
+
+
+					});
+				}else{
+					AlertsService.showSimpleAlert("Completa los campos de email y contraseña");
+				}
+
 			};
 
 			model.newAccount = function() {
@@ -63,6 +69,8 @@
 					//model.recoverDialog();
 				}
 			};
+
+
 
 		}
 	}]);

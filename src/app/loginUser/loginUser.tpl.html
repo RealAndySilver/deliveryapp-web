@@ -9,25 +9,23 @@
 		</div>
 	    <div>
 			<form name="loginForm" ng-submit="model.loginUser()" novalidate>
+
 				<md-input-container flex>
 					<label>Correo electrónico</label>
-	            	<input name="email" ng-model="model.user.email" required>
-	            	<!-- <div ng-messages="loginForm.email.$error">
-			          	<div ng-message="required">Este campo es requerido.</div>
-			        </div> -->
+	            	<input type="text" name="email" ng-model="model.user.email" ng-pattern="/^[A-Za-z0-9._%+]+@[A-Za-z0-9]+\.[A-Za-z]{1,5}$/" required>
+	            	
 	        	</md-input-container>
+	        	<p ng-show="loginForm.email.$invalid && !loginForm.email.$pristine" class="help-block">Enter a valid email.</p>
+
 	        	<md-input-container flex>
 					<label>Contraseña</label>
 	            	<input type="password" name="password" ng-model="model.user.password" required>
-	            	<!-- <div ng-messages="loginForm.password.$error">
-			        	<div ng-message="required">Este campo es requerido.</div>
-			        </div> -->
+	            	
 	        	</md-input-container>
-	        	 <div class="error warning" ng-show="loginForm.$invalid">
-				    <small class="error warning">Recuerda diligenciar todo el formulario para poder ingresar.</small>
-				</div> 
+
+
 	        	<md-input-container flex>
-	        		<md-button class="md-raised primary-btn">Ingresar</md-button>
+	        		<md-button class="md-raised primary-btn" >Ingresar</md-button>
 	        	</md-input-container>
 			</form>
 	    </div>
