@@ -17,7 +17,7 @@
 				}
 			}
 			console.log("EL VALUE DE LAS DIRECCIONES DESPUES", PickupAddresses);
-			console.log("TAMAÑO DE LOS ARRAYS",PickupAddresses.length);
+			console.log("TAMAÑO DE LOS ARRAYS", PickupAddresses.length);
 
 			PickupAddresses.splice(0, 0, pickupItem);
 			DeliveryAddresses.splice(0, 0, deliveryItem);
@@ -161,43 +161,49 @@
 			var deliveryItem = {};
 			model.requestMessenger = function() {
 
+				if ($scope.requestMessengerForm.$valid) {
 
-				model.delivery.pickup_object = {};
-				model.delivery.pickup_object.address = $scope.pickup_address;
-				model.delivery.pickup_object.lat = $scope.pickupLat;
-				model.delivery.pickup_object.lon = $scope.pickupLon;
+					model.delivery.pickup_object = {};
+					model.delivery.pickup_object.address = $scope.pickup_address;
+					model.delivery.pickup_object.lat = $scope.pickupLat;
+					model.delivery.pickup_object.lon = $scope.pickupLon;
 
-				model.delivery.delivery_object = {};
-				model.delivery.delivery_object.address = $scope.delivery_address;
-				model.delivery.delivery_object.lat = $scope.deliverLat;
-				model.delivery.delivery_object.lon = $scope.deliverLon;
+					model.delivery.delivery_object = {};
+					model.delivery.delivery_object.address = $scope.delivery_address;
+					model.delivery.delivery_object.lat = $scope.deliverLat;
+					model.delivery.delivery_object.lon = $scope.deliverLon;
 
-				model.delivery.roundtrip=model.roundtrip;
+					model.delivery.roundtrip = model.roundtrip;
 
-				model.delivery.price_to_pay = $scope.deliveryPrice;
-				model.delivery.user_info = $scope.currentUser;
-				model.delivery.user_id = $scope.currentUser._id;
-				console.log('objeto servicio ', model.delivery);
+					model.delivery.price_to_pay = $scope.deliveryPrice;
+					model.delivery.user_info = $scope.currentUser;
+					model.delivery.user_id = $scope.currentUser._id;
+					console.log('objeto servicio ', model.delivery);
 
-				AlertsService.loading();
-				RequestMessengerService.requestMessenger(model.delivery, function(response) {
-					console.log(response);
-					AlertsService.cancel();
-					var pickupItem = response.data.pickup_object;
-					var deliveryItem = response.data.delivery_object;
-					if (response.response) {
+					AlertsService.loading();
+					RequestMessengerService.requestMessenger(model.delivery, function(response) {
+						console.log(response);
+						AlertsService.cancel();
+						var pickupItem = response.data.pickup_object;
+						var deliveryItem = response.data.delivery_object;
+						if (response.response) {
 
-						GetAllAddressService.save(pickupItem, deliveryItem);
-						
-						$state.go('serviceDetails', {
-							id: response.data._id
-						});
-					}
-					else{
-						AlertsService.showAlert(response.msg, "");
-					}
+							GetAllAddressService.save(pickupItem, deliveryItem);
 
-				});
+							$state.go('serviceDetails', {
+								id: response.data._id
+							});
+						} else {
+							AlertsService.showAlert(response.msg, "");
+						}
+
+					});
+				} else {
+					AlertsService.showSimpleAlert("Completa todos los campos por favor");
+				}
+
+
+
 			};
 
 			model.showAddressBool = false;
