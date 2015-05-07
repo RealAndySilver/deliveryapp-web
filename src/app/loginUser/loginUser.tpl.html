@@ -1,37 +1,38 @@
 <div layout="column" layout-align="center center" class="solo-box">
 	<md-card class="basic-form">
-		<div>
-			<md-toolbar>
-			    <div class="md-toolbar-tools" layout-align="center center">
-			    	<span class="md-flex">Iniciar Sesión</span>
-			    </div>
-			  </md-toolbar>
+	<div>
+		<md-toolbar>
+		<div class="md-toolbar-tools" layout-align="center center">
+			<span class="md-flex">Iniciar Sesión</span>
 		</div>
-	    <div>
-			<form name="loginForm" ng-submit="model.loginUser()" novalidate>
-
-				<md-input-container flex>
-					<label>Correo electrónico</label>
-	            	<input type="text" name="email" ng-model="model.user.email" ng-pattern="/^[A-Za-z0-9._%+]+@[A-Za-z0-9]+\.[A-Za-z]{1,5}$/" required>
-	            	
-	        	</md-input-container>
-	        	<p ng-show="loginForm.email.$invalid && !loginForm.email.$pristine" class="help-block">Enter a valid email.</p>
-
-	        	<md-input-container flex>
-					<label>Contraseña</label>
-	            	<input type="password" name="password" ng-model="model.user.password" required>
-	            	
-	        	</md-input-container>
-
-
-	        	<md-input-container flex>
-	        		<md-button class="md-raised primary-btn" >Ingresar</md-button>
-	        	</md-input-container>
-			</form>
-	    </div>
-	    <md-divider></md-divider>
-	    <md-button class="md-primary v-margin-btn" ng-click="model.forgotPassword(model.user.email)">¿Olvidaste tu contraseña?</md-button>
-	    <md-divider></md-divider>
-	    <md-button class="md-raised primary-btn blueButton" ng-click="model.newAccount()">Crear nueva cuenta</md-button>
+		</md-toolbar>
+	</div>
+	<div>
+		<form name="loginForm" ng-submit="model.loginUser()" novalidate>
+			<md-input-container flex>
+			<label>Correo electrónico</label>
+			<input type="text" name="email" ng-model="model.user.email" ng-pattern="/^[A-Za-z0-9._%+]+@[A-Za-z0-9]+\.[A-Za-z]{1,5}$/" required>
+			
+			</md-input-container>
+			<p ng-show="loginForm.email.$invalid && !loginForm.email.$pristine" class="help-block">Ingresa un email valido.</p>
+			<md-input-container flex>
+			<label>Contraseña</label>
+			<input type="password" name="password" ng-model="model.user.password" required>
+			
+			</md-input-container>
+			<md-input-container flex>
+			<md-button class="md-raised primary-btn" >Ingresar</md-button>
+			</md-input-container>
+			<div>
+				<md-checkbox ng-model="model.rememberMe" aria-label="Checkbox 1">
+				Recordar en este equipo.
+				</md-checkbox>
+			</div>
+		</form>
+	</div>
+	<md-divider></md-divider>
+	<md-button class="md-primary v-margin-btn" ng-click="model.forgotPassword(model.user.email)">¿Olvidaste tu contraseña?</md-button>
+	<md-divider></md-divider>
+	<md-button class="md-raised primary-btn blueButton" ng-click="model.newAccount()">Crear nueva cuenta</md-button>
 	</md-card>
 </div>

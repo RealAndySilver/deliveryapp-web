@@ -21,6 +21,9 @@
 
 				return User;
 			};
+			model.deleteUser=function(){
+				localStorage.removeItem('user');
+			};
 
 		}
 	}]);
