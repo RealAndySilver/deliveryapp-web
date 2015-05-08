@@ -8,7 +8,7 @@
 		</md-toolbar>
 	</div>
 	<div>
-		<form name="loginForm" ng-submit="model.loginUser()" novalidate>
+		<form name="loginForm" ng-submit="model.loginUser(loginForm)" novalidate>
 			<md-input-container flex>
 			<label>Correo electrónico</label>
 			<input type="text" name="email" ng-model="model.user.email" ng-pattern="/^[A-Za-z0-9._%+]+@[A-Za-z0-9]+\.[A-Za-z]{1,5}$/" required>

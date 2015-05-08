@@ -3,25 +3,19 @@
 	module.controller('LoginUserController', ['LoginUserService', '$state', '$mdDialog', 'User', 'Session', 'RecoverPassword', 'AlertsService', "$scope", function(LoginUserService, $state, $mdDialog, User, Session, RecoverPassword, AlertsService, $scope) {
 		var model = this;
 		model.rememberMe = false;
+		model.MY_FORM="";
 
 		init();
 
 		function init() {
-			//METER ESTO EN UNA FUNCION ABAJO Y LLAMARLA PARA HACER EL AUTOLOGIN
-			if (localStorage.getItem('isLogin')) {
-				console.log("EXISTE");
-				var user = {};
-				user = JSON.parse(localStorage.getItem("userInfoLogin"));
-				console.log("userInfoLogin",user);
-				model.user = {};
-				model.user.email=user.email;
-				model.user.password=atob(user.password);
-
-				model.loginUser();
-			} else {
-				console.log("NO EXISTE");
-			}
-
+			$scope.$watch('loginForm', function(newValue) {
+				if(newValue) {
+					model.MY_FORM=$scope.loginForm;
+					model.autoLogin();
+				}
+				
+			});
+			
 			model.recoverAlert = function() {
 				$mdDialog.show(
 					$mdDialog.alert()
@@ -34,7 +28,7 @@
 
 			model.loginUser = function() {
 
-				if ($scope.loginForm.$valid) {
+				if (model.MY_FORM.$valid) {
 					AlertsService.loading();
 					LoginUserService.loginUser(model.user.email, model.user.password, function(response) {
 						console.log(response);
@@ -50,7 +44,7 @@
 								///////
 								var userInfoLogin = {};
 								userInfoLogin.email = model.user.email;
-								userInfoLogin.password=btoa(model.user.password);
+								userInfoLogin.password = btoa(model.user.password);
 								localStorage.setItem('userInfoLogin', JSON.stringify(userInfoLogin));
 								///////
 							}
@@ -93,6 +87,22 @@
 					//model.recoverDialog();
 				}
 			};
+
+			model.autoLogin = function() {
+
+				if (localStorage.getItem('isLogin')) {
+					console.log("EXISTE");
+					var user = {};
+					user = JSON.parse(localStorage.getItem("userInfoLogin"));
+					model.user = {};
+					model.user.email = user.email;
+					model.user.password = atob(user.password);
+
+					console.log('form ', loginForm);
+					model.loginUser();
+				} 
+			};
+			
 
 
 
