@@ -8,21 +8,18 @@
 		function init() {
 
 			model.setUser = function(user) {
-				localStorage.setItem('user', JSON.stringify(user));
+				sessionStorage.setItem('user', JSON.stringify(user));
 			};
 
 			model.getUser = function() {
-				if (!localStorage.getItem("user")) {
+				if (!sessionStorage.getItem("user")) {
 					return User;
 				}
 
-				var user = JSON.parse(localStorage.getItem("user"));
+				var user = JSON.parse(sessionStorage.getItem("user"));
 				User = user;
 
 				return User;
-			};
-			model.deleteUser=function(){
-				localStorage.removeItem('user');
 			};
 
 		}
