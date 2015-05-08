@@ -53,22 +53,24 @@ md-toolbar.md-default-theme {
 }
 
 header md-toolbar.md-default-theme {
-	height: 130px
+	//height: 130px
 }
 
 header h1 {
-	font-size: 76px;
+	font-size: 50px;
 }
 
 header md-toolbar.md-default-theme h1{
-	margin: 0 auto;
-	line-height: 64px;
+	margin:0px 20px 0px 20px;
+	//line-height: 64px;
 	font-family: 'IntriqueScriptPersonalUse';
 }
 
 body .btns-container {
-	margin-top: 5px;
-  padding: 20px 20px 0 20px;
+	margin: 0px 20px 0px 0px;
+ // padding: 20px 20px 0 20px;
+ height: 64px;
+  line-height: 50px;
 	text-align: justify;
 
 	&:after {
@@ -84,8 +86,10 @@ body md-item {
 
 body md-list .btns-container {
 		//width: 465px;
-  	margin: 0 auto;
+  	margin: 0px 20px 0px 0px;
   	background-color: @primaryColor;
+
+  
 }
 
 body md-list .btns-container svg {
@@ -175,6 +179,21 @@ md-input-container {
 	margin-bottom: 15px;
 
 	font-size: 20px;
+}
+
+#serviceListContainer{
+	position: absolute;
+    right: 66px;
+    margin-top: 0px;
+    background-color: @primaryColor;
+    z-index: 100;
+    color: white;
+    top: 64px;
+    text-transform: lowercase;
+}
+
+body {
+	position: relative;
 }
 
 

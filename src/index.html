@@ -1,110 +1,86 @@
 <!DOCTYPE html>
 <html ng-app="appMensajeria" ng-controller="AppController as app">
-<head>
-    <title ng-bind="pageTitle"></title>
-    <meta charset="UTF8">
+    <head>
+        <title ng-bind="pageTitle"></title>
+        <meta charset="UTF8">
+        <!-- font awesome from BootstrapCDN -->
+        <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+        <!-- compiled CSS --><% styles.forEach( function ( file ) { %>
+        <link rel="stylesheet" type="text/css" href="<%= file %>" /><% }); %>
+        <!-- Angulars Material CSS now available via Google CDN; version 0.7 used here -->
+        <!-- <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/0.7.0/angular-material.min.css"> -->
+        <!-- compiled JavaScript --><% scripts.forEach( function ( file ) { %>
+        <script type="text/javascript" src="<%= file %>"></script><% }); %>
+        <!-- Angular Material Javascript now available via Google CDN; version 0.7 used here -->
+        <script src="https://ajax.googleapis.com/ajax/libs/angular_material/0.7.0/angular-material.min.js"></script>
+        <!-- Librerias del API de Google Maps -->
+        <script src="https://maps.googleapis.com/maps/api/js?key=&sensor=false&extension=.js"></script>
+        <script type="text/javascript" src="http://www.google.com/jsapi"></script>
+    </head>
+    <body>
+        <header>
+            <md-toolbar layout="row" >
+            <h1>MensajeriApp</h1>
+            <span flex></span>
+            <!-- -->
+            
+            <div class="btns-container"  ng-show="app.getVisibility()">
+                
+                <md-button class="md-grid-item-content" ng-click="app.goProfile()">                
+                <div class="md-grid-text"> Perfil </div>
+                </md-button>
+                
 
-    <!-- font awesome from BootstrapCDN -->
-    <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+                
+                <md-button class="md-grid-item-content" ng-click="app.goRequestService()">                
+                <div class="md-grid-text"> Solicitar </div>
+                </md-button>
+                
 
-    <!-- compiled CSS --><% styles.forEach( function ( file ) { %>
-    <link rel="stylesheet" type="text/css" href="<%= file %>" /><% }); %>
-
-    <!-- Angulars Material CSS now available via Google CDN; version 0.7 used here -->
-    <!-- <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/0.7.0/angular-material.min.css"> -->
-
-    <!-- compiled JavaScript --><% scripts.forEach( function ( file ) { %>
-    <script type="text/javascript" src="<%= file %>"></script><% }); %>
-
-    <!-- Angular Material Javascript now available via Google CDN; version 0.7 used here -->
-    <script src="https://ajax.googleapis.com/ajax/libs/angular_material/0.7.0/angular-material.min.js"></script>
-
-    <!-- Librerias del API de Google Maps -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=&sensor=false&extension=.js"></script>
-    <script type="text/javascript" src="http://www.google.com/jsapi"></script>
-</head>
-<body>
-    <header>
-        <md-toolbar layout="row" layout-align="center center">
-          <h1>MensajeriApp</h1>
-        </md-toolbar>
-    </header>
-    <md-list>
-        <div class="btns-container"  ng-show="app.getVisibility()">
-            <md-item>
-              <md-button class="md-grid-item-content" ng-click="app.goProfile()">
-                <svg viewBox="0 0 24 24">
-                    <path fill="#FFFFFF" d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z" />
-                </svg>
-                <div class="md-grid-text"> PERFIL </div>
-              </md-button>
-            </md-item>
-
-            <md-item>
-              <md-button class="md-grid-item-content" ng-click="app.goRequestService()">
-                <svg viewBox="0 0 24 24">
-                    <path fill="#FFFFFF" d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z" />
-                </svg>
-                <div class="md-grid-text"> SOLICITAR SERVICIO </div>
-              </md-button>
-            </md-item>
-
-
-            <md-item>
-              <md-button class="md-grid-item-content" ng-click="app.goActiveServices()">
-                <svg viewBox="0 0 24 24">
-                    <path fill="#FFFFFF" d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z" />
-                </svg>
-                <div class="md-grid-text"> MIS SERVICIOS ACTIVOS </div>
-              </md-button>
-            </md-item>
-
-
-            <md-item>
-              <md-button class="md-grid-item-content" ng-click="app.goCompletedServices()">
-                <svg viewBox="0 0 24 24">
-                    <path fill="#FFFFFF" d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z" />
-                </svg>
-                <div class="md-grid-text"> SERVICIOS TERMINADOS </div>
-              </md-button>
-            </md-item>
-
-
-            <md-item>
-              <md-button class="md-grid-item-content" ng-click="app.goAbortedServices()">
-                <svg viewBox="0 0 24 24">
-                    <path fill="#FFFFFF" d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z" />
-                </svg>
-                <div class="md-grid-text"> SERVICIOS ABORTADOS </div>
-              </md-button>
-            </md-item>
-
-
-            <md-item>
-              <md-button class="md-grid-item-content" ng-click="app.goTermsConditions()">
-                <svg viewBox="0 0 24 24">
-                    <path fill="#FFFFFF" d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z" />
-                </svg>
+                
+                <md-button class="md-grid-item-content" ng-click="app.turnShowServices()">                
+                <div class="md-grid-text"> Servicios </div>
+                </md-button>
+                
+                <!-- 
+                <md-button class="md-grid-item-content" ng-click="app.goTermsConditions()">                
                 <div class="md-grid-text"> TÉRMINOS Y CONDICIONES </div>
-              </md-button>
-            </md-item>
+                </md-button>
+                -->
+
+                <md-button class="md-grid-item-content" ng-click="app.logOut()">                
+                <div class="md-grid-text"> Salir</div>
+                </md-button>
+                
+                <!-- MENU DESPLEGABLE DE SERVICIOS -->
+            
+                  
+               
+            </div>
+        
+            <!-- -->
+            </md-toolbar>
 
 
+            
+        </header>
 
-            <md-item>
-              <md-button class="md-grid-item-content" ng-click="app.logOut()">
-                <svg viewBox="0 0 24 24">
-                    <path fill="#FFFFFF" d="M17,17.25V14H10V10H17V6.75L22.25,12L17,17.25M13,2A2,2 0 0,1 15,4V8H13V4H4V20H13V16H15V20A2,2 0 0,1 13,22H4A2,2 0 0,1 2,20V4A2,2 0 0,1 4,2H13Z" />
-                </svg>
-                <div class="md-grid-text"> SALIR </div>
-              </md-button>
-            </md-item>
-        </div>
-    </md-list>
-
-    <div class="container" ui-view="main"></div>
-
-    <!-- <footer class="container">
-    </footer> -->
-</body>
+        <md-card id="serviceListContainer" ng-show="app.showServicesBool" ng-click="app.turnShowServices()">
+                <md-button class="md-grid-item-content" ng-click="app.goActiveServices()">                
+                <div class="md-grid-text"> Activos </div>
+                </md-button>
+                                  
+                <md-button class="md-grid-item-content" ng-click="app.goCompletedServices()">                
+                <div class="md-grid-text"> Terminados </div>
+                </md-button>
+                
+                <md-button class="md-grid-item-content" ng-click="app.goAbortedServices()">                
+                <div class="md-grid-text"> Abortados </div>
+                </md-button>
+            </md-card>  
+        
+        <div class="container" ui-view="main"></div>
+        <!-- <footer class="container">
+        </footer> -->
+    </body>
 </html>
