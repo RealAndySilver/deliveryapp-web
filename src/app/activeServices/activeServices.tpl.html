@@ -7,7 +7,7 @@
 			    </div>
 			  </md-toolbar>
 		</div >
-			<label> SERVICIOS DISPONIBLES</label>
+			<label class="subtitle"> SERVICIOS DISPONIBLES</label>
 			<md-card class="md-default-theme" ng-repeat="item in model.deliveryItems" ng-show="item.status == 'available'"   ng-click="model.goToServiceDetails(item._id)">
 				<div id="containerInfo">
 					<label class="titleInsideCards"> Pedido</label>			
@@ -20,7 +20,7 @@
 
 			</md-card>
 
-			<label> SERVICIOS ACEPTADOS</label>
+			<label class="subtitle"> SERVICIOS ACEPTADOS</label>
 			<md-card class="md-default-theme" ng-repeat="item in model.deliveryItems" ng-show="item.status != 'available'"   ng-click="model.goToServiceDetails(item._id)">
 				<div id="containerInfo">
 					<label class="titleInsideCards"> Pedido</label>			

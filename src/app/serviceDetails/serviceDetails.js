@@ -25,8 +25,10 @@
 			model.serviceDetails = serviceDetails;
 
 			function serviceDetails() {
+				AlertsService.loading();
 				DetailsDeliveryItemService.serviceDetails($stateParams.id, function(response) {
 					//console.log(response);
+					AlertsService.cancel();
 
 					model.deliveryItemInfo = response.data;
 					console.log("EL deliveryItemInfo", model.deliveryItemInfo);
@@ -103,7 +105,7 @@
 					.title('Alerta')
 					.content('Deseas cancelar el servicio.')
 					.ariaLabel('')
-					.ok('Cancelar')
+					.ok('Cancelar Servicio')
 					.cancel('Volver');
 				//.targetEvent(ev);
 				$mdDialog.show(confirm).then(function() {
@@ -153,7 +155,8 @@
 			};
 
 			model.reload = function() {
-				$state.reload();
+				//$state.reload();
+				model.serviceDetails();
 			};
 
 			model.showBigImage = function(url) {
@@ -165,6 +168,7 @@
 						templateUrl: 'serviceDetails/showBigImage.tpl.html',
 						resolve: {
 							'imageUrl': function() {
+								console.log('url', url);
 								return url;
 							}
 						}

@@ -61,11 +61,7 @@
             <!-- -->
             </md-toolbar>
 
-
-            
-        </header>
-
-        <md-card id="serviceListContainer" ng-show="app.showServicesBool" ng-click="app.turnShowServices()">
+            <md-card id="serviceListContainer" ng-show="app.showServicesBool" ng-click="app.turnShowServices()">
                 <md-button class="md-grid-item-content" ng-click="app.goActiveServices()">                
                 <div class="md-grid-text"> Activos </div>
                 </md-button>
@@ -78,6 +74,11 @@
                 <div class="md-grid-text"> Abortados </div>
                 </md-button>
             </md-card>  
+
+            
+        </header>
+
+        
         
         <div class="container" ui-view="main"></div>
         <!-- <footer class="container">
