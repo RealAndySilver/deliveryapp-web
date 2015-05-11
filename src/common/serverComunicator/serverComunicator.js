@@ -42,6 +42,18 @@
 				});
 			};
 
+			model.changePass = function(password,token) {
+				return $http({
+					method: 'PUT',
+					data: {
+						"password": password,
+					},
+					url: endpoint + 'User' + '/NewPassword/' + token,
+				});
+			};
+
+
+
 			model.requestMessenger = function(delivery) {
 				return $http({
 					method: 'POST',

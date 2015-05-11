@@ -8,6 +8,7 @@
 		init();
 
 		function init() {
+
 			$scope.$watch('loginForm', function(newValue) {
 				if(newValue) {
 					model.MY_FORM=$scope.loginForm;
@@ -66,27 +67,17 @@
 			};
 
 			model.newAccount = function() {
+				console.log("IR A NUEVA CUENTA");
 				$state.go('createUser');
 			};
 
-			model.recoverPassword = function(email) {
-				RecoverPassword.recoverPassword(email, function(response) {
-					//console.log(response);
-					if (response) {
-						model.recoverAlert();
-					}
-				});
+			model.recoverPassword = function() {
+				//IR A LA VENTANA DE RECUPERAR CONTRASEÑA
+				console.log("RECUPERAR CONTRASEÑA");
+				$state.go('recoverPassword');
 			};
 
-			model.forgotPassword = function(email) {
-				if (email) {
-					console.log('email de usuario ', email);
-					model.recoverPassword(email);
-				} else {
-					console.log('MOSTRAR VENTANA PARA INTRODUCIR EMAIL');
-					//model.recoverDialog();
-				}
-			};
+			
 
 			model.autoLogin = function() {
 

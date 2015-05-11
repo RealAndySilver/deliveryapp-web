@@ -1,6 +1,5 @@
 (function(module) {
-
-    module.config(function ($stateProvider) {
+    module.config(function($stateProvider) {
         $stateProvider.state('recoverPassword', {
             url: '/recoverpassword',
             views: {
@@ -9,7 +8,22 @@
                     templateUrl: 'recoverPassword/recoverPassword.tpl.html'
                 }
             },
-            data:{ pageTitle: 'RecoverPassword' }
+            data: {
+                pageTitle: 'RecoverPassword'
+            }
+        });
+
+        $stateProvider.state('redirect', {
+            url: '/Password/Redirect/user/:user/new_password/:token',
+            views: {
+                "main": {
+                    controller: 'ChangePassController as model',
+                    templateUrl: 'recoverPassword/changePass.tpl.html'
+                }
+            },
+            data: {
+                pageTitle: 'RecoverPassword'
+            }
         });
     });
 

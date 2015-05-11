@@ -8,16 +8,22 @@
 		</md-toolbar>
 	</div>
 	<div>
-		<form name="recoverForm" ng-submit="model.loginUser()" novalidate>
+		<form name="changePassForm" novalidate>
 			
 			<md-input-container flex>
-			<label>Escriba su email</label>
-			<input type="text" name="email" ng-model="model.email" ng-pattern="/^[A-Za-z0-9._%+]+@[A-Za-z0-9]+\.[A-Za-z]{1,5}$/" required>
+			<label>Ingrese la nueva contraseña</label>
+			<input type="password" name="password" ng-model="model.password"  required>
+
+			</md-input-container>
+
+			<md-input-container flex>
+			<label>Repita la contraseña</label>
+			<input type="password" name="repeatPassword" ng-model="model.repeatPassword"  required>
 			
 			</md-input-container>
 			
 			<md-input-container flex>
-			<md-button class="md-raised primary-btn" ng-click="model.recoverPass()" >Recuperar</md-button>
+			<md-button class="md-raised primary-btn" ng-click="model.changePass()" >Cambiar</md-button>
 			<md-button class="md-raised primary-btn" ng-click="model.goLogin()" >Volver</md-button>
 			</md-input-container>
 		</form>
