@@ -9,8 +9,9 @@
 		model.save = function(pickupItem, deliveryItem) {
 
 			if (PickupAddresses.length === 0) {
-				PickupAddresses = localStorage.getItem('PickupAddresses');
-				DeliveryAddresses = localStorage.getItem('DeliveryAddresses');
+				PickupAddresses = JSON.parse(localStorage.getItem('PickupAddresses'));
+				DeliveryAddresses = JSON.parse(localStorage.getItem('DeliveryAddresses'));
+
 				if (PickupAddresses === null) {
 					PickupAddresses = [];
 					DeliveryAddresses = [];

@@ -8,14 +8,15 @@
 			  </md-toolbar>
 		</div>
 
-		<rating value="rate" max="max" readonly="false"  on-leave="overStar = null"></rating>
-   		 {{rate}}
-
+		<rating id="rating" value="rate" max="max" readonly="false"  on-leave="overStar = null"></rating>
+   		 
+   		 <h6>{{rate}}</h6>
+   		 
 		<md-input-container flex>
-					<label>Opiniones</label>
-	            	<input name="email" ng-model="model.review" required>
+					<label id="tileReview">Opiniones</label>
+	            	<input  id="review" name="email" ng-model="model.review" required>
 	     </md-input-container>
-	    <md-button class="md-raised v-margin-btn" ng-click	="model.ratingMessenger()" >Calificar<md-button>
+	    <md-button id="blueButton" ng-click	="model.ratingMessenger()" >Calificar<md-button>
 	    
 	</md-card>
 </div>

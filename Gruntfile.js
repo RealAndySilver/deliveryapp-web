@@ -100,6 +100,13 @@ module.exports = function(grunt) {
                 'vendor/angular-animate/angular-animate.min.js.map',
                 'vendor/angular-aria/angular-aria.min.js.map',
                 'vendor/hammerjs/hammer.min.map',
+                
+            ],
+            fonts: [
+                'fonts/glyphicons-halflings-regular.woff',
+                'fonts/glyphicons-halflings-regular.ttf',
+                'fonts/glyphicons-halflings-regular.svg',
+                'fonts/glyphicons-halflings-regular.eot',
             ]
         }
     };
@@ -149,6 +156,12 @@ module.exports = function(grunt) {
                         src: [ '**' ],
                         dest: '<%= build_dir %>/assets/',
                         cwd: 'src/assets',
+                        expand: true
+                    },
+                    {
+                        src: [ '**' ],
+                        dest: '<%= build_dir %>/fonts/',
+                        cwd: 'src/fonts',
                         expand: true
                     }
                 ]
