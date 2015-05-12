@@ -25,10 +25,16 @@
 			model.serviceDetails = serviceDetails;
 
 			function serviceDetails() {
-				AlertsService.loading();
+				if(model.messengerBool){
+					AlertsService.loading();
+				}
+				
 				DetailsDeliveryItemService.serviceDetails($stateParams.id, function(response) {
 					//console.log(response);
-					AlertsService.cancel();
+					if(model.messengerBool){
+						AlertsService.cancel();
+					}
+					
 
 					model.deliveryItemInfo = response.data;
 					console.log("EL deliveryItemInfo", model.deliveryItemInfo);
