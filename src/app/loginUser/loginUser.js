@@ -34,11 +34,20 @@
 					LoginUserService.loginUser(model.user.email, model.user.password, function(response) {
 						console.log(response);
 						var user = response.data;
+						console.log(user);
 						AlertsService.cancel();
 
 						if (!response.response) {
 							AlertsService.showAlert(response.msg, "");
 						} else if (response.data) {
+							//INFO PARA EL HEADER
+							var headerInfo={"email":model.user.email,"password": btoa(model.user.password)};
+							localStorage.setItem("id",user._id);
+							localStorage.setItem('email', headerInfo.email);
+							localStorage.setItem('pass', headerInfo.password);
+							localStorage.setItem("token",response.data.session.token);
+							
+
 
 							if (model.rememberMe === true) {
 								localStorage.setItem('isLogin', true);
@@ -51,7 +60,7 @@
 							}
 
 							User = user;
-							console.log(User);
+							//console.log(User);
 							Session.setUser(User);
 							$state.go('profile');
 						} else {

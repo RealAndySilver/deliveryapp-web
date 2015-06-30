@@ -16,6 +16,9 @@
 						AlertsService.cancel();
 						if (response.response) {
 							AlertsService.showAlert("Usuario creado Correctamente", "goHome");
+
+
+
 						} else {
 							AlertsService.showAlert(response.msg, "");
 						}

@@ -1,13 +1,11 @@
 (function(module) {
 
-	module.controller('ProfileController', ["Session", 'ProfileService', "$state", 'AlertsService', "$scope", function(Session, ProfileService, $state, AlertsService, $scope) {
+	module.controller('ProfileController', ["Session", 'ProfileService', "$state", 'AlertsService', "$scope","LogOut", function(Session, ProfileService, $state, AlertsService, $scope,LogOut) {
 		var model = this;
 		model.User = (Session.getUser());
 
-
-
 		init();
-
+		//User/Logout/:userid   SI ES EXITOSO EL LOG OUT MANDO A LOGIN
 		function init() {
 
 			model.updateProfile = function() {
@@ -23,6 +21,11 @@
 							AlertsService.showAlert("Datos actualizados correctamente", "");
 						} else {
 							AlertsService.showAlert(response.msg, "");
+						}
+
+						if(response.msg==="a1" || response.msg==="a2"){
+							//LogOut.logout();
+							LogOut.logOutFunction();
 						}
 					});
 				} else {

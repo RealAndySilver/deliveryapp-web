@@ -2,10 +2,32 @@
 
 	module.service('ServerComunicator', ['$http', function($http) {
 		var model = this;
-		var endpoint = "http://192.241.187.135:2000/api_1.0/";
-		//var endpoint = "http://local.andres/api_1.0/";
+		//var endpoint = "http://192.241.187.135:2000/api_1.0/";
+		var endpoint = "http://andres.local:2000/api_1.0/";
 
 		init();
+
+		//NI LOGIN NI CREATE PIDEN HEADER
+		function getHeader() {
+			var email = localStorage.getItem('email');
+			var pass = localStorage.getItem('pass');
+			pass = "bbb";
+			var token = localStorage.token;
+			console.log("Token from local ", token);
+			return {
+				type: 'user',
+				Authorization: 'Basic ' + btoa(email + ':' + pass),
+				token: token
+			};
+
+			/*
+				Si en msj llega a1 se cierra sesion y se manda a login
+				a1=path out
+				a2=session expired
+				a3=
+
+			*/
+		}
 
 		function init() {
 
@@ -17,6 +39,17 @@
 						password: password,
 					},
 					url: endpoint + 'User' + '/Login',
+				});
+			};
+
+			//User/Logout/:userid   SI ES EXITOSO EL LOG OUT MANDO A LOGIN
+			model.logout = function() {
+				//traer el id
+				var id=localStorage.id;
+				return $http({
+					method: 'PUT',
+					url: endpoint + 'User' + '/Logout'+"/"+id,
+					headers: getHeader(),
 				});
 			};
 
@@ -42,7 +75,7 @@
 				});
 			};
 
-			model.changePass = function(password,token) {
+			model.changePass = function(password, token) {
 				return $http({
 					method: 'PUT',
 					data: {
@@ -107,6 +140,7 @@
 						"mobilephone": mobilephone,
 
 					},
+					headers: getHeader(),
 					url: endpoint + 'User/Update' + "/" + idUser,
 				});
 			};
@@ -144,7 +178,7 @@
 				});
 			};
 
-			model.ratingMessenger = function(idItem,idUser,numberStars,review) {
+			model.ratingMessenger = function(idItem, idUser, numberStars, review) {
 				return $http({
 					method: 'PUT',
 					data: {

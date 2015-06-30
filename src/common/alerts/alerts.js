@@ -16,8 +16,8 @@
 					.ariaLabel('')
 					.ok('Aceptar')
 					.cancel('');
-				console.log('mdDialog', $mdDialog);
-				console.log('confirm', confirm);
+				//console.log('mdDialog', $mdDialog);
+				//console.log('confirm', confirm);
 				$mdDialog.show(confirm).then(function() {
 					if (action === "goProfile") {
 						$state.go("profile");
