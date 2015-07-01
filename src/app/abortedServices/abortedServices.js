@@ -1,6 +1,6 @@
 (function(module) {
 
-	module.controller('AbortedServicesController', ["AbortedServicesService", "Session", "$state", "$mdDialog","AlertsService", function(AbortedServicesService, Session, $state, $mdDialog,AlertsService) {
+	module.controller('AbortedServicesController', ["AbortedServicesService", "Session", "$state", "$mdDialog","AlertsService", "LogOut",function(AbortedServicesService, Session, $state, $mdDialog,AlertsService,LogOut) {
 		var model = this;
 		model.User = (Session.getUser());
 
@@ -16,8 +16,13 @@
 					model.deliveryItems = response.data;
 					console.log(response.data);
 					AlertsService.cancel();
-					if(!response.data){
+					/*if(!response.data){
 						AlertsService.showAlert(response.msg, "");
+					}*/
+					if (typeof(model.deliveryItems) === "string") {
+						if (response.msg === "a1" || response.msg === "a2" || response.msg === "a3") {
+							LogOut.logOutFunction();
+						}
 					}else if(model.deliveryItems.length===0){
 						AlertsService.showAlert("No se encontraron servicios Abortados","");
 					}

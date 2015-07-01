@@ -42,10 +42,10 @@
 						} else if (response.data) {
 							//INFO PARA EL HEADER
 							var headerInfo={"email":model.user.email,"password": btoa(model.user.password)};
-							localStorage.setItem("id",user._id);
-							localStorage.setItem('email', headerInfo.email);
-							localStorage.setItem('pass', headerInfo.password);
-							localStorage.setItem("token",response.data.session.token);
+							sessionStorage.setItem("id",user._id);
+							sessionStorage.setItem('email', headerInfo.email);
+							sessionStorage.setItem('pass', headerInfo.password);
+							sessionStorage.setItem("token",response.data.session.token);
 							
 
 

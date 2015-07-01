@@ -9,23 +9,21 @@
 
 		//NI LOGIN NI CREATE PIDEN HEADER
 		function getHeader() {
-			var email = localStorage.getItem('email');
-			var pass = localStorage.getItem('pass');
-			pass = "bbb";
-			var token = localStorage.token;
+			var email = sessionStorage.getItem('email');
+			var pass = sessionStorage.getItem('pass');
+			//pass = "bbb";
+			var token = sessionStorage.token;
 			console.log("Token from local ", token);
 			return {
 				type: 'user',
 				Authorization: 'Basic ' + btoa(email + ':' + pass),
 				token: token
 			};
-
 			/*
 				Si en msj llega a1 se cierra sesion y se manda a login
 				a1=path out
 				a2=session expired
 				a3=
-
 			*/
 		}
 
@@ -45,11 +43,12 @@
 			//User/Logout/:userid   SI ES EXITOSO EL LOG OUT MANDO A LOGIN
 			model.logout = function() {
 				//traer el id
-				var id=localStorage.id;
+				var id=sessionStorage.id;
 				return $http({
 					method: 'PUT',
-					url: endpoint + 'User' + '/Logout'+"/"+id,
 					headers: getHeader(),
+					url: endpoint + 'User' + '/Logout'+"/"+id,
+
 				});
 			};
 
@@ -81,6 +80,7 @@
 					data: {
 						"password": password,
 					},
+					headers: getHeader(),
 					url: endpoint + 'User' + '/NewPassword/' + token,
 				});
 			};
@@ -91,6 +91,7 @@
 				return $http({
 					method: 'POST',
 					data: delivery,
+					headers: getHeader(),
 					url: endpoint + 'DeliveryItem' + '/Create',
 				});
 			};
@@ -102,6 +103,7 @@
 						loc1: loc1,
 						loc2: loc2,
 					},
+					headers: getHeader(),
 					url: endpoint + 'GetPrice' + "/" + loc1 + "/" + loc2,
 				});
 			};
@@ -109,6 +111,7 @@
 			model.getDeliveryItemDetails = function(id) {
 				return $http({
 					method: 'GET',
+					headers: getHeader(),
 					url: endpoint + 'DeliveryItem' + "/" + id,
 				});
 			};
@@ -116,6 +119,7 @@
 			model.deleteDeliveryItem = function(idItem, idUser) {
 				return $http({
 					method: 'DELETE',
+					headers: getHeader(),
 					url: endpoint + 'DeliveryItem/Delete' + "/" + idItem + "/" + idUser,
 				});
 			};
@@ -127,6 +131,7 @@
 						"user_id": idUser,
 
 					},
+					headers: getHeader(),
 					url: endpoint + 'DeliveryItem/Restart' + "/" + idItem,
 				});
 			};
@@ -153,6 +158,7 @@
 						"new_password": newPass,
 
 					},
+					headers: getHeader(),
 					url: endpoint + 'User/Password' + "/" + idUser,
 				});
 			};
@@ -160,6 +166,7 @@
 			model.getActiveDeliveryItems = function(idUser) {
 				return $http({
 					method: 'GET',
+					headers: getHeader(),
 					url: endpoint + 'DeliveryItem/UserActive' + "/" + idUser,
 				});
 			};
@@ -167,6 +174,7 @@
 			model.getCompletedDeliveryItems = function(idUser) {
 				return $http({
 					method: 'GET',
+					headers: getHeader(),
 					url: endpoint + 'User/FinishedDeliveries' + "/" + idUser,
 				});
 			};
@@ -174,6 +182,7 @@
 			model.getAbortedDeliveryItems = function(idUser) {
 				return $http({
 					method: 'GET',
+					headers: getHeader(),
 					url: endpoint + 'DeliveryItem/UserAborted' + "/" + idUser,
 				});
 			};
@@ -187,6 +196,7 @@
 						"review": review,
 
 					},
+					headers: getHeader(),
 					url: endpoint + 'DeliveryItem/Rate' + "/" + idItem,
 				});
 			};

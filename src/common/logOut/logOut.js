@@ -12,13 +12,17 @@
 				//AlertsService.loading();
 
 				LogOutService.logout(function(response) {
-					console.log(response);
+					console.log("RESPUESTA DEL LOGOUT",response);
 					//AlertsService.cancel();
 					///
 					if (response.response) {
 						localStorage.removeItem('isLogin');
 						//localStorage.removeItem('user');
 						sessionStorage.removeItem('user');
+						sessionStorage.removeItem('id');
+						sessionStorage.removeItem('email');
+						sessionStorage.removeItem('pass');
+						sessionStorage.removeItem('token');
 						localStorage.removeItem('userInfoLogin');
 						$state.go('loginUser');
 
@@ -27,35 +31,6 @@
 					}
 				});
 			};
-
-			model.logout = function() {
-				var detailsPromise = ServerComunicator.logout();
-				detailsPromise.then(
-					function success(response) {
-						callback({
-							response: response.data.status,
-							msg: response.data.message || response.data.error,
-							data: response.data.response,
-						});
-
-						localStorage.removeItem('isLogin');
-						//localStorage.removeItem('user');
-						sessionStorage.removeItem('user');
-						localStorage.removeItem('userInfoLogin');
-						$state.go('loginUser');
-						
-					},
-					function error(e) {
-						callback({
-							response: false,
-							msg: 'Ocurrio un error por favor intente más tarde o compruebe su conexión a internet',
-							error: e,
-						});
-					});
-			};
-
-			
-
 		}
 	}]);
 

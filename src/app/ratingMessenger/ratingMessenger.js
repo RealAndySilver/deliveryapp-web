@@ -1,6 +1,6 @@
 (function(module) {
 
-	module.controller('RatingMessengerController', ["$scope", "RatingMessengerService","Session","$stateParams","$state","AlertsService", function($scope, RatingMessengerService,Session,$stateParams,$state,AlertsService) {
+	module.controller('RatingMessengerController', ["$scope", "RatingMessengerService", "Session", "$stateParams", "$state", "AlertsService","LogOut", function($scope, RatingMessengerService, Session, $stateParams, $state, AlertsService,LogOut) {
 		var model = this;
 
 		model.User = (Session.getUser());
@@ -11,7 +11,7 @@
 			$scope.rate = 5;
 			$scope.max = 5;
 			$scope.isReadonly = false;
-			model.review="";
+			model.review = "";
 
 			$scope.ratingStates = [{
 				stateOn: 'glyphicon-ok-sign',
@@ -28,23 +28,26 @@
 				stateOff: 'glyphicon-off'
 			}];
 
-			console.log("RECIBIDO EN RATE" , $stateParams.idItem);
+			console.log("RECIBIDO EN RATE", $stateParams.idItem);
 			model.ratingMessenger = function() {
 				AlertsService.loading();
 				//idItem,idUser,numberStars,review
-				RatingMessengerService.ratingMessenger($stateParams.idItem,model.User["_id"], $scope.rate, model.review, function(response) {
+				RatingMessengerService.ratingMessenger($stateParams.idItem, model.User["_id"], $scope.rate, model.review, function(response) {
 					console.log(response);
 					AlertsService.cancel();
 					if (response.response) {
-							AlertsService.showAlert("Gracias por calificar al mensajero", "goProfile");
+						if (response.msg === "a1" || response.msg === "a2" || response.msg === "a3") {
+							LogOut.logOutFunction();
 						} else {
-							AlertsService.showAlert(response.msg, "");
+							AlertsService.showAlert("Gracias por calificar al mensajero", "goProfile");
 						}
+					} else {
+						AlertsService.showAlert(response.msg, "");
+					}
 					$state.go("requestMessenger");
 
 				});
 			};
-
 
 
 

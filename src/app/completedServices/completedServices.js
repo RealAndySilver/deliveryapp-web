@@ -1,6 +1,6 @@
 (function(module) {
 
-	module.controller('CompletedServicesController', ["Session", 'CompletedServicesService', '$state', 'AlertsService', function(Session, CompletedServicesService, $state, AlertsService) {
+	module.controller('CompletedServicesController', ["Session", 'CompletedServicesService', '$state', 'AlertsService',"LogOut", function(Session, CompletedServicesService, $state, AlertsService,LogOut) {
 		var model = this;
 		model.User = (Session.getUser());
 
@@ -14,9 +14,16 @@
 					model.deliveryItems = response.data;
 					console.log(model.deliveryItems);
 					AlertsService.cancel();
-					if (!response.data) {
+					/*if (!response.data) {
 						AlertsService.showAlert(response.msg, "");
-					} else if (model.deliveryItems.length === 0) {
+					} else */
+
+
+					if (typeof(model.deliveryItems) === "string") {
+						if (response.msg === "a1" || response.msg === "a2" || response.msg === "a3") {
+							LogOut.logOutFunction();
+						}
+					}else if (model.deliveryItems.length === 0) {
 						AlertsService.showAlert("No se encontraron servicios Completados", "");
 					}
 				});

@@ -1,6 +1,6 @@
 (function(module) {
 
-	module.controller('ChangePasswordController', ["$state", "$stateParams", "ChangePasswordService", "$mdDialog", "AlertsService", "$scope", function($state, $stateParams, ChangePasswordService, $mdDialog, AlertsService, $scope) {
+	module.controller('ChangePasswordController', ["$state", "$stateParams", "ChangePasswordService", "$mdDialog", "AlertsService", "$scope","LogOut", function($state, $stateParams, ChangePasswordService, $mdDialog, AlertsService, $scope,LogOut) {
 		var model = this;
 		var proceed = false;
 
@@ -25,7 +25,11 @@
 							console.log(response);
 							AlertsService.cancel();
 							if (response.response) {
-								AlertsService.showAlert("Contraseña actualizada correctamente", "goProfile");
+								if (response.msg === "a1" || response.msg === "a2" || response.msg === "a3") {
+									LogOut.logOutFunction();
+								} else {
+									AlertsService.showAlert("Contraseña actualizada correctamente", "goProfile");
+								}
 							} else {
 								AlertsService.showAlert(response.msg, "");
 							}

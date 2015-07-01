@@ -1,6 +1,6 @@
 (function(module) {
 
-	module.controller('ProfileController', ["Session", 'ProfileService', "$state", 'AlertsService', "$scope","LogOut", function(Session, ProfileService, $state, AlertsService, $scope,LogOut) {
+	module.controller('ProfileController', ["Session", 'ProfileService', "$state", 'AlertsService', "$scope", "LogOut", function(Session, ProfileService, $state, AlertsService, $scope, LogOut) {
 		var model = this;
 		model.User = (Session.getUser());
 
@@ -18,15 +18,17 @@
 						AlertsService.cancel();
 						///
 						if (response.response) {
-							AlertsService.showAlert("Datos actualizados correctamente", "");
+							if (response.msg === "a1" || response.msg === "a2" || response.msg === "a3") {
+								LogOut.logOutFunction();
+							} else {
+								AlertsService.showAlert("Datos actualizados correctamente", "");
+							}
+
 						} else {
 							AlertsService.showAlert(response.msg, "");
 						}
 
-						if(response.msg==="a1" || response.msg==="a2"){
-							//LogOut.logout();
-							LogOut.logOutFunction();
-						}
+
 					});
 				} else {
 					AlertsService.showSimpleAlert("Completa todos los campos por favor");

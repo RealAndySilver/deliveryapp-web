@@ -189,11 +189,17 @@
 						var deliveryItem = response.data.delivery_object;
 						if (response.response) {
 
-							GetAllAddressService.save(pickupItem, deliveryItem);
+							if (response.msg === "a1" || response.msg === "a2" || response.msg === "a3") {
+								LogOut.logOutFunction();
+							} else {
+								GetAllAddressService.save(pickupItem, deliveryItem);
 
-							$state.go('serviceDetails', {
-								id: response.data._id
-							});
+								$state.go('serviceDetails', {
+									id: response.data._id
+								});
+							}
+
+
 						} else {
 							AlertsService.showAlert(response.msg, "");
 						}
