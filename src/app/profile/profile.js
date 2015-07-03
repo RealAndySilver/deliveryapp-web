@@ -22,6 +22,8 @@
 								LogOut.logOutFunction();
 							} else {
 								AlertsService.showAlert("Datos actualizados correctamente", "");
+								var user = response.data;
+								Session.setUser(user);
 							}
 
 						} else {
