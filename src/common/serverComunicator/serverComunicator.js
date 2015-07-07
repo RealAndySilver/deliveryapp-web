@@ -2,8 +2,8 @@
 
 	module.service('ServerComunicator', ['$http', function($http) {
 		var model = this;
-		var endpoint = "http://192.241.187.135:2000/api_1.0/";
-		//var endpoint = "http://andres.local:2000/api_1.0/";
+		//var endpoint = "http://192.241.187.135:2000/api_1.0/";
+		var endpoint = "http://andres.local:2000/api_1.0/";
 
 		init();
 
@@ -198,6 +198,17 @@
 					},
 					headers: getHeader(),
 					url: endpoint + 'DeliveryItem/Rate' + "/" + idItem,
+				});
+			};
+
+			model.newPassFromUrl = function(pass, token) {
+				return $http({
+					method: 'PUT',
+					data: {
+						"password": pass,
+
+					},
+					url: endpoint + "User/NewPassword/"  + token,
 				});
 			};
 

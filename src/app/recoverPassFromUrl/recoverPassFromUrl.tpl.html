@@ -1,0 +1,32 @@
+<div layout="column" layout-align="center center" class="solo-box">
+	<md-card class="basic-form">
+	<div>
+		<md-toolbar>
+		<div class="md-toolbar-tools" layout-align="center center">
+			<span class="md-flex">Recuperar Contraseña</span>
+		</div>
+		</md-toolbar>
+	</div>
+	<div>
+		<form name="changePassForm" novalidate>
+		<h6 class="titleField" >Recuperar contraseña para la cuenta {{model.email}}</h6>
+			
+			<md-input-container flex>
+			<label>Ingrese la nueva contraseña</label>
+			<input type="password" name="password" ng-model="model.password"  required>
+
+			</md-input-container>
+
+			<md-input-container flex>
+			<label>Repita la contraseña</label>
+			<input type="password" name="repeatPassword" ng-model="model.repeatPassword"  required>
+			
+			</md-input-container>
+			
+			<md-input-container flex>
+			<md-button class="md-raised primary-btn" ng-click="model.changePass()" >Cambiar</md-button>
+			</md-input-container>
+		</form>
+	</div>
+	</md-card>
+</div>
