@@ -5,60 +5,128 @@
         <meta charset="UTF8">
         <!-- font awesome from BootstrapCDN -->
         <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
-        <!-- compiled CSS --><% styles.forEach( function ( file ) { %>
-        <link rel="stylesheet" type="text/css" href="<%= file %>" /><% }); %>
+        <!---<% styles.forEach( function ( file ) { %>
+        <link rel="stylesheet" type="text/css" href="<%= file %>" /><% }); %>-->
+
+        <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <link href="assets/css/bootstrap-responsive.min.css" rel="stylesheet" type="text/css" />
+        <link href="assets/css/sb-admin-2.css" rel="stylesheet" type="text/css">
+        <link href="assets/css/font-awesome.css" rel="stylesheet">
+        <link href="assets/css/style.css" rel="stylesheet" type="text/css">
+        <link href="assets/css/pages/signin.css" rel="stylesheet" type="text/css">
+        <link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600" rel="stylesheet">
         <!-- Angulars Material CSS now available via Google CDN; version 0.7 used here -->
         <!-- <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/0.7.0/angular-material.min.css"> -->
-        <!-- compiled JavaScript --><% scripts.forEach( function ( file ) { %>
-        <script type="text/javascript" src="<%= file %>"></script><% }); %>
         <!-- Angular Material Javascript now available via Google CDN; version 0.7 used here -->
-        <script src="https://ajax.googleapis.com/ajax/libs/angular_material/0.7.0/angular-material.min.js"></script>
+        <!--<script src="https://ajax.googleapis.com/ajax/libs/angular_material/0.7.0/angular-material.min.js"></script><!---->
         <!-- Librerias del API de Google Maps -->
         <script src="https://maps.googleapis.com/maps/api/js?key=&sensor=false&extension=.js"></script>
         <script type="text/javascript" src="http://www.google.com/jsapi"></script>
     </head>
     <body>
-        <header>
+
+        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse" ng-show="app.getVisibility()">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="brand" href="">
+                    <img src="assets/img/Yapp.png">
+                </a>
+            </div>
+            <!-- /.navbar-header -->
+
+            <ul class="nav navbar-top-links navbar-right" ng-show="app.getVisibility()">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <i class="fa fa-gear fa-fw"></i> Configuración <b class="fa fa-caret-down"></b>
+                    </a>
+                    <ul class="dropdown-menu dropdown-user">
+                        <li class="{{app.activeMenuButton('profile')}}"><a href="" ng-click="app.goProfile()"><i class="fa fa-user fa-fw"></i> Perfil</a></li>
+                        <li class=""><a href="" ng-click=""><i class="fa fa-suitcase fa-fw"></i> Acerca de nosotros</a></li>
+                        <li class="{{app.activeMenuButton('termsConditions')}}"><a href="" ng-click="app.goTermsConditions()"><i class="fa fa-file-text-o fa-fw"></i> Términos y condiciones</a></li>
+                        <li class="divider"></li>
+                        <li><a href="" ng-click="app.logOut()"><i class="fa fa-sign-out fa-fw"></i> Cerrar sesion</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+        
+        <!--<div class="navbar navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="">
+                        <img src="assets/img/Yapp.png">
+                    </a>
+                    <div class="nav-collapse" ng-show="app.getVisibility()">
+                        <ul class="nav pull-right">
+                          <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-cog"></i> Configuración <b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                              <li class="{{app.activeMenuButton('profile')}}"><a href="" ng-click="app.goProfile()">Perfil</a></li>
+                              <li class=""><a href="" ng-click="">Acerca de nosotros</a></li>
+                              <li class="{{app.activeMenuButton('termsConditions')}}"><a href="" ng-click="app.goTermsConditions()">Términos y condiciones</a></li>
+                              <li><a href="" ng-click="app.logOut()">Cerrar sesion</a></li>
+                            </ul>
+                          </li>
+                        </ul>
+                    </div> 
+                </div> <!-- /container -->
+            <!--</div> <!-- /navbar-inner -->
+        <!--</div> <!-- /navbar -->
+        <div class="subnavbar" ng-show="app.getVisibility()">
+          <div class="subnavbar-inner">
+            <div class="container">
+              <ul class="mainnav">
+                <li class="{{app.activeMenuButton('requestMessenger')}}"><a href="" ng-click="app.goRequestService()"><i class="icon-calendar"></i><span> Solicitar Servicio</span> </a> </li>
+                <li class="{{app.activeMenuButton('activeServices')}}"><a href="" ng-click="app.goActiveServices()"><i class="icon-tasks"></i><span>Servicios Activos</span> </a> </li>
+                <li class="{{app.activeMenuButton('completedServices')}}"><a href="" ng-click="app.goCompletedServices()"><i class="icon-briefcase"></i><span>Servicios Terminados</span> </a> </li>
+                <li class="{{app.activeMenuButton('abortedServices')}}"><a href="" ng-click="app.goAbortedServices()"><i class="icon-remove-sign"></i><span>Servicios Abortados</span> </a> </li>
+              </ul>
+            </div>
+            <!-- /container --> 
+          </div>
+          <!-- /subnavbar-inner --> 
+        </div>
+        
+<!---***********************************************************-->
+            <!--
+            <header>
             <md-toolbar layout="row" >
-            <h1>MensajeriApp</h1>
+                <h1>MensajeriApps</h1>
             <span flex></span>
-            <!-- -->
-            
+
             <div class="btns-container"  ng-show="app.getVisibility()">
                 
                 <md-button class="md-grid-item-content" ng-click="app.goProfile()">                
-                <div class="md-grid-text"> Perfil </div>
+                    <div class="md-grid-text"> Perfil </div>
                 </md-button>
-                
-
                 
                 <md-button class="md-grid-item-content" ng-click="app.goRequestService()">                
-                <div class="md-grid-text"> Solicitar </div>
+                    <div class="md-grid-text"> Solicitar </div>
                 </md-button>
-                
-
                 
                 <md-button class="md-grid-item-content" ng-click="app.turnShowServices()">                
-                <div class="md-grid-text"> Servicios </div>
+                    <div class="md-grid-text"> Servicios </div>
                 </md-button>
-                
+                -->
                 <!-- 
                 <md-button class="md-grid-item-content" ng-click="app.goTermsConditions()">                
                 <div class="md-grid-text"> TÉRMINOS Y CONDICIONES </div>
                 </md-button>
                 -->
 
-                <md-button class="md-grid-item-content" ng-click="app.logOut()">                
-                <div class="md-grid-text"> Salir</div>
+                <!--<md-button class="md-grid-item-content" ng-click="app.logOut()">                
+                    <div class="md-grid-text"> Salir</div>
                 </md-button>
-                
-                <!-- MENU DESPLEGABLE DE SERVICIOS -->
-            
-                  
-               
-            </div>
-        
-            <!-- -->
+            </div>         
             </md-toolbar>
 
             <md-card id="serviceListContainer" ng-show="app.showServicesBool" ng-click="app.turnShowServices()">
@@ -76,12 +144,22 @@
             </md-card>  
 
             
-        </header>
+        </header>-->
+
 
         
         
         <div class="container" ui-view="main"></div>
+        <!--<% styles.forEach( function ( file ) { %><div style="color: red;"><%= file %></div><% }); %>
+        <% scripts.forEach( function ( file ) { %><div><%= file %></div><% }); %> <!---->
         <!-- <footer class="container">
         </footer> -->
+<!--********************************************************-->
+        <bs-modal title="Ups" label-accept-button="Ok"></bs-modal>
+
+        <!-- compiled JavaScript --><% scripts.forEach( function ( file ) { %>
+        <script type="text/javascript" src="<%= file %>"></script><% }); %>
+        <script src="assets/js/bootstrap.js"></script>
+        <script src="assets/js/bootstrap.modal.js"></script>
     </body>
 </html>

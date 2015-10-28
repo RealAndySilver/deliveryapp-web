@@ -94,7 +94,7 @@ module.exports = function(grunt) {
             ],
             css: [
                 'vendor/md-date-time/dist/md-date-time.css',
-                'vendor/angular-material/angular-material.min.css',
+                //'vendor/angular-material/angular-material.min.css',
             ],
             assets: [
                 'vendor/angular-animate/angular-animate.min.js.map',

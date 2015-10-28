@@ -12,11 +12,8 @@
 				if ($scope.profileForm.$valid) {
 					AlertsService.loading();
 
-					console.log("NEW NAME", model.User.name);
 					ProfileService.updateProfile(model.User["_id"], model.User.name, model.User.lastname, model.User.mobilephone, function(response) {
-						console.log(response);
 						AlertsService.cancel();
-						///
 						if (response.response) {
 							if (response.msg === "a1" || response.msg === "a2" || response.msg === "a3") {
 								LogOut.logOutFunction();
@@ -25,7 +22,6 @@
 								var user = response.data;
 								Session.setUser(user);
 							}
-
 						} else {
 							AlertsService.showAlert(response.msg, "");
 						}

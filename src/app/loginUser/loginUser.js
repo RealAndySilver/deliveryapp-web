@@ -14,31 +14,32 @@
 					model.MY_FORM=$scope.loginForm;
 					model.autoLogin();
 				}
-				
 			});
 			
 			model.recoverAlert = function() {
-				$mdDialog.show(
+				$scope.BootstrapModal.show("Te hemos enviado un correo electrónico para que puedas recuperar tu contraseña.");
+				/*$mdDialog.show(
 					$mdDialog.alert()
 					.content('Te hemos enviado un correo electrónico para que puedas recuperar tu contraseña.')
 					.ariaLabel('recover password')
 					.ok('Aceptar')
 					.disableParentScroll(false)
-				);
+				);*/
 			};
 
 			model.loginUser = function() {
-
 				if (model.MY_FORM.$valid) {
-					AlertsService.loading();
+					//AlertsService.loading();
 					LoginUserService.loginUser(model.user.email, model.user.password, function(response) {
 						console.log(response);
 						var user = response.data;
 						console.log(user);
-						AlertsService.cancel();
+						//AlertsService.cancel();
 
 						if (!response.response) {
-							AlertsService.showAlert(response.msg, "");
+							//AlertsService.showAlert(response.msg, "");
+							console.log("sdf");
+							$scope.BootstrapModal.show(" El usuario y/o contraseña son incorrectos"); 
 						} else if (response.data) {
 							//INFO PARA EL HEADER
 							var headerInfo={"email":model.user.email,"password": btoa(model.user.password)};
@@ -62,15 +63,17 @@
 							User = user;
 							//console.log(User);
 							Session.setUser(User);
-							$state.go('profile');
+							$state.go('requestMessenger');
 						} else {
-							AlertsService.showAlert('Usuario o contraseña incorrectos.', '');
+							//AlertsService.showAlert('Usuario o contraseña incorrectos.', '');
+							$scope.BootstrapModal.show("Usuario o contraseña incorrectos");
 						}
 
 
 					});
 				} else {
-					AlertsService.showSimpleAlert("Completa los campos de email y contraseña");
+					//AlertsService.showSimpleAlert("Completa los campos de email y contraseña");
+					$scope.BootstrapModal.show("Completa los campos de email y contraseña");
 				}
 
 			};
@@ -102,9 +105,6 @@
 					model.loginUser();
 				} 
 			};
-			
-
-
 
 		}
 	}]);

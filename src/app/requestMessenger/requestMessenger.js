@@ -55,14 +55,15 @@
 
 			model.roundtrip = false;
 
-			$scope.showAlert = function() {
-				$mdDialog.show(
+			$scope.showAlert = function() { 
+				$scope.BootstrapModal.show("Recuerda activar el permiso para utilizar tu ubicación en la barra superior.");
+				/*$mdDialog.show(
 					$mdDialog.alert()
 					.content('Recuerda activar el permiso para utilizar tu ubicación en la barra superior.')
 					.ariaLabel('Allow user geolocation')
 					.ok('Aceptar')
 					.disableParentScroll(false)
-				);
+				);*/
 			};
 			$scope.showAlert();
 
