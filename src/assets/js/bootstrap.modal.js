@@ -9,8 +9,6 @@
                   lg: "modal-lg"
                 };
 
-            console.log(attrs);
-
             scope.BootstrapModal = {
                 config: {
                     title: attrs.title,
@@ -37,7 +35,6 @@
                     }
                 },
                 show: function(content, title){
-                    console.log(content);
                     if(title){
                         this.config.title = title;
                     }

@@ -1343,13 +1343,16 @@ button:focus, a:focus { outline:0 !important;}
 .navbar .brand img{
 	height: 40px;
 }
+
 .navbar-default{
 	background-color:#EF3F3E;
 }
+
 .navbar-right .open>a, .navbar-right .open>a:focus, .navbar-right .open>a:hover {
     background-color: transparent;
     color: #F4A823;
 }
+
 .navbar-right li a.dropdown-toggle:hover,
 .navbar-right li a.dropdown-toggle:focus,
 .navbar-right li a.dropdown-toggle:active{
@@ -1369,6 +1372,9 @@ button:focus, a:focus { outline:0 !important;}
     color: #fff;
     background-color: #F3A223;
     border-color: #255625;
+}
+.page-header{
+	margin: 0 0 13px 0;
 }
 
 

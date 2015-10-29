@@ -5,29 +5,30 @@
 </div>
 <div class="container-fluid">
 	<div class="row">
-		
+		<form name="requestMessengerForm" novalidate>
 			<div class="col-lg-6">
-				<form name="requestMessengerForm" novalidate>
+				<h4>Completa los campos</h4>
 				<div class="form-group input-group">
 	                <label class="input-group-addon">Nombre de Servicio</label>
 	                <input type="text" class="form-control">
 	            </div>
-	            <div class="form-group input-group">
-	                <label class="input-group-addon">Dirección de Recogida</label>
-	                <input type="text" class="form-control">
-	            </div>
-	            <div class="form-group input-group">
-	                <label class="input-group-addon">Dirección de Entrega</label>
-	                <input type="text" class="form-control">
-	            </div>
-	            </form>
 			</div>
 			<div class="col-lg-6">
-
+				<h4>Direcciones</h4>
+				<div class="form-group input-group">
+	                <label class="input-group-addon" for="pickup">Recogida</label>
+	                <input type="text" class="form-control" id="pickup" ng-model="pickup_address" required>
+	                <label class="input-group-addon" for="delivery">Entrega</label>
+	                <input type="text" class="form-control" id="delivery" ng-model="delivery_address" required>
+	            </div>
+	            <div>
+	            	<map center="-34.397, 150.644" zoom="8"></map>
+	            </div>
 			</div>
+		</form>
 	</div>
 </div>
-
+<!--
 <div layout="column" layout-align="center center" class="solo-box">
 	<md-card class="big-form">
 		<div>
@@ -108,4 +109,4 @@
 	    </div>
 	    <md-divider></md-divider>
 	</md-card>
-</div>
+</div>-->
