@@ -2,17 +2,28 @@
     <div class="content clearfix">
         <form name="loginForm" ng-submit="model.loginUser(loginForm)" novalidate>
             <h1>Iniciar Sesión</h1>                        
-            <div class="login-fields">
-                <p>Por favor digita tus datos de usuario</p>
-                <div class="field">
-                    <p ng-show="loginForm.email.$invalid && !loginForm.email.$pristine" class="help-block">Ingresa un email valido.</p>
-                    <label for="username">Username</label>
-                    <input type="text" id="username" name="email" ng-model="model.user.email" ng-pattern="/^[A-Za-z0-9._%+]+@[A-Za-z0-9]+\.[A-Za-z]{1,5}$/" placeholder="Correo Electrónico" class="login username-field" required/>
-                </div>
-                <div class="field">
-                    <label for="password">Password:</label>
-                    <input type="password" id="password" name="password" ng-model="model.user.password" placeholder="Contraseña" class="login password-field" required/>
-                </div>
+            <div class="row">
+            	<div class="col-sm-12">
+	                <p>Por favor digita tus datos de usuario</p>
+	                <p ng-show="loginForm.email.$invalid && !loginForm.email.$pristine" class="help-block">Ingresa un email valido.</p>
+	                <div class="form-group input-group" for="username" >
+	                    <label class="input-group-addon"><i class="fa icon-user fa-fw"></i></label>
+	                    <input type="text" id="username" class="form-control" name="email" ng-model="model.user.email" ng-pattern="/^[A-Za-z0-9._%+]+@[A-Za-z0-9]+\.[A-Za-z]{1,5}$/" placeholder="Correo Electrónico" class="login username-field" required/>
+	                </div>
+	                <div class="form-group input-group" for="password">
+	                    <label class="input-group-addon"><i class="fa icon-key fa-fw"></i></label>
+	                    <input type="password" id="password" class="form-control" name="password" ng-model="model.user.password" placeholder="Contraseña" class="login password-field" required/>
+	                </div>
+	                <!--<div class="field">
+	                    <p ng-show="loginForm.email.$invalid && !loginForm.email.$pristine" class="help-block">Ingresa un email valido.</p>
+	                    <label for="username">Username</label>
+	                    <input type="text" id="username" name="email" ng-model="model.user.email" ng-pattern="/^[A-Za-z0-9._%+]+@[A-Za-z0-9]+\.[A-Za-z]{1,5}$/" placeholder="Correo Electrónico" class="login username-field" required/>
+	                </div>
+	                <div class="field">
+	                    <label for="password">Password:</label>
+	                    <input type="password" id="password" name="password" ng-model="model.user.password" placeholder="Contraseña" class="login password-field" required/>
+	                </div>-->
+            	</div>
             </div>
             <div class="login-actions">
                 <span class="login-checkbox">
