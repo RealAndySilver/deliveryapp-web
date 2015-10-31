@@ -1,25 +1,29 @@
-<div layout="column" layout-align="center center" class="solo-box">
-	<md-card class="big-form">
-		<div>
-			<md-toolbar>
-			<div class="md-toolbar-tools" layout-align="center center">
-				<span class="md-flex">Mi perfil</span>
-			</div>
-			</md-toolbar>
-		</div>
-		<div id="infoContainer">
-			<form name="profileForm" novalidate>
-				<label class="titleField">Nombre:</label>
-				<md-input-container flex>  <input class="textField" name="newName" ng-model="model.User.name" required>  </md-input-container>
-				<label class="titleField">Apellido:</label>
-				<md-input-container flex>  <input class="textField" name="newLastname" ng-model="model.User.lastname"  required>  </md-input-container>
-				<label class="titleField">Número Celular:</label>
-				<md-input-container flex>  <input class="textField" name="newMobilephone" ng-model="model.User.mobilephone" required>  </md-input-container>
-				
-				<md-button class="md-raised primary-btn" ng-click="model.updateProfile()"  >Actualizar mis datos</md-button>
-				<br/>
-				<md-button class="md-raised primary-btn" ng-click= "model.goChangePassword()" >Cambiar Contraseña</md-button>
-			</form>
-		</div>
-	</md-card>
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">Mi Perfil</h1>
+    </div>
 </div>
+<div class="row">
+    <div class="col-lg-12">
+        <form role="form" name="profileForm" novalidate>
+            <div class="form-group input-group">
+                <span class="input-group-addon" for="name">Nombre</span>
+                <input type="text" id="name" class="form-control" ng-model="model.User.name" required>
+            </div>
+            <div class="form-group input-group">
+                <span class="input-group-addon" for="lastname">Apellido</span>
+                <input type="text" id="lastname" class="form-control" ng-model="model.User.lastname" required>
+            </div>
+            <div class="form-group input-group">
+                <span class="input-group-addon" for="celphone">Número Celular</span>
+                <input type="text" id="celphone" class="form-control" ng-model="model.User.mobilephone" required>
+            </div>
+            <div class="form-group">
+                <button type="button" class="btn btn-success" ng-click="model.updateProfile()">Actualizar mis datos</button>
+                <button type="button" class="btn btn-default" ng-click="model.goChangePassword()" >Cambiar Contraseña</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+

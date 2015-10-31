@@ -1,95 +1,136 @@
 <div class="row">
     <div class="col-lg-12">
-    	<div class="panel panel-default">
-            <div class="panel-heading text-center">
-            	<h2>
-            		Detalles del servicio 
-            		<button id="reloadButton" class="btn btn-success btn-sm" ng-click="model.reload()">
-	            		<i class="fa fa-refresh fa-lg"></i>
-				    </button>
-            	</h2>
-			 </div>
-            <div class="panel-body">
-            	<div class="container-fluid">
-	            	<div class="row">
-	            		<div class="col-lg-2">
-	            			<img id="profilePicMessenger" class="img-thumbnail" ng-src="{{model.deliveryItemInfo.messenger_info.url}}">
-	            		</div>
-	            		<div class="col-lg-5">
-	            			<div class="list-group">
-	                            <span class="list-group-item">
-	                                <i class="fa fa-gift fa-fw"></i> Nombre de Servicio
-	                                <span class="pull-right text-muted">
-	                            		<em>{{model.deliveryItemInfo.item_name}}</em>
-	                                </span>
-	                            </span>
-	                            <span class="list-group-item">
-	                                <i class="fa fa-map-marker fa-fw"></i> Lugar de Recogida
-	                                <span class="pull-right text-muted">
-	                            		<em>{{model.deliveryItemInfo.pickup_object.address}}</em>
-	                                </span>
-	                            </span>
-	                            <span class="list-group-item">
-	                                <i class="fa fa-map-marker fa-fw"></i> Lugar de Entrega
-	                                <span class="pull-right text-muted">
-	                            		<em>{{model.deliveryItemInfo.delivery_object.address}}</em>
-	                                </span>
-	                            </span>
-	                            <span class="list-group-item">
-	                                <i class="fa fa-calendar fa-fw"></i> Fecha de Recogida
-	                                <span class="pull-right text-muted">
-	                            		<em>{{model.pickupDate | date:'dd/MM/yyyy hh:mma'}}</em>
-	                                </span>
-	                            </span>
-	                            <span class="list-group-item">
-	                                <i class="fa fa-ticket fa-fw"></i> Valor Aproximado del Servicio
-	                                <span class="pull-right text-muted">
-	                            		<em>{{model.deliveryItemInfo.price_to_pay}}</em>
-	                                </span>
-	                            </span>
-	                        </div>
-	            		</div>
-	            		<div class="col-lg-5">
-	            			<div class="list-group">
-	                            <span class="list-group-item">
-	                                <i class="fa fa-gift fa-fw"></i> Conductor
-	                                <span class="pull-right text-muted">
-	                            		<em>{{model.deliveryItemInfo.messenger_info.name}} {{model.deliveryItemInfo.messenger_info.lastname}}</em>
-	                                </span>
-	                            </span>
-	                            <span class="list-group-item">
-	                                <i class="fa fa-map-marker fa-fw"></i> Teléfono
-	                                <span class="pull-right text-muted">
-	                            		<em>{{model.deliveryItemInfo.messenger_info.mobilephone}}</em>
-	                                </span>
-	                            </span>
-	                            <span class="list-group-item">
-	                                <i class="fa fa-map-marker fa-fw"></i> ETA
-	                                <span class="pull-right text-muted">
-	                            		<em>{{model.leftTime}} min</em>
-	                                </span>
-	                            </span>
-	                            <span class="list-group-item">
-	                                <i class="fa fa-calendar fa-fw"></i> Placas
-	                                <span class="pull-right text-muted">
-	                            		<em>{{model.deliveryItemInfo.messenger_info.plate}}</em>
-	                                </span>
-	                            </span>
-	                            <span class="list-group-item">
-	                                <i class="fa fa-ticket fa-fw"></i> Código
-	                                <span class="pull-right text-muted">
-	                            		<em>{{model.code}}</em>
-	                                </span>
-	                            </span>
-	                        </div>
-	            		</div>
-	            	</div>
-	            </div>
-            </div>
-        </div>
+        <h1 class="page-header">
+        	Detalles del servicio 
+    		<button id="reloadButton" class="btn btn-success btn-sm" ng-click="model.reload()">
+        		<i class="fa fa-refresh fa-lg"></i>
+		    </button>
+        </h1>
     </div>
 </div>
-<div layout="column" layout-align="center center" class="solo-box">
+<div class="row">
+    <div class="col-lg-12">
+		<div class="row">
+    		<div class="col-lg-2">
+    			<div class="panel panel-default">
+					<div class="panel-body">
+    					<img id="profilePicMessenger" class="img-thumbnail" ng-src="{{model.deliveryItemInfo.messenger_info.url}}">
+            		</div>
+            	</div>
+    		</div>
+    		<div class="col-lg-10">
+    			<div class="row">
+    				<div class="col-lg-6">
+            			<div class="panel panel-default" ng-show="item.status != 'available'">
+            				<div class="panel-heading text-center"><h5>Datos del Servicio</h5></div>
+							<div class="panel-body">
+		            			<div class="list-group">
+		                            <span class="list-group-item">
+		                                <i class="fa fa-gift fa-fw"></i> Nombre
+		                                <span class="pull-right text-muted">
+		                            		<em>{{model.deliveryItemInfo.item_name}}</em>
+		                                </span>
+		                            </span>
+		                            <span class="list-group-item">
+		                                <i class="fa fa-map-marker fa-fw"></i> Lugar de Recogida
+		                                <span class="pull-right text-muted">
+		                            		<em>{{model.deliveryItemInfo.pickup_object.address}}</em>
+		                                </span>
+		                            </span>
+		                            <span class="list-group-item">
+		                                <i class="fa fa-map-marker fa-fw"></i> Lugar de Entrega
+		                                <span class="pull-right text-muted">
+		                            		<em>{{model.deliveryItemInfo.delivery_object.address}}</em>
+		                                </span>
+		                            </span>
+		                            <span class="list-group-item">
+		                                <i class="fa fa-calendar fa-fw"></i> Fecha de Recogida
+		                                <span class="pull-right text-muted">
+		                            		<em>{{model.pickupDate | date:'dd/MM/yyyy hh:mma'}}</em>
+		                                </span>
+		                            </span>
+		                            <span class="list-group-item">
+		                                <i class="fa fa-ticket fa-fw"></i> Valor Aproximado del Servicio
+		                                <span class="pull-right text-muted">
+		                            		<em>{{model.deliveryItemInfo.price_to_pay}}</em>
+		                                </span>
+		                            </span>
+		                        </div>
+	                    	</div>
+	                    </div>
+            		</div>
+            		<div class="col-lg-6">
+            			<div class="panel panel-default" ng-show="item.status != 'available'">
+            				<div class="panel-heading text-center"><h5>Datos del Mensajero</h5></div>
+							<div class="panel-body">
+		            			<div class="list-group">
+		                            <span class="list-group-item">
+		                                <i class="fa fa-user fa-fw"></i> Nombre
+		                                <span class="pull-right text-muted">
+		                            		<em>{{model.deliveryItemInfo.messenger_info.name}} {{model.deliveryItemInfo.messenger_info.lastname}}</em>
+		                                </span>
+		                            </span>
+		                            <span class="list-group-item">
+		                                <i class="fa fa-phone fa-fw"></i> Teléfono
+		                                <span class="pull-right text-muted">
+		                            		<em>{{model.deliveryItemInfo.messenger_info.mobilephone}}</em>
+		                                </span>
+		                            </span>
+		                            <span class="list-group-item">
+		                                <i class="fa fa-clock-o fa-fw"></i> ETA
+		                                <span class="pull-right text-muted">
+		                            		<em>{{model.leftTime}} min</em>
+		                                </span>
+		                            </span>
+		                            <span class="list-group-item">
+		                                <i class="fa fa-keyboard-o fa-fw"></i> Placas
+		                                <span class="pull-right text-muted">
+		                            		<em>{{model.deliveryItemInfo.messenger_info.plate}}</em>
+		                                </span>
+		                            </span>
+		                            <span class="list-group-item">
+		                                <i class="fa fa-barcode fa-fw"></i> Código
+		                                <span class="pull-right text-muted">
+		                            		<em>{{model.code}}</em>
+		                                </span>
+		                            </span>
+		                        </div>
+		                    </div>
+		                </div>
+            		</div>
+    			</div>
+    			<div class="row">
+            		<div class="col-sm-12">
+            			<div class="panel panel-default" ng-show="item.status != 'available'">
+            				<div class="panel-heading text-center"><h5>Estado actual del Servicio</h5></div>
+							<div class="panel-body">
+								<div class="container-fluid">
+									<div class="row">
+										<div class="col-sm-6">
+											<div class="alert alert-info">
+				                                <h4 ng-model="model.serviceStatus" class="alert-link">{{model.serviceStatus}}</h4>
+				                                <span ng-show="model.setAvailableButtonBool"><b>Razón</b>: {{model.deliveryItemInfo.abort_reason}}</span>
+				                            </div>
+										</div>
+										<div class="col-sm-6">
+											<div class="form-group">
+												<button id="blueButton" class="btn btn-success btn-md btn-block" ng-show="model.setAvailableButtonBool" ng-click="model.restartService()">Reactivar Servicio</button>
+											</div>
+											<div class="form-group">
+												<button id="redButton" class="btn btn-danger btn-md btn-block" ng-click="model.cancelService()" ng-show="model.showCancelButtonBool">Cancelar Servicio</button>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+            		</div>
+            	</div>
+    		</div>
+    	</div>
+    </div>
+</div>
+<!--<div layout="column" layout-align="center center" class="solo-box">
 	<md-card class="big-form">
 		<div>
 			<md-toolbar>
@@ -187,3 +228,4 @@
 		<md-button id="redButton" ng-click="model.cancelService()" ng-show="model.showCancelButtonBool">Cancelar Servicio</md-button>
 	</md-card>
 	<div>
+		-->

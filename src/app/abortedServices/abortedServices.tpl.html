@@ -4,36 +4,30 @@
     </div>
 </div>
 <div class="row">
-	<div class="col-lg-12">
-		<div class="panel panel-yellow">
+	<div class="col-sm-6" ng-repeat="item in model.deliveryItems">
+		<div class="panel panel-default" ng-show="item.status != 'available'">
 			<div class="panel-body">
-				<div class="col-sm-6" ng-repeat="item in model.deliveryItems">
-					<div class="panel panel-default" ng-show="item.status != 'available'">
-						<div class="panel-body">
-							<div class="list-group">
-                                <span class="list-group-item">
-                                    <i class="fa fa-gift fa-fw"></i> Pedido
-                                    <span class="pull-right text-muted">
-                                		<em>{{item.item_name}}</em>
-                                    </span>
-                                </span>
-                                <span class="list-group-item">
-                                    <i class="fa fa-map-marker fa-fw"></i> Dirección de Recogida
-                                    <span class="pull-right text-muted">
-                                		<em>{{item.pickup_object.address}}</em>
-                                    </span>
-                                </span>
-                                <span class="list-group-item">
-                                    <i class="fa fa-map-marker fa-fw"></i> Dirección de Entrega
-                                    <span class="pull-right text-muted">
-                                		<em>{{item.delivery_object.address}}</em>
-                                    </span>
-                                </span>
-                            </div>
-							<button type="button" class="btn btn-success btn-sm pull-right" ng-click="model.goToServiceDetails(item._id)">Ver Detalles</button>
-						</div>
-					</div>
-				</div>
+				<div class="list-group">
+                    <span class="list-group-item">
+                        <i class="fa fa-gift fa-fw"></i> Pedido
+                        <span class="pull-right text-muted">
+                    		<em>{{item.item_name}}</em>
+                        </span>
+                    </span>
+                    <span class="list-group-item">
+                        <i class="fa fa-map-marker fa-fw"></i> Dirección de Recogida
+                        <span class="pull-right text-muted">
+                    		<em>{{item.pickup_object.address}}</em>
+                        </span>
+                    </span>
+                    <span class="list-group-item">
+                        <i class="fa fa-map-marker fa-fw"></i> Dirección de Entrega
+                        <span class="pull-right text-muted">
+                    		<em>{{item.delivery_object.address}}</em>
+                        </span>
+                    </span>
+                </div>
+				<button type="button" class="btn btn-success btn-sm pull-right" ng-click="model.goToServiceDetails(item._id)">Ver Detalles</button>
 			</div>
 		</div>
 	</div>
