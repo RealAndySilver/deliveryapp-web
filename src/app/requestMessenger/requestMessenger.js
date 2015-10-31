@@ -182,10 +182,12 @@
 					model.delivery.user_id = $scope.currentUser._id;
 					console.log('objeto servicio ', model.delivery);
 
-					AlertsService.loading();
+					//AlertsService.loading(true);
+					$scope.BootstrapLoading.show(true);
 					RequestMessengerService.requestMessenger(model.delivery, function(response) {
-						console.log(response);
-						AlertsService.cancel();
+						//console.log(response);
+						//AlertsService.loading(false);
+						$scope.BootstrapLoading.show(false);
 						var pickupItem = response.data.pickup_object;
 						var deliveryItem = response.data.delivery_object;
 						if (response.response) {
@@ -202,12 +204,14 @@
 
 
 						} else {
-							AlertsService.showAlert(response.msg, "");
+							$scope.BootstrapModal.show(response.msg);
+							//AlertsService.showAlert(response.msg, "");
 						}
 
 					});
 				} else {
-					AlertsService.showSimpleAlert("Completa todos los campos por favor");
+					$scope.BootstrapModal.show("Completa todos los campos por favor");
+					//AlertsService.showSimpleAlert("Completa todos los campos por favor");
 				}
 
 

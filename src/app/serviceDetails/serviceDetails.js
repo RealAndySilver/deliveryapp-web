@@ -12,12 +12,11 @@
 
 		model.deliveryItemInfo = {};
 
-
 		init();
 
 		function init() {
 
-			$scope.$on("$stateChangeStart",function(){
+			$scope.$on("$stateChangeStart",function(){ 
 				clearInterval(id);
 			});
 			id = setInterval(serviceDetails, 5000);
@@ -26,13 +25,15 @@
 
 			function serviceDetails() {
 				if(model.messengerBool){
-					AlertsService.loading();
+					//AlertsService.loading();
+					$scope.BootstrapLoading.show(true);
 				}
 				
 				DetailsDeliveryItemService.serviceDetails($stateParams.id, function(response) {
 					//console.log(response);
 					if(model.messengerBool){
-						AlertsService.cancel();
+						//AlertsService.cancel();
+						$scope.BootstrapLoading.show(false);
 					}
 					
 
@@ -115,16 +116,20 @@
 					.cancel('Volver');
 				//.targetEvent(ev);
 				$mdDialog.show(confirm).then(function() {
-					AlertsService.loading();
+					//AlertsService.loading();
+					$scope.BootstrapLoading.show(true);
 					model.deleteDeliveryItem = function() {
 						DetailsDeliveryItemService.deleteDeliveryItem(model.deliveryItemInfo._id, model.deliveryItemInfo.user_id, function(response) {
 
 							console.log(response);
 							if (response.response) {
-								AlertsService.cancel();
-								AlertsService.showAlert("El servicio fue eliminado correctamente", "goProfile");
+								//AlertsService.cancel();
+								$scope.BootstrapLoading.show(false);
+								$scope.BootstrapModal.show("El servicio fue eliminado correctamente");
+								//AlertsService.showAlert(, "goProfile");
 							} else {
-								AlertsService.showAlert(response.msg, "");
+								//AlertsService.showAlert(response.msg, "");
+								$scope.BootstrapModal.show(response.msg);
 							}
 						});
 					};
@@ -143,16 +148,20 @@
 					.cancel('Volver');
 				//.targetEvent(ev);
 				$mdDialog.show(confirm).then(function() {
-					AlertsService.loading();
+					//AlertsService.loading();
+					$scope.BootstrapLoading.show(true);
 					model.restartDeliveryItem = function() {
 
 						DetailsDeliveryItemService.restartDeliveryItem(model.deliveryItemInfo._id, model.deliveryItemInfo.user_id, function(response) {
 							console.log(response);
 							if (response.response) {
-								AlertsService.cancel();
-								AlertsService.showAlert("El servicio está disponible de nuevo", "goAborted");
+								//AlertsService.cancel();
+								$scope.BootstrapLoading.show(false);
+								$scope.BootstrapModal("El servicio está disponible de nuevo");
+								//AlertsService.showAlert(, "goAborted");
 							} else {
-								AlertsService.showAlert(response.msg, "");
+								$scope.BootstrapModal(response.msg);
+								//AlertsService.showAlert(response.msg, "");
 							}
 						});
 					};

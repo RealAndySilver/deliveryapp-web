@@ -1,3 +1,94 @@
+<div class="row">
+    <div class="col-lg-12">
+    	<div class="panel panel-default">
+            <div class="panel-heading text-center">
+            	<h2>
+            		Detalles del servicio 
+            		<button id="reloadButton" class="btn btn-success btn-sm" ng-click="model.reload()">
+	            		<i class="fa fa-refresh fa-lg"></i>
+				    </button>
+            	</h2>
+			 </div>
+            <div class="panel-body">
+            	<div class="container-fluid">
+	            	<div class="row">
+	            		<div class="col-lg-2">
+	            			<img id="profilePicMessenger" class="img-thumbnail" ng-src="{{model.deliveryItemInfo.messenger_info.url}}">
+	            		</div>
+	            		<div class="col-lg-5">
+	            			<div class="list-group">
+	                            <span class="list-group-item">
+	                                <i class="fa fa-gift fa-fw"></i> Nombre de Servicio
+	                                <span class="pull-right text-muted">
+	                            		<em>{{model.deliveryItemInfo.item_name}}</em>
+	                                </span>
+	                            </span>
+	                            <span class="list-group-item">
+	                                <i class="fa fa-map-marker fa-fw"></i> Lugar de Recogida
+	                                <span class="pull-right text-muted">
+	                            		<em>{{model.deliveryItemInfo.pickup_object.address}}</em>
+	                                </span>
+	                            </span>
+	                            <span class="list-group-item">
+	                                <i class="fa fa-map-marker fa-fw"></i> Lugar de Entrega
+	                                <span class="pull-right text-muted">
+	                            		<em>{{model.deliveryItemInfo.delivery_object.address}}</em>
+	                                </span>
+	                            </span>
+	                            <span class="list-group-item">
+	                                <i class="fa fa-calendar fa-fw"></i> Fecha de Recogida
+	                                <span class="pull-right text-muted">
+	                            		<em>{{model.pickupDate | date:'dd/MM/yyyy hh:mma'}}</em>
+	                                </span>
+	                            </span>
+	                            <span class="list-group-item">
+	                                <i class="fa fa-ticket fa-fw"></i> Valor Aproximado del Servicio
+	                                <span class="pull-right text-muted">
+	                            		<em>{{model.deliveryItemInfo.price_to_pay}}</em>
+	                                </span>
+	                            </span>
+	                        </div>
+	            		</div>
+	            		<div class="col-lg-5">
+	            			<div class="list-group">
+	                            <span class="list-group-item">
+	                                <i class="fa fa-gift fa-fw"></i> Conductor
+	                                <span class="pull-right text-muted">
+	                            		<em>{{model.deliveryItemInfo.messenger_info.name}} {{model.deliveryItemInfo.messenger_info.lastname}}</em>
+	                                </span>
+	                            </span>
+	                            <span class="list-group-item">
+	                                <i class="fa fa-map-marker fa-fw"></i> Teléfono
+	                                <span class="pull-right text-muted">
+	                            		<em>{{model.deliveryItemInfo.messenger_info.mobilephone}}</em>
+	                                </span>
+	                            </span>
+	                            <span class="list-group-item">
+	                                <i class="fa fa-map-marker fa-fw"></i> ETA
+	                                <span class="pull-right text-muted">
+	                            		<em>{{model.leftTime}} min</em>
+	                                </span>
+	                            </span>
+	                            <span class="list-group-item">
+	                                <i class="fa fa-calendar fa-fw"></i> Placas
+	                                <span class="pull-right text-muted">
+	                            		<em>{{model.deliveryItemInfo.messenger_info.plate}}</em>
+	                                </span>
+	                            </span>
+	                            <span class="list-group-item">
+	                                <i class="fa fa-ticket fa-fw"></i> Código
+	                                <span class="pull-right text-muted">
+	                            		<em>{{model.code}}</em>
+	                                </span>
+	                            </span>
+	                        </div>
+	            		</div>
+	            	</div>
+	            </div>
+            </div>
+        </div>
+    </div>
+</div>
 <div layout="column" layout-align="center center" class="solo-box">
 	<md-card class="big-form">
 		<div>
@@ -6,7 +97,7 @@
 			    	<span class="md-flex" id="titleServiceDetails">Detalles del Servicio</span>
 			    	
 			    	<md-button id="reloadButton" ng-click="model.reload()">
-			    		<i class="fa fa-refresh  fa-lg"></i>
+			    		<i class="fa fa-refresh fa-lg"></i>
 			    	</md-button>
 			    </div>
 			</md-toolbar>

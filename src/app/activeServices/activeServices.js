@@ -1,6 +1,6 @@
 (function(module) {
 
-    module.controller('ActiveServicesController', ["Session", "ActiveServicesService", "$state", "$mdDialog",'AlertsService', "LogOut",function(Session, ActiveServicesService, $state, $mdDialog,AlertsService,LogOut) {
+    module.controller('ActiveServicesController', ["Session", "ActiveServicesService", "$state", "$mdDialog",'AlertsService', "LogOut", "$scope", function(Session, ActiveServicesService, $state, $mdDialog,AlertsService,LogOut, $scope) {
         var model = this;
         model.User = (Session.getUser());
 
@@ -9,7 +9,7 @@
         function init() {
 
             model.getActiveServices = function() {
-                AlertsService.loading();
+                $scope.BootstrapLoading.show(true);
                 ActiveServicesService.getActiveServices(model.User["_id"], function(response) {
                     model.deliveryItems = response.data;
                     console.log("RESPONSE",response);
@@ -17,17 +17,17 @@
 
 
                         console.log("LENGTH",model.deliveryItems.length+ "/"+typeof(model.deliveryItems));
-                    AlertsService.cancel();
-/*
-                    if(!response.data){
+                        $scope.BootstrapLoading.show(false);
+                    /* if(!response.data){
                         AlertsService.showAlert(response.msg, "");
-                    }//else*/
+                    }//else */
                     if(typeof(model.deliveryItems)==="string"){
                         if (response.msg === "a1" || response.msg === "a2" || response.msg === "a3") {
                                 LogOut.logOutFunction();
                             } 
                     }else if(model.deliveryItems.length===0){
-                        AlertsService.showAlert("No tienes servicios Activos en este momento","");
+                        $scope.BootstrapModal.show("No tienes servicios Activos en este momento");
+                        //AlertsService.showAlert("No tienes servicios Activos en este momento","");
                     }
                 });
             };

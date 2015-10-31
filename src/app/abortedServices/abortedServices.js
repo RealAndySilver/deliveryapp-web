@@ -1,6 +1,6 @@
 (function(module) {
 
-	module.controller('AbortedServicesController', ["AbortedServicesService", "Session", "$state", "$mdDialog","AlertsService", "LogOut",function(AbortedServicesService, Session, $state, $mdDialog,AlertsService,LogOut) {
+	module.controller('AbortedServicesController', ["AbortedServicesService", "Session", "$state", "$mdDialog","AlertsService", "LogOut", "$scope",function(AbortedServicesService, Session, $state, $mdDialog,AlertsService,LogOut, $scope){
 		var model = this;
 		model.User = (Session.getUser());
 
@@ -10,12 +10,12 @@
 		function init() {
 			model.getAbortedServices = function() {
 
-				AlertsService.loading();
+				$scope.BootstrapLoading.show(true);
 
 				AbortedServicesService.getAbortedServices(model.User["_id"], function(response) {
 					model.deliveryItems = response.data;
 					console.log(response.data);
-					AlertsService.cancel();
+					$scope.BootstrapLoading.show(false);
 					/*if(!response.data){
 						AlertsService.showAlert(response.msg, "");
 					}*/
@@ -24,7 +24,8 @@
 							LogOut.logOutFunction();
 						}
 					}else if(model.deliveryItems.length===0){
-						AlertsService.showAlert("No se encontraron servicios Abortados","");
+						$scope.BootstrapModal.show("No se encontraron servicios Abortados");
+						//AlertsService.showAlert("No se encontraron servicios Abortados","");
 					}
 				});
 			};
