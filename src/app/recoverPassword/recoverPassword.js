@@ -14,20 +14,25 @@
 			model.recoverPass = function() {
 
 				if ($scope.recoverForm.$valid) {
-					AlertsService.loading();
+					//AlertsService.loading();
+					$scope.BootstrapLoading.show(true);
 					RecoverPassword.recoverPassword(model.email, function(response) {
 						console.log(response);
-						AlertsService.cancel();
+						//AlertsService.cancel();
+						$scope.BootstrapLoading.show(false);
 						if (response.response) {
-							AlertsService.showAlert("Se ha enviado un email para iniciar con el proceso de recuperar contraseña", "goProfile");
+							//AlertsService.showAlert("Se ha enviado un email para iniciar con el proceso de recuperar contraseña", "goProfile");
+							$scope.BootstrapModal.show("Se ha enviado un email para iniciar con el proceso de recuperar contraseña");
 						} else {
-							AlertsService.showAlert(response.msg, "");
+							$scope.BootstrapModal.show(response.msg);
+							//AlertsService.showAlert(response.msg, ""); 
 						}
 
 					});
 
 				} else {
-					AlertsService.showSimpleAlert("Completa todos los campos por favor");
+					$scope.BootstrapModal.show("Completa todos los campos por favor");
+					//AlertsService.showSimpleAlert("Completa todos los campos por favor");
 				}
 
 			};
@@ -56,17 +61,21 @@
 						proceed = true;
 					} else {
 						proceed = false;
-						AlertsService.showAlert("Las contraseñas no coinciden", "");
+						//AlertsService.showAlert("Las contraseñas no coinciden", "");
+						$scope.BootstrapModal.show("Las contraseñas no coinciden");
 					}
 
 					if (proceed === true) {
-						AlertsService.loading();
+						//AlertsService.loading();
+						$scope.BootstrapLoading.show(true);
 						console.log(model.repeatPassword,"TOKEN",$stateParams.token);
 						ChangePass.changePass(model.repeatPassword,$stateParams.token, function(response) {
 							console.log(response);
-							AlertsService.cancel();
+							//AlertsService.cancel();
+							$scope.BootstrapLoading.show(false);
 							if (response.response) {
-								AlertsService.showAlert("Se ha enviado un email para iniciar con el proceso de recuperar contraseña", "goProfile");
+								$scope.BootstrapModal.show("Se ha enviado un email para iniciar con el proceso de recuperar contraseña");
+								//AlertsService.showAlert("Se ha enviado un email para iniciar con el proceso de recuperar contraseña", "goProfile");
 							} else {
 								AlertsService.showAlert(response.msg, "");
 							}
@@ -75,7 +84,7 @@
 					}
 
 				} else {
-					AlertsService.showSimpleAlert("Completa todos los campos por favor");
+					$scope.BootstrapModal.show("Completa todos los campos por favor");
 				}
 
 			};

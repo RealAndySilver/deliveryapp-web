@@ -1378,3 +1378,51 @@ button:focus, a:focus { outline:0 !important;}
 }
 
 
+/*Map Data*/
+.map-container {
+	height: 100%;
+	widows: 100%;
+}
+.map-container>div {
+	height: 100%;
+	widows: 100%;
+}
+.map-container img {
+	width: 100%;
+	height: 100%;
+}
+#delmap {
+	height: 360px;
+}
+#delmarker {
+	-moz-user-select: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	-webkit-user-drag: none;
+	user-drag: none;
+	pointer-events: none;
+	height: 32px;
+	width: 20px;
+	position: absolute;
+	top: 50%;
+	margin-top: -16px;
+	left: 50%;
+	margin-left: -10px;
+}
+.md-raised.mapButtons {
+	display: inline-block !important;
+}
+.nav-tabs li.radio-content{ 
+	float: right;
+}
+.nav-tabs li.radio-content .radio-inline{
+	padding: 10px 15px;
+}
+.wait-msg{
+	font-size: 15px;
+}
+
+
+
+

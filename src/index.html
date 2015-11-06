@@ -70,71 +70,15 @@
         </div>
         
         <div class="container" ui-view="main"></div>
-        <bs-modal title="Ups" label-accept-button="Ok"></bs-modal>
+        <bs-modal title="Ups" label-accept-button="Ok" directory="assets/js/modal/templates"></bs-modal>
         <!-- compiled JavaScript --><% scripts.forEach( function ( file ) { %>
         <script type="text/javascript" src="<%= file %>"></script><% }); %>
         <script src="assets/js/bootstrap.js"></script>
-        <script src="assets/js/bootstrap.modal.js"></script>
+        <script src="assets/js/modal/bootstrap.modal.js"></script>
         <script src="assets/js/bootstrap.loading.js"></script>
         <script src="assets/js/ng-map.min.js"></script>
-        <script src="http://maps.google.com/maps/api/js"></script>
         <script src="https://rawgit.com/angular-ui/angular-google-maps/2.2.1/dist/angular-google-maps.min.js"></script>
-
-<!---***********************************************************-->
-            <!--
-            <header>
-            <md-toolbar layout="row" >
-                <h1>MensajeriApps</h1>
-            <span flex></span>
-
-            <div class="btns-container"  ng-show="app.getVisibility()">
-                
-                <md-button class="md-grid-item-content" ng-click="app.goProfile()">                
-                    <div class="md-grid-text"> Perfil </div>
-                </md-button>
-                
-                <md-button class="md-grid-item-content" ng-click="app.goRequestService()">                
-                    <div class="md-grid-text"> Solicitar </div>
-                </md-button>
-                
-                <md-button class="md-grid-item-content" ng-click="app.turnShowServices()">                
-                    <div class="md-grid-text"> Servicios </div>
-                </md-button>
-                -->
-                <!-- 
-                <md-button class="md-grid-item-content" ng-click="app.goTermsConditions()">                
-                <div class="md-grid-text"> TÉRMINOS Y CONDICIONES </div>
-                </md-button>
-                -->
-
-                <!--<md-button class="md-grid-item-content" ng-click="app.logOut()">                
-                    <div class="md-grid-text"> Salir</div>
-                </md-button>
-            </div>         
-            </md-toolbar>
-
-            <md-card id="serviceListContainer" ng-show="app.showServicesBool" ng-click="app.turnShowServices()">
-                <md-button class="md-grid-item-content" ng-click="app.goActiveServices()">                
-                <div class="md-grid-text"> Activos </div>
-                </md-button>
-                                  
-                <md-button class="md-grid-item-content" ng-click="app.goCompletedServices()">                
-                <div class="md-grid-text"> Terminados </div>
-                </md-button>
-                
-                <md-button class="md-grid-item-content" ng-click="app.goAbortedServices()">                
-                <div class="md-grid-text"> Abortados </div>
-                </md-button>
-            </md-card>  
-
-            
-        </header>-->
-        
-        <!--<% styles.forEach( function ( file ) { %><div style="color: red;"><%= file %></div><% }); %>
-        <% scripts.forEach( function ( file ) { %><div><%= file %></div><% }); %> <!---->
-        <!-- <footer class="container">
-        </footer> -->
-<!--********************************************************-->
+        <script src="http://maps.googleapis.com/maps/api/js?sensor=true"></script>
         
     </body>
 </html>

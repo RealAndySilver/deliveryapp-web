@@ -3,109 +3,120 @@
         <h1 class="page-header">Solicitar Servicio</h1>
     </div>
 </div>
-<div class="container-fluid">
-	<form name="requestMessengerForm" novalidate>
-		<div class="row">
-			<div class="col-lg-6">
-				<div class="row">
-					<div class="col-sm-12">
-						<div class="form-group input-group">
-			                <label class="input-group-addon" for="servName">Nombre de Servicio</label>
-			                <input type="text" class="form-control" name="servName" ng-model="model.delivery.item_name" required>
-			            </div>
-		        	</div>
+<form name="requestMessengerForm" novalidate>
+	<div class="row">
+		<div class="col-lg-6">
+			<div class="row">
+				<div class="col-sm-12">
+					<div class="form-group input-group">
+		                <label class="input-group-addon" for="servName">Nombre de Servicio</label>
+		                <input type="text" class="form-control" id="servName" name="servName" ng-model="model.delivery.item_name" required>
+		            </div>
 	        	</div>
-	            <div class="row">
-	            	<div class="col-sm-12">
-	            		<div class="panel panel-default">
-	                        <div class="panel-heading"><b>Direcciones</b></div>
-	                        <div class="panel-body">
-	                        	<div class="form-group input-group">
-					                <label class="input-group-addon" for="pickup">Recogida</label>
-					                <input type="text" class="form-control" id="pickup" ng-model="pickup_address" required>
-					                <label class="input-group-addon" for="delivery">Entrega</label>
-					                <input type="text" class="form-control" id="delivery" ng-model="delivery_address" required>
-					            </div>
-					            <div class="form-group input-group">
-					            	<label class="radio-inline">
-				                        <input type="checkbox" name="momentoRecogida" ng-model="model.roundtrip"> <i class="icon-large fa-exchange"></i> Ida y Vuelta
-				                    </label>
-					            </div>
-					            <div class="form-group">
-					            	<map center="Calle 52 #16-02, Bogotá, Colombia" zoom="8"></map>
-					            </div>
-			            		<div class="panel panel-default">
-			                        <div class="panel-heading"><button type="button" class="btn btn-default btn-sm btn-block" ng-click= "model.isShowing()">Historial de Direcciones</button></div>
-			                        <div class="panel-body" ng-show="model.showAddressBool">
-					            		<label class="titleField">Direcciones de Recogida</label>
-										<ul>
-											<li ng-repeat="pickup in model.pickUpAddressSave" ng-click="useAddress(pickup)"><a class=" textField" href>{{pickup.address}}</a></li>
-										</ul>
-										<label class="titleField" >Direcciones de Entrega</label>
-										<ul>
-											<li ng-repeat="delivery in model.deliveryAddressSave" ng-click="useAddress(delivery)"><a class=" textField" href>{{delivery.address}}</a></li>
-										</ul>
-									</div>
+        	</div>
+            <div class="row">
+            	<div class="col-sm-12">
+            		<div class="panel panel-default">
+                        <div class="panel-heading"><b>Direcciones</b></div>
+                        <div class="panel-body">
+                        	<div class="form-group input-group">
+				                <label class="input-group-addon" for="pickup">Recogida</label>
+				                <input type="text" class="form-control" id="pickup" ng-model="pickup_address" required>
+				                <span class="input-group-btn">
+                                    <button class="btn btn-default" type="button" ng-click="modal.getPositionBy(pickup_address)"><i class="fa fa-search"></i></button>
+                                </span>
+                          	</div>
+                          	<div class="form-group input-group">
+				                <label class="input-group-addon" for="delivery">Entrega</label>
+				                <input type="text" class="form-control" id="delivery" ng-model="delivery_address" required>
+				                <span class="input-group-btn">
+                                    <button class="btn btn-default" type="button" ng-click="modal.getPositionBy(delivery_address)"><i class="fa fa-search"></i></button>
+                                </span>
+				            </div>
+				            <div class="form-group">
+				            	<delivery-map class="map-container" callback="setLatLong(lat1, lon1,lat2, lon2,valueBool)" delivery="model.delivery" pickup="model.pickup"></delivery-map>
+				            </div>
+		            		<div class="panel panel-default">
+		                        <div class="panel-heading"><button type="button" class="btn btn-default btn-sm btn-block" ng-click="model.isShowing()">Historial de Direcciones</button></div>
+		                        <div class="panel-body" ng-show="model.showAddressBool">
+				            		<label class="titleField">Direcciones de Recogida</label>
+									<ul>
+										<li ng-repeat="pickup in model.pickUpAddressSave" ng-click="useAddress(pickup)"><a class=" textField" href>{{pickup.address}}</a></li>
+									</ul>
+									<label class="titleField" >Direcciones de Entrega</label>
+									<ul>
+										<li ng-repeat="delivery in model.deliveryAddressSave" ng-click="useAddress(delivery)"><a class=" textField" href>{{delivery.address}}</a></li>
+									</ul>
 								</div>
-	                        </div>
-	                    </div>
+							</div>
+                        </div>
                     </div>
-	            </div>
-			</div>
-			<div class="col-lg-6">
-				<div class="row">
-	            	<div class="col-sm-6">
-		            	<div class="panel panel-default">
-	                        <div class="panel-heading"><b>Momento de Recogida</b></div>
-	                        <div class="panel-body">
-	                        	<label class="radio-inline">
-			                        <input type="radio" name="momentoRecogida"><i class="icon-large fa-flash"></i> Inmediato
-			                    </label>
-			                    <label class="radio-inline">
-			                        <input type="radio" name="momentoRecogida"><i class="icon-large icon-time"></i> Durante el día
-			                    </label>
-	                        </div>
-	                    </div>
-	                </div>
-	                <div class="col-sm-6">
-	                    <div class="panel panel-default">
-	                        <div class="panel-heading"><b>Momento de Entrega</b></div>
-	                        <div class="panel-body">
-	                        	<label class="radio-inline">
-			                        <input type="radio" name="momentoEntrega"><i class="icon-large fa-flash"></i> Inmediato
-			                    </label>
-			                    <label class="radio-inline">
-			                        <input type="radio" name="momentoEntrega"><i class="icon-large icon-time"></i> Durante el día
-			                    </label>
-	                        </div>
-	                    </div>
-	                </div>
-	            </div>
-	            <div class="row">
-	            	<div class="col-sm-12">
-	            		<div class="form-group input-group">
-			                <label class="input-group-addon" for="valServ">Valor de la mercancía</label>
-			                <input type="text" class="form-control" id="valServ" ng-model="model.delivery.declared_value" placeholder="min: 2000 max 2'000.000" required>
-			            </div>
-			            <div class="panel panel-default">
-	                        <div class="panel-heading"><b>Instrucciones para el mensajero</b></div>
-	                        <div class="panel-body">
-	                        	<textarea class="form-control" ng-model="model.delivery.instructions" required></textarea>
-	                        </div>
-	                    </div>
-	                    <div class="alert alert-success">
-		            		<span layout-align="center center">VALOR APROXIMADO DEL SERVICIO</span>
-						    <span layout-align="center center" id="value_delivery">
-						    	<span ng-show="currency">COP</span> {{deliveryPrice}}
-						    </span>
-		            	</div>
+                </div>
+            </div>
+		</div>
+		<div class="col-lg-6">
+			<div class="row">
+            	<div class="col-sm-6">
+	            	<div class="panel panel-default">
+                        <div class="panel-heading"><b>Momento de Recogida</b></div>
+                        <div class="panel-body">
+                        	<label class="radio-inline">
+		                        <input type="radio" name="momentoRecogida" ng-model="model.delivery.time_to_deliver" value="now" required><i class="fa fa-flash"></i> Inmediato
+		                    </label>
+		                    <label class="radio-inline">
+		                        <input type="radio" name="momentoRecogida" ng-model="model.delivery.time_to_deliver" value="later"><i class="fa icon-time"></i> Durante el día
+		                    </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading"><b>Momento de Entrega</b></div>
+                        <div class="panel-body">
+                        	<label class="radio-inline">
+		                        <input type="radio" name="momentoEntrega" ng-model="model.delivery.time_to_pickup" value="now" required><i class="icon-large fa-flash"></i> Inmediato
+		                    </label>
+		                    <label class="radio-inline">
+		                        <input type="radio" name="momentoEntrega" ng-model="model.delivery.time_to_pickup" value="later"><i class="icon-large icon-time"></i> Durante el día
+		                    </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+            	<div class="col-sm-12">
+            		<div class="form-group input-group">
+		                <label class="input-group-addon" for="valServ"><i class="fa fa-money"></i> Valor de la mercancía</label>
+		                <input type="number" class="form-control" id="valServ" ng-model="model.delivery.declared_value" placeholder="min: 2000 max 2'000.000" required>
+		            </div>
+		            <div class="form-group input-group">
+		                <label class="input-group-addon" for="sendImg">
+		                	<input type="checkbox" id="sendImg" ng-model="model.delivery.send_image">
+		                </label>
+		                <label class="form-control" for="sendImg">
+                            <i class="fa fa-picture-o"></i> Imagen Obligatoria
+                        </label>
+		            </div>
+		            <div class="panel panel-default">
+                        <div class="panel-heading"><b>Instrucciones para el mensajero</b></div>
+                        <div class="panel-body">
+                        	<textarea class="form-control" ng-model="model.delivery.instructions" required></textarea>
+                        </div>
+                    </div>
+                    <div class="alert alert-success">
+	            		<span layout-align="center center">VALOR APROXIMADO DEL SERVICIO</span>
+					    <span layout-align="center center" id="value_delivery">
+					    	<span ng-show="currency">COP</span> <strong>$ {{deliveryPrice}}</strong>
+					    </span>
 	            	</div>
-	            </div>
-			</div>
+            	</div>
+            </div>
 		</div>
-		<div class="row form-group">
-			<button type="submit" class="btn btn-success btn-lg btn-block" ng-click="model.requestMessenger()">Solicitar</button>
-		</div>
-	</form>
-</div>
+	</div>
+	<div class="row form-group">
+		<button type="submit" class="btn btn-success btn-lg btn-block" ng-click="model.requestMessenger()">Solicitar</button>
+	</div>
+</form>
+<bs-modal label-accept-button="Ok" directory="assets/js/modal/templates" template="addresslist"></bs-modal>
+
 

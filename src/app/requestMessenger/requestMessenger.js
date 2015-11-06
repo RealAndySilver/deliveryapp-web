@@ -54,8 +54,10 @@
 		function init() {
 
 			model.roundtrip = false;
+			$scope.modal = {};
 
 			$scope.showAlert = function() { 
+				console.log("sdsd", $scope.BootstrapModal);
 				$scope.BootstrapModal.show("Recuerda activar el permiso para utilizar tu ubicación en la barra superior.");
 				/*$mdDialog.show(
 					$mdDialog.alert()
@@ -67,9 +69,21 @@
 			};
 			$scope.showAlert();
 
+			$scope.modal.a = function(){
+				alert("asdf");
+			};
+
+			$scope.modal.getPositionBy = function(address){
+				console.log($scope.BootstrapModal);
+				//$scope.modal.address = "asdf";
+				$scope.BootstrapModal.config.isTemplate = true;
+				$scope.BootstrapModal.show();
+			};
+
 			model.getCurrentUser = function() {
 				$scope.currentUser = Session.getUser();
 			};
+
 			model.getCurrentUser();
 
 
@@ -162,7 +176,7 @@
 			var pickupItem = {};
 			var deliveryItem = {};
 			model.requestMessenger = function() {
-
+				
 				if ($scope.requestMessengerForm.$valid) {
 
 					model.delivery.pickup_object = {};
@@ -182,14 +196,18 @@
 					model.delivery.user_id = $scope.currentUser._id;
 					console.log('objeto servicio ', model.delivery);
 
+					console.log(model.delivery);
+
 					//AlertsService.loading(true);
 					$scope.BootstrapLoading.show(true);
 					RequestMessengerService.requestMessenger(model.delivery, function(response) {
 						//console.log(response);
 						//AlertsService.loading(false);
+						console.log(response);
 						$scope.BootstrapLoading.show(false);
 						var pickupItem = response.data.pickup_object;
 						var deliveryItem = response.data.delivery_object;
+
 						if (response.response) {
 
 							if (response.msg === "a1" || response.msg === "a2" || response.msg === "a3") {
@@ -278,8 +296,9 @@
 					});
 
 			};
-		}
 
+			
+		}
 
 	}]);
 

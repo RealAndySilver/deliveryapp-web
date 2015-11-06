@@ -3,16 +3,22 @@
 
 
         var link = function(scope, element, attrs, tabsCtrl){
-            var modalElement = $("#BSModalDirective");
+            var modalElementIdName = attrs.template?attrs.template:"BSModalDirective";
+            var modalElement = $("#"+modalElementIdName);
+            var templateDirectory = (attrs.directory?attrs.directory:"");
             var modalSize = {
-                  sm: "modal-sm",
-                  lg: "modal-lg"
-                };
+                sm: "modal-sm",
+                lg: "modal-lg" 
+            };
 
             scope.BootstrapModal = {
                 config: {
                     title: attrs.title,
                     content: attrs.content,
+                    template: {
+                        directory: templateDirectory,
+                        name: attrs.templateName
+                    },
                     modalSize: modalSize[attrs.size]?modalSize[attrs.size]:"",
                     buttons: {
                       cancel: {
@@ -20,6 +26,9 @@
                           label: attrs.labelCancelButton?attrs.labelCancelButton:"Cancel",
                           action: function(){
                               modalElement.modal("hide");
+                              /*modalElement.on('hidden.bs.modal', function (e) {
+                                  scope.BootstrapModal.config.isTemplate = false;
+                              });*/
                           }
                       },
                       accept: {
@@ -27,6 +36,9 @@
                           label: attrs.labelAcceptButton?attrs.labelAcceptButton:"Accept",
                           action: function(){
                               modalElement.modal("hide");
+                              /*modalElement.on('hidden.bs.modal', function (e) {
+                                  scope.BootstrapModal.config.isTemplate = false;
+                              });*/
                           }
                       },
                       close: {
@@ -38,26 +50,35 @@
                     if(title){
                         this.config.title = title;
                     }
-                    this.config.content = content;
+                    //this.config.content = content;
+                    console.log("sdf", modalElement);
                     modalElement.modal("show");
-                    //this.content = $sce.trustAsHtml(data.content);
+                    this.config.content = $sce.trustAsHtml(content);
                 },
                 showTitle: function(){
                     return this.config.title!==false;
-                },
-                setConfiguration: function(data){
-                    this.config = data;
                 }
             };
-
+            console.log(scope.BootstrapModal);
         };
         return {
             restrict: 'E',
             link: link,
-            templateUrl: "bootstrap-modal.html"
+            //templateUrl: "bootstrap-modal.html",
+            templateUrl: function(elem, attrs){
+              if(attrs.template){
+                  var templateDir = (attrs.directory?attrs.directory+"/":"");
+                  var templateName = templateDir + "bs-modal-"+attrs.template+".html";
+                  return templateName;
+              }else{
+                  return 'bootstrap-modal.html';
+              }
+            }
         };
 
-    }]).run([ '$templateCache', function( $templateCache) { 
+    }]);
+    
+    module.run([ '$templateCache', function( $templateCache ) { 
         var template = '<div class="modal fade" role="dialog" id="BSModalDirective" aria-labelledby="BSModalDirective">'+
                        '    <div class="modal-dialog {{BootstrapModal.config.modalSize}}">'+
                        '        <div class="modal-content">'+
@@ -65,7 +86,7 @@
                        '                <button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-show="BootstrapModal.config.buttons.close.show"><span aria-hidden="true">&times;</span></button>'+
                        '                <h4 class="modal-title">{{BootstrapModal.config.title}}</h4>'+
                        '            </div>'+
-                       '            <div class="modal-body">{{BootstrapModal.config.content}}</div>'+
+                       '            <div class="modal-body" ng-bind-html="BootstrapModal.config.content"></div>'+
                        '            <div class="modal-footer">'+
                        '                <button type="button" class="btn btn-default" ng-show="BootstrapModal.config.buttons.cancel.show" ng-click="BootstrapModal.config.buttons.cancel.action()">{{BootstrapModal.config.buttons.cancel.label}}</button>'+
                        '                <button type="button" class="btn btn-success" ng-show="BootstrapModal.config.buttons.accept.show" ng-click="BootstrapModal.config.buttons.accept.action()">{{BootstrapModal.config.buttons.accept.label}}</button>'+
@@ -75,5 +96,6 @@
                        '</div>';
         $templateCache.put( 'bootstrap-modal.html' , template );
     }]);
+
 })(angular.module("bootstrap-modal", ["ng"]));
 

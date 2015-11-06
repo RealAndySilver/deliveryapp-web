@@ -3,6 +3,7 @@
 	module.controller('ServiceDetailsController', ["$scope", "$state", '$mdDialog', "$stateParams", "DetailsDeliveryItemService", "User", "AlertsService", "$interval", function($scope, $state, $mdDialog, $stateParams, DetailsDeliveryItemService, User, AlertsService, $interval) {
 		var model = this;
 		model.messengerBool = false;
+		model.isSearchMessenger = false;
 		model.reloadBool = false;
 		model.leftTime = "10s";
 		model.code = "aaaa";
@@ -16,7 +17,7 @@
 
 		function init() {
 
-			$scope.$on("$stateChangeStart",function(){ 
+			$scope.$on("$stateChangeStart",function(){
 				clearInterval(id);
 			});
 			id = setInterval(serviceDetails, 5000);
@@ -51,9 +52,11 @@
 					if (response.data.messenger_info) {
 						model.messengerBool = true;
 						model.reloadBool = false;
+						model.isSearchMessenger = false;
 					} else {
 						model.messengerBool = false;
 						model.reloadBool = true;
+						model.isSearchMessenger = true;
 					}
 
 					if (!model.reloadBool) {
