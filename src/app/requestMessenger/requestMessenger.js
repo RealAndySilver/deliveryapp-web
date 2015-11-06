@@ -57,15 +57,7 @@
 			$scope.modal = {};
 
 			$scope.showAlert = function() { 
-				console.log("sdsd", $scope.BootstrapModal);
 				$scope.BootstrapModal.show("Recuerda activar el permiso para utilizar tu ubicación en la barra superior.");
-				/*$mdDialog.show(
-					$mdDialog.alert()
-					.content('Recuerda activar el permiso para utilizar tu ubicación en la barra superior.')
-					.ariaLabel('Allow user geolocation')
-					.ok('Aceptar')
-					.disableParentScroll(false)
-				);*/
 			};
 			$scope.showAlert();
 
@@ -74,10 +66,13 @@
 			};
 
 			$scope.modal.getPositionBy = function(address){
-				console.log($scope.BootstrapModal);
-				//$scope.modal.address = "asdf";
-				$scope.BootstrapModal.config.isTemplate = true;
-				$scope.BootstrapModal.show();
+				if(address){
+					console.log($scope.BootstrapModal);
+					$scope.modal.address = address;
+					$scope.BootstrapModal.show();
+				}else{
+					$scope.BootstrapModal.show("hola mudo");
+				}
 			};
 
 			model.getCurrentUser = function() {
@@ -114,7 +109,6 @@
 					latlng = new google.maps.LatLng($scope.deliverLat, $scope.deliverLon);
 					fieldToPutData = assignToDeliveryAddress;
 				}
-
 
 				geocoder.geocode({
 					'latLng': latlng

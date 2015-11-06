@@ -3,7 +3,7 @@
 
 
         var link = function(scope, element, attrs, tabsCtrl){
-            var modalElementIdName = attrs.template?attrs.template:"BSModalDirective";
+            var modalElementIdName = attrs.template?attrs.template:"BSModal";
             var modalElement = $("#"+modalElementIdName);
             var templateDirectory = (attrs.directory?attrs.directory:"");
             var modalSize = {
@@ -26,9 +26,6 @@
                           label: attrs.labelCancelButton?attrs.labelCancelButton:"Cancel",
                           action: function(){
                               modalElement.modal("hide");
-                              /*modalElement.on('hidden.bs.modal', function (e) {
-                                  scope.BootstrapModal.config.isTemplate = false;
-                              });*/
                           }
                       },
                       accept: {
@@ -36,9 +33,6 @@
                           label: attrs.labelAcceptButton?attrs.labelAcceptButton:"Accept",
                           action: function(){
                               modalElement.modal("hide");
-                              /*modalElement.on('hidden.bs.modal', function (e) {
-                                  scope.BootstrapModal.config.isTemplate = false;
-                              });*/
                           }
                       },
                       close: {
@@ -79,7 +73,7 @@
     }]);
     
     module.run([ '$templateCache', function( $templateCache ) { 
-        var template = '<div class="modal fade" role="dialog" id="BSModalDirective" aria-labelledby="BSModalDirective">'+
+        var template = '<div class="modal fade" role="dialog" id="BSModal" aria-labelledby="BSModal">'+
                        '    <div class="modal-dialog {{BootstrapModal.config.modalSize}}">'+
                        '        <div class="modal-content">'+
                        '            <div class="modal-header" ng-show="BootstrapModal.showTitle()">'+
