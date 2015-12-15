@@ -58,7 +58,7 @@
 				var geocoder = new google.maps.Geocoder();
 				geocoder.geocode( { 'address': address + ", Bogotá", country: "CO"/*bounds: "4.50541610527197,-74.206731878221|4.80140167730285,-74.0019284561276"*/}, function(results, status) {
 					if (status == google.maps.GeocoderStatus.OK) {
-						console.log("maps", abc = results[0]);
+						console.log("maps", results[0]);
 						/*map.setCenter(results[0].geometry.location);
 						var marker = new google.maps.Marker({
 							map: map,
