@@ -1,22 +1,29 @@
-<div layout="column" layout-align="center center" class="solo-box">
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">
+        	Calificar Mensajero
+        </h1>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+    	<rating id="rating" value="rate" max="max" readonly="false" on-leave="overStar = null"></rating>
+    	<span id="numberRate">{{rate}}</span>
+   		<div class="form-group">
+            <label id="tileReview">Opiniones</label>
+            <textarea class="form-control" rows="3" id="review" name="email" ng-model="model.review" required></textarea>
+        </div>
+	    <button class="btn btn-default" ng-click="model.ratingMessenger()" >Calificar<button>
+    </div>
+</div>
+<!--<div layout="column" layout-align="center center" class="solo-box">
 	<md-card class="big-form">
-		<div>
-			<md-toolbar>
-			    <div class="md-toolbar-tools" layout-align="center center">
-			    	<span class="md-flex">Calificar Mensajero</span>
-			    </div>
-			  </md-toolbar>
-		</div>
 
-		<rating id="rating" value="rate" max="max" readonly="false"  on-leave="overStar = null"></rating>
-   		 
-   		 <h6 id="numberRate">{{rate}}</h6>
-   		 
-		<md-input-container flex>
-					<label id="tileReview">Opiniones</label>
-	            	<input  id="review" name="email" ng-model="model.review" required>
-	     </md-input-container>
-	    <md-button id="blueButton" ng-click	="model.ratingMessenger()" >Calificar<md-button>
+		
+		<div>
+			<label id="tileReview">Opiniones</label>
+        	<input id="review" name="email" ng-model="model.review" required>
+	     </div>
 	    
 	</md-card>
-</div>
+</div>-->

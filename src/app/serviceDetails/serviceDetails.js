@@ -10,6 +10,10 @@
 		model.showCancelButtonBool = true;
 
 		var id;
+		var timeMap = {
+			"now": "Inmediato",
+			"later": "Durante el día"
+		};
 
 		model.deliveryItemInfo = {};
 
@@ -40,6 +44,9 @@
 
 					model.deliveryItemInfo = response.data;
 					console.log("EL deliveryItemInfo", model.deliveryItemInfo);
+
+					model.deliveryItemInfo.time_to_deliver = timeMap[model.deliveryItemInfo.time_to_deliver];
+					model.deliveryItemInfo.time_to_pickup = timeMap[model.deliveryItemInfo.time_to_pickup];
 
 					model.pickupDate = new Date(model.deliveryItemInfo["pickup_time"]);
 					model.estimated = new Date(model.deliveryItemInfo["estimated"]);

@@ -7,42 +7,35 @@
 		init();
 
 		function init() {
-			console.log($stateParams.id);
-
 			model.changePass = function() {
-
 				if ($scope.changePassForm.$valid) {
 					if (model.repeatNewPass === model.newPass) {
 						proceed = true;
 					} else {
 						proceed = false;
-						AlertsService.showAlert("Las contraseñas no coinciden", "");
+						$scope.BootstrapModal.show("Las contraseñas no coinciden");
 					}
-
 					if (proceed === true) {
-						AlertsService.loading();
+						$scope.BootstrapLoading.show(true);
 						ChangePasswordService.changePass($stateParams.id, model.oldPass, model.repeatNewPass, function(response) {
 							console.log(response);
-							AlertsService.cancel();
+							$scope.BootstrapLoading.show(false);
 							if (response.response) {
 								if (response.msg === "a1" || response.msg === "a2" || response.msg === "a3") {
 									LogOut.logOutFunction();
 								} else {
-									AlertsService.showAlert("Contraseña actualizada correctamente", "goProfile");
+									$scope.BootstrapModal.show("Contraseña actualizada correctamente.");
 									sessionStorage.setItem('pass', btoa(model.repeatNewPass));
 								}
 							} else {
-								AlertsService.showAlert(response.msg, "");
+								$scope.BootstrapModal.show(response.msg);
 							}
-
 						});
 					}
-
 				} else {
-					AlertsService.showSimpleAlert("Completa todos los campos por favor");
+					$scope.BootstrapModal.show("Completa todos los campos por favor.");
 				}
 			};
-
 		}
 	}]);
 

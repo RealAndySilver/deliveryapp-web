@@ -10,26 +10,31 @@
 
 			model.updateProfile = function() {
 				if ($scope.profileForm.$valid) {
-					AlertsService.loading();
+					//AlertsService.loading();
+					$scope.BootstrapLoading.show(true);
 
 					ProfileService.updateProfile(model.User["_id"], model.User.name, model.User.lastname, model.User.mobilephone, function(response) {
-						AlertsService.cancel();
+						//AlertsService.cancel();
+						$scope.BootstrapLoading.show(false);
 						if (response.response) {
 							if (response.msg === "a1" || response.msg === "a2" || response.msg === "a3") {
 								LogOut.logOutFunction();
 							} else {
-								AlertsService.showAlert("Datos actualizados correctamente", "");
+								//AlertsService.showAlert("Datos actualizados correctamente", "");
+								$scope.BootstrapModal.show("Datos actualizados correctamente");
 								var user = response.data;
 								Session.setUser(user);
 							}
 						} else {
-							AlertsService.showAlert(response.msg, "");
+							//AlertsService.showAlert(response.msg, "");
+							$scope.BootstrapModal.show(response.msg);
 						}
 
 
 					});
 				} else {
-					AlertsService.showSimpleAlert("Completa todos los campos por favor");
+					//AlertsService.showSimpleAlert("Completa todos los campos por favor");
+					$scope.BootstrapModal.show("Completa todos los campos por favor");
 				}
 
 

@@ -37,15 +37,27 @@
 				            	<delivery-map class="map-container" callback="setLatLong(lat1, lon1,lat2, lon2,valueBool)" delivery="model.delivery" pickup="model.pickup"></delivery-map>
 				            </div>
 		            		<div class="panel panel-default">
-		                        <div class="panel-heading"><button type="button" class="btn btn-default btn-sm btn-block" ng-click="model.isShowing()">Historial de Direcciones</button></div>
+		                        <div class="panel-heading"><button type="button" class="btn btn-default btn-sm btn-block" ng-click="model.isShowing('showAddressBool')">Historial de Direcciones</button></div>
 		                        <div class="panel-body" ng-show="model.showAddressBool">
 				            		<label class="titleField">Direcciones de Recogida</label>
 									<ul>
-										<li ng-repeat="pickup in model.pickUpAddressSave" ng-click="useAddress(pickup)"><a class=" textField" href>{{pickup.address}}</a></li>
+										<li ng-repeat="pickup in model.pickUpAddressSave">
+											<spam class="textField">{{pickup.address}}</spam>
+											<span style="float: right;">
+												<a class="textfield" href="" ng-click="useAddress('pickup', pickup)">Recogida</a> | 
+												<a class="textfield" href="" ng-click="useAddress('delivery', pickup)">Entrega</a>
+											</span>
+										</li>
 									</ul>
 									<label class="titleField" >Direcciones de Entrega</label>
 									<ul>
-										<li ng-repeat="delivery in model.deliveryAddressSave" ng-click="useAddress(delivery)"><a class=" textField" href>{{delivery.address}}</a></li>
+										<li ng-repeat="delivery in model.deliveryAddressSave">
+											<spam class=" textField">{{delivery.address}}</spam>
+											<span style="float: right;">
+												<a class="textfield" href="" ng-click="useAddress('pickup', delivery)">Recogida</a> | 
+												<a class="textfield" href="" ng-click="useAddress('delivery', delivery)">Entrega</a>
+											</span>
+										</li>
 									</ul>
 								</div>
 							</div>
@@ -97,6 +109,47 @@
                             <i class="fa fa-picture-o"></i> Imagen Obligatoria
                         </label>
 		            </div>
+		            <div class="form-group input-group">
+		                <label class="input-group-addon" for="sendSignature">
+		                	<input type="checkbox" id="sendSignature" ng-model="model.delivery.send_signature">
+		                </label>
+		                <label class="form-control" for="sendSignature">
+                            <i class="fa fa-edit"></i> Firma Obligatoria
+                        </label>
+		            </div>
+
+		            <div class="panel panel-default">
+                        <div class="panel-heading">
+                        	<button type="button" class="btn btn-default btn-sm btn-block" tabindex="0" ng-click="model.isShowing('showOptionsEnsurances')"><b>Asegurar Servicio</b></button>
+                        </div>
+                        <div class="panel-body" ng-show="model.showOptionsEnsurances">
+                        	<div class="form-group input-group">
+				                <label class="input-group-addon" for="op1">
+				                	<input type="radio" id="op1" name="ensurance" ng-model="model.delivery.ensurancevalue" value="500000">
+				                </label>
+				                <label class="form-control" for="op1">
+		                            <i class="fa fa-money"></i> Hasta 500.000
+		                        </label>
+				            </div>
+				            <div class="form-group input-group">
+				                <label class="input-group-addon" for="op2">
+				                	<input type="radio" id="op2" name="ensurance" ng-model="model.delivery.ensurancevalue" value="1000000">
+				                </label>
+				                <label class="form-control" for="op2">
+		                            <i class="fa fa-money"></i> Hasta 1 millon
+		                        </label>
+				            </div>
+				            <div class="form-group input-group">
+				                <label class="input-group-addon" for="op3">
+				                	<input type="radio" id="op3" name="ensurance" ng-model="model.delivery.ensurancevalue" value="2000000">
+				                </label>
+				                <label class="form-control" for="op3">
+		                            <i class="fa fa-money"></i> Hasta 2 millones
+		                        </label>
+				            </div>
+                        </div>
+                    </div>
+
 		            <div class="panel panel-default">
                         <div class="panel-heading"><b>Instrucciones para el mensajero</b></div>
                         <div class="panel-body">
@@ -117,6 +170,6 @@
 		<button type="submit" class="btn btn-success btn-lg btn-block" ng-click="model.requestMessenger()">Solicitar</button>
 	</div>
 </form>
-<bs-modal label-accept-button="Ok" directory="assets/js/modal/templates" template="addresslist"></bs-modal>
+<!--<bs-modal label-accept-button="Ok" directory="assets/js/modal/templates" template="addresslist"></bs-modal>-->
 
 

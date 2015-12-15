@@ -1422,7 +1422,26 @@ button:focus, a:focus { outline:0 !important;}
 .wait-msg{
 	font-size: 15px;
 }
+#rating i{
+	font-size: 30px;
+	content: "*";
+}
 
+.glyphicon{
+	display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
 
+.glyphicon-star-empty:before {
+    content: "\f006";
+}
+
+.glyphicon-star:before {
+    content: "\f005";
+}
 
 

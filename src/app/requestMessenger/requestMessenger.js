@@ -4,7 +4,6 @@
 		var model = this;
 
 		var MAX_ADDRESS = 3;
-		console.log("EL VALUE DE LAS DIRECCIONES", PickupAddresses);
 
 		model.save = function(pickupItem, deliveryItem) {
 
@@ -17,8 +16,6 @@
 					DeliveryAddresses = [];
 				}
 			}
-			console.log("EL VALUE DE LAS DIRECCIONES DESPUES", PickupAddresses);
-			console.log("TAMAÑO DE LOS ARRAYS", PickupAddresses.length);
 
 			PickupAddresses.splice(0, 0, pickupItem);
 			DeliveryAddresses.splice(0, 0, deliveryItem);
@@ -30,9 +27,6 @@
 
 			localStorage.setItem('PickupAddresses', JSON.stringify(PickupAddresses));
 			localStorage.setItem('DeliveryAddresses', JSON.stringify(DeliveryAddresses));
-
-			console.log('DIRECCIONEs recogida ', PickupAddresses);
-			console.log('DIRECCIONES entrega ', DeliveryAddresses);
 		};
 
 
@@ -43,8 +37,6 @@
 
 		model.pickUpAddressSave = JSON.parse(localStorage.getItem('PickupAddresses'));
 		model.deliveryAddressSave = JSON.parse(localStorage.getItem('DeliveryAddresses'));
-
-		console.log("LO GUARDARDO EN EL LOCAL", model.pickUpAddressSave);
 
 		init();
 
@@ -59,20 +51,29 @@
 			$scope.showAlert = function() { 
 				$scope.BootstrapModal.show("Recuerda activar el permiso para utilizar tu ubicación en la barra superior.");
 			};
-			$scope.showAlert();
-
-			$scope.modal.a = function(){
-				alert("asdf");
-			};
+			//$scope.showAlert();
 
 			$scope.modal.getPositionBy = function(address){
-				if(address){
-					console.log($scope.BootstrapModal);
+				console.log(address);
+				var geocoder = new google.maps.Geocoder();
+				geocoder.geocode( { 'address': address + ", Bogotá", country: "CO"/*bounds: "4.50541610527197,-74.206731878221|4.80140167730285,-74.0019284561276"*/}, function(results, status) {
+					if (status == google.maps.GeocoderStatus.OK) {
+						console.log("maps", abc = results[0]);
+						/*map.setCenter(results[0].geometry.location);
+						var marker = new google.maps.Marker({
+							map: map,
+							position: results[0].geometry.location
+						});*/
+					} else {
+						console.log('MAPS Geocode was not successful for the following reason: ', status);
+					}
+				});
+				/*if(address){
 					$scope.modal.address = address;
 					$scope.BootstrapModal.show();
 				}else{
-					$scope.BootstrapModal.show("hola mudo");
-				}
+					$scope.BootstrapModal.show();
+				}*/
 			};
 
 			model.getCurrentUser = function() {
@@ -113,7 +114,6 @@
 				geocoder.geocode({
 					'latLng': latlng
 				}, function(results, status) {
-					//console.log('results', results);
 					if (status == google.maps.GeocoderStatus.OK) {
 						if (results[0]) {
 							var res = results[0].formatted_address.split(" a ", 1);
@@ -132,12 +132,11 @@
 
 			$scope.setLatLong = function(lat1, lon1, lat2, lon2, valueBool) {
 				$scope.$apply(function() {
-					$scope.pickupLat = parseFloat(lat1);
-					$scope.pickupLon = parseFloat(lon1);
+					$scope.pickupLat  = parseFloat(lat1);
+					$scope.pickupLon  = parseFloat(lon1);
 					$scope.deliverLat = parseFloat(lat2);
 					$scope.deliverLon = parseFloat(lon2);
-					$scope.valueBool = valueBool;
-					console.log("VALOR DEL BOOL", $scope.valueBool);
+					$scope.valueBool  = valueBool;
 
 					geocodeDelivery();
 				});
@@ -145,7 +144,6 @@
 			};
 
 			function getDistance(pickupLat, pickupLon, destinationLat, destinationLon) {
-				console.log('entra a esta función');
 				var loc1 = '';
 				var loc2 = '';
 				if (destinationLat !== 0) {
@@ -160,7 +158,6 @@
 							$scope.currency = false;
 							$scope.deliveryPrice = response.msg;
 						}*/
-						console.log(response);
 					});
 				} else {
 					console.log('no estan todos los parámetros requeridos');
@@ -188,9 +185,6 @@
 					model.delivery.price_to_pay = $scope.deliveryPrice;
 					model.delivery.user_info = $scope.currentUser;
 					model.delivery.user_id = $scope.currentUser._id;
-					console.log('objeto servicio ', model.delivery);
-
-					console.log(model.delivery);
 
 					//AlertsService.loading(true);
 					$scope.BootstrapLoading.show(true);
@@ -213,11 +207,8 @@
 									id: response.data._id
 								});
 							}
-
-
 						} else {
 							$scope.BootstrapModal.show(response.msg);
-							//AlertsService.showAlert(response.msg, "");
 						}
 
 					});
@@ -225,19 +216,16 @@
 					$scope.BootstrapModal.show("Completa todos los campos por favor");
 					//AlertsService.showSimpleAlert("Completa todos los campos por favor");
 				}
-
-
-
 			};
 
 			model.showAddressBool = false;
+			model.showOptionsEnsurances = false;
 
-			model.isShowing = function() {
-				console.log("ISHOWING", model.showAddressBool);
-				if (model.showAddressBool) {
-					model.showAddressBool = false;
+			model.isShowing = function(tap) {
+				if (model[tap]) {
+					model[tap] = false;
 				} else {
-					model.showAddressBool = true;
+					model[tap] = true;
 				}
 			};
 
@@ -253,41 +241,29 @@
 				};
 			}
 
-			$scope.useAddress = function(delivery) {
-				$mdDialog.show({
-						controller: DialogController,
-						templateUrl: 'requestMessenger/customDialogUseAddress.tpl.html',
+			$scope.useAddress = function(answer, delivery) {
+				if (answer === "pickup") {
+					$scope.pickupLat = delivery["lat"];
+					$scope.pickupLon = delivery["lon"];
 
-					})
-					.then(function(answer) {
+					model.pickup = {
+						lat: delivery['lat'],
+						lng: delivery['lon']
+					};
+					$scope.valueBool = true;
+					geocodeDelivery();
+				} else if (answer === "delivery") {
 
-						//AQUI SE METE LA LOGICA DE LO QUE QUIERO HACER
-						if (answer === "pickup") {
-							$scope.pickupLat = delivery["lat"];
-							$scope.pickupLon = delivery["lon"];
+					$scope.deliverLat = delivery["lat"];
+					$scope.deliverLon = delivery["lon"];
 
-							model.pickup = {
-								lat: delivery['lat'],
-								lng: delivery['lon']
-							};
-							$scope.valueBool = true;
-							console.log("ENTRO ");
-							geocodeDelivery();
-						} else if (answer === "delivery") {
-
-							$scope.deliverLat = delivery["lat"];
-							$scope.deliverLon = delivery["lon"];
-
-							model.delivery = {
-								lat: delivery['lat'],
-								lng: delivery['lon']
-							};
-							$scope.valueBool = false;
-							console.log("ENTRO ");
-							geocodeDelivery();
-						}
-
-					});
+					model.delivery = {
+						lat: delivery['lat'],
+						lng: delivery['lon']
+					};
+					$scope.valueBool = false;
+					geocodeDelivery();
+				}
 
 			};
 

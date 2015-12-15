@@ -14,7 +14,9 @@
     		<div class="col-lg-2">
     			<div class="panel panel-default">
 					<div class="panel-body">
-    					<img id="profilePicMessenger" class="img-thumbnail" ng-src="{{model.deliveryItemInfo.messenger_info.url}}">
+						<span>Foto Mensajero</span><br>
+    					<img id="profilePicMessenger" class="img-thumbnail" style="float:left;" ng-src="{{model.deliveryItemInfo.messenger_info.url}}">
+    					<span style="float: left;" ng-show="model.images.lenght > 0">Fotos del Servicio</span><br>
     					<img ng-repeat="image in model.images" class="img-thumbnail"  ng-src="{{image.url}}">
     					<!--<img ng-repeat="image in model.images" class="img-thumbnail"  ng-src="{{image.url}}" ng-click="model.showBigImage(image.url)"><!---->
             		</div>
@@ -48,7 +50,13 @@
 		                            <span class="list-group-item">
 		                                <i class="fa fa-calendar fa-fw"></i> Momento de Recogida
 		                                <span class="pull-right text-muted">
-		                            		<em>{{model.pickupDate | date:'dd/MM/yyyy hh:mma'}}</em>
+		                            		<em>{{model.deliveryItemInfo.time_to_pickup}}</em>
+		                                </span>
+		                            </span>
+		                            <span class="list-group-item">
+		                                <i class="fa fa-calendar fa-fw"></i> Momento de Entrega
+		                                <span class="pull-right text-muted">
+		                            		<em>{{model.deliveryItemInfo.time_to_deliver}}</em>
 		                                </span>
 		                            </span>
 		                            <span class="list-group-item">

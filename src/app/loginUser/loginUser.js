@@ -30,6 +30,7 @@
 			model.loginUser = function() {
 				if (model.MY_FORM.$valid) {
 					//AlertsService.loading();
+					console.log(model.user.password);
 					LoginUserService.loginUser(model.user.email, model.user.password, function(response) {
 						console.log(response);
 						var user = response.data;
