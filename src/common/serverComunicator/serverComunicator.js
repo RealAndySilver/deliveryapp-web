@@ -5,7 +5,7 @@
 		"local": "http://andres.local:2000/api_1.0/"
 	};
 
-	module.service('ServerComunicator', ['$http', function($http) {
+	module.service('ServerComunicator', ['$http','$q',function($http,$q) {
 		var model = this;
 		var endpoint = urlList.service;
 		//var endpoint = "http://andres.local:2000/api_1.0/";
@@ -98,6 +98,19 @@
 					data: delivery,
 					headers: getHeader(),
 					url: endpoint + 'DeliveryItem' + '/Create',
+				});
+			};
+
+			model.closeToMe = function(lat,lon) {
+				//var defered = $q.defer();
+				//var promise = defered.promise;
+				//defered.resolve([{lat:'7.889849699999991',long:'-72.49092539999998'},{lat:'7.889849699999991',long:'-72.49092539999998'},{lat:'7.889849699999991',long:'-72.49092539999998'}]);
+				//return promise;
+
+				return $http({
+					method: 'GET',
+					headers: getHeader(),
+					url: endpoint + 'CloseToMe/'+lat+'/'+lon,
 				});
 			};
 

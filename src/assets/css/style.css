@@ -1410,6 +1410,8 @@ button:focus, a:focus { outline:0 !important;}
 	left: 50%;
 	margin-left: -10px;
 }
+
+
 .md-raised.mapButtons {
 	display: inline-block !important;
 }

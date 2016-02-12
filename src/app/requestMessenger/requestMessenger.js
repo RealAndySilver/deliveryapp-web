@@ -42,13 +42,14 @@
 
 		model.pickup = {};
 		model.delivery = {};
+		model.messengers = {};
 
 		function init() {
 
 			model.roundtrip = false;
 			$scope.modal = {};
 
-			$scope.showAlert = function() { 
+			$scope.showAlert = function() {
 				$scope.BootstrapModal.show("Recuerda activar el permiso para utilizar tu ubicación en la barra superior.");
 			};
 			//$scope.showAlert();
@@ -59,6 +60,8 @@
 				geocoder.geocode( { 'address': address + ", Bogotá", country: "CO"/*bounds: "4.50541610527197,-74.206731878221|4.80140167730285,-74.0019284561276"*/}, function(results, status) {
 					if (status == google.maps.GeocoderStatus.OK) {
 						console.log("maps", results[0]);
+						//Se llama al close to me
+
 						/*map.setCenter(results[0].geometry.location);
 						var marker = new google.maps.Marker({
 							map: map,
@@ -99,6 +102,15 @@
 				$scope.delivery_address = value;
 			}
 
+			function closeToMe(lat, lon){
+				RequestMessengerService.closeToMe(lat,lon, function(response) {
+					model.messengers.locations = [];
+					response.data.locations.forEach(function(location){
+						model.messengers.locations.push({lat:parseFloat(location.lat),lng:parseFloat(location.lon)});
+					});
+				});
+			}
+
 			function geocodeDelivery() {
 				var geocoder = new google.maps.Geocoder();
 				var latlng = "";
@@ -137,7 +149,7 @@
 					$scope.deliverLat = parseFloat(lat2);
 					$scope.deliverLon = parseFloat(lon2);
 					$scope.valueBool  = valueBool;
-
+					closeToMe($scope.pickupLat, $scope.pickupLon);
 					geocodeDelivery();
 				});
 				getDistance($scope.pickupLat, $scope.pickupLon, $scope.deliverLat, $scope.deliverLon);
@@ -242,6 +254,7 @@
 			}
 
 			$scope.useAddress = function(answer, delivery) {
+				console.log('clo se to me');
 				if (answer === "pickup") {
 					$scope.pickupLat = delivery["lat"];
 					$scope.pickupLon = delivery["lon"];
