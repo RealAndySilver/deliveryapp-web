@@ -2,13 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="04f3dd5e-3ac5-4bb7-93da-82f858363317" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/assets/img/Yapp.png" afterPath="$PROJECT_DIR$/src/assets/img/Yapp.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/assets/delivery.png" afterPath="$PROJECT_DIR$/src/assets/delivery.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/activeServices/activeServices.js" afterPath="$PROJECT_DIR$/src/app/activeServices/activeServices.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/activeServices/activeServices.tpl.html" afterPath="$PROJECT_DIR$/src/app/activeServices/activeServices.tpl.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/index.html" afterPath="$PROJECT_DIR$/src/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/requestMessenger/requestMessenger.tpl.html" afterPath="$PROJECT_DIR$/src/app/requestMessenger/requestMessenger.tpl.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="mensajeria-web.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -32,8 +26,18 @@
       <file leaf-file-name="requestMessenger.tpl.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/app/requestMessenger/requestMessenger.tpl.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6972477">
-              <caret line="178" column="38" selection-start-line="178" selection-start-column="38" selection-end-line="178" selection-end-column="38" />
+            <state vertical-scroll-proportion="0.6779141">
+              <caret line="40" column="34" selection-start-line="40" selection-start-column="34" selection-end-line="40" selection-end-column="34" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="requestMessenger.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/app/requestMessenger/requestMessenger.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="217" column="57" selection-start-line="217" selection-start-column="50" selection-end-line="217" selection-end-column="57" />
               <folding />
             </state>
           </provider>
@@ -388,7 +392,7 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3338438" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.33435583" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -610,14 +614,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/requestMessenger/requestMessenger.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="34" column="37" selection-start-line="34" selection-start-column="37" selection-end-line="34" selection-end-column="37" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/app/activeServices/activeServices.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.6683047">
@@ -634,10 +630,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/requestMessenger/requestMessenger.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="217" column="57" selection-start-line="217" selection-start-column="50" selection-end-line="217" selection-end-column="57" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/app/requestMessenger/requestMessenger.tpl.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6972477">
-          <caret line="178" column="38" selection-start-line="178" selection-start-column="38" selection-end-line="178" selection-end-column="38" />
+        <state vertical-scroll-proportion="0.6779141">
+          <caret line="40" column="34" selection-start-line="40" selection-start-column="34" selection-end-line="40" selection-end-column="34" />
           <folding />
         </state>
       </provider>
