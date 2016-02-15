@@ -10,7 +10,9 @@
 				pickup: '=',
 				delivery: '=',
 				setLatLong: '&callback',
-			},
+				messengers: '='
+
+			}
 		};
 	});
 
@@ -21,6 +23,9 @@
 
 		var centerLatDelivery = 0;
 		var centerLonDelivery = 0;
+
+		var messengersLocations = [];
+		var markers = [];
 
 		init();
 
@@ -44,7 +49,22 @@
 			}
 		});
 
-		
+		$scope.$watch('messengers.locations', function(arg) {
+
+			if(typeof(arg)!='undefined'){
+
+				$scope.deleteMarkers();
+				arg.forEach(function(messengerPosition){
+					var marker = new google.maps.Marker({
+						position: messengerPosition,
+						map: $scope.deliveryMap,
+						icon: 'assets/delivery.png'
+					});
+					markers.push(marker);
+				});
+			}
+
+		});
 
 		function init() {
 
@@ -72,12 +92,11 @@
 
 					lat2: centerLatDelivery,
 					lon2: centerLonDelivery,
-					valueBool: $scope.pickupBool,
+					valueBool: $scope.pickupBool
 				});
 				model.pickupOrDeliveryAddress();
 
 			};
-
 
 			model.getLocation();
 			/////////////
@@ -99,6 +118,18 @@
 
 			};
 			//model.pickupOrDeliveryAddress();
+
+			// Sets the map on all markers in the array.
+			$scope.setMapOnAll = function(map) {
+				for (var i = 0; i < markers.length; i++) {
+					markers[i].setMap(map);
+				}
+			};
+
+			$scope.deleteMarkers= function() {
+				$scope.setMapOnAll(null);
+				markers = [];
+			};
 
 			var mapOptions = {
 				zoom: 15,
@@ -128,7 +159,7 @@
 
 						lat2: centerLatDelivery,
 						lon2: centerLonDelivery,
-						valueBool: $scope.pickupBool,
+						valueBool: $scope.pickupBool
 					});
 				}, 300);
 			});

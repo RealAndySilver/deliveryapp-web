@@ -7,13 +7,22 @@
         init();
 
         function init() {
-
+            model.deliveryAvailables = 0;
+            model.deliveryNoAvailables = 0;
             model.getActiveServices = function() {
                 $scope.BootstrapLoading.show(true);
                 ActiveServicesService.getActiveServices(model.User["_id"], function(response) {
                     model.deliveryItems = response.data;
                     console.log("RESPONSE",response);
                     console.log(model.deliveryItems);
+
+                    model.deliveryItems.forEach(function(item){
+                        if(item.status=='available'){
+                            model.deliveryAvailables++;
+                        }else{
+                            model.deliveryNoAvailables++;
+                        }
+                    });
 
 
                         console.log("LENGTH",model.deliveryItems.length+ "/"+typeof(model.deliveryItems));

@@ -26,6 +26,9 @@
                                     <button class="btn btn-default" type="button" ng-click="modal.getPositionBy(pickup_address)"><i class="fa fa-search"></i></button>
                                 </span>
                           	</div>
+							<div class="form-group">
+								<input type="text" class="form-control" ng-model="model.delivery.pickup_details" placeholder="Apto, conjunto, Edificio de Recogida (opcional)">
+							</div>
                           	<div class="form-group input-group">
 				                <label class="input-group-addon" for="delivery">Entrega</label>
 				                <input type="text" class="form-control" id="delivery" ng-model="delivery_address" required>
@@ -33,8 +36,11 @@
                                     <button class="btn btn-default" type="button" ng-click="modal.getPositionBy(delivery_address)"><i class="fa fa-search"></i></button>
                                 </span>
 				            </div>
+							<div class="form-group">
+								<input type="text" class="form-control" ng-model="model.delivery.delivery_details" placeholder="Apto, conjunto, Edificio de Entrega (opcional)">
+							</div>
 				            <div class="form-group">
-				            	<delivery-map class="map-container" callback="setLatLong(lat1, lon1,lat2, lon2,valueBool)" delivery="model.delivery" pickup="model.pickup"></delivery-map>
+				            	<delivery-map class="map-container" callback="setLatLong(lat1, lon1,lat2, lon2,valueBool)" messengers="model.messengers" delivery="model.delivery" pickup="model.pickup"></delivery-map>
 				            </div>
 		            		<div class="panel panel-default">
 		                        <div class="panel-heading"><button type="button" class="btn btn-default btn-sm btn-block" ng-click="model.isShowing('showAddressBool')">Historial de Direcciones</button></div>
@@ -97,16 +103,12 @@
             </div>
             <div class="row">
             	<div class="col-sm-12">
-            		<div class="form-group input-group">
-		                <label class="input-group-addon" for="valServ"><i class="fa fa-money"></i> Valor de la mercancía</label>
-		                <input type="number" class="form-control" id="valServ" ng-model="model.delivery.declared_value" placeholder="min: 2000 max 2'000.000" required>
-		            </div>
 		            <div class="form-group input-group">
 		                <label class="input-group-addon" for="sendImg">
 		                	<input type="checkbox" id="sendImg" ng-model="model.delivery.send_image">
 		                </label>
 		                <label class="form-control" for="sendImg">
-                            <i class="fa fa-picture-o"></i> Imagen Obligatoria
+                            <i class="fa fa-picture-o"></i> Foto Obligatoria
                         </label>
 		            </div>
 		            <div class="form-group input-group">
@@ -123,45 +125,66 @@
                         	<button type="button" class="btn btn-default btn-sm btn-block" tabindex="0" ng-click="model.isShowing('showOptionsEnsurances')"><b>Asegurar Servicio</b></button>
                         </div>
                         <div class="panel-body" ng-show="model.showOptionsEnsurances">
-                        	<div class="form-group input-group">
-				                <label class="input-group-addon" for="op1">
-				                	<input type="radio" id="op1" name="ensurance" ng-model="model.delivery.ensurancevalue" value="500000">
-				                </label>
-				                <label class="form-control" for="op1">
-		                            <i class="fa fa-money"></i> Hasta 500.000
-		                        </label>
-				            </div>
-				            <div class="form-group input-group">
-				                <label class="input-group-addon" for="op2">
-				                	<input type="radio" id="op2" name="ensurance" ng-model="model.delivery.ensurancevalue" value="1000000">
-				                </label>
-				                <label class="form-control" for="op2">
-		                            <i class="fa fa-money"></i> Hasta 1 millon
-		                        </label>
-				            </div>
-				            <div class="form-group input-group">
-				                <label class="input-group-addon" for="op3">
-				                	<input type="radio" id="op3" name="ensurance" ng-model="model.delivery.ensurancevalue" value="2000000">
-				                </label>
-				                <label class="form-control" for="op3">
-		                            <i class="fa fa-money"></i> Hasta 2 millones
-		                        </label>
-				            </div>
-                        </div>
-                    </div>
+							<div class="form-group">
+								<select class="form-control" ng-model="model.delivery.ensurancevalue" ng-init="model.delivery.ensurancevalue='0'">
+									<option value="0">Selecciona el valor del seguro</option>
+									<option value="100000">100.000</option>
+									<option value="200000">200.000</option>
+									<option value="300000">300.000</option>
+									<option value="400000">400.000</option>
+									<option value="500000">500.000</option>
+									<option value="600000">600.000</option>
+									<option value="700000">700.000</option>
+									<option value="800000">800.000</option>
+									<option value="900000">900.000</option>
+									<option value="1000000">1.000.000</option>
+									<option value="1100000">1.100.000</option>
+									<option value="1200000">1.200.000</option>
+									<option value="1300000">1.300.000</option>
+									<option value="1400000">1.400.000</option>
+									<option value="1500000">1.500.000</option>
+									<option value="1600000">1.600.000</option>
+									<option value="1700000">1.700.000</option>
+									<option value="1800000">1.800.000</option>
+									<option value="1900000">1.900.000</option>
+									<option value="2000000">2.000.000</option>
+								</select>
+                        	</div>
 
-		            <div class="panel panel-default">
-                        <div class="panel-heading"><b>Instrucciones para el mensajero</b></div>
-                        <div class="panel-body">
-                        	<textarea class="form-control" ng-model="model.delivery.instructions" required></textarea>
                         </div>
                     </div>
+					</div>
+
+				<div class="col-sm-12">
+						<div class="panel panel-default">
+							<div class="panel-heading"><b>Método de pago</b></div>
+							<div class="panel-body">
+								<label class="radio-inline">
+									<input type="radio" name="metodoPago" ng-model="model.delivery.payment_method" value="cash" required><i class="fa fa-money"></i> Efectivo
+								</label>
+								<label class="radio-inline">
+									<input type="radio" name="metodoPago" ng-model="model.delivery.payment_method" value="credit"><i class="fa  fa-credit-card"></i> Crédito
+								</label>
+							</div>
+						</div>
+					<div class="panel panel-default">
+						<div class="panel-heading"><b>Instrucciones para el mensajero</b></div>
+						<div class="panel-body">
+							<textarea class="form-control" ng-model="model.delivery.instructions" required></textarea>
+						</div>
+					</div>
+				</div>
+				<br>
+				<div class="col-sm-12">
                     <div class="alert alert-success">
-	            		<span layout-align="center center">VALOR APROXIMADO DEL SERVICIO</span>
-					    <span layout-align="center center" id="value_delivery">
-					    	<span ng-show="currency">COP</span> <strong>$ {{deliveryPrice}}</strong>
-					    </span>
+						<span layout-align="center center">Valor del seguro elegido: <span ng-show="currency">COP</span> <strong>$ {{model.delivery.ensurancevalue}}</strong></span><br>
+						<span layout-align="center center">Costo del servicio: <span ng-show="currency">COP</span> <strong>$ {{deliveryPrice}}</strong></span><br>
+						<!--<span layout-align="center center">VALOR APROXIMADO DEL SERVICIO</span>-->
+					    <!--<span layout-align="center center" id="value_delivery">-->
+					    	<!--<span ng-show="currency">COP</span> <strong>$ {{deliveryPrice}}</strong>-->
+					    <!--</span>-->
 	            	</div>
+
             	</div>
             </div>
 		</div>
