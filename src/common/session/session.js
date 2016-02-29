@@ -22,6 +22,15 @@
 				return User;
 			};
 
+            model.getMessenger = function(){
+                return sessionStorage.getItem("messenger");
+            };
+
+            model.setMessenger = function(){
+                sessionStorage.setItem("messenger",JSON.stringify({ login: true }));
+            };
+
+
 		}
 	}]);
 

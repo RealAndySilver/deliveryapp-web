@@ -1,0 +1,96 @@
+<div class="account-container">
+    <div class="content clearfix">
+        <form name="createMessenger" ng-submit="model.createMessenger(loginForm)" novalidate>
+            <h1>Registro Mensajero</h1>
+            <div class="row">
+                <div class="col-sm-12">
+                    <p>Por favor digita tus datos</p>
+                    <p ng-show="createMessenger.email.$invalid && !createMessenger.email.$pristine" class="text-danger">Ingresa un email valido.</p>
+                    <p ng-show="model.messenger.password && model.messenger.repeatPassword &&
+                        model.messenger.password != model.messenger.repeatPassword" class="text-danger">
+                        Las contraseñas no coinciden
+                    </p>
+
+                    <div class="form-group input-group" >
+                        <label class="input-group-addon" for="lastname"><i class="fa fa-user"></i></label>
+                        <input type="text" id="lastname" class="form-control" name="email"
+                               ng-model="model.messenger.lastname"
+                               ng-pattern="/^([A-Za-z]| )+$/" placeholder="Apellido"
+                               required/>
+                    </div>
+
+                    <div class="form-group input-group" >
+                        <label class="input-group-addon" for="name"><i class="fa fa-user"></i></label>
+                        <input type="text" id="name" class="form-control" name="email"
+                               ng-model="model.messenger.name"
+                               ng-pattern="/^([A-Za-z+]| )+$/" placeholder="Nombre"
+                               required/>
+                    </div>
+
+                    <div class="form-group input-group" >
+                        <label class="input-group-addon" for="mobilephone"><i class="fa fa-phone"></i></label>
+                        <input type="text" id="mobilephone" class="form-control" name="mobilephone"
+                               ng-model="model.messenger.mobilephone"
+                               ng-pattern="/^([0-9]| )+$/" placeholder="Número Celular"
+                               required/>
+                    </div>
+
+                    <div class="form-group input-group" >
+                        <label class="input-group-addon padding-left-10 padding-right-11" for="email"><i class="fa fa-envelope"></i></label>
+                        <input type="text" id="email" class="form-control" name="email"
+                               ng-model="model.messenger.email"
+                               ng-pattern="/^[A-Za-z0-9._%+]+@[A-Za-z0-9]+\.[A-Za-z]{1,5}$/" placeholder="Correo Electronico"
+                               required/>
+                    </div>
+
+                    <div class="form-group input-group" >
+                        <label class="input-group-addon padding-left-11 padding-right-11" for="identification"><i class="fa fa-folder"></i></label>
+                        <input type="text" id="identification" class="form-control" name="identification"
+                               ng-model="model.messenger.identification"
+                               ng-pattern="/^([0-9]| )+$/" placeholder="Cedula"
+                               required/>
+                    </div>
+
+                    <div class="form-group input-group">
+                        <label class="input-group-addon padding-left-10 padding-right-11" for="password"><i class="fa icon-key "></i></label>
+                        <input type="password" id="password" class="form-control" name="password"
+                               ng-model="model.messenger.password" placeholder="Contraseña" class="login password-field" required/>
+                    </div>
+
+                    <div class="form-group input-group">
+                        <label class="input-group-addon padding-left-10 padding-right-11" for="repeatPassword"><i class="fa icon-key "></i></label>
+                        <input type="password" id="repeatPassword" class="form-control" name="repeatPassword"
+                               ng-model="model.messenger.repeatPassword"  placeholder="Repetir Contraseña" class="login password-field" required/>
+                    </div>
+
+                    <div class="form-group input-group">
+                        <label class="input-group-addon padding-left-10 padding-right-10" for="plate"><i class="fa fa-keyboard-o"></i></label>
+                        <input type="text" id="plate" class="form-control" name="plate"
+                               ng-model="model.messenger.plate" ng-pattern="/^([0-9]|[A-Z]|[a-z]|-)+$/"
+                               placeholder="Placa #" class="form-control" required/>
+                    </div>
+
+                    <div class="form-group input-group">
+                        <label class="input-group-addon padding-left-14 padding-right-13" for="city"><i class="fa fa-map-marker"></i></label>
+                        <select name="city" id="city" ng-model="model.messenger.city" class="form-control"
+                                ng-options="city.name as city.name for city in model.cities" required>
+                            <option value="" ng-if="!model.messenger.city">Seleccione la Ciudad</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="login-actions">
+                <!--<span class="login-checkbox">-->
+                    <!--<input id="Field" name="Field" type="checkbox" class="field login-checkbox" ng-model="model.rememberMe" tabindex="4" />-->
+                    <!--<label class="choice" for="Field">Recordar en este equipo.</label>-->
+                    <!--<span class="login-extra">-->
+					    <!--<a href="" ng-click="model.recoverPassword()">¿Olvidaste tu contraseña?</a>-->
+					<!--</span>-->
+                <!--</span>-->
+                <button  ng-disabled="createMessenger.$invalid || model.messenger.password != model.messenger.repeatPassword"
+                         class="button btn btn-success btn-large">Registrar</button>
+            </div>
+
+        </form>
+    </div>
+</div>

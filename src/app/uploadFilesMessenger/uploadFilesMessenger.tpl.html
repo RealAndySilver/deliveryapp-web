@@ -1,0 +1,277 @@
+<div class="content-files-upload" ng-if="model.step == 0">
+    <div class="content clearfix">
+        <div class="row">
+                <h2>Datos Personales Requeridos</h2>
+            <div class="col-sm-12">
+
+                <accordion >
+                    <accordion-group is-open="model.hasLicense">
+                        <accordion-heading style="cursor:pointer;">
+                            Licencía de conducción
+                            <i class="pull-right fa"
+                               ng-class="{'fa-plus': !model.drivingLicense, 'fa-minus': model.drivingLicense}">
+
+                            </i>
+                        </accordion-heading>
+                        <div class="panel panel-default text-center">
+                            <a ng-if="model.filesUploaded.license"  ng-href="{{model.filesUploaded.license}}" target="_blank">
+                                Vista previa<i class="fa fa-eye" style="font-size: 36px"></i>
+                            </a>
+                        </div>
+                    </accordion-group>
+
+                    <accordion-group is-open="model.document">
+                        <accordion-heading style="cursor:pointer;">
+                            Cedula
+                            <i class="pull-right fa"
+                                ng-class="{'fa-plus': !model.document, 'fa-minus': model.document}">
+                            </i>
+                        </accordion-heading>
+                        <div class="panel panel-default text-center">
+                            <a ng-if="model.filesUploaded.identification"  ng-href="{{model.filesUploaded.identification}}" target="_blank">
+                                Vista previa<i class="fa fa-eye" style="font-size: 36px"></i>
+                            </a>
+                        </div>
+                    </accordion-group>
+
+                    <accordion-group is-open="model.soat">
+                        <accordion-heading style="cursor:pointer;">
+                            Soat(Por ambas caras)
+                            <i class="pull-right fa"
+                                ng-class="{'fa-plus': !model.soat, 'fa-minus': model.soat}">
+                            </i>
+                        </accordion-heading>
+                        <div class="panel panel-default text-center">
+                            <a ng-if="model.filesUploaded.soat"  ng-href="{{model.filesUploaded.soat}}" target="_blank">
+                                Vista previa<i class="fa fa-eye" style="font-size: 36px"></i>
+                            </a>
+                        </div>
+                    </accordion-group>
+
+                    <accordion-group is-open="model.propertyCard">
+                        <accordion-heading style="cursor:pointer;">
+                            Tarjeta de Propiedad
+                            <i class="pull-right fa"
+                                ng-class="{'fa-plus': !model.propertyCard, 'fa-minus': model.propertyCard }">
+                            </i>
+                        </accordion-heading>
+                        <div class="panel panel-default text-center">
+                            <a ng-if="model.filesUploaded.propertyCard"  ng-href="{{model.filesUploaded.propertyCard}}" target="_blank">
+                                Vista previa<i class="fa fa-eye" style="font-size: 36px"></i>
+                            </a>
+                        </div>
+                    </accordion-group>
+
+                    <accordion-group is-open="model.photo">
+                        <accordion-heading style="cursor:pointer;">
+                            Foto del vehiculo con placa visible
+                            <i class="pull-right fa"
+                                ng-class="{'fa-plus': !model.photo, 'fa-minus': model.photo }">
+                            </i>
+                        </accordion-heading>
+                        <div class="panel panel-default text-center">
+                            <a ng-if="model.filesUploaded.photo"  ng-href="{{model.filesUploaded.photo}}" target="_blank">
+                                Vista previa<i class="fa fa-eye" style="font-size: 36px"></i>
+                            </a>
+                        </div>
+                    </accordion-group>
+                </accordion>
+
+                <div class="text-center">
+                    <button ng-click="model.nextStep()" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 button btn btn-success btn-large no-float margin-center">
+                        Continuar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--- div para subir archivo de licencia --->
+<div class="content-files-upload" ng-if="model.step == 1">
+    <div class="content clearfix">
+        <div class="text-center">
+            <div style="background: #CCC;height: 300px; width: 500px; margin: 1rem auto">
+            </div>
+        </div>
+
+        <h1>TOMA UNA FOTO DE TU LICENCIA DE CONDUCIÓN POR LA CARA FRONTRAL</h1>
+        <h3>Verifique que esté vigente</h3>
+        <a ng-if="model.filesUploaded.license"  ng-href="{{model.filesUploaded.license}}" target="_blank">
+            <i class="fa fa-eye" style="font-size: 36px"></i>
+        </a>
+
+        <div class="text-center">
+            <button ng-click="model.backStep()" class="button btn btn-default btn-large pull-left">
+                Anterior
+            </button>
+
+            <button ng-if="model.filesUploaded.license" ng-click="model.nextStep()" class="button btn btn-success btn-large no-float maring-center">
+                Siguiente Archivo
+            </button>
+
+            <button ng-replicate-click="#licenseFile" class="button btn btn-success btn-large pull-right">
+                Subir archivo
+            </button>
+
+        </div>
+        <input id="licenseFile" class="hidden" type="file" name="file" ng-file-selector on-change="model.selectFileLicense">
+    </div>
+</div>
+<!--- div para subir archivo de licencia --->
+
+<!--- div para subir archivo de cedula --->
+<div class="content-files-upload" ng-if="model.step == 2">
+    <div class="content clearfix">
+        <div class="text-center">
+            <div style="background: #CCC;height: 300px; width: 500px; margin: 1rem auto">
+            </div>
+        </div>
+
+        <h1>TOMA UNA FOTO DE TU CEDULA</h1>
+        <h3>Verifique que toda la información se vea bien</h3>
+        <a ng-if="model.filesUploaded.identification"  ng-href="{{model.filesUploaded.identification}}" target="_blank">
+            <i class="fa fa-eye" style="font-size: 36px"></i>
+        </a>
+
+        <div class="text-center">
+            <button ng-click="model.backStep()" class="button btn btn-default btn-large pull-left">
+                Anterior
+            </button>
+
+            <button ng-if="model.filesUploaded.identification" ng-click="model.nextStep()" class="button btn btn-success btn-large no-float maring-center">
+                Siguiente Archivo
+            </button>
+
+            <button ng-replicate-click="#identificationFile" class="button btn btn-success btn-large pull-right">
+                Subir archivo
+            </button>
+
+        </div>
+        <input id="identificationFile" class="hidden" type="file" name="file" ng-file-selector on-change="model.selectFileIdentification">
+    </div>
+</div>
+<!--- div para subir archivo de cedula --->
+
+<!--- div para subir archivo de soat --->
+<div class="content-files-upload" ng-if="model.step == 3">
+    <div class="content clearfix">
+        <div class="text-center">
+            <div style="background: #CCC;height: 300px; width: 500px; margin: 1rem auto">
+            </div>
+        </div>
+
+        <h1>TOMA UNA FOTO DE TU SOAT POR LAS DOS CARAS</h1>
+        <h3>Verifique que este vigente</h3>
+        <a ng-if="model.filesUploaded.soat"  ng-href="{{model.filesUploaded.soat}}" target="_blank">
+            <i class="fa fa-eye" style="font-size: 36px"></i>
+        </a>
+
+        <div class="text-center">
+            <button ng-click="model.backStep()" class="button btn btn-default btn-large pull-left">
+                Anterior
+            </button>
+
+            <button ng-if="model.filesUploaded.soat" ng-click="model.nextStep()" class="button btn btn-success btn-large no-float maring-center">
+                Siguiente Archivo
+            </button>
+
+            <button ng-replicate-click="#soatFile" class="button btn btn-success btn-large pull-right">
+                Subir archivo
+            </button>
+
+        </div>
+        <input id="soatFile" class="hidden" type="file" name="file" ng-file-selector on-change="model.selectFileSoat">
+    </div>
+</div>
+<!--- div para subir archivo de soat --->
+
+<!--- div para subir archivo de tarjeta de propiedad --->
+<div class="content-files-upload" ng-if="model.step == 4">
+    <div class="content clearfix">
+        <div class="text-center">
+            <div style="background: #CCC;height: 300px; width: 500px; margin: 1rem auto">
+            </div>
+        </div>
+
+        <h1>TOMA UNA FOTO DE TU TARJETA DE PROPIEDAD POR LA CARA FRONTAL</h1>
+        <h3>Verifique que toda la información se vea bien</h3>
+        <a ng-if="model.filesUploaded.propertyCard"  ng-href="{{model.filesUploaded.propertyCard}}" target="_blank">
+            <i class="fa fa-eye" style="font-size: 36px"></i>
+        </a>
+
+        <div class="text-center">
+            <button ng-click="model.backStep()" class="button btn btn-default btn-large pull-left">
+                Anterior
+            </button>
+
+            <button ng-if="model.filesUploaded.propertyCard" ng-click="model.nextStep()" class="button btn btn-success btn-large no-float maring-center">
+                Siguiente Archivo
+            </button>
+
+            <button ng-replicate-click="#propertyCartdFile" class="button btn btn-success btn-large pull-right">
+                Subir archivo
+            </button>
+
+        </div>
+        <input id="propertyCartdFile" class="hidden" type="file" name="file" ng-file-selector on-change="model.selectFilePropertyCartdFile">
+    </div>
+</div>
+<!--- div para subir archivo de tarjeta de propiedad --->
+
+<!--- div para subir archivo de foto vehiculo --->
+<div class="content-files-upload" ng-if="model.step == 5">
+    <div class="content clearfix">
+        <div class="text-center">
+            <div style="background: #CCC;height: 300px; width: 500px; margin: 1rem auto">
+            </div>
+        </div>
+
+        <h1>TOMA UNA FOTO DEl VEHICULO CON LA PLACA VISIBLE</h1>
+        <h3>Verifique que la placa se vea bien</h3>
+        <a ng-if="model.filesUploaded.photo"  ng-href="{{model.filesUploaded.photo}}" target="_blank">
+            <i class="fa fa-eye" style="font-size: 36px"></i>
+        </a>
+
+        <div class="text-center">
+            <button ng-click="model.backStep()" class="button btn btn-default btn-large pull-left">
+                Anterior
+            </button>
+
+            <button ng-if="model.filesUploaded.photo" ng-click="model.nextStep()" class="button btn btn-success btn-large no-float maring-center">
+                Siguiente Archivo
+            </button>
+
+            <button ng-replicate-click="#photoFile" class="button btn btn-success btn-large pull-right">
+                Subir archivo
+            </button>
+
+        </div>
+        <input id="photoFile" class="hidden" type="file" name="file" ng-file-selector on-change="model.selectFilePhotoFile">
+    </div>
+</div>
+<!--- div para subir archivo de foto vehiculo --->
+
+<!--- div para finalizar --->
+<div class="content-files-upload" ng-if="model.step == 6">
+    <div class="content clearfix">
+        <div class="text-center">
+            <div style="background: #CCC;height: 300px; width: 500px; margin: 1rem auto">
+            </div>
+        </div>
+
+        <h1 class="text-center">
+            Estamos revisando tus documentos, en breve te
+            contactaremos para finalizar tu registro.
+        </h1>
+
+
+        <div class="text-center">
+            <button ng-click="model.backStep()" class="button btn btn-default btn-large pull-left">
+                Anterior
+            </button>
+        </div>
+    </div>
+</div>
+<!--- div para finalizar --->
