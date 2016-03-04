@@ -4,17 +4,15 @@
             var model = this;
 
             model.messenger = {};
-            model.cities = [{id: 1, name: "Cúcuta"}, {id: 2, name: "Bogota"}, {id: 3, name: "Bucaramanga"}];
+            model.cities = [{id: 1, name: "Bogotá"}, {id: 2, name: "Medellín"}, {id: 3, name: "Cali"}];
             init();
-
-
 
             function init() {
                 model.createMessenger = function () {
                     //console.log(model.messenger);
                     CreateMessengerService.createMessenger(model.messenger, function (response){
                         if (response.response) {
-                            $scope.BootstrapModal.show("Mensajero creado Correctamente","Resultado Operación");
+                            $scope.BootstrapModal.show("Mensajero creado correctamente", "Resultado Operación");
                             model.messenger = {};
                             console.log(response);
                             console.log(response.data);

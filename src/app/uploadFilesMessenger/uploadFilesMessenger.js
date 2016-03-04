@@ -59,9 +59,9 @@
                                 }else{
                                     if(response.msg.path == "_id"){
                                         $state.go("loginUser");
-                                        $scope.BootstrapModal.show("El identificador no corresponde a un usuario valido");
+                                        $scope.BootstrapModal.show("El identificador no corresponde a un usuario válido");
                                     }else{
-                                        $scope.BootstrapModal.show("No se logro subir el archivo por favor vuelva  a intentarlo");
+                                        $scope.BootstrapModal.show("No se logró subir el archivo por favor vuelva a intentarlo");
                                     }
                                 }
                             }
