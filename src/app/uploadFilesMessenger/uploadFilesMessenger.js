@@ -12,7 +12,7 @@
                 model.soat = false;
                 model.propertyCard = false;
                 model.photo = false;
-                model.step = 0;
+                model.step = 1;
 
                 model.filesUploaded = {};
 
@@ -23,7 +23,7 @@
                 };
 
                 model.backStep = function(){
-                    if(model.step > 0){
+                    if(model.step > 1){
                         model.step--;
                     }
                 };

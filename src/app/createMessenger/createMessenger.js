@@ -15,9 +15,9 @@
                             $scope.BootstrapModal.show("Mensajero creado correctamente", "Resultado Operación");
                             model.messenger = {};
                             console.log(response);
-                            console.log(response.data);
-                            console.log(response.data.response);
-                            console.log(response.data.response._id);
+                            //console.log(response.data);
+                            //console.log(response.data.response);
+                            //console.log(response.data.response._id);
                             $state.go("uploadFilesMessenger",{ id: response.data.response._id });
                         } else {
                             $scope.BootstrapModal.show(response.msg);
