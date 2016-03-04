@@ -47,13 +47,19 @@
                     uploadFile(file,'foto_placa','photo');
                 };
 
+                model.finishProcess = function() {
+                    $state.go('createMessenger');
+                };
+
 
                 var uploadFile = function(file,type,index){
+                    model.uploadingFile = true;
                     if(file){
                         UploadFilesMessengerService.uploadFile(
                             model.messenger_id,type,file,function(response){
-                                //console.log(response);
+                                console.log(response);
                                 if(response.data){
+                                    model.uploadingFile = false;
                                     model.filesUploaded[index] = response.data.url;
                                     model.nextStep();
                                 }else{

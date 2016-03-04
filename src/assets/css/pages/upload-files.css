@@ -1,6 +1,7 @@
 .content-files-upload{
     display: block;
-    margin: 60px auto 0 auto;
+    margin: 0;
+    margin-bottom: 45px;
     background: #f9f9f9;
     border: 1px solid #d5d5d5;
 
