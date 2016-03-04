@@ -51,6 +51,22 @@
                     $state.go('createMessenger');
                 };
 
+                function readURL(input) {
+                    if (input.files && input.files[0]) {
+                        var reader = new FileReader();
+
+                        reader.onload = function(e) {
+                            $('#licensePicture').attr('src', e.target.result);
+                        };
+
+                        reader.readAsDataURL(input.files[0]);
+                    }
+                }
+
+                $("#licenseFile").change(function() {
+                    readURL(this);
+                });
+
 
                 var uploadFile = function(file,type,index){
                     model.uploadingFile = true;

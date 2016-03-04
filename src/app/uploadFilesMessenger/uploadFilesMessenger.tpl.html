@@ -93,6 +93,7 @@
 		<h3>PASO 1</h3>
 		<div class="text-center">
 			<div style="background: #CCC;height: 300px; width: 500px; margin: 1rem auto">
+				<img style="height: 100%;" src="" id="licensePicture" alt="">
 			</div>
 		</div>
 
@@ -111,7 +112,7 @@
 				Siguiente Archivo
 			</button>
 
-			<button ng-disabled="model.uploadingFile" ng-replicate-click="#licenseFile" class="button btn btn-success btn-large pull-right">
+			<button id="uploadLicense" ng-disabled="model.uploadingFile" ng-replicate-click="#licenseFile" class="button btn btn-success btn-large pull-right">
 				Subir archivo
 				<i ng-show="model.uploadingFile" class="icon-spinner icon-spin icon-large"></i>
 			</button>
