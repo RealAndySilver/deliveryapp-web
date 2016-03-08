@@ -2,7 +2,10 @@
 	<div class="content clearfix">
 		<h3>PASO 1</h3>
 		<div class="text-center">
-			<div class="pic-container" id="licensePicture"></div>
+			<div class="pic-container">
+				<img ng-show="model.filesUploaded.license" src="https://cdn0.iconfinder.com/data/icons/cloudcon/512/689079-mark-512.png" >
+			</div>
+			<i ng-show="model.filesUploaded.license">{{model.filesUploaded.license}}</i>
 		</div>
 
 		<h3>TOMA UNA FOTO DE TU LICENCIA DE CONDUCCIÓN POR LA CARA FRONTAL</h3>
@@ -31,7 +34,10 @@
 	<div class="content clearfix">
 	<h3>PASO 2</h3>
 		<div class="text-center">
-			<div class="pic-container" id="identificationPicture"></div>
+			<div class="pic-container">
+				<img ng-show="model.filesUploaded.identification" src="https://cdn0.iconfinder.com/data/icons/cloudcon/512/689079-mark-512.png" >
+			</div>
+			<i ng-show="model.filesUploaded.identification">{{model.filesUploaded.identification}}</i>
 		</div>
 
 		<h3>TOMA UNA FOTO DE TU CÉDULA</h3>
@@ -60,8 +66,10 @@
 	<div class="content clearfix">
 		<h3>PASO 3</h3>
 		<div class="text-center">
-			<div style="background: #CCC;height: 300px; width: 500px; margin: 1rem auto">
+			<div class="pic-container">
+				<img ng-show="model.filesUploaded.soat" src="https://cdn0.iconfinder.com/data/icons/cloudcon/512/689079-mark-512.png" >
 			</div>
+			<i ng-show="model.filesUploaded.soat">{{model.filesUploaded.soat}}</i>
 		</div>
 
 		<h3>TOMA UNA FOTO DE TU SOAT POR LAS DOS CARAS</h3>
@@ -90,8 +98,10 @@
 	<div class="content clearfix">
 		<h3>PASO 4</h3>
 		<div class="text-center">
-			<div style="background: #CCC;height: 300px; width: 500px; margin: 1rem auto">
+			<div class="pic-container">
+				<img ng-show="model.filesUploaded.propertyCard" src="https://cdn0.iconfinder.com/data/icons/cloudcon/512/689079-mark-512.png" >
 			</div>
+			<i ng-show="model.filesUploaded.propertyCard">{{model.filesUploaded.propertyCard}}</i>
 		</div>
 
 		<h3>TOMA UNA FOTO DE TU TARJETA DE PROPIEDAD POR LA CARA FRONTAL</h3>
@@ -120,8 +130,10 @@
 	<div class="content clearfix">
 		<h3>PASO 5</h3>
 		<div class="text-center">
-			<div style="background: #CCC;height: 300px; width: 500px; margin: 1rem auto">
+			<div class="pic-container">
+				<img ng-show="model.filesUploaded.photo" src="https://cdn0.iconfinder.com/data/icons/cloudcon/512/689079-mark-512.png" >
 			</div>
+			<i ng-show="model.filesUploaded.photo">{{model.filesUploaded.photo}}</i>
 		</div>
 
 		<h3>TOMA UNA FOTO DEL VEHICULO CON LA PLACA VISIBLE</h3>

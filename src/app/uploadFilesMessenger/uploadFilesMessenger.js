@@ -50,51 +50,6 @@
                 model.finishProcess = function() {
                     $state.go('createMessenger');
                 };
-
-                $( document ).ready(function() {
-                    $("#licenseFile").on('change', function () {
-                        console.log('licenseFile UPLOADING.....');
-                        if (typeof (FileReader) != "undefined") {
-                 
-                            var image_holder = $("#licensePicture");
-                            image_holder.empty();
-                 
-                            var licenseReader = new FileReader();
-                            licenseReader.onload = function (e) {
-                                $("<img />", {
-                                    "src": e.target.result,
-                                    "class": "thumb-image"
-                                }).appendTo(image_holder);
-                 
-                            };
-                            image_holder.show();
-                            licenseReader.readAsDataURL($(this)[0].files[0]);
-                        } else {
-                            alert("This browser does not support FileReader.");
-                        }
-                    });
-                    $("#identificationFile").on('change', function () {
-                        console.log('identificationFile UPLOADING.....');
-                        if (typeof (FileReader) != "undefined") {
-                 
-                            var image_holder = $("#identificationPicture");
-                            image_holder.empty();
-                 
-                            var identificationReader = new FileReader();
-                            identificationReader.onload = function (e) {
-                                $("<img />", {
-                                    "src": e.target.result,
-                                    "class": "thumb-image"
-                                }).appendTo(image_holder);
-                 
-                            };
-                            image_holder.show();
-                            identificationReader.readAsDataURL($(this)[0].files[0]);
-                        } else {
-                            alert("This browser does not support FileReader.");
-                        }
-                    });
-                });
                 
                 var uploadFile = function(file,type,index){
                     model.uploadingFile = true;
@@ -105,6 +60,7 @@
                                 if(response.data){
                                     model.uploadingFile = false;
                                     model.filesUploaded[index] = response.data.url;
+                                    console.log('filesUploaded ', model.filesUploaded);
                                     model.nextStep();
                                 }else{
                                     if(response.msg.path == "_id"){
