@@ -217,7 +217,20 @@ span.login-checkbox > input[type='checkbox']:checked + label {
 	line-height: 1.3em;
 }
 
+.billing-container {
+	width: 50% !important;
+	min-width: 570px !important;
+}
 
+.fix-label {
+	margin-right: 15px;
+}
+
+.add-block-button {
+	width: 100%;
+	text-align: center;
+	margin-top: 25px;
+}
 
 @media (max-width: 480px) {
 	
