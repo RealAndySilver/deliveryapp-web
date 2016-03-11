@@ -1,13 +1,14 @@
 (function(module) {
 
-    module.controller('BillingController', function () {
-        var model = this;
+	module.controller('BillingController', function() {
+		var model = this;
 
-        init();
+		model.billingInformation = {};
 
-        function init() {
+		model.addBillingInformation = function(billingInformation) {
+			console.log('current billing infotmation ',billingInformation);
+		};
 
-        }
-    });
+	});
 
 }(angular.module("appMensajeria.billing")));
