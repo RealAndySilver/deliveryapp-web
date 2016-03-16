@@ -156,17 +156,26 @@
 					</div>
 
 				<div class="col-sm-12">
-						<div class="panel panel-default">
-							<div class="panel-heading"><b>Método de pago</b></div>
-							<div class="panel-body">
-								<label class="radio-inline">
-									<input type="radio" name="metodoPago" ng-model="model.delivery.payment_method" value="cash" required><i class="fa fa-money"></i> Efectivo
-								</label>
-								<label class="radio-inline">
-									<input type="radio" name="metodoPago" ng-model="model.delivery.payment_method" value="credit"><i class="fa  fa-credit-card"></i> Crédito
-								</label>
-							</div>
+					<div class="panel panel-default">
+						<div class="panel-heading"><b>Método de pago</b></div>
+						<div class="panel-body">
+							<label class="radio-inline">
+								<input type="radio" name="metodoPago" ng-model="model.delivery.payment_method" value="cash" required><i class="fa fa-money"></i> Efectivo
+							</label>
+							<label class="radio-inline">
+								<input type="radio" name="metodoPago" ng-model="model.delivery.payment_method" value="credit"><i class="fa  fa-credit-card"></i> Crédito
+							</label>
 						</div>
+					</div>
+            		<div class="panel panel-default" id="billing-request-block" ng-show="model.delivery.payment_method === 'credit'">
+            			<div class="panel-body">
+            				<div ng-repeat="p in model.currentBillingInformation" class="panel-body">
+								<span>Titular tarjeta: {{p.cardHolderName}}<input class="pull-right" type="radio" name="card_{{p.value}}" ng-model="model.delivery.card" value="{{p.value}}"></span>
+								<br>
+								<span><b class="bold-block-info">{{p.cardNumber}}</b> Exp: {{p.expiryMonth}}/{{p.expiryYear}}</span>
+							</div>
+            			</div>
+            		</div>
 					<div class="panel panel-default">
 						<div class="panel-heading"><b>Instrucciones para el mensajero</b></div>
 						<div class="panel-body">
@@ -184,8 +193,8 @@
 					    	<!--<span ng-show="currency">COP</span> <strong>$ {{deliveryPrice}}</strong>-->
 					    <!--</span>-->
 	            	</div>
-
             	</div>
+            	
             </div>
 		</div>
 	</div>
