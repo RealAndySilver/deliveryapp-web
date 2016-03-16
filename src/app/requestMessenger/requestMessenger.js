@@ -44,25 +44,6 @@
 		model.delivery = {};
 		model.messengers = {};
 
-		model.currentBillingInformation = [
-			{
-				"cardHolderName": 'Juan Jose Perez',
-				"cardNumber": "**** 1234",
-				"securityCode": 7856,
-				"expiryMonth": 12,
-				"expiryYear": 21,
-				"value": 1,
-			},
-			{
-				"cardHolderName": 'Ana Maria Perez',
-				"cardNumber": "**** 4321",
-				"securityCode": 3390,
-				"expiryMonth": 10,
-				"expiryYear": 23,
-				"value": 2,
-			},
-		];
-
 		function init() {
 
 			model.roundtrip = false;
