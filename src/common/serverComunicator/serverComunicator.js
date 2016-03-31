@@ -1,7 +1,7 @@
 (function (module) {
 
     var urlList = {
-        "service": "http://192.241.187.135:2000/api_1.0/",
+        "service": "http://192.241.187.135:8080/api_1.0/",
         "local": "http://andres.local:2000/api_1.0/"
     };
 

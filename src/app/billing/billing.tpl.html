@@ -80,7 +80,8 @@
 			  <div class="form-group">
 				<div class="add-block-button col-sm-9">
 				  <button type="button" class="btn btn-success" ng-click="model.addBillingInformation(model.billingInformation)" ng-disabled="addBilingForm.$invalid" data-dismiss="modal">Agregar</button>
-				  <button type="button" class="btn btn-danger"data-dismiss="modal">Eliminar</button>
+				  <button type="button" class="btn btn-danger"data-dismiss="modal" ng-hide="!model.isEditing">Eliminar</button>
+				  <button type="button" class="btn btn-danger"data-dismiss="modal" ng-hide="model.isEditing">Omitir</button>
 				</div>
 			  </div>
 			</fieldset>

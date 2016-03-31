@@ -1,4 +1,4 @@
-<div layout="column" layout-align="center center" class="solo-box">
+<!--<div layout="column" layout-align="center center" class="solo-box">
 	<md-card class="basic-form">
 		<div>
 			<md-toolbar>
@@ -53,4 +53,49 @@
 			<span>Al registrarte en MensajeriApp, tu aceptas nuestros <a href="">Términos y Condiciones</a>. Tus datos estan bajo política de privacidad.</span>
 		</md-card>
 	</md-card>
+</div>-->
+
+<div class="account-container">
+    <div class="content clearfix">
+        <form name="registerForm" ng-submit="model.createUser()" novalidate>
+            <h1>Crear Cuenta</h1>                        
+            <div class="row">
+            	<div class="col-sm-12">
+	                <p>Por favor ingresa tus datos</p>
+	                <!--<p ng-show="loginForm.email.$invalid && !loginForm.email.$pristine" class="help-block">Ingresa un email valido.</p>-->
+	                <div class="form-group input-group" for="username" >
+	                    <label class="input-group-addon"><i class="fa icon-user fa-fw"></i></label>
+	                    <input type="text" id="username" class="form-control" name="email" ng-model="model.user.email" ng-pattern="/^[A-Za-z0-9._%+]+@[A-Za-z0-9]+\.[A-Za-z]{1,5}$/" placeholder="Nombre" class="login username-field" required/>
+	                </div>
+	                <div class="form-group input-group" for="username" >
+	                    <label class="input-group-addon"><i class="fa icon-user fa-fw"></i></label>
+	                    <input type="text" id="username" class="form-control" name="email" ng-model="model.user.email" ng-pattern="/^[A-Za-z0-9._%+]+@[A-Za-z0-9]+\.[A-Za-z]{1,5}$/" placeholder="Apellido" class="login username-field" required/>
+	                </div>
+	                <div class="form-group input-group" for="username" >
+	                    <label class="input-group-addon"><i class="fa icon-user fa-fw"></i></label>
+	                    <input type="text" id="username" class="form-control" name="email" ng-model="model.user.email" ng-pattern="/^[A-Za-z0-9._%+]+@[A-Za-z0-9]+\.[A-Za-z]{1,5}$/" placeholder="Correo Electrónico" class="login username-field" required/>
+	                </div>
+	                <div class="form-group input-group" for="password">
+	                    <label class="input-group-addon"><i class="fa icon-key fa-fw"></i></label>
+	                    <input type="password" id="password" class="form-control" name="password" ng-model="model.user.password" placeholder="Contraseña" class="login password-field" required/>
+	                </div>
+	                <div class="form-group input-group" for="password">
+	                    <label class="input-group-addon"><i class="fa icon-key fa-fw"></i></label>
+	                    <input type="password" id="password" class="form-control" name="password" ng-model="model.user.password" placeholder="Confirmar Contraseña" class="login password-field" required/>
+	                </div>
+	                <div class="form-group input-group" for="username" >
+	                    <label class="input-group-addon"><i class="fa icon-user fa-fw"></i></label>
+	                    <input type="text" id="username" class="form-control" name="email" ng-model="model.user.email" ng-pattern="/^[A-Za-z0-9._%+]+@[A-Za-z0-9]+\.[A-Za-z]{1,5}$/" placeholder="Celular" class="login username-field" required/>
+	                </div>
+            	</div>
+            	<div class="col-sm-12">
+            		<span>Al registrarte en Vueltapp, tu aceptas nuestros <a href="">Términos y Condiciones</a>. Tus datos estan bajo política de privacidad.</span>
+            	</div>
+            </div>
+            <div class="login-actions">
+                <button class="button btn btn-success btn-large">Crear</button>
+            </div>
+            
+        </form>
+    </div>
 </div>
