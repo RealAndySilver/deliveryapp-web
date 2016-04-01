@@ -32,7 +32,7 @@
 
 	}]);
 
-	module.controller('RequestMessengerController', ['$scope', '$mdDialog', 'RequestMessengerService', 'Session', 'GetPrice', '$stateParams', '$state', 'PickupAddresses', 'DeliveryAddresses', 'GetAllAddressService', "AlertsService", function($scope, $mdDialog, RequestMessengerService, Session, GetPrice, $stateParams, $state, PickupAddresses, DeliveryAddresses, GetAllAddressService, AlertsService) {
+	module.controller('RequestMessengerController', ['$scope', '$mdDialog', 'RequestMessengerService', 'Session', 'GetPrice', '$stateParams', '$state', 'PickupAddresses', 'DeliveryAddresses', 'GetAllAddressService', "AlertsService", 'BillingService', function($scope, $mdDialog, RequestMessengerService, Session, GetPrice, $stateParams, $state, PickupAddresses, DeliveryAddresses, GetAllAddressService, AlertsService, BillingService) {
 		var model = this;
 
 		model.pickUpAddressSave = JSON.parse(localStorage.getItem('PickupAddresses'));
@@ -44,24 +44,10 @@
 		model.delivery = {};
 		model.messengers = {};
 
-		model.currentBillingInformation = [
-			{
-				"cardHolderName": 'Juan Jose Perez',
-				"cardNumber": "**** 1234",
-				"securityCode": 7856,
-				"expiryMonth": 12,
-				"expiryYear": 21,
-				"value": 1,
-			},
-			{
-				"cardHolderName": 'Ana Maria Perez',
-				"cardNumber": "**** 4321",
-				"securityCode": 3390,
-				"expiryMonth": 10,
-				"expiryYear": 23,
-				"value": 2,
-			},
-		];
+		model.currentBillingInformation = [];
+		model.defaultPaymentMethod = {};
+		model.showBillingModal = false;
+		var addPaymentRequest = {};
 
 		function init() {
 
@@ -100,6 +86,20 @@
 
 			model.getPaymentMethods = function(userInfo) {
 				console.log('CURRENT USER DATA ', userInfo);
+
+				BillingService.getPaymentMethods(userInfo._id, function(response) {
+					console.log('getPaymentMethods ->', response);
+
+					if (response.response) {
+						model.currentBillingInformation = response.data;
+						model.defaultPaymentMethod = model.currentBillingInformation[0];
+						console.log('defaultPaymentMethod --> ', model.defaultPaymentMethod);
+					} else {
+						//$scope.BootstrapModal.show("Ha ocurrido un error al agregar método de pago, intenta mas tarde");
+						//$state.go('requestMessenger');
+					}
+
+				});
 			};
 
 			model.getCurrentUser = function() {
@@ -205,6 +205,12 @@
 			var pickupItem = {};
 			var deliveryItem = {};
 			model.requestMessenger = function() {
+				if (model.delivery.payment_method === 'credit' && model.currentBillingInformation.length === 0) {
+					console.log('AGREGAR TARJETA');
+					model.showBillingModal = true;
+				} else {
+					console.log('PAGAR CON TARJETA POR DEFECTO');
+				}
 				
 				if ($scope.requestMessengerForm.$valid) {
 
@@ -254,6 +260,29 @@
 					$scope.BootstrapModal.show("Completa todos los campos por favor");
 					//AlertsService.showSimpleAlert("Completa todos los campos por favor");
 				}
+			};
+
+			model.addBillingInformation = function(billingInformation) {
+				console.log('current billing infotmation ',billingInformation);
+				addPaymentRequest.user_id = sessionStorage.id;
+				addPaymentRequest.card_number = billingInformation.cardNumber;
+				addPaymentRequest.exp_date = billingInformation.expiryMonth + '/' + billingInformation.expiryYear;
+				addPaymentRequest.franchise = 'VISA';
+				addPaymentRequest.cvv = billingInformation.securityCode;
+				console.log('current payment infotmation ',addPaymentRequest);
+
+				BillingService.createPayment(addPaymentRequest, function(response) {
+					console.log(response);
+
+					if (response.response) {
+						//$state.reload('requestMessenger');
+						$('#addBilling').modal('hide'); 
+					} else {
+						$scope.BootstrapModal.show("Ha ocurrido un error al agregar método de pago, intenta mas tarde");
+						$state.go('requestMessenger');
+					}
+
+				});
 			};
 
 			model.showAddressBool = false;
