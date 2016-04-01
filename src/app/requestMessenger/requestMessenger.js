@@ -98,12 +98,19 @@
 				}*/
 			};
 
+			model.getPaymentMethods = function(userInfo) {
+				console.log('CURRENT USER DATA ', userInfo);
+			};
+
 			model.getCurrentUser = function() {
 				$scope.currentUser = Session.getUser();
+				
+				if ($scope.currentUser) {
+					model.getPaymentMethods($scope.currentUser);
+				}
 			};
 
 			model.getCurrentUser();
-
 
 			$scope.pickupLat = 0;
 			$scope.pickupLon = 0;

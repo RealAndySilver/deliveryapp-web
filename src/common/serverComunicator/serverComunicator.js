@@ -275,6 +275,33 @@
                 });
             };
 
+            model.createPayment = function (data) {
+                return $http({
+                    method: 'POST',
+                    data: data,
+                    headers: getHeader(),
+                    url: endpoint + 'Payments/CreatePaymentMethod',
+                });
+            };
+
+            model.getFranchise = function (data) {
+                return $http({
+                    method: 'GET',
+                    data: data,
+                    headers: getHeader(),
+                    url: endpoint + 'Payments/GetFranchiseByBIN/' + data,
+                });
+            };
+
+            model.getPaymentMethods = function (data) {
+                return $http({
+                    method: 'GET',
+                    data: data,
+                    headers: getHeader(),
+                    url: endpoint + 'Payments/PaymentMethods/' + data,
+                });
+            };
+
         }
     }]);
 

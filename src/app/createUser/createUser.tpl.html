@@ -1,60 +1,3 @@
-<!--<div layout="column" layout-align="center center" class="solo-box">
-	<md-card class="basic-form">
-		<div>
-			<md-toolbar>
-			    <div class="md-toolbar-tools" layout-align="center center">
-			    	<span class="md-flex">Registro</span>
-			    </div>
-			</md-toolbar>
-		</div>
-	    <div>
-			<form name="registerForm" ng-submit="model.createUser()" novalidate>
-				<md-input-container flex>
-					<label>Nombre</label>
-	            	<input name="name" ng-model="model.user.name" required>
-	        	</md-input-container>
-
-	        	<md-input-container flex>
-					<label>Apellido</label>
-	            	<input name="lastname" ng-model="model.user.lastname" required>
-	        	</md-input-container>
-
-				<md-input-container flex>
-					<label>Correo electrónico</label>
-	            	<input name="email" ng-model="model.user.email" ng-pattern="/^[A-Za-z0-9._%+]+@[A-Za-z0-9]+\.[A-Za-z]{1,5}$/" required>
-	        	</md-input-container>
-
-	        	<md-input-container flex>
-					<label>Contraseña</label>
-	            	<input type="password" name="password" ng-model="model.user.password" required>
-	        	</md-input-container>
-
-	        	<md-input-container flex>
-					<label>Confirmar contraseña</label>
-	            	<input type="password" name="confirm_password" ng-model="model.user.password_verify" data-password-verify="model.user.password" confirmPassword="{{model.user.password}}" required>
-	            	<div class="error" ng-show="registerForm.password.$dirty && registerForm.last_name.$invalid">
-						<small class="error" ng-show="registerForm.confirm_password.$error.confirmPassword">Las contraseñas no coinciden.</small>
-					</div>
-	        	</md-input-container>
-
-	        	<md-input-container flex>
-					<label>Celular</label>
-	            	<input name="mobilephone" ng-model="model.user.mobilephone" required>
-	        	</md-input-container>
-
-	        	<md-input-container flex>
-	        		<md-button class="md-raised primary-btn">Aceptar</md-button>
-	        		<md-button class="redButton" ng-click="model.cancel()">Cancelar</md-button>
-	        	</md-input-container>
-			</form>
-	    </div>
-	    <md-divider></md-divider>
-	    <md-card>	
-			<span>Al registrarte en MensajeriApp, tu aceptas nuestros <a href="">Términos y Condiciones</a>. Tus datos estan bajo política de privacidad.</span>
-		</md-card>
-	</md-card>
-</div>-->
-
 <div class="account-container">
     <div class="content clearfix">
         <form name="registerForm" ng-submit="model.createUser()" novalidate>
@@ -98,4 +41,81 @@
             
         </form>
     </div>
+</div>
+
+<div class="modal sign-up-modal billing-container" id="addBilling" ng-show="model.showBillingModal">
+	<div class="content clearfix model-dialog" role="document">
+		<form class="form-horizontal modal-content" role="form" name="addBilingForm" novalidate>
+			<fieldset>
+			  <legend>Agregar tarjeta</legend>
+			  <div class="form-group">
+				<label class="col-sm-4 control-label" for="card-holder-name">Titular tarjeta</label>
+				<div class="col-sm-6">
+				  <input type="text" ng-model="model.billingInformation.cardHolderName" class="form-control" name="card-holder-name" id="card-holder-name" maxlength="50" placeholder="Titular tarjeta">
+				</div>
+			  </div>
+			  <div class="form-group" ng-if="!model.isEditing">
+				<label class="col-sm-4 control-label" for="card-number">Número tarjeta</label>
+				<div class="col-sm-6">
+				  <input type="text" ng-model="model.billingInformation.cardNumber" ng-change="model.getFranchise(model.billingInformation.cardNumber)" ng-pattern="/^([0-9]| )+$/" maxlength="16" class="form-control" name="cardNumber" id="card-number" placeholder="Número tarjeta">
+				</div>
+			  </div>
+			  <p ng-show="addBilingForm.cardNumber.$error.pattern && !addBilingForm.cardNumber.$pristine" class="text-danger info-fix">Ingresa un número de tarjeta válido.</p>
+			  <div class="form-group">
+				<label class="col-sm-4 control-label fix-label" for="expiry-month">Fecha vencimiento</label>
+				<div class="col-sm-6">
+				  <div class="row">
+					<div class="col-xs-5">
+					  <select class="form-control col-sm-2" ng-model="model.billingInformation.expiryMonth" name="expiry-month" id="expiry-month">
+						<option ng-if="!model.billingInformation.expiryMonth" value="" selected>Mes</option>
+						<option value="01">Ene (01)</option>
+						<option value="02">Feb (02)</option>
+						<option value="03">Mar (03)</option>
+						<option value="04">Abr (04)</option>
+						<option value="05">May (05)</option>
+						<option value="06">Jun (06)</option>
+						<option value="07">Jul (07)</option>
+						<option value="08">Ago (08)</option>
+						<option value="09">Sep (09)</option>
+						<option value="10">Oct (10)</option>
+						<option value="11">Nov (11)</option>
+						<option value="12">Dic (12)</option>
+					  </select>
+					</div>
+					<div class="col-xs-5">
+					  <select class="form-control" ng-model="model.billingInformation.expiryYear" name="expiry-year">
+					  	<option ng-if="!model.billingInformation.expiryYear" value="" selected>Año</option>
+						<option value="13">2013</option>
+						<option value="14">2014</option>
+						<option value="15">2015</option>
+						<option value="16">2016</option>
+						<option value="17">2017</option>
+						<option value="18">2018</option>
+						<option value="19">2019</option>
+						<option value="20">2020</option>
+						<option value="21">2021</option>
+						<option value="22">2022</option>
+						<option value="23">2023</option>
+					  </select>
+					</div>
+				  </div>
+				</div>
+			  </div>
+			  <div class="form-group">
+				<label class="col-sm-4 control-label" for="cvv">Código CVV</label>
+				<div class="col-sm-4">
+				  <input type="text" class="form-control" ng-pattern="/^([0-9]| )+$/" maxlength="4" ng-model="model.billingInformation.securityCode" name="cvv" id="cvv" placeholder="Código seguridad">
+				</div>
+			  </div>
+			  <p ng-show="addBilingForm.cvv.$error.pattern && !addBilingForm.cvv.$pristine" class="text-danger info-fix">Ingresa un código de seguridad válido.</p>
+			  <div class="form-group">
+				<div class="add-block-button col-sm-9">
+				  <button type="button" class="btn btn-success" ng-click="model.addBillingInformation(model.billingInformation)" ng-disabled="addBilingForm.$invalid" data-dismiss="modal">Agregar</button>
+				  <button type="button" class="btn btn-danger"data-dismiss="modal" ng-hide="!model.isEditing">Eliminar</button>
+				  <button type="button" class="btn btn-danger"data-dismiss="modal" ng-hide="model.isEditing" ng-click="model.skipBilling()">Agregar después</button>
+				</div>
+			  </div>
+			</fieldset>
+	    </form>
+	</div>
 </div>

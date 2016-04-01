@@ -259,6 +259,10 @@ form.modal-content {
     cursor: pointer;
 }
 
+.modal.sign-up-modal {
+	display: block;
+}
+
 @media (max-width: 480px) {
 	
 	.account-container {

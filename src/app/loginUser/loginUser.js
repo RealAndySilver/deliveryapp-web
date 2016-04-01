@@ -48,8 +48,6 @@
 							sessionStorage.setItem('email', headerInfo.email);
 							sessionStorage.setItem('pass', headerInfo.password);
 							sessionStorage.setItem("token",response.data.session.token);
-							
-
 
 							if (model.rememberMe === true) {
 								localStorage.setItem('isLogin', true);
