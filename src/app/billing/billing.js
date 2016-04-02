@@ -1,13 +1,14 @@
 (function(module) {
 
-	module.controller('BillingController', function() {
+	module.controller('BillingController', ['BillingService', function(BillingService) {
 		var model = this;
+		var userId = sessionStorage.id;
 
 		model.isEditing = false;
-
 		model.billingInformation = {};
+		var addPaymentRequest = {};
 
-		model.currentBillingInformation = [
+		/*model.currentBillingInformation = [
 			{
 				"cardHolderName": 'Juan Jose Perez',
 				"cardNumber": "**** 1234",
@@ -22,11 +23,50 @@
 				"expiryMonth": 10,
 				"expiryYear": 23,
 			},
-		];
+		];*/
+
+		model.currentBillingInformation = [];
+
+		model.getPaymentMethods = function() {
+
+			BillingService.getPaymentMethods(userId, function(response) {
+				console.log('getPaymentMethods ->', response);
+
+				if (response.response) {
+					model.currentBillingInformation = response.data;
+					console.log('currentBillingInformation ->', model.currentBillingInformation);
+				} else {
+					//$scope.BootstrapModal.show("Ha ocurrido un error al agregar método de pago, intenta mas tarde");
+					//$state.go('requestMessenger');
+				}
+
+			});
+		};
+		model.getPaymentMethods();
 
 		model.addBillingInformation = function(billingInformation) {
 			model.isEditing = false;
 			console.log('current billing infotmation ',billingInformation);
+			addPaymentRequest.user_id = userId;
+			addPaymentRequest.card_number = billingInformation.cardNumber;
+			addPaymentRequest.exp_date = billingInformation.expiryMonth + '/' + billingInformation.expiryYear;
+			addPaymentRequest.franchise = 'VISA';
+			addPaymentRequest.cvv = billingInformation.securityCode;
+			console.log('current payment infotmation ',addPaymentRequest);
+
+			BillingService.createPayment(addPaymentRequest, function(response) {
+				console.log(response);
+
+				if (response.response) {
+					//$state.reload('requestMessenger');
+					$('#addBilling').modal('hide');
+					model.getPaymentMethods();
+				} else {
+					$scope.BootstrapModal.show("Ha ocurrido un error al agregar método de pago, intenta mas tarde");
+					$state.go('requestMessenger');
+				}
+
+			});
 		};
 
 		model.editBillingInformation = function(currentBillingInfo, operation) {
@@ -40,6 +80,6 @@
 			model.billingInformation.expiryYear = currentBillingInfo.expiryYear;
 		};
 
-	});
+	}]);
 
 }(angular.module("appMensajeria.billing")));

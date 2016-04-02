@@ -1,9 +1,9 @@
 <div class="panel panel-default account-container billing-container" style="margin-bottom: 40px;">
 	<div class="panel-heading"><b>Pagos</b></div>
 	<div ng-repeat="p in model.currentBillingInformation" class="panel-body">
-		<span>Titular tarjeta: {{p.cardHolderName}}<i class="icon-edit pull-right" data-toggle="modal" data-target="#addBilling" ng-click="model.editBillingInformation(model.currentBillingInformation[$index], 'Edit')"></i></span>
+		<span><i class="icon-edit pull-right" data-toggle="modal" data-target="#addBilling" ng-click="model.editBillingInformation(model.currentBillingInformation[$index], 'Edit')"></i></span>
 		<br>
-		<span><b class="bold-block-info">{{p.cardNumber}}</b> Exp: {{p.expiryMonth}}/{{p.expiryYear}}</span>
+		<span><b class="bold-block-info">**** {{p.card_last4}}</b></span>
 	</div>
 	<div>
 		<div class="add-block-button col-sm-9">
@@ -81,7 +81,7 @@
 				<div class="add-block-button col-sm-9">
 				  <button type="button" class="btn btn-success" ng-click="model.addBillingInformation(model.billingInformation)" ng-disabled="addBilingForm.$invalid" data-dismiss="modal">Agregar</button>
 				  <button type="button" class="btn btn-danger"data-dismiss="modal" ng-hide="!model.isEditing">Eliminar</button>
-				  <button type="button" class="btn btn-danger"data-dismiss="modal" ng-hide="model.isEditing">Omitir</button>
+				  <button type="button" class="btn btn-danger"data-dismiss="modal" ng-hide="model.isEditing">Cancelar</button>
 				</div>
 			  </div>
 			</fieldset>
