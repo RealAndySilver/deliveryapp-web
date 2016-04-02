@@ -181,11 +181,6 @@ span.login-checkbox > input[type='checkbox']:checked + label {
 
 .button {-webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px; display: inline-block; float: right; margin-top: 18px;}
 
-
-
-
-
-
 .register .login-social {
 	margin-bottom: 1em;
 }
@@ -261,6 +256,12 @@ form.modal-content {
 
 .modal.sign-up-modal {
 	display: block;
+}
+
+.fa-minus-square {
+	font-size: 22px;
+    margin-top: 14px;
+    cursor: pointer;
 }
 
 @media (max-width: 480px) {

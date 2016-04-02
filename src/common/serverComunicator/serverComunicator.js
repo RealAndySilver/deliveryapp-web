@@ -302,6 +302,15 @@
                 });
             };
 
+            model.deletePayment = function (data) {
+                return $http({
+                    method: 'DELETE',
+                    data: data,
+                    headers: getHeader(),
+                    url: endpoint + 'Payments/DeletePaymentMethod/' + data ,
+                });
+            };
+
         }
     }]);
 

@@ -1,7 +1,10 @@
 <div class="panel panel-default account-container billing-container" style="margin-bottom: 40px;">
 	<div class="panel-heading"><b>Pagos</b></div>
 	<div ng-repeat="p in model.currentBillingInformation" class="panel-body">
-		<span><i class="icon-edit pull-right" data-toggle="modal" data-target="#addBilling" ng-click="model.editBillingInformation(model.currentBillingInformation[$index], 'Edit')"></i></span>
+		<span>
+			<i class="fa fa-minus-square pull-right" ng-click="model.deletePaymentMethod(model.currentBillingInformation[$index])"></i>
+			<!--<i class="icon-edit pull-right" data-toggle="modal" data-target="#addBilling" ng-click="model.editBillingInformation(model.currentBillingInformation[$index], 'Edit')"></i>-->
+		</span>
 		<br>
 		<span><b class="bold-block-info">**** {{p.card_last4}}</b></span>
 	</div>
@@ -80,7 +83,6 @@
 			  <div class="form-group">
 				<div class="add-block-button col-sm-9">
 				  <button type="button" class="btn btn-success" ng-click="model.addBillingInformation(model.billingInformation)" ng-disabled="addBilingForm.$invalid" data-dismiss="modal">Agregar</button>
-				  <button type="button" class="btn btn-danger"data-dismiss="modal" ng-hide="!model.isEditing">Eliminar</button>
 				  <button type="button" class="btn btn-danger"data-dismiss="modal" ng-hide="model.isEditing">Cancelar</button>
 				</div>
 			  </div>

@@ -58,12 +58,10 @@
 				console.log(response);
 
 				if (response.response) {
-					//$state.reload('requestMessenger');
 					$('#addBilling').modal('hide');
 					model.getPaymentMethods();
 				} else {
 					$scope.BootstrapModal.show("Ha ocurrido un error al agregar método de pago, intenta mas tarde");
-					$state.go('requestMessenger');
 				}
 
 			});
@@ -78,6 +76,21 @@
 			model.billingInformation.securityCode = currentBillingInfo.securityCode;
 			model.billingInformation.expiryMonth = currentBillingInfo.expiryMonth;
 			model.billingInformation.expiryYear = currentBillingInfo.expiryYear;
+		};
+
+		model.deletePaymentMethod = function(currentBillingInfo) {
+			console.log('payment method for deleting ', currentBillingInfo);
+
+			BillingService.deletePayment(currentBillingInfo._id, function(response) {
+				console.log(response);
+
+				if (response.response) {
+					model.getPaymentMethods();
+				} else {
+					$scope.BootstrapModal.show("Ha ocurrido un error al eliminar método de pago, intenta mas tarde");
+				}
+
+			});
 		};
 
 	}]);
