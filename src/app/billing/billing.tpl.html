@@ -37,8 +37,14 @@
 			  <div class="form-group" ng-if="!model.isEditing">
 				<label class="col-sm-4 control-label" for="card-number">Número tarjeta</label>
 				<div class="col-sm-6">
-				  <input type="text" ng-model="model.billingInformation.cardNumber" ng-pattern="/^([0-9]| )+$/" maxlength="16" class="form-control" name="cardNumber" id="card-number" placeholder="Número tarjeta">
+				  <input type="text" ng-model="model.billingInformation.cardNumber" ng-change="model.getFranchise(model.billingInformation.cardNumber)" ng-pattern="/^([0-9]| )+$/" maxlength="16" class="form-control" name="cardNumber" id="card-number" placeholder="Número tarjeta">
 				</div>
+				<!--<img src="http://icons.iconarchive.com/icons/glyphish/glyphish/32/192-credit-card-icon.png">-->
+				<img src="assets/img/billing/american.png" ng-show="model.currentFranchise === 'AM'">
+				<img src="assets/img/billing/dinners.png" ng-show="model.currentFranchise === 'DI'">
+				<img src="assets/img/billing/mastercard.png" ng-show="model.currentFranchise === 'MC'">
+				<img src="assets/img/billing/visa.png" ng-show="model.currentFranchise === 'VI'">
+				<img src="assets/img/billing/visaelectron.png" ng-show="model.currentFranchise === 'VE'">
 			  </div>
 			  <p ng-show="addBilingForm.cardNumber.$error.pattern && !addBilingForm.cardNumber.$pristine" class="text-danger info-fix">Ingresa un número de tarjeta válido.</p>
 			  <div class="form-group">
