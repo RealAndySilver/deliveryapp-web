@@ -8,6 +8,7 @@
 
 		function init() {
 			var addPaymentRequest = {};
+			model.currentFranchise = "";
 
 			model.createUser = function() {
 
@@ -87,6 +88,9 @@
 
 					BillingService.getFranchise(cardNumber, function(response) {
 						console.log(response);
+
+						model.currentFranchise = response.data;
+						console.log('model.currentFranchise...--> ', model.currentFranchise);
 
 						/*if (response.response) {
 							$state.go('requestMessenger'); 
