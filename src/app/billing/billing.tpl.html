@@ -6,7 +6,15 @@
 			<!--<i class="icon-edit pull-right" data-toggle="modal" data-target="#addBilling" ng-click="model.editBillingInformation(model.currentBillingInformation[$index], 'Edit')"></i>-->
 		</span>
 		<br>
-		<span><b class="bold-block-info">**** {{p.card_last4}}</b></span>
+		<span>
+			<b class="bold-block-info">**** {{p.card_last4}}</b>
+			<!--<img src="http://icons.iconarchive.com/icons/glyphish/glyphish/32/192-credit-card-icon.png">-->
+			<img src="assets/img/billing/american.png" ng-show="{{p.franchise === 'AM'}}">
+			<img src="assets/img/billing/dinners.png" ng-show="{{p.franchise === 'DI'}}">
+			<img src="assets/img/billing/mastercard.png" ng-show="{{p.franchise === 'MC'}}">
+			<img src="assets/img/billing/visa.png" ng-show="{{p.franchise === 'VI'}}">
+			<img src="assets/img/billing/visaelectron.png" ng-show="{{p.franchise === 'VE'}}">
+		</span>
 	</div>
 	<div>
 		<div class="add-block-button col-sm-9">

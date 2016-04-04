@@ -6,26 +6,8 @@
 
 		model.isEditing = false;
 		model.billingInformation = {};
-		var addPaymentRequest = {};
-
-		/*model.currentBillingInformation = [
-			{
-				"cardHolderName": 'Juan Jose Perez',
-				"cardNumber": "**** 1234",
-				"securityCode": 7856,
-				"expiryMonth": 12,
-				"expiryYear": 21,
-			},
-			{
-				"cardHolderName": 'Ana Maria Perez',
-				"cardNumber": "**** 4321",
-				"securityCode": 3390,
-				"expiryMonth": 10,
-				"expiryYear": 23,
-			},
-		];*/
-
 		model.currentBillingInformation = [];
+		var addPaymentRequest = {};
 
 		model.getPaymentMethods = function() {
 
@@ -35,6 +17,7 @@
 				if (response.response) {
 					model.currentBillingInformation = response.data;
 					console.log('currentBillingInformation ->', model.currentBillingInformation);
+					model.billingInformation = {};
 				} else {
 					//$scope.BootstrapModal.show("Ha ocurrido un error al agregar método de pago, intenta mas tarde");
 					//$state.go('requestMessenger');
