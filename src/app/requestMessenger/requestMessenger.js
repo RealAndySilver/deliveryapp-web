@@ -47,6 +47,7 @@
 		model.currentBillingInformation = [];
 		model.defaultPaymentMethod = {};
 		model.showBillingModal = false;
+		model.currentFranchise = "";
 		var addPaymentRequest = {};
 
 		function init() {
@@ -284,6 +285,27 @@
 
 				});
 			};
+
+			model.getFranchise = function(cardNumber) {
+			if (cardNumber.length >3) {
+				console.log('get getFranchise.....', cardNumber);
+
+				BillingService.getFranchise(cardNumber, function(response) {
+					console.log(response);
+
+					model.currentFranchise = response.data;
+					console.log('model.currentFranchise...--> ', model.currentFranchise);
+
+					/*if (response.response) {
+						$state.go('requestMessenger'); 
+					} else {
+						$scope.BootstrapModal.show("Ha ocurrido un error al agregar método de pago, intenta mas tarde");
+						$state.go('requestMessenger');
+					}*/
+
+				});
+			}
+		};
 
 			model.showAddressBool = false;
 			model.showOptionsEnsurances = false;

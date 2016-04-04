@@ -88,7 +88,9 @@
 				$state.go('recoverPassword');
 			};
 
-			
+			model.createAccount = function() {
+				$state.go('createUser');
+			};
 
 			model.autoLogin = function() {
 
