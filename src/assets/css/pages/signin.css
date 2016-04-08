@@ -115,35 +115,33 @@ span.login-checkbox > input[type='checkbox']:checked + label {
 	display: block; 
 	width: 300px; 
 	margin: 1.5em auto;
-	 
 	text-align: left;
 	line-height: 19px; 
-	
 	text-shadow: 1px 1px 0px #fff; 	
 }
 
 
 .account-container h1 {
 	margin-bottom: .4em;
-	
+	text-align: center;
 	color: #525252;
+}
+
+#login-btn {
+	width: 100%;
 }
 
 /** Buttons **/
 .twitter, .fb {
 	position: relative;
-	
 	height: 32px; 
 	width: 157px; 
 	display: block;
-	
 	background: url(../../img/signin/twitter_btn.png) no-repeat; 
-	
 }
 
 .fb {
 	width: 162px; 
-	
 	background: url(../../img/signin/fb_btn.png) no-repeat; 	
 }
 

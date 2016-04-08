@@ -9,7 +9,7 @@
 			<div class="row">
 				<div class="col-sm-12">
 					<div class="form-group input-group">
-		                <label class="input-group-addon" for="servName">Nombre de Servicio</label>
+		                <label class="input-group-addon" for="servName">Nombre del Servicio</label>
 		                <input type="text" class="form-control" id="servName" name="servName" ng-model="model.delivery.item_name" required>
 		            </div>
 	        	</div>
@@ -27,7 +27,7 @@
                                 </span>
                           	</div>
 							<div class="form-group">
-								<input type="text" class="form-control" ng-model="model.delivery.pickup_details" placeholder="Apto, conjunto, Edificio de Recogida (opcional)">
+								<input type="text" class="form-control" ng-model="model.delivery.pickup_details" placeholder="Apto, Conjunto, Edificio de Recogida (Opcional)">
 							</div>
                           	<div class="form-group input-group">
 				                <label class="input-group-addon" for="delivery">Entrega</label>
@@ -37,13 +37,13 @@
                                 </span>
 				            </div>
 							<div class="form-group">
-								<input type="text" class="form-control" ng-model="model.delivery.delivery_details" placeholder="Apto, conjunto, Edificio de Entrega (opcional)">
+								<input type="text" class="form-control" ng-model="model.delivery.delivery_details" placeholder="Apto, Conjunto, Edificio de Entrega (Opcional)">
 							</div>
 				            <div class="form-group">
 				            	<delivery-map class="map-container" callback="setLatLong(lat1, lon1,lat2, lon2,valueBool)" messengers="model.messengers" delivery="model.delivery" pickup="model.pickup"></delivery-map>
 				            </div>
 		            		<div class="panel panel-default">
-		                        <div class="panel-heading"><button type="button" class="btn btn-default btn-sm btn-block" ng-click="model.isShowing('showAddressBool')">Historial de Direcciones</button></div>
+		                        <div class="panel-heading"><button type="button" class="btn btn-default btn-sm btn-block" ng-click="model.isShowing('showAddressBool')">Direcciones Recientes</button></div>
 		                        <div class="panel-body" ng-show="model.showAddressBool">
 				            		<label class="titleField">Direcciones de Recogida</label>
 									<ul>
@@ -82,7 +82,7 @@
 		                        <input type="radio" name="momentoRecogida" ng-model="model.delivery.time_to_deliver" value="now" required><i class="fa fa-flash"></i> Inmediato
 		                    </label>
 		                    <label class="radio-inline">
-		                        <input type="radio" name="momentoRecogida" ng-model="model.delivery.time_to_deliver" value="later"><i class="fa icon-time"></i> Durante el día
+		                        <input type="radio" name="momentoRecogida" ng-model="model.delivery.time_to_deliver" value="later"><i class="fa icon-time"></i> Durante el Día
 		                    </label>
                         </div>
                     </div>
@@ -95,7 +95,7 @@
 		                        <input type="radio" name="momentoEntrega" ng-model="model.delivery.time_to_pickup" value="now" required><i class="icon-large fa-flash"></i> Inmediato
 		                    </label>
 		                    <label class="radio-inline">
-		                        <input type="radio" name="momentoEntrega" ng-model="model.delivery.time_to_pickup" value="later"><i class="icon-large icon-time"></i> Durante el día
+		                        <input type="radio" name="momentoEntrega" ng-model="model.delivery.time_to_pickup" value="later"><i class="icon-large icon-time"></i> Durante el Día
 		                    </label>
                         </div>
                     </div>
@@ -122,62 +122,53 @@
 
 		            <div class="panel panel-default">
                         <div class="panel-heading">
-                        	<button type="button" class="btn btn-default btn-sm btn-block" tabindex="0" ng-click="model.isShowing('showOptionsEnsurances')"><b>Asegurar Servicio</b></button>
+                        	<button type="button" class="btn btn-default btn-sm btn-block" tabindex="0" ng-click="model.isShowing('showOptionsEnsurances')"><b>Asegurar</b></button>
                         </div>
                         <div class="panel-body" ng-show="model.showOptionsEnsurances">
 							<div class="form-group">
 								<select class="form-control" ng-model="model.delivery.ensurancevalue" ng-init="model.delivery.ensurancevalue='0'">
-									<option value="0">Selecciona el valor del seguro</option>
-									<option value="100000">100.000</option>
-									<option value="200000">200.000</option>
-									<option value="300000">300.000</option>
-									<option value="400000">400.000</option>
-									<option value="500000">500.000</option>
-									<option value="600000">600.000</option>
-									<option value="700000">700.000</option>
-									<option value="800000">800.000</option>
-									<option value="900000">900.000</option>
-									<option value="1000000">1.000.000</option>
-									<option value="1100000">1.100.000</option>
-									<option value="1200000">1.200.000</option>
-									<option value="1300000">1.300.000</option>
-									<option value="1400000">1.400.000</option>
-									<option value="1500000">1.500.000</option>
-									<option value="1600000">1.600.000</option>
-									<option value="1700000">1.700.000</option>
-									<option value="1800000">1.800.000</option>
-									<option value="1900000">1.900.000</option>
-									<option value="2000000">2.000.000</option>
+									<option value="0">Elige el valor a asegurar</option>
+									<option value="100000">Hasta $100.000</option>
+									<option value="200000">Hasta $200.000</option>
+									<option value="300000">Hasta $300.000</option>
+									<option value="400000">Hasta $400.000</option>
+									<option value="500000">Hasta $500.000</option>
+									<option value="600000">Hasta $600.000</option>
+									<option value="700000">Hasta $700.000</option>
+									<option value="800000">Hasta $800.000</option>
+									<option value="900000">Hasta $900.000</option>
+									<option value="1000000">Hasta $1.000.000</option>
+									<option value="1100000">Hasta $1.100.000</option>
+									<option value="1200000">Hasta $1.200.000</option>
+									<option value="1300000">Hasta $1.300.000</option>
+									<option value="1400000">Hasta $1.400.000</option>
+									<option value="1500000">Hasta $1.500.000</option>
+									<option value="1600000">Hasta $1.600.000</option>
+									<option value="1700000">Hasta $1.700.000</option>
+									<option value="1800000">Hasta $1.800.000</option>
+									<option value="1900000">Hasta $1.900.000</option>
+									<option value="2000000">Hasta $2.000.000</option>
 								</select>
                         	</div>
 
                         </div>
                     </div>
-					</div>
+				</div>
 
 				<div class="col-sm-12">
 					<div class="panel panel-default">
 						<div class="panel-heading"><b>Método de pago</b></div>
 						<div class="panel-body">
 							<label class="radio-inline">
-								<input type="radio" name="metodoPago" ng-model="model.delivery.payment_method" value="cash" required><i class="fa fa-money"></i> Efectivo
+								<input type="radio" name="metodoPago" ng-model="model.delivery.payment_method" value="cash" required><i class="fa fa-money"></i> Pago en Efectivo
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="metodoPago" ng-model="model.delivery.payment_method" value="credit"><i class="fa  fa-credit-card"></i> Crédito
+								<input type="radio" name="metodoPago" ng-model="model.delivery.payment_method" value="credit"><i class="fa  fa-credit-card"></i> Pago con Tarjeta
 							</label>
 						</div>
 					</div>
-            		<!--<div class="panel panel-default" id="billing-request-block" ng-show="model.delivery.payment_method === 'credit'">
-            			<div class="panel-body">
-            				<div ng-repeat="p in model.currentBillingInformation" class="panel-body">
-								<span>Titular tarjeta: {{p.cardHolderName}}<input class="pull-right" type="radio" name="card_{{p.value}}" ng-model="model.delivery.card" value="{{p.value}}"></span>
-								<br>
-								<span><b class="bold-block-info">{{p.cardNumber}}</b> Exp: {{p.expiryMonth}}/{{p.expiryYear}}</span>
-							</div>
-            			</div>
-            		</div>-->
 					<div class="panel panel-default">
-						<div class="panel-heading"><b>Instrucciones para el mensajero</b></div>
+						<div class="panel-heading"><b>Instrucciones para el Mensajero</b></div>
 						<div class="panel-body">
 							<textarea class="form-control" ng-model="model.delivery.instructions" required></textarea>
 						</div>
@@ -186,12 +177,8 @@
 				<br>
 				<div class="col-sm-12">
                     <div class="alert alert-success">
-						<span layout-align="center center">Valor del seguro elegido: <span ng-show="currency">COP</span> <strong>$ {{model.delivery.ensurancevalue}}</strong></span><br>
-						<span layout-align="center center">Costo del servicio: <span ng-show="currency">COP</span> <strong>$ {{deliveryPrice}}</strong></span><br>
-						<!--<span layout-align="center center">VALOR APROXIMADO DEL SERVICIO</span>-->
-					    <!--<span layout-align="center center" id="value_delivery">-->
-					    	<!--<span ng-show="currency">COP</span> <strong>$ {{deliveryPrice}}</strong>-->
-					    <!--</span>-->
+						<span layout-align="center center">Valor del Seguro: <span ng-show="currency">COP</span> <strong>${{model.delivery.ensurancevalue}}</strong></span><br>
+						<span layout-align="center center">Valor del Servicio: <span ng-show="currency">COP</span> <strong>${{deliveryPrice}}</strong></span><br>
 	            	</div>
             	</div>
             	
@@ -199,10 +186,9 @@
 		</div>
 	</div>
 	<div class="row form-group">
-		<button type="submit" class="btn btn-success btn-lg btn-block" ng-click="model.requestMessenger()">Solicitar</button>
+		<button type="submit" class="btn btn-success btn-lg btn-block" ng-click="model.requestMessenger()">Solicita tu Vueltap</button>
 	</div>
 </form>
-<!--<bs-modal label-accept-button="Ok" directory="assets/js/modal/templates" template="addresslist"></bs-modal>-->
 
 <div class="modal sign-up-modal billing-container" id="addBilling" ng-show="model.showBillingModal">
 	<div class="content clearfix model-dialog" role="document">

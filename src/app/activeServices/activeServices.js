@@ -13,7 +13,7 @@
                 $scope.BootstrapLoading.show(true);
                 ActiveServicesService.getActiveServices(model.User["_id"], function(response) {
                     model.deliveryItems = response.data;
-                    console.log("RESPONSE",response);
+                    console.log("ACTIVE RESPONSE ", response);
                     console.log(model.deliveryItems);
 
                     model.deliveryItems.forEach(function(item){
