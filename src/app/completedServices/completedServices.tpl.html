@@ -26,6 +26,12 @@
                     		<em>{{item.delivery_object.address}}</em>
                         </span>
                     </span>
+                    <span class="list-group-item">
+                        <i class="fa fa-map-marker fa-fw"></i> Dirección de Entrega
+                        <span class="pull-right text-muted">
+                            <em>{{item.date_created | date: 'medium'}}</em>
+                        </span>
+                    </span>
                 </div>
 				<button type="button" class="btn btn-success btn-sm pull-right" ng-click="model.goToServiceDetails(item._id)">Ver Detalles</button>
 			</div>
