@@ -6,7 +6,7 @@
 		model.isSearchMessenger = false;
 		model.reloadBool = false;
 		model.leftTime = "10s";
-		model.code = "aaaa";
+		model.code = "00";
 		model.showCancelButtonBool = true;
 
 		var id;
@@ -53,7 +53,7 @@
 					nowDate = new Date();
 					model.leftTime = parseInt((model.estimated.getTime() - nowDate.getTime()) / 60000);
 					if (model.leftTime < 0) {
-						model.leftTime = "Retrasado";
+						model.leftTime = "0";
 					}
 
 					if (response.data.messenger_info) {

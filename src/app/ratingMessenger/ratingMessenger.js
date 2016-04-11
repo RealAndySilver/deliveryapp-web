@@ -1,9 +1,10 @@
 (function(module) {
 
-	module.controller('RatingMessengerController', ["$scope", "RatingMessengerService", "Session", "$stateParams", "$state", "AlertsService","LogOut", function($scope, RatingMessengerService, Session, $stateParams, $state, AlertsService,LogOut) {
+	module.controller('RatingMessengerController', ["$scope", "RatingMessengerService", "Session", "$stateParams", "$state", "AlertsService","LogOut", "DetailsDeliveryItemService", function($scope, RatingMessengerService, Session, $stateParams, $state, AlertsService, LogOut, DetailsDeliveryItemService) {
 		var model = this;
 
 		model.User = (Session.getUser());
+		model.deliveryItemId = $stateParams.idItem;
 
 		init();
 
@@ -59,7 +60,19 @@
 				});
 			};
 
+			model.getDeliveryItemInfo = function() {
+				DetailsDeliveryItemService.serviceDetails(model.deliveryItemId, function(response) {
+					console.log('service response', response);
+					if (response.response) {
+						model.deliveryItemInfo = response.data;
+						console.log("deliveryItemInfo for rating!", model.deliveryItemInfo);
+					} else {
+						$scope.BootstrapModal.show("Hubo un error al intentar cargar los datos de mensajero, por favor intente de nuevo");
+					}
 
+				});
+			};
+			model.getDeliveryItemInfo();
 
 		}
 	}]);

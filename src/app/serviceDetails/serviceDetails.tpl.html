@@ -1,7 +1,7 @@
 <div class="row">
     <div class="col-lg-12">
         <h1 class="page-header">
-        	Detalles del servicio 
+        	Info del Servicio 
     		<button id="reloadButton" class="btn btn-success btn-sm" ng-click="model.reload()">
         		<i class="fa fa-refresh fa-lg"></i>
 		    </button>
@@ -14,8 +14,7 @@
     		<div class="col-lg-2">
     			<div class="panel panel-default">
 					<div class="panel-body">
-						<span>Foto Mensajero</span><br>
-    					<img id="profilePicMessenger" class="img-thumbnail" style="float:left;" ng-src="{{model.deliveryItemInfo.messenger_info.url}}">
+    					<img id="profilePicMessenger" ng-hide="!model.deliveryItemInfo.messenger_info.url" class="img-thumbnail" style="float:left;" ng-src="{{model.deliveryItemInfo.messenger_info.url}}">
     					<span style="float: left;" ng-show="model.images.lenght > 0">Fotos del Servicio</span><br>
     					<img ng-repeat="image in model.images" class="img-thumbnail"  ng-src="{{image.url}}">
     					<!--<img ng-repeat="image in model.images" class="img-thumbnail"  ng-src="{{image.url}}" ng-click="model.showBigImage(image.url)"><!---->
@@ -30,7 +29,7 @@
 							<div class="panel-body">
 		            			<div class="list-group">
 		                            <span class="list-group-item">
-		                                <i class="fa fa-gift fa-fw"></i> Nombre
+		                                <i class="fa fa-gift fa-fw"></i> Nombre del Servicio
 		                                <span class="pull-right text-muted">
 		                            		<em>{{model.deliveryItemInfo.item_name}}</em>
 		                                </span>
@@ -60,9 +59,9 @@
 		                                </span>
 		                            </span>
 		                            <span class="list-group-item">
-		                                <i class="fa fa-ticket fa-fw"></i> Valor Aproximado del Servicio
+		                                <i class="fa fa-ticket fa-fw"></i> Valor Total del Servicio
 		                                <span class="pull-right text-muted">
-		                            		<em>{{model.deliveryItemInfo.price_to_pay}}</em>
+		                            		<em>$ {{model.deliveryItemInfo.price_to_pay}}</em>
 		                                </span>
 		                            </span>
 		                        </div>
@@ -71,7 +70,7 @@
             		</div>
             		<div class="col-lg-6">
             			<div class="panel panel-default" ng-show="item.status != 'available'">
-            				<div class="panel-heading text-center"><h5>Datos del Mensajero</h5></div>
+            				<div class="panel-heading text-center"><h5>Conductor</h5></div>
 							<div class="panel-body">
 		            			<div class="list-group">
 		                            <span class="list-group-item">
@@ -81,7 +80,7 @@
 		                                </span>
 		                            </span>
 		                            <span class="list-group-item">
-		                                <i class="fa fa-phone fa-fw"></i> Teléfono
+		                                <i class="fa fa-phone fa-fw"></i> Celular
 		                                <span class="pull-right text-muted">
 		                            		<em>{{model.deliveryItemInfo.messenger_info.mobilephone}}</em>
 		                                </span>
@@ -112,13 +111,13 @@
     			<div class="row">
             		<div class="col-sm-12">
             			<div class="panel panel-default" ng-show="item.status != 'available'">
-            				<div class="panel-heading text-center"><h5>Estado actual del Servicio</h5></div>
+            				<div class="panel-heading text-center"><h5>Estado Actual del Servicio</h5></div>
 							<div class="panel-body">
 								<div class="container-fluid">
 									<div class="row">
 										<div class="col-sm-6">
 											<div class="alert alert-info">
-				                                <h4 ng-model="model.serviceStatus" class="alert-link">{{model.serviceStatus}}</h4>
+				                                <h4 ng-model="model.serviceStatus" class="alert-link">Servicio {{model.serviceStatus}}</h4>
 				                                <span ng-show="model.setAvailableButtonBool"><b>Razón</b>: {{model.deliveryItemInfo.abort_reason}}</span>
 				                            </div>
 										</div>
