@@ -40,10 +40,9 @@
 						//AlertsService.cancel();
 						$scope.BootstrapLoading.show(false);
 					}
-					
 
 					model.deliveryItemInfo = response.data;
-					console.log("EL deliveryItemInfo", model.deliveryItemInfo);
+					console.log("deliveryItemInfo object", model.deliveryItemInfo);
 
 					model.deliveryItemInfo.time_to_deliver = timeMap[model.deliveryItemInfo.time_to_deliver];
 					model.deliveryItemInfo.time_to_pickup = timeMap[model.deliveryItemInfo.time_to_pickup];
@@ -72,26 +71,22 @@
 					console.log("RELOAD BOOL", model.reloadBool);
 
 					if (response.data.images.length !== 0) {
-
 						model.imageBool = true;
 						model.images = response.data.images;
 					} else {
 						model.imageBool = false;
-
 					}
 
 					if (response.data["overall_status"] == "aborted") {
-
 						console.log(response.data["overall_status"]);
 						model.serviceStatus = traslateStatusFunction(response.data["overall_status"]);
 						model.setAvailableButtonBool = true;
-						//Poner la razon por la cual se aborto el servicio
-
 					} else {
 						model.serviceStatus = traslateStatusFunction(response.data["status"]);
 						model.setAvailableButtonBool = false;
 
 					}
+
 					if (response.data["status"] == "returned" || response.data["status"] == "delivered") {
 						model.showCancelButtonBool = false;
 						if (model.deliveryItemInfo.rated === false) {
@@ -117,7 +112,7 @@
 			model.serviceDetails();
 
 			model.cancelService = function() {
-				var confirm = $mdDialog.confirm()
+				/*var confirm = $mdDialog.confirm()
 					//.parent(angular.element(document.body))
 					.title('Alerta')
 					.content('Deseas cancelar el servicio.')
@@ -144,9 +139,20 @@
 						});
 					};
 					model.deleteDeliveryItem();
+				});*/
+				DetailsDeliveryItemService.deleteDeliveryItem(model.deliveryItemInfo._id, model.deliveryItemInfo.user_id, function(response) {
+					console.log(response);
+					if (response.response) {
+						//AlertsService.cancel();
+						$scope.BootstrapLoading.show(false);
+						$scope.BootstrapModal.show("Servicio cancelado de manera exitosa!");
+						$state.go('requestMessenger');
+					} else {
+						//AlertsService.showAlert(response.msg, "");
+						$scope.BootstrapModal.show(response.msg);
+					}
 				});
 			};
-
 
 			model.restartService = function() {
 				var confirm = $mdDialog.confirm()

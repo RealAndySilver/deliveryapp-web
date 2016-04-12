@@ -207,10 +207,10 @@
 			var deliveryItem = {};
 			model.requestMessenger = function() {
 				if (model.delivery.payment_method === 'credit' && model.currentBillingInformation.length === 0) {
-					console.log('AGREGAR TARJETA');
+					//console.log('AGREGAR TARJETA');
 					model.showBillingModal = true;
 				} else {
-					console.log('PAGAR CON TARJETA POR DEFECTO');
+					//console.log('PAGAR CON TARJETA POR DEFECTO');
 				}
 				
 				if ($scope.requestMessengerForm.$valid) {
