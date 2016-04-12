@@ -8,23 +8,11 @@
 <div class="row">
     <div class="col-lg-12">
     	<rating id="rating" value="rate" max="max" readonly="false" on-leave="overStar = null"></rating>
-        <br>
     	<span id="numberRate">{{rate}}</span>
    		<div class="form-group">
-            <label id="tileReview">Opiniones</label>
+            <label id="tileReview">Comentarios sobre el servicio</label>
             <textarea class="form-control" rows="3" id="review" name="email" ng-model="model.review" required></textarea>
         </div>
 	    <button class="btn btn-default" ng-click="model.ratingMessenger()" >Calificar<button>
     </div>
 </div>
-<!--<div layout="column" layout-align="center center" class="solo-box">
-	<md-card class="big-form">
-
-		
-		<div>
-			<label id="tileReview">Opiniones</label>
-        	<input id="review" name="email" ng-model="model.review" required>
-	     </div>
-	    
-	</md-card>
-</div>-->
