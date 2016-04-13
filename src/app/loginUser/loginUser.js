@@ -3,7 +3,7 @@
 	module.controller('LoginUserController', ['LoginUserService', '$state', '$mdDialog', 'User', 'Session', 'RecoverPassword', 'AlertsService', "$scope", function(LoginUserService, $state, $mdDialog, User, Session, RecoverPassword, AlertsService, $scope) {
 		var model = this;
 		model.rememberMe = false;
-		model.MY_FORM="";
+		model.MY_FORM = "";
 
 		init();
 
@@ -11,26 +11,18 @@
 
 			$scope.$watch('loginForm', function(newValue) {
 				if(newValue) {
-					model.MY_FORM=$scope.loginForm;
+					model.MY_FORM = $scope.loginForm;
 					model.autoLogin();
 				}
 			});
 			
 			model.recoverAlert = function() {
 				$scope.BootstrapModal.show("Te hemos enviado un correo electrónico para que puedas recuperar tu contraseña.");
-				/*$mdDialog.show(
-					$mdDialog.alert()
-					.content('Te hemos enviado un correo electrónico para que puedas recuperar tu contraseña.')
-					.ariaLabel('recover password')
-					.ok('Aceptar')
-					.disableParentScroll(false)
-				);*/
 			};
 
 			model.loginUser = function() {
 				if (model.MY_FORM.$valid) {
 					//AlertsService.loading();
-					console.log(model.user.password);
 					LoginUserService.loginUser(model.user.email, model.user.password, function(response) {
 						console.log(response);
 						var user = response.data;
@@ -39,7 +31,6 @@
 
 						if (!response.response) {
 							//AlertsService.showAlert(response.msg, "");
-							console.log("sdf");
 							$scope.BootstrapModal.show(" El usuario y/o contraseña son incorrectos"); 
 						} else if (response.data) {
 							//INFO PARA EL HEADER
@@ -78,13 +69,13 @@
 			};
 
 			model.newAccount = function() {
-				console.log("IR A NUEVA CUENTA");
+				//console.log("IR A NUEVA CUENTA");
 				$state.go('createUser');
 			};
 
 			model.recoverPassword = function() {
 				//IR A LA VENTANA DE RECUPERAR CONTRASEÑA
-				console.log("RECUPERAR CONTRASEÑA");
+				//console.log("RECUPERAR CONTRASEÑA");
 				$state.go('recoverPassword');
 			};
 
@@ -95,14 +86,14 @@
 			model.autoLogin = function() {
 
 				if (localStorage.getItem('isLogin')) {
-					console.log("EXISTE");
+					//console.log("EXISTE");
 					var user = {};
 					user = JSON.parse(localStorage.getItem("userInfoLogin"));
 					model.user = {};
 					model.user.email = user.email;
 					model.user.password = atob(user.password);
 
-					console.log('form ', loginForm);
+					//console.log('form ', loginForm);
 					model.loginUser();
 				} 
 			};

@@ -66,7 +66,6 @@
 				geocoder.geocode( { 'address': address + ", Bogotá", country: "CO"/*bounds: "4.50541610527197,-74.206731878221|4.80140167730285,-74.0019284561276"*/}, function(results, status) {
 					if (status == google.maps.GeocoderStatus.OK) {
 						console.log("maps", results[0]);
-						//Se llama al close to me
 
 						/*map.setCenter(results[0].geometry.location);
 						var marker = new google.maps.Marker({
@@ -291,18 +290,9 @@
 				console.log('get getFranchise.....', cardNumber);
 
 				BillingService.getFranchise(cardNumber, function(response) {
-					console.log(response);
-
+					//console.log(response);
 					model.currentFranchise = response.data;
 					console.log('model.currentFranchise...--> ', model.currentFranchise);
-
-					/*if (response.response) {
-						$state.go('requestMessenger'); 
-					} else {
-						$scope.BootstrapModal.show("Ha ocurrido un error al agregar método de pago, intenta mas tarde");
-						$state.go('requestMessenger');
-					}*/
-
 				});
 			}
 		};

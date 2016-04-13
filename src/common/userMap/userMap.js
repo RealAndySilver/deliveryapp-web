@@ -44,7 +44,6 @@
 				centerLatDelivery = $scope.delivery.lat;
 				centerLonDelivery = $scope.delivery.lng;
 				$scope.pickupBool = false;
-
 				$scope.deliveryMap.panTo(new google.maps.LatLng(centerLatDelivery, centerLonDelivery));
 			}
 		});
@@ -52,7 +51,6 @@
 		$scope.$watch('messengers.locations', function(arg) {
 
 			if(typeof(arg)!='undefined'){
-
 				$scope.deleteMarkers();
 				arg.forEach(function(messengerPosition){
 					var marker = new google.maps.Marker({
@@ -95,7 +93,6 @@
 					valueBool: $scope.pickupBool
 				});
 				model.pickupOrDeliveryAddress();
-
 			};
 
 			model.getLocation();
@@ -103,16 +100,13 @@
 
 			model.pickupOrDeliveryAddress = function() {
 
-				console.log("Antes", $scope.pickupBool);
+				//console.log("Antes", $scope.pickupBool);
 				if ($scope.pickupBool) {
 					$scope.pickupBool = false;
 					$scope.deliveryMap.panTo(new google.maps.LatLng(centerLatDelivery, centerLonDelivery));
-
 				} else {
 					$scope.pickupBool = true;
 					$scope.deliveryMap.panTo(new google.maps.LatLng(centerLatPickup, centerLonPickup));
-
-
 				}
 				console.log("DESPUES", $scope.deliveryMap.getCenter());
 
@@ -145,11 +139,9 @@
 				if ($scope.pickupBool) {
 					centerLatPickup = $scope.deliveryMap.getCenter().lat();
 					centerLonPickup = $scope.deliveryMap.getCenter().lng();
-
 				} else {
 					centerLatDelivery = $scope.deliveryMap.getCenter().lat();
 					centerLonDelivery = $scope.deliveryMap.getCenter().lng();
-
 				}
 
 				id = setTimeout(function() {
