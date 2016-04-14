@@ -286,6 +286,10 @@ textarea {
 	width: 25px !important;
 }
 
+.view-mode-input {
+	cursor: default !important;
+}
+
 @media (max-width: 480px) {
 	
 	.account-container {

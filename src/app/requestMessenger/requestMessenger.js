@@ -241,7 +241,6 @@
 						var deliveryItem = response.data.delivery_object;
 
 						if (response.response) {
-
 							if (response.msg === "a1" || response.msg === "a2" || response.msg === "a3") {
 								LogOut.logOutFunction();
 							} else {
@@ -254,7 +253,6 @@
 						} else {
 							$scope.BootstrapModal.show(response.msg);
 						}
-
 					});
 				} else {
 					$scope.BootstrapModal.show("Completa todos los campos por favor");

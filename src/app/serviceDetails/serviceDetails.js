@@ -112,34 +112,6 @@
 			model.serviceDetails();
 
 			model.cancelService = function() {
-				/*var confirm = $mdDialog.confirm()
-					//.parent(angular.element(document.body))
-					.title('Alerta')
-					.content('Deseas cancelar el servicio.')
-					.ariaLabel('')
-					.ok('Cancelar Servicio')
-					.cancel('Volver');
-				//.targetEvent(ev);
-				$mdDialog.show(confirm).then(function() {
-					//AlertsService.loading();
-					$scope.BootstrapLoading.show(true);
-					model.deleteDeliveryItem = function() {
-						DetailsDeliveryItemService.deleteDeliveryItem(model.deliveryItemInfo._id, model.deliveryItemInfo.user_id, function(response) {
-
-							console.log(response);
-							if (response.response) {
-								//AlertsService.cancel();
-								$scope.BootstrapLoading.show(false);
-								$scope.BootstrapModal.show("El servicio fue eliminado correctamente");
-								//AlertsService.showAlert(, "goProfile");
-							} else {
-								//AlertsService.showAlert(response.msg, "");
-								$scope.BootstrapModal.show(response.msg);
-							}
-						});
-					};
-					model.deleteDeliveryItem();
-				});*/
 				DetailsDeliveryItemService.deleteDeliveryItem(model.deliveryItemInfo._id, model.deliveryItemInfo.user_id, function(response) {
 					console.log(response);
 					if (response.response) {
@@ -192,23 +164,6 @@
 
 			model.showBigImage = function(url) {
 				console.log('url', url);
-				model.currentUrl = url;
-
-				$mdDialog.show({
-						controller: 'DialogController',
-						templateUrl: 'serviceDetails/showBigImage.tpl.html',
-						resolve: {
-							'imageUrl': function() {
-								console.log('url', url);
-								return url;
-							}
-						}
-
-					})
-					.then(function(answer) {
-
-
-					});
 			};
 		}
 	}]);
