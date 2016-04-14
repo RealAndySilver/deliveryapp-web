@@ -18,7 +18,7 @@
             <div class="login-actions">
                 <button class="button btn btn-success btn-large" id="login-btn">Iniciar Sesión</button>
                 <span class="login-checkbox">
-                    <input id="Field" name="Field" type="checkbox" class="field login-checkbox" ng-model="model.rememberMe" tabindex="4" />
+                    <input id="Field" name="Field" type="checkbox" class="field login-checkbox" ng-change="model.rememberUser(model.rememberMe)" ng-model="model.rememberMe" tabindex="4" />
                     <label class="choice" for="Field">Recordar en este equipo</label>
                     <span class="login-extra">
 					    <a href="" ng-click="model.recoverPassword()">Olvidé mi contraseña</a>
@@ -28,7 +28,6 @@
                     </span>
                 </span>
             </div>
-            
         </form>
     </div>
 </div>

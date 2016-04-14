@@ -2,7 +2,7 @@
 
 	module.controller('LoginUserController', ['LoginUserService', '$state', '$mdDialog', 'User', 'Session', 'RecoverPassword', 'AlertsService', "$scope", function(LoginUserService, $state, $mdDialog, User, Session, RecoverPassword, AlertsService, $scope) {
 		var model = this;
-		model.rememberMe = false;
+		//model.rememberMe = false;
 		model.MY_FORM = "";
 
 		init();
@@ -28,6 +28,9 @@
 						var user = response.data;
 						console.log(user);
 						//AlertsService.cancel();
+						if (!model.rememberMe) {
+							localStorage.removeItem('userInfoLogin');
+						}
 
 						if (!response.response) {
 							//AlertsService.showAlert(response.msg, "");
@@ -38,7 +41,7 @@
 							sessionStorage.setItem("id",user._id);
 							sessionStorage.setItem('email', headerInfo.email);
 							sessionStorage.setItem('pass', headerInfo.password);
-							sessionStorage.setItem("token",response.data.session.token);
+							sessionStorage.setItem("token", response.data.session.token);
 
 							if (model.rememberMe === true) {
 								localStorage.setItem('isLogin', true);
@@ -84,17 +87,14 @@
 			};
 
 			model.autoLogin = function() {
-
-				if (localStorage.getItem('isLogin')) {
+				if (localStorage.getItem('userInfoLogin')) {
+					model.rememberMe = true;
 					//console.log("EXISTE");
 					var user = {};
 					user = JSON.parse(localStorage.getItem("userInfoLogin"));
 					model.user = {};
 					model.user.email = user.email;
 					model.user.password = atob(user.password);
-
-					//console.log('form ', loginForm);
-					model.loginUser();
 				} 
 			};
 

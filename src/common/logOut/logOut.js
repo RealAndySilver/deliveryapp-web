@@ -23,7 +23,6 @@
 						sessionStorage.removeItem('email');
 						sessionStorage.removeItem('pass');
 						sessionStorage.removeItem('token');
-						localStorage.removeItem('userInfoLogin');
 						$state.go('loginUser');
 
 					} else {
