@@ -282,6 +282,10 @@ textarea {
     resize: none;
 }
 
+#delmarker {
+	width: 25px !important;
+}
+
 @media (max-width: 480px) {
 	
 	.account-container {

@@ -1386,6 +1386,7 @@ button:focus, a:focus { outline:0 !important;}
 .map-container>div {
 	height: 100%;
 	widows: 100%;
+	position: relative !important;
 }
 .map-container img {
 	width: 100%;
