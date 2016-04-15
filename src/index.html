@@ -16,14 +16,6 @@
         <link href="assets/css/pages/signin.css" rel="stylesheet" type="text/css">
         <link href="assets/css/pages/upload-files.css" rel="stylesheet" type="text/css">
         <link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600" rel="stylesheet">
-
-        <!-- Angulars Material CSS now available via Google CDN; version 0.7 used here -->
-        <!-- <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/0.7.0/angular-material.min.css"> -->
-        <!-- Angular Material Javascript now available via Google CDN; version 0.7 used here -->
-        <!--<script src="https://ajax.googleapis.com/ajax/libs/angular_material/0.7.0/angular-material.min.js"></script><!---->
-        <!-- Librerias del API de Google Maps -->
-        <!--<script src="https://maps.googleapis.com/maps/api/js?key=&sensor=false&extension=.js"></script>
-        <script type="text/javascript" src="http://www.google.com/jsapi"></script>-->
     </head>
     <body>
 
@@ -72,7 +64,7 @@
         </div>
         
         <div class="container" ui-view="main"></div>
-        <bs-modal title="Ups" label-accept-button="Ok" directory="assets/js/modal/templates"></bs-modal>
+        <bs-modal title="" label-accept-button="Ok" directory="assets/js/modal/templates"></bs-modal>
         <!-- compiled JavaScript --><% scripts.forEach( function ( file ) { %>
         <script type="text/javascript" src="<%= file %>"></script><% }); %>
         <script src="assets/js/bootstrap.js"></script>

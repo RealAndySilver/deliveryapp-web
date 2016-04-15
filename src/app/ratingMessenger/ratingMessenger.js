@@ -56,7 +56,6 @@
 						//AlertsService.showAlert(response.msg, "");
 					}
 					$state.go("requestMessenger");
-
 				});
 			};
 

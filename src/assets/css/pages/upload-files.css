@@ -13,7 +13,7 @@
 
 .panel img{
     margin: 0 auto;
-    max-width: 80%;
+    /*max-width: 80%;*/
 }
 .no-float{ float: none !important; }
 .maring-center{ margin-left: auto; margin-right: auto }

@@ -16,9 +16,14 @@
 					<div class="panel-body">
     					<img id="profilePicMessenger" ng-hide="!model.deliveryItemInfo.messenger_info.url" class="img-thumbnail" style="float:left;" ng-src="{{model.deliveryItemInfo.messenger_info.url}}">
             		</div>
-            		<div class="panel-body">
-    					<span style="float: left;" ng-show="model.images">Fotos del Servicio</span><br>
+            		<div class="panel-body" ng-show="model.images">
+    					<span style="float: left;">Fotos del Servicio</span><br>
     					<img ng-repeat="image in model.images" class="img-thumbnail"  ng-src="{{image.url}}">
+    					<!--<img ng-repeat="image in model.images" class="img-thumbnail"  ng-src="{{image.url}}" ng-click="model.showBigImage(image.url)">-->
+            		</div>
+            		<div class="panel-body" ng-show="model.deliveryItemInfo.signature_object.status">
+    					<span style="float: left;">Firma</span><br>
+    					<img class="img-thumbnail" ng-src="{{model.signature_object.signatureB64}}">
     					<!--<img ng-repeat="image in model.images" class="img-thumbnail"  ng-src="{{image.url}}" ng-click="model.showBigImage(image.url)">-->
             		</div>
             	</div>
@@ -94,7 +99,7 @@
 		                            <span class="list-group-item">
 		                                <i class="fa fa-ticket fa-fw"></i> Firma Obligatoria
 		                                <span class="pull-right text-muted">
-		                            		<input type="checkbox" aria-label="..." disabled class="view-mode-input" ng-checked="model.deliveryItemInfo.signature_object.status">
+		                            		<input type="checkbox" aria-label="..." disabled class="view-mode-input" ng-checked="model.deliveryItemInfo.send_signature">
 		                                </span>
 		                            </span>
 		                        </div>
