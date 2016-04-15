@@ -23,7 +23,7 @@
             		</div>
             		<div class="panel-body" ng-show="model.deliveryItemInfo.signature_object.status">
     					<span style="float: left;">Firma</span><br>
-    					<img class="img-thumbnail" ng-src="{{model.signature_object.signatureB64}}">
+    					<img class="img-thumbnail" data-ng-src="data:image/png;base64,{{model.deliveryItemInfo.signature_object.signatureB64}}">
     					<!--<img ng-repeat="image in model.images" class="img-thumbnail"  ng-src="{{image.url}}" ng-click="model.showBigImage(image.url)">-->
             		</div>
             	</div>
