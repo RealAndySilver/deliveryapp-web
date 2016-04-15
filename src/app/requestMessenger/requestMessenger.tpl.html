@@ -39,6 +39,11 @@
 							<div class="form-group">
 								<input type="text" class="form-control" ng-model="model.delivery.delivery_details" placeholder="Apto, Conjunto, Edificio de Entrega (Opcional)">
 							</div>
+							<div class="form-group">
+								<label class="radio-inline">
+									<input type="checkbox" name="momentoRecogida" ng-model="model.delivery.roundtrip"> <i class="fa fa-exchange"></i> Ida y Vuelta
+								</label>
+							</div>
 				            <div class="form-group">
 				            	<delivery-map class="map-container" callback="setLatLong(lat1, lon1,lat2, lon2,valueBool)" messengers="model.messengers" delivery="model.delivery" pickup="model.pickup"></delivery-map>
 				            </div>

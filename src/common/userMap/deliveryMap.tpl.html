@@ -2,11 +2,7 @@
 	<ul class="nav nav-tabs">
 		<li ng-class="{'active':pickupBool}"><a href="" data-toggle="tab" aria-expanded="false" ng-click="model.pickupOrDeliveryAddress()">Recogida</a></li>
 		<li ng-class="{'active':!pickupBool}"><a href="" data-toggle="tab" aria-expanded="true" ng-click="model.pickupOrDeliveryAddress()">Entrega</a></li>
-		<li class="radio-content">
-			<label class="radio-inline">
-				<input type="checkbox" name="momentoRecogida" ng-model="model.roundtrip"> <i class="fa fa-exchange"></i> Ida y Vuelta
-			</label>
-		</li>
+		
 	</ul>
 </div>
 <div>
