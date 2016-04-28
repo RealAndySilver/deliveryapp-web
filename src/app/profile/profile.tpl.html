@@ -16,7 +16,7 @@
             </div>
             <div class="form-group input-group">
                 <span class="input-group-addon" for="celphone">Celular</span>
-                <input type="text" id="celphone" class="form-control" ng-model="model.User.mobilephone" required>
+                <input type="text" maxlength="10" id="celphone" class="form-control" ng-model="model.User.mobilephone" required>
             </div>
             <div class="form-group">
                 <button type="button" class="btn btn-success" ng-click="model.updateProfile()">Guardar Cambios</button>
