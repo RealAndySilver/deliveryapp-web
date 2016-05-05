@@ -32,11 +32,22 @@
 
 	}]);
 
-	module.controller('RequestMessengerController', ['$scope', '$mdDialog', 'RequestMessengerService', 'Session', 'GetPrice', '$stateParams', '$state', 'PickupAddresses', 'DeliveryAddresses', 'GetAllAddressService', "AlertsService", 'BillingService', function($scope, $mdDialog, RequestMessengerService, Session, GetPrice, $stateParams, $state, PickupAddresses, DeliveryAddresses, GetAllAddressService, AlertsService, BillingService) {
+	module.controller('RequestMessengerController', ['$scope', '$mdDialog', 'RequestMessengerService', 'Session', 'GetPrice', '$stateParams', '$state', 'PickupAddresses', 'DeliveryAddresses', 'GetAllAddressService', "AlertsService", 'BillingService', 'ServerComunicator', function($scope, $mdDialog, RequestMessengerService, Session, GetPrice, $stateParams, $state, PickupAddresses, DeliveryAddresses, GetAllAddressService, AlertsService, BillingService, ServerComunicator) {
 		var model = this;
+		//var clientIP = null;
+		model.serviceEndpoint = ServerComunicator.getEndpoint;
 
 		model.pickUpAddressSave = JSON.parse(localStorage.getItem('PickupAddresses'));
 		model.deliveryAddressSave = JSON.parse(localStorage.getItem('DeliveryAddresses'));
+
+		$(function() {
+			$.getJSON("https://api.ipify.org?format=jsonp&callback=?",
+				function(json) {
+					model.delivery.ip_address = json.ip || null;
+					//alert("My public IP address is: ", clientIP);
+				}
+			);
+		});
 
 		init();
 
@@ -90,9 +101,9 @@
 				BillingService.getPaymentMethods(userInfo._id, function(response) {
 					console.log('getPaymentMethods ->', response);
 
-					if (response.response) {
+					if (response.data) {
 						model.currentBillingInformation = response.data;
-						model.defaultPaymentMethod = model.currentBillingInformation[0];
+						model.defaultPaymentMethod = model.currentBillingInformation[0]._id;
 						console.log('defaultPaymentMethod --> ', model.defaultPaymentMethod);
 					} else {
 						//$scope.BootstrapModal.show("Ha ocurrido un error al agregar método de pago, intenta mas tarde");
@@ -230,8 +241,12 @@
 					model.delivery.user_info = $scope.currentUser;
 					model.delivery.user_id = $scope.currentUser._id;
 
+					model.delivery.token_id = model.defaultPaymentMethod || null;
+					//model.delivery.ip_address = clientIP;
+
 					//AlertsService.loading(true);
 					$scope.BootstrapLoading.show(true);
+					console.log("delivery OBJECT REQUEST ", model.delivery);
 					RequestMessengerService.requestMessenger(model.delivery, function(response) {
 						//console.log(response);
 						//AlertsService.loading(false);

@@ -1,7 +1,7 @@
 (function (module) {
 
     var urlList = {
-        "service": "http://192.241.187.135:8080/api_1.0/",
+        "service": "http://192.168.1.131:8080/api_1.0/",
         "local": "http://andres.local:2000/api_1.0/"
     };
 
@@ -16,7 +16,6 @@
         function getHeader() {
             var email = sessionStorage.getItem('email');
             var pass = sessionStorage.getItem('pass');
-            //pass = "bbb";
             var token = sessionStorage.token;
             console.log("Token from local ", token);
             return {
@@ -33,6 +32,7 @@
         }
 
         function init() {
+            model.getEndpoint = urlList.service;
 
             model.login = function (email, password) {
                 return $http({

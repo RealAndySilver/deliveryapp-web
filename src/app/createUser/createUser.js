@@ -12,7 +12,7 @@
 
 			model.createUser = function() {
 
-				//if ($scope.registerForm.$valid) {
+				if ($scope.registerForm.$valid) {
 					//AlertsService.loading();
 					console.log('crear user ', model.user);
 					CreateUserService.createUser(model.user.name, model.user.lastname, model.user.email, model.user.password, model.user.mobilephone, function(response) {
@@ -28,9 +28,9 @@
 							$scope.BootstrapModal.show("Recuerde diligenciar el formulario correctamente");
 						}
 					});
-				/*} else {
-					AlertsService.showSimpleAlert("Completa todos los campos por favor.");
-				}*/
+				} else {
+					$scope.BootstrapModal.show("Recuerde diligenciar el formulario");
+				}
 
 			};
 

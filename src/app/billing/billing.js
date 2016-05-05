@@ -1,6 +1,6 @@
 (function(module) {
 
-	module.controller('BillingController', ['BillingService', $scope, function(BillingService, $scope) {
+	module.controller('BillingController', ['BillingService', function(BillingService) {
 		var model = this;
 		var userId = sessionStorage.id;
 
