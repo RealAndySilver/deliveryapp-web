@@ -1412,6 +1412,9 @@ button:focus, a:focus { outline:0 !important;}
 	margin-left: -10px;
 }
 
+.help-block {
+	color: #F50057;
+}
 
 .md-raised.mapButtons {
 	display: inline-block !important;
