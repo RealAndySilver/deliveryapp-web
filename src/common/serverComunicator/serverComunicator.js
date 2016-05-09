@@ -1,7 +1,8 @@
 (function (module) {
 
     var urlList = {
-        "service": "http://192.168.1.131:8080/api_1.0/",
+        /*BACKEND DEV VUELTAP*/
+        "service": "http://198.211.116.88:8080/api_1.0/",
         "local": "http://andres.local:2000/api_1.0/"
     };
 
