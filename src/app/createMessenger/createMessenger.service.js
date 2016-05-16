@@ -8,9 +8,9 @@
         function init() {
 
             model.createMessenger = function(data, callback) {
-                data.password = btoa( data.password );
+                var passwordToSend = btoa( data.password );
                 var registerPromise = ServerComunicator.createMessenger(
-                    data.email, data.password, data.name, data.lastname,
+                    data.email, passwordToSend, data.name, data.lastname,
                     data.mobilephone, data.plate, data.identification, data.city
                 );
                 registerPromise.then(
