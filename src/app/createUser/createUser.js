@@ -1,8 +1,10 @@
 (function(module) {
 
-	module.controller('CreateUserController', ['CreateUserService', '$state', 'AlertsService', "$scope", 'LoginUserService', 'Session', 'BillingService', function(CreateUserService, $state, AlertsService, $scope, LoginUserService, Session, BillingService) {
+	module.controller('CreateUserController', ['ServerComunicator','CreateUserService', '$state', 'AlertsService', "$scope", 'LoginUserService', 'Session', 'BillingService', function(ServerComunicator,CreateUserService, $state, AlertsService, $scope, LoginUserService, Session, BillingService) {
 		var model = this;
 		model.showBillingModal = false;
+		console.log("Endpoint "+ServerComunicator.getEndpoint);
+		model.endpoint=ServerComunicator.getEndpoint;
 
 		init();
 
