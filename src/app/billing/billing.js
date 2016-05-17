@@ -41,7 +41,7 @@
 			//addPaymentRequest.franchise = 'VISA';
 			addPaymentRequest.cvv = billingInformation.securityCode;
 			//console.log('current payment infotmation ',addPaymentRequest);
-			
+
 			model.isEditing = false;
 
 			BillingService.createPayment(addPaymentRequest, function(response) {
