@@ -199,12 +199,15 @@
 		<form class="form-horizontal modal-content" role="form" name="addBilingForm" novalidate>
 			<fieldset>
 			  <legend>Agregar tarjeta</legend>
-			  <div class="form-group">
+				<div class="form-group">
+					<label class="control-label">Para continuar debes agregar un medio de pago</label>
+				</div>
+			 <!-- <div class="form-group">
 				<label class="col-sm-4 control-label" for="card-holder-name">Titular tarjeta</label>
 				<div class="col-sm-6">
 				  <input type="text" ng-model="model.billingInformation.cardHolderName" class="form-control" name="card-holder-name" id="card-holder-name" maxlength="50" placeholder="Titular tarjeta">
 				</div>
-			  </div>
+			  </div>-->
 			  <div class="form-group" ng-if="!model.isEditing">
 				<label class="col-sm-4 control-label" for="card-number">Número tarjeta</label>
 				<div class="col-sm-6">
@@ -241,8 +244,6 @@
 					<div class="col-xs-5">
 					  <select class="form-control" ng-model="model.billingInformation.expiryYear" name="expiry-year">
 					  	<option ng-if="!model.billingInformation.expiryYear" value="" selected>Año</option>
-						<option value="13">2013</option>
-						<option value="14">2014</option>
 						<option value="15">2015</option>
 						<option value="16">2016</option>
 						<option value="17">2017</option>
@@ -252,6 +253,8 @@
 						<option value="21">2021</option>
 						<option value="22">2022</option>
 						<option value="23">2023</option>
+						<option value="24">2024</option>
+						<option value="25">2025</option>
 					  </select>
 					</div>
 				  </div>
@@ -268,7 +271,7 @@
 				<div class="add-block-button col-sm-9">
 				  <button type="button" class="btn btn-success" ng-click="model.addBillingInformation(model.billingInformation)" ng-disabled="addBilingForm.$invalid" data-dismiss="modal">Agregar</button>
 				  <button type="button" class="btn btn-danger"data-dismiss="modal" ng-hide="!model.isEditing">Eliminar</button>
-				  <button type="button" class="btn btn-danger"data-dismiss="modal" ng-hide="model.isEditing" ng-click="model.skipBilling()">Agregar después</button>
+				  <button type="button" class="btn btn-danger"data-dismiss="modal" ng-click="model.showBillingModal=false">Cancelar</button>
 				</div>
 			  </div>
 			</fieldset>

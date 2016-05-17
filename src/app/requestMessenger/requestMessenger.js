@@ -32,7 +32,7 @@
 
 	}]);
 
-	module.controller('RequestMessengerController', ['$scope', '$mdDialog', 'RequestMessengerService', 'Session', 'GetPrice', '$stateParams', '$state', 'PickupAddresses', 'DeliveryAddresses', 'GetAllAddressService', "AlertsService", 'BillingService', 'ServerComunicator', function($scope, $mdDialog, RequestMessengerService, Session, GetPrice, $stateParams, $state, PickupAddresses, DeliveryAddresses, GetAllAddressService, AlertsService, BillingService, ServerComunicator) {
+	module.controller('RequestMessengerController', ['$scope', '$mdDialog', 'RequestMessengerService', 'Session', 'GetPrice', '$stateParams', '$state', 'PickupAddresses', 'DeliveryAddresses', 'GetAllAddressService', "AlertsService", 'BillingService', 'ServerComunicator','ValidationService', function($scope, $mdDialog, RequestMessengerService, Session, GetPrice, $stateParams, $state, PickupAddresses, DeliveryAddresses, GetAllAddressService, AlertsService, BillingService, ServerComunicator,ValidationService) {
 		var model = this;
 		//var clientIP = null;
 		model.serviceEndpoint = ServerComunicator.getEndpoint;
@@ -103,8 +103,11 @@
 
 					if (response.data) {
 						model.currentBillingInformation = response.data;
-						model.defaultPaymentMethod = model.currentBillingInformation[0]._id;
-						console.log('defaultPaymentMethod --> ', model.defaultPaymentMethod);
+						if (model.currentBillingInformation[0]){
+							model.showBillingModal = false;
+							model.defaultPaymentMethod = model.currentBillingInformation[0]._id;
+							console.log('defaultPaymentMethod --> ', model.defaultPaymentMethod);
+						}
 					} else {
 						//$scope.BootstrapModal.show("Ha ocurrido un error al agregar método de pago, intenta mas tarde");
 						//$state.go('requestMessenger');
@@ -213,16 +216,25 @@
 				}
 			}
 
+
+			model.requireAddCreditCard = function(){
+				if (model.delivery.payment_method === 'credit' && model.currentBillingInformation.length === 0) {
+					//console.log('AGREGAR TARJETA');
+					return true;
+				} else {
+					return false;
+				}
+			};
+
 			var pickupItem = {};
 			var deliveryItem = {};
 			model.requestMessenger = function() {
-				if (model.delivery.payment_method === 'credit' && model.currentBillingInformation.length === 0) {
-					//console.log('AGREGAR TARJETA');
+
+				if (model.requireAddCreditCard()){
 					model.showBillingModal = true;
-				} else {
-					//console.log('PAGAR CON TARJETA POR DEFECTO');
+					return;
 				}
-				
+
 				if ($scope.requestMessengerForm.$valid) {
 
 					model.delivery.pickup_object = {};
@@ -276,23 +288,36 @@
 			};
 
 			model.addBillingInformation = function(billingInformation) {
-				console.log('current billing infotmation ',billingInformation);
+				//console.log('current billing infotmation ',billingInformation);
+				if (!billingInformation){
+					$scope.BootstrapModal.show("Completa el formulario");
+					return;
+				}
+
 				addPaymentRequest.user_id = sessionStorage.id;
 				addPaymentRequest.card_number = billingInformation.cardNumber;
 				addPaymentRequest.exp_date = billingInformation.expiryMonth + '/' + billingInformation.expiryYear;
-				addPaymentRequest.franchise = 'VISA';
+				//addPaymentRequest.franchise = 'VISA';
 				addPaymentRequest.cvv = billingInformation.securityCode;
-				console.log('current payment infotmation ',addPaymentRequest);
+
+				var validateRes=ValidationService.isValidAddPaymentRequest(addPaymentRequest);
+
+				if (!validateRes.isValid){
+					$scope.BootstrapModal.show(validateRes.message);
+					return;
+				}
+
+				//console.log('current payment infotmation ',addPaymentRequest);
 
 				BillingService.createPayment(addPaymentRequest, function(response) {
 					console.log(response);
 
 					if (response.response) {
 						//$state.reload('requestMessenger');
-						$('#addBilling').modal('hide'); 
+						model.showBillingModal = false;
 					} else {
-						$scope.BootstrapModal.show("Ha ocurrido un error al agregar método de pago, intenta mas tarde");
-						$state.go('requestMessenger');
+						$scope.BootstrapModal.show(response.msg);
+						//$state.go('requestMessenger');
 					}
 
 				});

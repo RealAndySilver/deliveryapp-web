@@ -69,16 +69,17 @@
 				addPaymentRequest.exp_date = billingInformation.expiryMonth + '/' + billingInformation.expiryYear;
 				addPaymentRequest.franchise = 'VISA';
 				addPaymentRequest.cvv = billingInformation.securityCode;
-				console.log('current payment infotmation ',addPaymentRequest);
+				//console.log('current payment infotmation ',addPaymentRequest);
 
 				BillingService.createPayment(addPaymentRequest, function(response) {
 					console.log(response);
 
 					if (response.response) {
+						$scope.BootstrapModal.show("Tarjeta agregada exitosamente");
 						$state.go('requestMessenger'); 
 					} else {
 						$scope.BootstrapModal.show("Ha ocurrido un error al agregar método de pago, intenta mas tarde");
-						$state.go('requestMessenger');
+						//$state.go('requestMessenger');
 					}
 
 				});
@@ -86,7 +87,7 @@
 
 			model.getFranchise = function(cardNumber) {
 				if (cardNumber.length >3) {
-					console.log('get getFranchise.....', cardNumber);
+					//console.log('get getFranchise.....', cardNumber);
 
 					BillingService.getFranchise(cardNumber, function(response) {
 						console.log(response);
