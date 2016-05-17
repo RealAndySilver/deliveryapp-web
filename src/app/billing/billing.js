@@ -1,6 +1,6 @@
 (function(module) {
 
-	module.controller('BillingController', ['BillingService', function(BillingService) {
+	module.controller('BillingController', ['BillingService','ValidationService','$scope', function(BillingService,ValidationService,$scope) {
 		var model = this;
 		var userId = sessionStorage.id;
 
@@ -8,16 +8,20 @@
 		model.billingInformation = {};
 		model.currentBillingInformation = [];
 		model.currentFranchise = "";
+
+		model.billingInformation.expiryMonth='01';
+		model.billingInformation.expiryYear='16';
+
 		var addPaymentRequest = {};
 
 		model.getPaymentMethods = function() {
 
 			BillingService.getPaymentMethods(userId, function(response) {
-				console.log('getPaymentMethods ->', response);
+				//console.log('getPaymentMethods ->', response);
 
 				if (response.response) {
 					model.currentBillingInformation = response.data;
-					console.log('currentBillingInformation ->', model.currentBillingInformation);
+					//console.log('currentBillingInformation ->', model.currentBillingInformation);
 					model.billingInformation = {};
 				} else {
 					//$scope.BootstrapModal.show("Ha ocurrido un error al agregar método de pago, intenta mas tarde");
@@ -29,17 +33,19 @@
 		model.getPaymentMethods();
 
 		model.addBillingInformation = function(billingInformation) {
-			model.isEditing = false;
-			console.log('current billing infotmation ',billingInformation);
+			//console.log('current billing infotmation ',billingInformation);
+
 			addPaymentRequest.user_id = userId;
 			addPaymentRequest.card_number = billingInformation.cardNumber;
 			addPaymentRequest.exp_date = billingInformation.expiryMonth + '/' + billingInformation.expiryYear;
-			addPaymentRequest.franchise = 'VISA';
+			//addPaymentRequest.franchise = 'VISA';
 			addPaymentRequest.cvv = billingInformation.securityCode;
-			console.log('current payment infotmation ',addPaymentRequest);
+			//console.log('current payment infotmation ',addPaymentRequest);
+			
+			model.isEditing = false;
 
 			BillingService.createPayment(addPaymentRequest, function(response) {
-				console.log(response);
+				//console.log(response);
 
 				if (response.response) {
 					$('#addBilling').modal('hide');
@@ -51,19 +57,8 @@
 			});
 		};
 
-		model.editBillingInformation = function(currentBillingInfo, operation) {
-			if (operation == 'Edit') {
-				model.isEditing = true;
-			}
-			console.log('billing info for editing ', currentBillingInfo);
-			model.billingInformation.cardHolderName = currentBillingInfo.cardHolderName;
-			model.billingInformation.securityCode = currentBillingInfo.securityCode;
-			model.billingInformation.expiryMonth = currentBillingInfo.expiryMonth;
-			model.billingInformation.expiryYear = currentBillingInfo.expiryYear;
-		};
-
 		model.deletePaymentMethod = function(currentBillingInfo) {
-			console.log('payment method for deleting ', currentBillingInfo);
+			//console.log('payment method for deleting ', currentBillingInfo);
 
 			BillingService.deletePayment(currentBillingInfo._id, function(response) {
 				console.log(response);
