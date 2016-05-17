@@ -41,7 +41,7 @@
                     <ul class="dropdown-menu dropdown-user">
                         <li class="{{app.activeMenuButton('profile')}}"><a href="" ng-click="app.goProfile()"><i class="fa fa-user fa-fw"></i> Perfil</a></li>
                         <li class="{{app.activeMenuButton('billing')}}"><a href="" ng-click="app.goBilling()"><i class="fa fa-credit-card fa-fw"></i> Pagos</a></li>
-                        <li class="{{app.activeMenuButton('termsConditions')}}"><a ng-href="http://192.168.1.131:8080/api_1.0/GetDisclaimerPDF" target="_blank"><i class="fa fa-file-text-o fa-fw"></i> Términos y condiciones</a></li>
+                        <li class="{{app.activeMenuButton('termsConditions')}}"><a ng-href="{{app.getEndPoint()}}GetDisclaimerPDF/user" target="_blank"><i class="fa fa-file-text-o fa-fw"></i> Términos y condiciones</a></li>
                         <li class="divider"></li>
                         <li><a href="" ng-click="app.logOut()"><i class="fa fa-sign-out fa-fw"></i> Cerrar sesion</a></li>
                     </ul>

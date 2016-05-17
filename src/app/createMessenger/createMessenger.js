@@ -1,7 +1,9 @@
 (function (module) {
-    module.controller('CreateMessengerController', ['CreateMessengerService', '$state', 'AlertsService', "$scope",
-        function (CreateMessengerService, $state, AlertsService, $scope) {
+    module.controller('CreateMessengerController', ['CreateMessengerService', '$state', 'AlertsService', "$scope",'ServerComunicator',
+        function (CreateMessengerService, $state, AlertsService, $scope,ServerComunicator ) {
             var model = this;
+
+            model.endpoint=ServerComunicator.getEndpoint;
 
             model.messenger = {};
             model.cities = [{id: 1, name: "Bogotá"}, {id: 2, name: "Medellín"}, {id: 3, name: "Cali"}];

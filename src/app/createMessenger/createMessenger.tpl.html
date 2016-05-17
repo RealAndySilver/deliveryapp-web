@@ -89,6 +89,9 @@
 						<!--<a href="" ng-click="model.recoverPassword()">¿Olvidaste tu contraseña?</a>-->
 					<!--</span>-->
 				<!--</span>-->
+				<div class="col-sm-12">
+					<span>Al registrarte en Vueltapp, tu aceptas nuestros <a href="{{model.endpoint}}GetDisclaimerPDF/messenger" target="_blank">Términos y Condiciones</a>. Tus datos estan bajo política de privacidad.</span>
+				</div>
 				<button ng-disabled="createMessenger.$invalid || model.messenger.password != model.messenger.repeatPassword"
 						 class="button btn btn-success btn-large">Registrar</button>
 			</div>
