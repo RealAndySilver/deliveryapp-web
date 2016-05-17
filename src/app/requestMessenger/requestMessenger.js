@@ -315,6 +315,8 @@
 					if (response.response) {
 						//$state.reload('requestMessenger');
 						model.showBillingModal = false;
+						//Needs to reload the credit card info
+						model.getCurrentUser();
 					} else {
 						$scope.BootstrapModal.show(response.msg);
 						//$state.go('requestMessenger');
