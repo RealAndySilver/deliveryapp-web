@@ -1,7 +1,7 @@
 (function(module) {
     module.config(function ($stateProvider) {
         $stateProvider.state('uploadFilesMessenger', {
-            url: '/messenger/:id/uploadFiles',
+            url: '/uploadFilesMessenger/:id',
             views: {
                 "main": {
                     controller: 'UploadFilesMessengerController as model',
