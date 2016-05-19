@@ -1,6 +1,6 @@
 (function(module) {
 
-	module.controller('BillingController', ['BillingService','ValidationService','$scope', function(BillingService,ValidationService,$scope) {
+	module.controller('BillingController', ['BillingService','ValidationService','$scope','$rootScope', function(BillingService,ValidationService,$scope,$rootScope) {
 		var model = this;
 		var userId = sessionStorage.id;
 
@@ -12,7 +12,10 @@
 		model.billingInformation.expiryMonth='01';
 		model.billingInformation.expiryYear='16';
 
-		var addPaymentRequest = {};
+		//Funcion llamada por la directiva de adicionar tarjeta
+		$rootScope.creditCardAdded=function(){
+			model.getPaymentMethods();
+		};
 
 		model.getPaymentMethods = function() {
 
@@ -32,29 +35,8 @@
 		};
 		model.getPaymentMethods();
 
-		model.addBillingInformation = function(billingInformation) {
-			//console.log('current billing infotmation ',billingInformation);
-
-			addPaymentRequest.user_id = userId;
-			addPaymentRequest.card_number = billingInformation.cardNumber;
-			addPaymentRequest.exp_date = billingInformation.expiryMonth + '/' + billingInformation.expiryYear;
-			//addPaymentRequest.franchise = 'VISA';
-			addPaymentRequest.cvv = billingInformation.securityCode;
-			//console.log('current payment infotmation ',addPaymentRequest);
-
-			model.isEditing = false;
-
-			BillingService.createPayment(addPaymentRequest, function(response) {
-				//console.log(response);
-
-				if (response.response) {
-					$('#addBilling').modal('hide');
-					model.getPaymentMethods();
-				} else {
-					$scope.BootstrapModal.show("Ha ocurrido un error al agregar método de pago, intenta mas tarde");
-				}
-
-			});
+		model.getUserId=function(){
+			return sessionStorage.id;
 		};
 
 		model.deletePaymentMethod = function(currentBillingInfo) {
@@ -70,27 +52,6 @@
 				}
 
 			});
-		};
-
-		model.getFranchise = function(cardNumber) {
-			if (cardNumber.length >3) {
-				console.log('get getFranchise.....', cardNumber);
-
-				BillingService.getFranchise(cardNumber, function(response) {
-					console.log(response);
-
-					model.currentFranchise = response.data;
-					console.log('model.currentFranchise...--> ', model.currentFranchise);
-
-					/*if (response.response) {
-						$state.go('requestMessenger'); 
-					} else {
-						$scope.BootstrapModal.show("Ha ocurrido un error al agregar método de pago, intenta mas tarde");
-						$state.go('requestMessenger');
-					}*/
-
-				});
-			}
 		};
 
 	}]);

@@ -5,6 +5,7 @@
 
 		var MAX_ADDRESS = 3;
 
+
 		model.save = function(pickupItem, deliveryItem) {
 
 			if (PickupAddresses.length === 0) {
@@ -32,8 +33,13 @@
 
 	}]);
 
-	module.controller('RequestMessengerController', ['$scope', '$mdDialog', 'RequestMessengerService', 'Session', 'GetPrice', '$stateParams', '$state', 'PickupAddresses', 'DeliveryAddresses', 'GetAllAddressService', "AlertsService", 'BillingService', 'ServerComunicator','ValidationService', function($scope, $mdDialog, RequestMessengerService, Session, GetPrice, $stateParams, $state, PickupAddresses, DeliveryAddresses, GetAllAddressService, AlertsService, BillingService, ServerComunicator,ValidationService) {
+	module.controller('RequestMessengerController', ['$rootScope','$scope', '$mdDialog', 'RequestMessengerService', 'Session', 'GetPrice', '$stateParams', '$state', 'PickupAddresses', 'DeliveryAddresses', 'GetAllAddressService', "AlertsService", 'BillingService', 'ServerComunicator','ValidationService', function($rootScope,$scope, $mdDialog, RequestMessengerService, Session, GetPrice, $stateParams, $state, PickupAddresses, DeliveryAddresses, GetAllAddressService, AlertsService, BillingService, ServerComunicator,ValidationService) {
 		var model = this;
+
+		//Funcion llamada por la directiva de adicionar tarjeta
+		$rootScope.creditCardAdded=function(){
+			model.getCurrentUser();
+		};
 		//var clientIP = null;
 		model.serviceEndpoint = ServerComunicator.getEndpoint;
 
@@ -218,7 +224,7 @@
 		model.requestMessenger = function() {
 
 			if (model.requireAddCreditCard()){
-				model.showBillingModal = true;
+				$('#addBilling').modal('show');
 				return;
 			}
 
@@ -240,7 +246,7 @@
 				model.delivery.user_info = $scope.currentUser;
 				model.delivery.user_id = $scope.currentUser._id;
 
-				model.delivery.token_id = model.defaultPaymentMethod || null;
+				model.delivery.token_id = model.defaultPaymentMethod.length===0? model.defaultPaymentMethod.length:null;
 				//model.delivery.ip_address = clientIP;
 
 				//AlertsService.loading(true);
@@ -274,55 +280,6 @@
 			}
 		};
 
-		model.addBillingInformation = function(billingInformation) {
-			//console.log('current billing infotmation ',billingInformation);
-			if (!billingInformation){
-				$scope.BootstrapModal.show("Completa el formulario");
-				return;
-			}
-
-			addPaymentRequest.user_id = sessionStorage.id;
-			addPaymentRequest.card_number = billingInformation.cardNumber;
-			addPaymentRequest.exp_date = billingInformation.expiryMonth + '/' + billingInformation.expiryYear;
-			//addPaymentRequest.franchise = 'VISA';
-			addPaymentRequest.cvv = billingInformation.securityCode;
-
-			var validateRes=ValidationService.isValidAddPaymentRequest(addPaymentRequest);
-
-			if (!validateRes.isValid){
-				$scope.BootstrapModal.show(validateRes.message);
-				return;
-			}
-
-			//console.log('current payment infotmation ',addPaymentRequest);
-
-			BillingService.createPayment(addPaymentRequest, function(response) {
-				console.log(response);
-
-				if (response.response) {
-					//$state.reload('requestMessenger');
-					model.showBillingModal = false;
-					//Needs to reload the credit card info
-					model.getCurrentUser();
-				} else {
-					$scope.BootstrapModal.show(response.msg);
-					//$state.go('requestMessenger');
-				}
-
-			});
-		};
-
-		model.getFranchise = function(cardNumber) {
-			if (cardNumber.length >3) {
-				console.log('get getFranchise.....', cardNumber);
-
-				BillingService.getFranchise(cardNumber, function(response) {
-					//console.log(response);
-					model.currentFranchise = response.data;
-					console.log('model.currentFranchise...--> ', model.currentFranchise);
-				});
-			}
-		};
 
 		model.showAddressBool = false;
 		model.showOptionsEnsurances = false;
