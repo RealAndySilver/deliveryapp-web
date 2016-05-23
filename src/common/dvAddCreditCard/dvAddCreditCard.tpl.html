@@ -12,7 +12,7 @@
 				<div class="form-group" ng-if="!model.isEditing">
 					<label class="col-sm-4 control-label" for="card-number">Número de Tarjeta</label>
 					<div class="col-sm-6">
-						<input type="text" ng-model="model.billingInformation.cardNumber" ng-blur="model.getFranchise(model.billingInformation.cardNumber)" ng-pattern="/^([0-9]| )+$/" minlength="14" maxlength="16" class="form-control" name="cardNumber" id="card-number" placeholder="Número tarjeta" required>
+						<input type="text" ng-model="model.billingInformation.cardNumber" ng-blur="model.getFranchise(model.billingInformation.cardNumber)" ng-pattern="/^([0-9]| )+$/" minlength="13" maxlength="16" class="form-control" name="cardNumber" id="card-number" placeholder="Número tarjeta" required>
 					</div>
 					<!--<img src="http://icons.iconarchive.com/icons/glyphish/glyphish/32/192-credit-card-icon.png">-->
 					<img src="assets/img/billing/american.png" ng-show="model.currentFranchise === 'AMEX'">

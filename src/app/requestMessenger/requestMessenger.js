@@ -246,7 +246,9 @@
 				model.delivery.user_info = $scope.currentUser;
 				model.delivery.user_id = $scope.currentUser._id;
 
-				model.delivery.token_id = model.defaultPaymentMethod.length===0? model.defaultPaymentMethod.length:null;
+				console.log("PAYMENT ",model.defaultPaymentMethod);
+
+				model.delivery.token_id = model.defaultPaymentMethod;
 				//model.delivery.ip_address = clientIP;
 
 				//AlertsService.loading(true);
@@ -257,10 +259,10 @@
 					//AlertsService.loading(false);
 					console.log(response);
 					$scope.BootstrapLoading.show(false);
-					var pickupItem = response.data.pickup_object;
-					var deliveryItem = response.data.delivery_object;
 
 					if (response.response) {
+						var pickupItem = response.data.pickup_object;
+						var deliveryItem = response.data.delivery_object;
 						if (response.msg === "a1" || response.msg === "a2" || response.msg === "a3") {
 							LogOut.logOutFunction();
 						} else {
