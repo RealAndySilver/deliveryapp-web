@@ -1,13 +1,12 @@
 (function (module) {
 
     var urlList = {
-        /*BACKEND DEV VUELTAP*/
-        "service": "http://192.241.187.135:8080/api_1.0/"
-        /*BACKEND DEV LOCALHOST
-        "service": "http://localhost:8080/api_1.0/"*/
+        /*BACKEND DEV VUELTAP
+        "service": "http://192.241.187.135:8080/api_1.0/"*/
+        /*BACKEND DEV LOCALHOST*/
+        "service": "http://localhost:8080/api_1.0/"
         /*BACKEND PRODUCCION
         "service": "https://vueltap.com:8080/api_1.0/"*/
-
     };
 
     module.service('ServerComunicator', ['$http', '$q', function ($http, $q) {
@@ -22,7 +21,7 @@
             var email = sessionStorage.getItem('email');
             var pass = sessionStorage.getItem('pass');
             var token = sessionStorage.token;
-            console.log("Token from local ", token);
+            //console.log("Token from local ", token);
             return {
                 type: 'user',
                 Authorization: 'Basic ' + btoa(email + ':' + pass),
@@ -304,6 +303,15 @@
                     data: data,
                     headers: getHeader(),
                     url: endpoint + 'Payments/PaymentMethods/' + data,
+                });
+            };
+
+            model.getPaymentHistory = function (data) {
+                return $http({
+                    method: 'GET',
+                    data: data,
+                    headers: getHeader(),
+                    url: endpoint + 'Payments/PaymentHistoryByUser/' + data,
                 });
             };
 

@@ -1,5 +1,8 @@
 <!DOCTYPE html>
 <html ng-app="appMensajeria" ng-controller="AppController as app">
+<div id="mydiv">
+    <img height="50" width="50" src="assets/img/ajax_loader.gif" class="ajax-loader"/>
+</div>
     <head>
         <title ng-bind="pageTitle"></title>
         <meta charset="UTF8">
@@ -59,7 +62,7 @@
                     </ul>
                 </div>
             </div>
-            <bs-loading label="Cargando..." percent="100" show="false" active="true"></bs-loading>
+            <bs-loading label="Cargando..." percent="0" show="false" active="true"></bs-loading>
         </div>
         
         <div class="container" ui-view="main"></div>

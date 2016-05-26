@@ -9,31 +9,39 @@
 		model.currentBillingInformation = [];
 		model.currentFranchise = "";
 
-		model.billingInformation.expiryMonth='01';
-		model.billingInformation.expiryYear='16';
+		model.paymentHistoryArray=[];
+
+		model.getPaymentMethods = function() {
+			BillingService.getPaymentMethods(userId, function(response) {
+				if (response.response) {
+					model.currentBillingInformation = response.data;
+				}
+			});
+		};
+
+		model.getPaymentHistory = function() {
+			BillingService.getPaymentHistory(userId, function(response) {
+				if (response.response) {
+					model.paymentHistoryArray = response.data;
+					console.log("Recibi ",model.paymentHistoryArray);
+				}
+			});
+		};
+
+
+		init();
+
+		function init() {
+			model.getPaymentMethods();
+			model.getPaymentHistory();
+		}
 
 		//Funcion llamada por la directiva de adicionar tarjeta
 		$rootScope.creditCardAdded=function(){
 			model.getPaymentMethods();
 		};
 
-		model.getPaymentMethods = function() {
 
-			BillingService.getPaymentMethods(userId, function(response) {
-				//console.log('getPaymentMethods ->', response);
-
-				if (response.response) {
-					model.currentBillingInformation = response.data;
-					//console.log('currentBillingInformation ->', model.currentBillingInformation);
-					model.billingInformation = {};
-				} else {
-					//$scope.BootstrapModal.show("Ha ocurrido un error al agregar método de pago, intenta mas tarde");
-					//$state.go('requestMessenger');
-				}
-
-			});
-		};
-		model.getPaymentMethods();
 
 		model.getUserId=function(){
 			return sessionStorage.id;

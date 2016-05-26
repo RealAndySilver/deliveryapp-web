@@ -36,7 +36,8 @@
 	module.controller('RequestMessengerController', ['$rootScope','$scope', '$mdDialog', 'RequestMessengerService', 'Session', 'GetPrice', '$stateParams', '$state', 'PickupAddresses', 'DeliveryAddresses', 'GetAllAddressService', "AlertsService", 'BillingService', 'ServerComunicator','ValidationService', function($rootScope,$scope, $mdDialog, RequestMessengerService, Session, GetPrice, $stateParams, $state, PickupAddresses, DeliveryAddresses, GetAllAddressService, AlertsService, BillingService, ServerComunicator,ValidationService) {
 		var model = this;
 
-		//Funcion llamada por la directiva de adicionar tarjeta
+		//Funcion llamada por la directiva de adicionar tarjeta y se usa para refrescar lo necesario en este controlador
+		//despues de que se adiciono una tarjeta
 		$rootScope.creditCardAdded=function(){
 			model.getCurrentUser();
 		};
@@ -45,6 +46,9 @@
 
 		model.pickUpAddressSave = JSON.parse(localStorage.getItem('PickupAddresses'));
 		model.deliveryAddressSave = JSON.parse(localStorage.getItem('DeliveryAddresses'));
+
+		//Used for timer the google reverse geocode search
+		model.processId=0;
 
 		$(function() {
 			$.getJSON("https://api.ipify.org?format=jsonp&callback=?",
@@ -60,6 +64,9 @@
 		model.pickup = {};
 		model.delivery = {};
 		model.messengers = {};
+
+		model.searchAddressField = "";
+		model.addressListFromGoogle = [];
 
 		model.roundtrip = false;
 		$scope.modal = {};
@@ -81,20 +88,56 @@
 		};
 		//$scope.showAlert();
 
-		$scope.modal.getPositionBy = function(address){
-			console.log(address);
-			var geocoder = new google.maps.Geocoder();
-			geocoder.geocode( { 'address': address + ", Bogotá", country: "CO"/*bounds: "4.50541610527197,-74.206731878221|4.80140167730285,-74.0019284561276"*/}, function(results, status) {
-				if (status == google.maps.GeocoderStatus.OK) {
-					console.log("maps", results[0]);
-				} else {
-					console.log('MAPS Geocode was not successful for the following reason: ', status);
-				}
-			});
+		/**
+		 * This method makes a search using reverse geocode on google api services
+		 *
+		 * */
+		model.searchGoogleAddresses = function(address){
+			//console.log(address);
+			clearTimeout(model.processId);
+			model.processId = setTimeout(function() {
+				//console.log("Buscando");
+
+				var geocoder = new google.maps.Geocoder();
+
+				var googleRequest = {
+					address: address,
+					componentRestrictions: {
+							country: 'CO',
+							locality: 'Bogotá'
+					}
+				};
+
+				geocoder.geocode(googleRequest, function (results, status) {
+					if (status == google.maps.GeocoderStatus.OK) {
+						$scope.$apply(function(){
+							//console.log("maps", results);
+							model.addressListFromGoogle = results;
+						});
+					} else {
+						console.log('MAPS Geocode was not successful for the following reason: ', status);
+					}
+				});
+			},1000);
+		};
+
+
+		/**
+		 * This methods refreshes the map when the user selects an address from the window,
+		 * this makes integrations with the directive that displays the map
+		 *
+		 * */
+		model.updateAddressInMap=function(updatePickup,googleAddress){
+			if (updatePickup){
+				$rootScope.updatePickupMap({lat:googleAddress.geometry.location.lat(),lng:googleAddress.geometry.location.lng()});
+			}else{
+				$rootScope.updateDeliveryMap({lat:googleAddress.geometry.location.lat(),lng:googleAddress.geometry.location.lng()});
+			}
+			$('#searchAddress').modal('hide');
 		};
 
 		model.getPaymentMethods = function(userInfo) {
-			console.log('CURRENT USER DATA ', userInfo);
+			//console.log('CURRENT USER DATA ', userInfo);
 
 			BillingService.getPaymentMethods(userInfo._id, function(response) {
 				console.log('getPaymentMethods ->', response);
@@ -181,6 +224,7 @@
 		}
 
 		$scope.setLatLong = function(lat1, lon1, lat2, lon2, valueBool) {
+			//console.log("LAT 1",lat1,"LON 1",lon1);
 			$scope.$apply(function() {
 				$scope.pickupLat  = parseFloat(lat1);
 				$scope.pickupLon  = parseFloat(lon1);
@@ -246,7 +290,7 @@
 				model.delivery.user_info = $scope.currentUser;
 				model.delivery.user_id = $scope.currentUser._id;
 
-				console.log("PAYMENT ",model.defaultPaymentMethod);
+				//console.log("PAYMENT ",model.defaultPaymentMethod);
 
 				model.delivery.token_id = model.defaultPaymentMethod;
 				//model.delivery.ip_address = clientIP;
@@ -305,6 +349,13 @@
 				$mdDialog.hide(answer);
 			};
 		}
+
+		model.enableSearchAddress=function(searchAddress){
+			$('#searchAddress').modal('show');
+			model.searchAddressField=searchAddress;
+			model.addressListFromGoogle=[];
+
+		};
 
 		$scope.useAddress = function(answer, delivery) {
 			console.log('clo se to me');

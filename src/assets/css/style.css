@@ -7,6 +7,28 @@ Bootstrap Admin Template by EGrappler.com
 /*------------------------------------------------------------------
 [1. Global]
 */
+
+#mydiv {
+	position:fixed;
+	top:0;
+	left:0;
+	width:100%;
+	height:100%;
+	z-index:10000000;
+	background-color:#000000;
+	opacity: .3;
+}
+
+.ajax-loader {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	margin-left: -32px; /* -1 * image width / 2 */
+	margin-top: -32px;  /* -1 * image height / 2 */
+	display: block;
+}
+
+
 body {
 	background: #f9f6f1;
 	font: 13px/1.7em 'Open Sans';
@@ -1450,4 +1472,25 @@ button:focus, a:focus { outline:0 !important;}
     content: "\f005";
 }
 
+a.brand {
+	display: block;
+	height: 40px !important;
+}
+
+a.brand img {
+	height: 100%;
+}
+
+.default-header-panel {
+	background-color: white !important;
+	padding: 10px 0px;
+}
+
+.side-btn-container {
+	margin-top: 43px;
+}
+
+.panel-fix {
+	padding: 0px 10px 10px;
+}
 

@@ -1,25 +1,81 @@
-<div class="panel panel-default account-container billing-container" style="margin-bottom: 40px;">
-	<div class="panel-heading"><b>Pagos</b></div>
-	<div ng-repeat="p in model.currentBillingInformation" class="panel-body">
-		<span>
-			<i class="fa fa-minus-square pull-right" ng-click="model.deletePaymentMethod(model.currentBillingInformation[$index])"></i>
-			<!--<i class="icon-edit pull-right" data-toggle="modal" data-target="#addBilling" ng-click="model.editBillingInformation(model.currentBillingInformation[$index], 'Edit')"></i>-->
-		</span>
-		<br>
-		<span>
-			<b class="bold-block-info">**** {{p.card_last4}}</b>
-			<!--<img src="http://icons.iconarchive.com/icons/glyphish/glyphish/32/192-credit-card-icon.png">-->
-			<img src="assets/img/billing/american.png" ng-show="{{p.franchise === 'AMEX'}}">
-			<img src="assets/img/billing/dinners.png" ng-show="{{p.franchise === 'DINERS'}}">
-			<img src="assets/img/billing/mastercard.png" ng-show="{{p.franchise === 'MASTERCARD'}}">
-			<img src="assets/img/billing/visa.png" ng-show="{{p.franchise === 'VISA'}}">
-			<img src="assets/img/billing/visaelectron.png" ng-show="{{p.franchise === 'VE'}}">
-		</span>
+<div class="row">
+	<div class="col-lg-12">
+		<h1 class="page-header">Dashboard de Pagos</h1>
 	</div>
-	<div>
-		<div class="add-block-button col-sm-9">
-			<button type="button" class="btn btn-success" data-toggle="modal" data-target="#addBilling">Agregar Tarjeta</button>
+</div>
+<div class="row">
+	<div class="panel panel-default col-md-8">
+		<div class="panel-heading default-header-panel"><b>Tarjetas Existentes</b></div>
+		<div ng-repeat="p in model.currentBillingInformation" class="panel panel-default panel-fix">
+			<span>
+				<i class="fa fa-minus-square pull-right" ng-click="model.deletePaymentMethod(model.currentBillingInformation[$index])"></i>
+				<!--<i class="icon-edit pull-right" data-toggle="modal" data-target="#addBilling" ng-click="model.editBillingInformation(model.currentBillingInformation[$index], 'Edit')"></i>-->
+			</span>
+			<br>
+			<span>
+				<b class="bold-block-info">**** {{p.card_last4}}</b>
+				<!--<img src="http://icons.iconarchive.com/icons/glyphish/glyphish/32/192-credit-card-icon.png">-->
+				<img src="assets/img/billing/american.png" ng-show="{{p.franchise === 'AMEX'}}">
+				<img src="assets/img/billing/dinners.png" ng-show="{{p.franchise === 'DINERS'}}">
+				<img src="assets/img/billing/mastercard.png" ng-show="{{p.franchise === 'MASTERCARD'}}">
+				<img src="assets/img/billing/visa.png" ng-show="{{p.franchise === 'VISA'}}">
+				<img src="assets/img/billing/visaelectron.png" ng-show="{{p.franchise === 'VE'}}">
+			</span>
 		</div>
+	</div>
+	<div class="col-md-4 side-btn-container">
+		<button type="button" class="btn btn-success" data-toggle="modal" data-target="#addBilling">Agregar Tarjeta</button>
+	</div>
+</div>
+
+<div class="row" style="padding: 0 5px">
+	<div class="panel panel-default" style="margin-bottom: 40px; width:100%">
+		<div class="panel-heading"><b>Historial de Pagos</b></div>
+		<div class="panel panel-default">
+			<table class="table">
+				<thead>
+				<tr>
+					<th>Fecha</th>
+					<th>No Referencia</th>
+					<th>Autorizacion/CUS</th>
+					<th>Estado</th>
+					<th>Valor</th>
+				</tr>
+				</thead>
+				<tbody>
+				<!--<tr ng-repeat="bin in bins.all">-->
+				<tr ng-repeat="(key, pmntItem) in model.paymentHistoryArray">
+					<td>{{pmntItem.date}}</td>
+					<td>{{pmntItem.reference}}</td>
+					<td>{{pmntItem.cus}}</td>
+					<td>{{pmntItem.status}}</td>
+					<td>{{pmntItem.amount}}</td>
+				</tr>
+				</tbody>
+			</table>
+		</div>
+		<paging
+				class="small paging-block post-title"
+				page="customers.pagingInfo.currentPage"
+				page-size="customers.pagingInfo.pageSize"
+				total="customers.pagingInfo.totalRecords"
+				adjacent="{{adjacent}}"
+				dots="{{dots}}"
+				scroll-top="true"
+				hide-if-empty="{{hideIfEmpty}}"
+				ul-class="{{ulClass}}"
+				active-class="{{activeClass}}"
+				disabled-class="{{disabledClass}}"
+				show-prev-next="true"
+				paging-action="customers.loadCustomers(page)">
+		</paging>
 	</div>
 </div>
 <dv-add-credit-card></dv-add-credit-card>
+<div class="row">
+	<div class="col-lg-12">
+		<a class="brand" href="http://www.placetopay.com">
+			<img src="assets/img/logo-p2p.png">
+		</a>
+	</div>
+</div>
