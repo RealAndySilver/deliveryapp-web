@@ -44,11 +44,11 @@
 				</thead>
 				<tbody>
 				<!--<tr ng-repeat="bin in bins.all">-->
-				<tr ng-repeat="(key, pmntItem) in model.paymentHistoryArray">
-					<td>{{pmntItem.date}}</td>
+				<tr ng-repeat="(key, pmntItem) in model.paymentHistoryArray" title="{{pmntItem.p2p_response}}">
+					<td>{{pmntItem.date_sent}}</td>
 					<td>{{pmntItem.reference}}</td>
 					<td>{{pmntItem.cus}}</td>
-					<td>{{pmntItem.status}}</td>
+					<td>{{pmntItem.status_text}}</td>
 					<td>{{pmntItem.amount}}</td>
 				</tr>
 				</tbody>

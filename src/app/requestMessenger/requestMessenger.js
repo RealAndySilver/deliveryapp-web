@@ -62,7 +62,7 @@
 		init();
 
 		model.pickup = {};
-		model.delivery = {};
+		model.delivery = {insurancevalue:0,insurance:false};
 		model.messengers = {};
 
 		model.searchAddressField = "";
@@ -75,6 +75,7 @@
 		model.defaultPaymentMethod = {};
 		model.showBillingModal = false;
 		model.currentFranchise = "";
+		model.insuranceSelected=0;
 		var addPaymentRequest = {};
 
 		function init() {
@@ -87,6 +88,18 @@
 			$scope.BootstrapModal.show("Recuerda activar el permiso para utilizar tu ubicación en la barra superior.");
 		};
 		//$scope.showAlert();
+
+
+		/**
+		 * Reclacula el valor a pagar del seguro
+		 *
+		 * */
+		model.insuranceSelectionChanged=function(){
+			if(!model.delivery.insurance){
+				model.insuranceSelected=0;
+			}
+			model.delivery.insurancevalue=model.insuranceSelected*0.02;
+		};
 
 		/**
 		 * This method makes a search using reverse geocode on google api services
@@ -286,9 +299,11 @@
 
 				model.delivery.roundtrip = model.roundtrip;
 
-				model.delivery.price_to_pay = $scope.deliveryPrice;
+				model.delivery.price_to_pay = $scope.deliveryPrice+model.delivery.insurancevalue;
 				model.delivery.user_info = $scope.currentUser;
 				model.delivery.user_id = $scope.currentUser._id;
+
+				model.delivery.service_price = $scope.deliveryPrice;
 
 				//console.log("PAYMENT ",model.defaultPaymentMethod);
 

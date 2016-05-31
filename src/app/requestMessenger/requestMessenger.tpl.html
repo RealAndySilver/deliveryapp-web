@@ -124,14 +124,22 @@
                             <i class="fa fa-edit"></i> Firma Obligatoria
                         </label>
 		            </div>
+					<div class="form-group input-group">
+						<label class="input-group-addon" for="insurance" ng-click="model.insuranceSelectionChanged()">
+							<input type="checkbox" id="insurance" ng-model="model.delivery.insurance" ng-click="model.insuranceSelectionChanged()">
+						</label>
+						<label class="form-control" for="insurance">
+							<i class="fa fa-edit"></i> Asegurar
+						</label>
+					</div>
 
-		            <div class="panel panel-default">
+		            <div class="panel panel-default" ng-click="model.insuranceSelectionChanged()">
                         <div class="panel-heading">
-                        	<button type="button" class="btn btn-default btn-sm btn-block" tabindex="0" ng-click="model.isShowing('showOptionsEnsurances')"><b>Asegurar</b></button>
+                        	Selecciona el monto del seguro
                         </div>
-                        <div class="panel-body" ng-show="model.showOptionsEnsurances">
+                        <div class="panel-body">
 							<div class="form-group">
-								<select class="form-control" ng-model="model.delivery.insurancevalue">
+								<select class="form-control" ng-disabled="!model.delivery.insurance" ng-model="model.insuranceSelected" ng-change="model.insuranceSelectionChanged()">
 									<option value="0">Elige el valor a asegurar</option>
 									<option value="100000">Hasta $100.000</option>
 									<option value="200000">Hasta $200.000</option>
@@ -181,9 +189,10 @@
 				<br>
 				<div class="col-sm-12">
                     <div class="alert alert-success">
-						<span layout-align="center center">Valor del Seguro: <span ng-show="currency">COP</span> <strong>${{model.delivery.ensurancevalue}}</strong></span><br>
-						<span layout-align="center center">Valor del Servicio: <span ng-show="currency">COP</span> <strong>${{deliveryPrice}}</strong></span><br>
-	            	</div>
+						<span layout-align="center center">Valor del Seguro:    <span ng-show="currency">COP</span> <strong>${{model.delivery.insurancevalue}}</strong></span><br>
+						<span layout-align="center center">Valor del Servicio:  <span ng-show="currency">COP</span> <strong>${{deliveryPrice}}</strong></span><br>
+						<span layout-align="center center">Total a Pagar:       <span ng-show="currency">COP</span> <strong>${{deliveryPrice+model.delivery.insurancevalue}}</strong></span><br>
+					</div>
             	</div>
             	
             </div>

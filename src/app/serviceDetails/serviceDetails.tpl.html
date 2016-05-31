@@ -11,24 +11,34 @@
 <div class="row">
     <div class="col-lg-12">
 		<div class="row" ng-show="model.messengerBool">
-    		<div class="col-lg-2">
-    			<div class="panel panel-default">
-					<div class="panel-body">
-    					<img id="profilePicMessenger" ng-hide="!model.deliveryItemInfo.messenger_info.url" class="img-thumbnail" style="float:left;" ng-src="{{model.deliveryItemInfo.messenger_info.url}}">
-            		</div>
-            		<div class="panel-body" ng-show="model.images">
-    					<span style="float: left;">Fotos del Servicio</span><br>
-    					<img ng-repeat="image in model.images" class="img-thumbnail"  ng-src="{{image.url}}">
-    					<!--<img ng-repeat="image in model.images" class="img-thumbnail"  ng-src="{{image.url}}" ng-click="model.showBigImage(image.url)">-->
-            		</div>
-            		<div class="panel-body" ng-show="model.deliveryItemInfo.signature_object.status">
-    					<span style="float: left;">Firma</span><br>
-    					<img class="img-thumbnail" data-ng-src="data:image/png;base64,{{model.deliveryItemInfo.signature_object.signatureB64}}">
-    					<!--<img ng-repeat="image in model.images" class="img-thumbnail"  ng-src="{{image.url}}" ng-click="model.showBigImage(image.url)">-->
-            		</div>
-            	</div>
-    		</div>
-    		<div class="col-lg-10">
+    		<div class="col-lg-12">
+				<div class="row">
+					<div class="col-sm-12">
+						<div class="panel panel-default" ng-show="item.status != 'available'">
+							<div class="panel-heading text-center"><h5>Estado Actual del Servicio</h5></div>
+							<div class="panel-body">
+								<div class="container-fluid">
+									<div class="row">
+										<div class="col-sm-6">
+											<div class="alert alert-info">
+												<h4 ng-model="model.serviceStatus" class="alert-link">Servicio {{model.serviceStatus}}</h4>
+												<span ng-show="model.setAvailableButtonBool"><b>Razón</b>: {{model.deliveryItemInfo.abort_reason}}</span>
+											</div>
+										</div>
+										<div class="col-sm-6">
+											<div class="form-group">
+												<button id="blueButton" class="btn btn-success btn-md btn-block" ng-show="model.setAvailableButtonBool" ng-click="model.restartService()">Reactivar Servicio</button>
+											</div>
+											<div class="form-group">
+												<button id="redButton" class="btn btn-danger btn-md btn-block" ng-click="model.cancelService()" ng-show="model.showCancelButtonBool">Cancelar Servicio</button>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
     			<div class="row">
     				<div class="col-lg-6">
             			<div class="panel panel-default" ng-show="item.status != 'available'">
@@ -65,52 +75,99 @@
 		                            		<em>{{model.deliveryItemInfo.time_to_deliver}}</em>
 		                                </span>
 		                            </span>
-		                            <span class="list-group-item" ng-show="model.deliveryItemInfo.insurancevalue">
-		                                <i class="fa fa-ticket fa-fw"></i> Valor Asegurado
-		                                <span class="pull-right text-muted">
-		                            		<em>COP ${{model.deliveryItemInfo.insurancevalue}}</em>
-		                                </span>
-		                            </span>
-		                            <span class="list-group-item">
-		                                <i class="fa fa-ticket fa-fw"></i> Valor Total del Servicio
-		                                <span class="pull-right text-muted">
-		                            		<em>COP ${{model.deliveryItemInfo.price_to_pay}}</em>
-		                                </span>
-		                            </span>
-		                            <span class="list-group-item">
-		                                <i class="fa fa-ticket fa-fw"></i> Método de Pago
-		                                <span class="pull-right text-muted">
-		                            		<em ng-if="model.deliveryItemInfo.payment_method === 'credit'">Tarjeta de Crédito</em>
-		                            		<em ng-if="model.deliveryItemInfo.payment_method === 'cash'">Efectivo</em>
-		                                </span>
-		                            </span>
 		                            <span class="list-group-item">
 		                                <i class="fa fa-ticket fa-fw"></i> Foto Obligatoria
 		                                <span class="pull-right text-muted">
 		                            		<input type="checkbox" aria-label="..." disabled class="view-mode-input" ng-checked="model.deliveryItemInfo.send_image">
 		                                </span>
 		                            </span>
-		                            <span class="list-group-item">
+		                            <!--<span class="list-group-item">
 		                                <i class="fa fa-ticket fa-fw"></i> Ida y Vuelta
 		                                <span class="pull-right text-muted">
 		                            		<input type="checkbox" aria-label="..." disabled class="view-mode-input" ng-checked="model.deliveryItemInfo.roundtrip">
 		                                </span>
-		                            </span>
+		                            </span>-->
 		                            <span class="list-group-item">
 		                                <i class="fa fa-ticket fa-fw"></i> Firma Obligatoria
 		                                <span class="pull-right text-muted">
 		                            		<input type="checkbox" aria-label="..." disabled class="view-mode-input" ng-checked="model.deliveryItemInfo.send_signature">
 		                                </span>
 		                            </span>
+									<span class="list-group-item">
+		                                <i class="fa fa-ticket fa-fw"></i> Seguro
+		                                <span class="pull-right text-muted">
+		                            		<input type="checkbox" aria-label="..." disabled class="view-mode-input" ng-checked="model.deliveryItemInfo.insurance">
+		                                </span>
+		                            </span>
 		                        </div>
 	                    	</div>
 	                    </div>
             		</div>
-            		<div class="col-lg-6">
-            			<div class="panel panel-default" ng-show="item.status != 'available'">
-            				<div class="panel-heading text-center"><h5>Conductor</h5></div>
+					<div class="col-lg-6">
+						<div class="panel panel-default" ng-show="item.status != 'available'">
+							<div class="panel-heading text-center"><h5>Informacion del pago</h5></div>
 							<div class="panel-body">
-		            			<div class="list-group">
+								<div class="list-group">
+									<span class="list-group-item">
+		                                <i class="fa fa-ticket fa-fw"></i> Método de Pago
+		                                <span class="pull-right text-muted">
+		                            		<em ng-if="model.deliveryItemInfo.payment_method === 'credit'">Tarjeta de Crédito</em>
+		                            		<em ng-if="model.deliveryItemInfo.payment_method === 'cash'">Efectivo</em>
+		                                </span>
+		                            </span>
+									<span class="list-group-item">
+		                                <i class="fa fa-ticket fa-fw"></i> Valor Asegurado
+		                                <span class="pull-right text-muted">
+		                            		<em>COP ${{model.deliveryItemInfo.insurancevalue}}</em>
+		                                </span>
+		                            </span>
+									<span class="list-group-item">
+		                                <i class="fa fa-ticket fa-fw"></i> Valor del Servicio
+		                                <span class="pull-right text-muted">
+		                            		<em>COP ${{model.deliveryItemInfo.service_price}}</em>
+		                                </span>
+		                            </span>
+		                            <span class="list-group-item">
+		                                <i class="fa fa-ticket fa-fw"></i> Valor Total
+		                                <span class="pull-right text-muted">
+		                            		<em>COP ${{model.deliveryItemInfo.price_to_pay}}</em>
+		                                </span>
+		                            </span>
+									<div ng-show="model.deliveryItemInfo.payment_method === 'credit'">
+										<span class="list-group-item">
+											<i class="fa fa-user fa-fw"></i> Referencia
+											<span class="pull-right text-muted">
+												<em>{{model.deliveryItemInfo.trn_ids[0]?model.deliveryItemInfo.trn_ids[0].reference:""}}</em>
+											</span>
+										</span>
+										<span class="list-group-item">
+											<i class="fa fa-phone fa-fw"></i> CUS
+											<span class="pull-right text-muted">
+												<em>{{model.deliveryItemInfo.trn_ids[0]?model.deliveryItemInfo.trn_ids[0].cus:""}}</em>
+											</span>
+										</span>
+										<span class="list-group-item">
+											<i class="fa fa-keyboard-o fa-fw"></i> Fecha
+											<span class="pull-right text-muted">
+												<em>{{model.deliveryItemInfo.trn_ids[0]?model.deliveryItemInfo.trn_ids[0].date_sent:""}}</em>
+											</span>
+										</span>
+										<span class="list-group-item">
+											<i class="fa fa-barcode fa-fw"></i> Estado
+											<span class="pull-right text-muted">
+												<em>{{model.deliveryItemInfo.trn_ids[0]?model.deliveryItemInfo.trn_ids[0].status_text:""}}</em>
+											</span>
+										</span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-6">
+						<div class="panel panel-default" ng-show="item.status != 'available'">
+							<div class="panel-heading text-center"><h5>Mensajero</h5></div>
+							<div class="panel-body">
+								<div class="list-group">
 		                            <span class="list-group-item">
 		                                <i class="fa fa-user fa-fw"></i> Nombre
 		                                <span class="pull-right text-muted">
@@ -141,38 +198,29 @@
 		                            		<em>{{model.code}}</em>
 		                                </span>
 		                            </span>
-		                        </div>
-		                    </div>
-		                </div>
-            		</div>
-    			</div>
-    			<div class="row">
-            		<div class="col-sm-12">
-            			<div class="panel panel-default" ng-show="item.status != 'available'">
-            				<div class="panel-heading text-center"><h5>Estado Actual del Servicio</h5></div>
-							<div class="panel-body">
-								<div class="container-fluid">
-									<div class="row">
-										<div class="col-sm-6">
-											<div class="alert alert-info">
-				                                <h4 ng-model="model.serviceStatus" class="alert-link">Servicio {{model.serviceStatus}}</h4>
-				                                <span ng-show="model.setAvailableButtonBool"><b>Razón</b>: {{model.deliveryItemInfo.abort_reason}}</span>
-				                            </div>
-										</div>
-										<div class="col-sm-6">
-											<div class="form-group">
-												<button id="blueButton" class="btn btn-success btn-md btn-block" ng-show="model.setAvailableButtonBool" ng-click="model.restartService()">Reactivar Servicio</button>
-											</div>
-											<div class="form-group">
-												<button id="redButton" class="btn btn-danger btn-md btn-block" ng-click="model.cancelService()" ng-show="model.showCancelButtonBool">Cancelar Servicio</button>
-											</div>
-										</div>
-									</div>
 								</div>
 							</div>
 						</div>
-            		</div>
-            	</div>
+					</div>
+					<div class="col-lg-6">
+						<div class="panel panel-default">
+							<div class="panel-heading text-center"><h5>Imagenes del Servicio</h5></div>
+							<div class="panel-body">
+								<img id="profilePicMessenger" ng-hide="!model.deliveryItemInfo.messenger_info.url" class="img-thumbnail" style="float:left;" ng-src="{{model.deliveryItemInfo.messenger_info.url}}">
+							</div>
+							<div class="panel-body" ng-show="model.images">
+								<span style="float: left;">Fotos del Servicio</span><br>
+								<img class="img-thumbnail col-lg-3" ng-repeat="image in model.images"  ng-src="{{image.url}}" ng-click="model.showBigImage(image.url)">
+								<!--<img ng-repeat="image in model.images" class="img-thumbnail"  ng-src="{{image.url}}" ng-click="model.showBigImage(image.url)">-->
+							</div>
+							<div class="panel-body" ng-show="model.deliveryItemInfo.signature_object.status">
+								<span style="float: left;">Firma</span><br>
+								<img class="img-thumbnail col-lg-3" data-ng-src="data:image/png;base64,{{model.deliveryItemInfo.signature_object.signatureB64}}">
+								<!--<img ng-repeat="image in model.images" class="img-thumbnail"  ng-src="{{image.url}}" ng-click="model.showBigImage(image.url)">-->
+							</div>
+						</div>
+					</div>
+				</div>
     		</div>
     	</div>
     	<div class="row" ng-show="model.isSearchMessenger">
