@@ -139,7 +139,7 @@
                         </div>
                         <div class="panel-body">
 							<div class="form-group">
-								<select class="form-control" ng-disabled="!model.delivery.insurance" ng-model="model.insuranceSelected" ng-change="model.insuranceSelectionChanged()">
+								<select class="form-control" ng-disabled="!model.delivery.insurance" ng-model="model.delivery.insurancevalue" ng-change="model.insuranceSelectionChanged()">
 									<option value="0">Elige el valor a asegurar</option>
 									<option value="100000">Hasta $100.000</option>
 									<option value="200000">Hasta $200.000</option>
@@ -189,9 +189,9 @@
 				<br>
 				<div class="col-sm-12">
                     <div class="alert alert-success">
-						<span layout-align="center center">Valor del Seguro:    <span ng-show="currency">COP</span> <strong>${{model.delivery.insurancevalue}}</strong></span><br>
-						<span layout-align="center center">Valor del Servicio:  <span ng-show="currency">COP</span> <strong>${{deliveryPrice}}</strong></span><br>
-						<span layout-align="center center">Total a Pagar:       <span ng-show="currency">COP</span> <strong>${{deliveryPrice+model.delivery.insurancevalue}}</strong></span><br>
+						<span layout-align="center center"><span>Valor del Seguro:</span><strong>{{model.delivery.insurance_price|currency:"COP$"}}</strong></span><br>
+						<span layout-align="center center"><span>Valor del Servicio:  </span><strong>{{deliveryPrice|currency:"COP$"}}</strong></span><br>
+						<span layout-align="center center"><span>Total a Pagar:       </span><strong>{{(deliveryPrice+model.delivery.insurance_price)|currency:"COP$"}}</strong></span><br>
 					</div>
             	</div>
             	

@@ -3,10 +3,10 @@
     var urlList = {
         /*BACKEND DEV VUELTAP
         "service": "http://192.241.187.135:8080/api_1.0/"*/
-        /*BACKEND DEV LOCALHOST*/
-        "service": "http://localhost:8080/api_1.0/"
-        /*BACKEND PRODUCCION
-        "service": "https://vueltap.com:8080/api_1.0/"*/
+        /*BACKEND DEV LOCALHOST
+        "service": "http://localhost:8080/api_1.0/"*/
+        /*BACKEND PRODUCCION*/
+        "service": "https://vueltap.com:8080/api_1.0/"
     };
 
     module.service('ServerComunicator', ['$http', '$q', function ($http, $q) {

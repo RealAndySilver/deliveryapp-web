@@ -116,21 +116,27 @@
 		                                </span>
 		                            </span>
 									<span class="list-group-item">
-		                                <i class="fa fa-ticket fa-fw"></i> Valor Asegurado
+		                                <i class="fa fa-ticket fa-fw"></i> Costo del Seguro
 		                                <span class="pull-right text-muted">
-		                            		<em>COP ${{model.deliveryItemInfo.insurancevalue}}</em>
+		                            		<em>{{model.deliveryItemInfo.insurance_price|currency:"COP$"}}</em>
 		                                </span>
 		                            </span>
 									<span class="list-group-item">
-		                                <i class="fa fa-ticket fa-fw"></i> Valor del Servicio
+		                                <i class="fa fa-ticket fa-fw"></i> Costo del Servicio
 		                                <span class="pull-right text-muted">
-		                            		<em>COP ${{model.deliveryItemInfo.service_price}}</em>
+		                            		<em>{{model.deliveryItemInfo.service_price|currency:"COP$"}}</em>
 		                                </span>
 		                            </span>
 		                            <span class="list-group-item">
-		                                <i class="fa fa-ticket fa-fw"></i> Valor Total
+		                                <i class="fa fa-ticket fa-fw"></i> Costo Total
 		                                <span class="pull-right text-muted">
-		                            		<em>COP ${{model.deliveryItemInfo.price_to_pay}}</em>
+		                            		<em>{{model.deliveryItemInfo.price_to_pay|currency:"COP$"}}</em>
+		                                </span>
+		                            </span>
+									<span class="list-group-item">
+		                                <i class="fa fa-ticket fa-fw"></i> Valor Asegurado
+		                                <span class="pull-right text-muted">
+		                            		<em>{{model.deliveryItemInfo.insurancevalue|currency:"COP$"}}</em>
 		                                </span>
 		                            </span>
 									<div ng-show="model.deliveryItemInfo.payment_method === 'credit'">

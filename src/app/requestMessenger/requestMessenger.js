@@ -62,7 +62,7 @@
 		init();
 
 		model.pickup = {};
-		model.delivery = {insurancevalue:0,insurance:false};
+		model.delivery = {insurancevalue:0,insurance:false,insurance_price:0};
 		model.messengers = {};
 
 		model.searchAddressField = "";
@@ -96,9 +96,9 @@
 		 * */
 		model.insuranceSelectionChanged=function(){
 			if(!model.delivery.insurance){
-				model.insuranceSelected=0;
+				model.delivery.insurancevalue=0;
 			}
-			model.delivery.insurancevalue=model.insuranceSelected*0.02;
+			model.delivery.insurance_price=model.delivery.insurancevalue*0.02;
 		};
 
 		/**
@@ -299,7 +299,7 @@
 
 				model.delivery.roundtrip = model.roundtrip;
 
-				model.delivery.price_to_pay = $scope.deliveryPrice+model.delivery.insurancevalue;
+				model.delivery.price_to_pay = $scope.deliveryPrice+model.delivery.insurance_price;
 				model.delivery.user_info = $scope.currentUser;
 				model.delivery.user_id = $scope.currentUser._id;
 
