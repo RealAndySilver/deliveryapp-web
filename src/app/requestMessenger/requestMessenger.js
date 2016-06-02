@@ -67,8 +67,7 @@
 
 		model.searchAddressField = "";
 		model.addressListFromGoogle = [];
-
-		model.roundtrip = false;
+		
 		$scope.modal = {};
 
 		model.currentBillingInformation = [];
@@ -297,7 +296,6 @@
 				model.delivery.delivery_object.lat = $scope.deliverLat;
 				model.delivery.delivery_object.lon = $scope.deliverLon;
 
-				model.delivery.roundtrip = model.roundtrip;
 
 				model.delivery.price_to_pay = $scope.deliveryPrice+model.delivery.insurance_price;
 				model.delivery.user_info = $scope.currentUser;
