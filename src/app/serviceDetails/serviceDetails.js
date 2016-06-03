@@ -24,22 +24,13 @@
 			$scope.$on("$stateChangeStart",function(){
 				clearInterval(id);
 			});
-			id = setInterval(serviceDetails, 5000);
+			id = setInterval(serviceDetails, 60000);
 
 			model.serviceDetails = serviceDetails;
 
 			function serviceDetails() {
-				if(model.messengerBool){
-					//AlertsService.loading();
-					$scope.BootstrapLoading.show(true);
-				}
 				
 				DetailsDeliveryItemService.serviceDetails($stateParams.id, function(response) {
-					//console.log(response);
-					if(model.messengerBool){
-						//AlertsService.cancel();
-						$scope.BootstrapLoading.show(false);
-					}
 
 					model.deliveryItemInfo = response.data;
 					console.log("deliveryItemInfo object", model.deliveryItemInfo);
@@ -89,13 +80,16 @@
 
 					if (response.data["status"] == "returned" || response.data["status"] == "delivered") {
 						model.showCancelButtonBool = false;
+						model.reloadBool = false;
 						if (model.deliveryItemInfo.rated === false) {
 							$state.go('ratingMessenger', {
-								idItem: response.data["_id"]
+								idItem: response.data["_id"],
+								deliveryItemInfo:model.deliveryItemInfo
 							});
 						}
 					} else {
 						model.showCancelButtonBool = true;
+						model.reloadBool = true;
 					}
 
 
@@ -115,8 +109,6 @@
 				DetailsDeliveryItemService.deleteDeliveryItem(model.deliveryItemInfo._id, model.deliveryItemInfo.user_id, function(response) {
 					console.log(response);
 					if (response.response) {
-						//AlertsService.cancel();
-						$scope.BootstrapLoading.show(false);
 						$scope.BootstrapModal.show("Servicio cancelado de manera exitosa!");
 						$state.go('requestMessenger');
 					} else {

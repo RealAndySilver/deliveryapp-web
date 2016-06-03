@@ -42,7 +42,7 @@
     			<div class="row">
     				<div class="col-lg-6">
             			<div class="panel panel-default" ng-show="item.status != 'available'">
-            				<div class="panel-heading text-center"><h5>Datos del Servicio</h5></div>
+            				<div class="panel-heading text-center"><h5>Informacion del Servicio</h5></div>
 							<div class="panel-body">
 		            			<div class="list-group">
 		                            <span class="list-group-item">
@@ -63,7 +63,7 @@
 		                            		<em>{{model.deliveryItemInfo.delivery_object.address}}</em>
 		                                </span>
 		                            </span>
-		                            <span class="list-group-item">
+		                            <!--<span class="list-group-item">
 		                                <i class="fa fa-calendar fa-fw"></i> Momento de Recogida
 		                                <span class="pull-right text-muted">
 		                            		<em>{{model.deliveryItemInfo.time_to_pickup}}</em>
@@ -74,19 +74,19 @@
 		                                <span class="pull-right text-muted">
 		                            		<em>{{model.deliveryItemInfo.time_to_deliver}}</em>
 		                                </span>
-		                            </span>
+		                            </span>-->
 		                            <span class="list-group-item">
 		                                <i class="fa fa-ticket fa-fw"></i> Foto Obligatoria
 		                                <span class="pull-right text-muted">
 		                            		<input type="checkbox" aria-label="..." disabled class="view-mode-input" ng-checked="model.deliveryItemInfo.send_image">
 		                                </span>
 		                            </span>
-		                            <!--<span class="list-group-item">
+		                            <span class="list-group-item">
 		                                <i class="fa fa-ticket fa-fw"></i> Ida y Vuelta
 		                                <span class="pull-right text-muted">
 		                            		<input type="checkbox" aria-label="..." disabled class="view-mode-input" ng-checked="model.deliveryItemInfo.roundtrip">
 		                                </span>
-		                            </span>-->
+		                            </span>
 		                            <span class="list-group-item">
 		                                <i class="fa fa-ticket fa-fw"></i> Firma Obligatoria
 		                                <span class="pull-right text-muted">
@@ -105,7 +105,46 @@
             		</div>
 					<div class="col-lg-6">
 						<div class="panel panel-default" ng-show="item.status != 'available'">
-							<div class="panel-heading text-center"><h5>Informacion del pago</h5></div>
+							<div class="panel-heading text-center"><h5>Informacion del Mensajero</h5></div>
+							<div class="panel-body">
+								<div class="list-group">
+		                            <span class="list-group-item">
+		                                <i class="fa fa-user fa-fw"></i> Nombre
+		                                <span class="pull-right text-muted">
+		                            		<em>{{model.deliveryItemInfo.messenger_info.name}} {{model.deliveryItemInfo.messenger_info.lastname}}</em>
+		                                </span>
+		                            </span>
+		                            <span class="list-group-item">
+		                                <i class="fa fa-phone fa-fw"></i> Celular
+		                                <span class="pull-right text-muted">
+		                            		<em>{{model.deliveryItemInfo.messenger_info.mobilephone}}</em>
+		                                </span>
+		                            </span>
+		                            <span class="list-group-item">
+		                                <i class="fa fa-clock-o fa-fw"></i> ETA
+		                                <span class="pull-right text-muted">
+		                            		<em>{{model.leftTime}} min</em>
+		                                </span>
+		                            </span>
+		                            <span class="list-group-item">
+		                                <i class="fa fa-keyboard-o fa-fw"></i> Placas
+		                                <span class="pull-right text-muted">
+		                            		<em>{{model.deliveryItemInfo.messenger_info.plate}}</em>
+		                                </span>
+		                            </span>
+		                            <span class="list-group-item">
+		                                <i class="fa fa-barcode fa-fw"></i> Código
+		                                <span class="pull-right text-muted">
+		                            		<em>{{model.code}}</em>
+		                                </span>
+		                            </span>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-6">
+						<div class="panel panel-default" ng-show="item.status != 'available'">
+							<div class="panel-heading text-center"><h5>Información del pago</h5></div>
 							<div class="panel-body">
 								<div class="list-group">
 									<span class="list-group-item">
@@ -169,46 +208,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="col-lg-6">
-						<div class="panel panel-default" ng-show="item.status != 'available'">
-							<div class="panel-heading text-center"><h5>Mensajero</h5></div>
-							<div class="panel-body">
-								<div class="list-group">
-		                            <span class="list-group-item">
-		                                <i class="fa fa-user fa-fw"></i> Nombre
-		                                <span class="pull-right text-muted">
-		                            		<em>{{model.deliveryItemInfo.messenger_info.name}} {{model.deliveryItemInfo.messenger_info.lastname}}</em>
-		                                </span>
-		                            </span>
-		                            <span class="list-group-item">
-		                                <i class="fa fa-phone fa-fw"></i> Celular
-		                                <span class="pull-right text-muted">
-		                            		<em>{{model.deliveryItemInfo.messenger_info.mobilephone}}</em>
-		                                </span>
-		                            </span>
-		                            <span class="list-group-item">
-		                                <i class="fa fa-clock-o fa-fw"></i> ETA
-		                                <span class="pull-right text-muted">
-		                            		<em>{{model.leftTime}} min</em>
-		                                </span>
-		                            </span>
-		                            <span class="list-group-item">
-		                                <i class="fa fa-keyboard-o fa-fw"></i> Placas
-		                                <span class="pull-right text-muted">
-		                            		<em>{{model.deliveryItemInfo.messenger_info.plate}}</em>
-		                                </span>
-		                            </span>
-		                            <span class="list-group-item">
-		                                <i class="fa fa-barcode fa-fw"></i> Código
-		                                <span class="pull-right text-muted">
-		                            		<em>{{model.code}}</em>
-		                                </span>
-		                            </span>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-lg-6">
+					<div class="col-lg-6" ng-show="model.images">
 						<div class="panel panel-default">
 							<div class="panel-heading text-center"><h5>Imagenes del Servicio</h5></div>
 							<div class="panel-body">

@@ -1,32 +1,33 @@
 <div class="account-container">
 	<div class="content clearfix">
-		<form name="createMessenger" ng-submit="model.createMessenger()" novalidate>
+		<form name="createMessengerForm" ng-submit="model.createMessenger()" novalidate>
 			<h1>Registro Mensajero</h1>
 			<div class="row">
 				<div class="col-sm-12">
 					<p>Por favor digita tus datos</p>
-					<p ng-show="createMessenger.email.$invalid && !createMessenger.email.$pristine" class="text-danger">Ingresa un email valido.</p>
-					<p ng-show="createMessenger.mobilephone.$error.pattern && !createMessenger.mobilephone.$pristine" class="text-danger">Ingresa un número celular válido.</p>
-					<p ng-show="createMessenger.identification.$error.pattern && !createMessenger.identification.$pristine" class="text-danger">Ingresa un número de identificación válido.</p>
+					<p ng-show="createMessengerForm.email.$invalid && !createMessengerForm.email.$pristine" class="text-danger">Ingresa un email valido.</p>
+					<p ng-show="createMessengerForm.mobilephone.$error.pattern && !createMessengerForm.mobilephone.$pristine" class="text-danger">Ingresa un número celular válido.</p>
+					<p ng-show="createMessengerForm.identification.$error.pattern && !createMessengerForm.identification.$pristine" class="text-danger">Ingresa un número de identificación válido.</p>
 					<p ng-show="model.messenger.password && model.messenger.repeatPassword &&
 						model.messenger.password != model.messenger.repeatPassword" class="text-danger">
 						Las contraseñas no coinciden
 					</p>
+					<p ng-show="createMessengerForm.plate.$invalid && !createMessengerForm.plate.$pristine" class="text-danger info-fix">Ingrese un Numero de Placa Valido</p>
 
 					<div class="form-group input-group" >
 						<label class="input-group-addon" for="name"><i class="fa fa-user"></i></label>
-						<input type="text" id="name" class="form-control" name="email"
+						<input type="text" id="name" class="form-control" name="name"
 							   ng-model="model.messenger.name"
 							   ng-pattern="/^([A-Za-z+]| )+$/" placeholder="Nombre"
-							   required/>
+							   required minlength="3"/>
 					</div>
 
 					<div class="form-group input-group" >
 						<label class="input-group-addon" for="lastname"><i class="fa fa-user"></i></label>
-						<input type="text" id="lastname" class="form-control" name="email"
+						<input type="text" id="lastname" class="form-control" name="lastname"
 							   ng-model="model.messenger.lastname"
 							   ng-pattern="/^([A-Za-z]| )+$/" placeholder="Apellido"
-							   required/>
+							   required  minlength="3"/>
 					</div>
 
 					<div class="form-group input-group" >
@@ -69,9 +70,8 @@
 						<label class="input-group-addon padding-left-10 padding-right-10" for="plate"><i class="fa fa-keyboard-o"></i></label>
 						<input type="text" id="plate" class="form-control" name="plate"
 							   ng-model="model.messenger.plate" ng-pattern="/^([0-9]|[A-Z]|[a-z]|-)+$/"
-							   placeholder="Placa #" class="form-control" required/>
+							   placeholder="Placa #" class="form-control" required minlength="5" maxlength="6"/>
 					</div>
-
 					<div class="form-group input-group">
 						<label class="input-group-addon padding-left-14 padding-right-13" for="city"><i class="fa fa-map-marker"></i></label>
 						<select name="city" id="city" ng-model="model.messenger.city" class="form-control"
@@ -90,9 +90,9 @@
 					<!--</span>-->
 				<!--</span>-->
 				<div class="col-sm-12">
-					<span>Al registrarte en Vueltapp, tu aceptas nuestros <a href="{{model.endpoint}}GetDisclaimerPDF/messenger" target="_blank">Términos y Condiciones</a>. Tus datos estan bajo política de privacidad.</span>
+					<span>Al registrarte en Vueltap, tu aceptas nuestros <a href="{{model.endpoint}}GetDisclaimerPDF/messenger" target="_blank">Términos y Condiciones</a>. Tus datos estan bajo política de privacidad.</span>
 				</div>
-				<button ng-disabled="createMessenger.$invalid || model.messenger.password != model.messenger.repeatPassword"
+				<button ng-disabled="createMessengerForm.$invalid || (model.messenger.password != model.messenger.repeatPassword)"
 						 class="button btn btn-success btn-large">Registrar</button>
 			</div>
 

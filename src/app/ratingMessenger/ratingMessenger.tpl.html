@@ -1,18 +1,58 @@
 <div class="row">
     <div class="col-lg-12">
         <p>
-        	Por favor calificar al mensajero <b>{{model.deliveryItemInfo.messenger_info.name}} {{model.deliveryItemInfo.messenger_info.lastname}}</b>
+        	Ayudanos a mejorar el Servicios. Por favor califica al mensajero <b>{{model.deliveryItemInfo.messenger_info.name}} {{model.deliveryItemInfo.messenger_info.lastname}}</b>
         </p>
     </div>
 </div>
 <div class="row">
-    <div class="col-lg-12">
-    	<rating id="rating" value="rate" max="max" readonly="false" on-leave="overStar = null"></rating>
-    	<span id="numberRate">{{rate}}</span>
-   		<div class="form-group">
+    <div class="col-lg-6">
+        <div class="panel panel-default" ng-show="item.status != 'available'">
+            <div class="panel-heading text-center"><h5>Datos del Servicio</h5></div>
+            <div class="panel-body">
+                <div class="list-group">
+                    <span class="list-group-item">
+                        <i class="fa fa-gift fa-fw"></i> Nombre del Servicio
+                        <span class="pull-right text-muted">
+                            <em>{{model.deliveryItemInfo.item_name}}</em>
+                        </span>
+                    </span>
+                    <span class="list-group-item">
+                        <i class="fa fa-map-marker fa-fw"></i> Lugar de Recogida
+                        <span class="pull-right text-muted">
+                            <em>{{model.deliveryItemInfo.pickup_object.address}}</em>
+                        </span>
+                    </span>
+                    <span class="list-group-item">
+                        <i class="fa fa-map-marker fa-fw"></i> Lugar de Entrega
+                        <span class="pull-right text-muted">
+                            <em>{{model.deliveryItemInfo.delivery_object.address}}</em>
+                        </span>
+                    </span>
+                    <span class="list-group-item">
+                        <i class="fa fa-ticket fa-fw"></i> Método de Pago
+                        <span class="pull-right text-muted">
+                            <em ng-if="model.deliveryItemInfo.payment_method === 'credit'">Tarjeta de Crédito</em>
+                            <em ng-if="model.deliveryItemInfo.payment_method === 'cash'">Efectivo</em>
+                        </span>
+                    </span>
+                    <span class="list-group-item">
+                        <i class="fa fa-ticket fa-fw"></i> Costo Total
+                        <span class="pull-right text-muted">
+                            <em>{{model.deliveryItemInfo.price_to_pay|currency:"COP$"}}</em>
+                        </span>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-6">
+        <rating id="rating" value="rate" max="max" readonly="false" on-leave="overStar = null"></rating>
+        <span id="numberRate">{{rate}}</span>
+        <div class="form-group">
             <label id="tileReview">Comentarios sobre el servicio</label>
             <textarea class="form-control" rows="3" id="review" name="email" ng-model="model.review" required></textarea>
         </div>
-	    <button class="btn btn-default" ng-click="model.ratingMessenger()" >Calificar<button>
+        <button class="btn btn-default" ng-click="model.ratingMessenger()" >Calificar</button>
     </div>
 </div>
