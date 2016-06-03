@@ -45,18 +45,20 @@
 				if (newValue && newValue.lat) {
 					centerLatPickup = newValue.lat;
 					centerLonPickup = newValue.lng;
-					$scope.pickupBool = true;
-					$scope.deliveryMap.panTo(new google.maps.LatLng(centerLatPickup, centerLonPickup));
+
 				}
+			$scope.pickupBool = true;
+			$scope.deliveryMap.panTo(new google.maps.LatLng(centerLatPickup, centerLonPickup));
+
 		};
 
 		$rootScope.updateDeliveryMap= function(newValue) {
 			if (newValue && newValue.lat) {
 				centerLatDelivery = newValue.lat;
 				centerLonDelivery= newValue.lng;
-				$scope.pickupBool = false;
-				$scope.deliveryMap.panTo(new google.maps.LatLng(centerLatDelivery, centerLonDelivery));
 			}
+			$scope.pickupBool = false;
+			$scope.deliveryMap.panTo(new google.maps.LatLng(centerLatDelivery, centerLonDelivery));
 		};
 
 		/*$scope.$watch('delivery', function(newValue) {

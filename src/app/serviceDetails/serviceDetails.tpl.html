@@ -109,9 +109,15 @@
 							<div class="panel-body">
 								<div class="list-group">
 		                            <span class="list-group-item">
-		                                <i class="fa fa-user fa-fw"></i> Nombre
+		                                <i class="fa fa-user fa-fw"></i> Nombres
 		                                <span class="pull-right text-muted">
-		                            		<em>{{model.deliveryItemInfo.messenger_info.name}} {{model.deliveryItemInfo.messenger_info.lastname}}</em>
+		                            		<em>{{model.deliveryItemInfo.messenger_info.name}}</em>
+		                                </span>
+		                            </span>
+									<span class="list-group-item">
+		                                <i class="fa fa-user fa-fw"></i> Apellidos
+		                                <span class="pull-right text-muted">
+		                            		<em>{{model.deliveryItemInfo.messenger_info.lastname}}</em>
 		                                </span>
 		                            </span>
 		                            <span class="list-group-item">
@@ -142,6 +148,8 @@
 							</div>
 						</div>
 					</div>
+				</div>
+				<div class="row">
 					<div class="col-lg-6">
 						<div class="panel panel-default" ng-show="item.status != 'available'">
 							<div class="panel-heading text-center"><h5>Información del pago</h5></div>

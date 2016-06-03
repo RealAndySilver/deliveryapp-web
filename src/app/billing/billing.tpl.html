@@ -6,6 +6,9 @@
 <div class="row">
 	<div class="panel panel-default col-md-8">
 		<div class="panel-heading default-header-panel"><b>Tarjetas Existentes</b></div>
+		<div ng-show="model.currentBillingInformation.length==0" class="panel panel-default panel-fix">
+			<b class="bold-block-info">No tiene medios de pago registrados</b>
+		</div>
 		<div ng-repeat="p in model.currentBillingInformation" class="panel panel-default panel-fix">
 			<span>
 				<i class="fa fa-minus-square pull-right" ng-click="model.deletePaymentMethod(model.currentBillingInformation[$index])"></i>

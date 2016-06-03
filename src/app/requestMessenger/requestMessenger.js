@@ -81,6 +81,20 @@
 		}
 
 
+		/**
+		 * Se integra con la directiva del mapa para ubicar el map en la direccion de recogida
+		 * */
+		model.setMapPickupAddress=function(){
+
+			$rootScope.updatePickupMap(null);
+		};
+
+		/**
+		 * Se integra con la directiva del mapa para ubicar el map en la direccion de entrega
+		 * */
+		model.setMapDeliveryAddress=function(){
+			$rootScope.updateDeliveryMap(null);
+		};
 
 
 		$scope.showAlert = function() {
@@ -90,7 +104,7 @@
 
 
 		/**
-		 * Reclacula el valor a pagar del seguro
+		 * Recalcula el valor a pagar del seguro
 		 *
 		 * */
 		model.insuranceSelectionChanged=function(){

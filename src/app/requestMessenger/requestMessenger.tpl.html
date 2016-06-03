@@ -21,7 +21,7 @@
                         <div class="panel-body">
                         	<div class="form-group input-group">
 				                <label class="input-group-addon" for="pickup">Recogida</label>
-				                <input type="text" class="form-control" id="pickup" ng-model="pickup_address" required>
+				                <input type="text" class="form-control" id="pickup" ng-model="pickup_address" required ng-focus="model.setMapPickupAddress()">
 				                <span class="input-group-btn">
                                     <button class="btn btn-default" type="button" ng-click="model.enableSearchAddress(pickup_address)"><i class="fa fa-search"></i></button>
                                 </span>
@@ -31,7 +31,7 @@
 							</div>
                           	<div class="form-group input-group">
 				                <label class="input-group-addon" for="delivery">Entrega</label>
-				                <input type="text" class="form-control" id="delivery" ng-model="delivery_address" required>
+				                <input type="text" class="form-control" id="delivery" ng-model="delivery_address" required ng-focus="model.setMapDeliveryAddress()">
 				                <span class="input-group-btn">
                                     <button class="btn btn-default" type="button" ng-click="model.enableSearchAddress(delivery_address)"><i class="fa fa-search"></i></button>
                                 </span>
