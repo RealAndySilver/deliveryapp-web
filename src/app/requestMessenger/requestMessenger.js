@@ -348,7 +348,18 @@
 					}
 				});
 			} else {
-				$scope.BootstrapModal.show("Completa todos los campos por favor");
+				var msgToShow="Completa los siguientes campos por favor";
+				if($scope.requestMessengerForm.servName.$invalid){
+					msgToShow+='<BR/> - Nombre del Servicio';
+				}
+				if($scope.requestMessengerForm.metodoPago.$invalid){
+					msgToShow+='<BR/> - Metodo de Pago';
+				}
+				if($scope.requestMessengerForm.instructions.$invalid){
+					msgToShow+='<BR/> - Instrucciones para el mensajero';
+				}
+
+				$scope.BootstrapModal.show(msgToShow);
 				//AlertsService.showSimpleAlert("Completa todos los campos por favor");
 			}
 		};
@@ -385,7 +396,7 @@
 		};
 
 		$scope.useAddress = function(answer, delivery) {
-			console.log('clo se to me');
+			//console.log('clo se to me');
 			if (answer === "pickup") {
 				$scope.pickupLat = delivery["lat"];
 				$scope.pickupLon = delivery["lon"];

@@ -172,17 +172,17 @@
 						<div class="panel-heading"><b>Método de Pago</b></div>
 						<div class="panel-body">
 							<label class="radio-inline">
-								<input type="radio" name="metodoPago" ng-model="model.delivery.payment_method" value="cash" required><i class="fa fa-money"></i> Pago en Efectivo
+								<input type="radio" name="metodoPago" ng-model="model.delivery.payment_method" value="cash" required><i class="fa fa-money"></i> Pago Corporativo
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="metodoPago" ng-model="model.delivery.payment_method" value="credit"><i class="fa  fa-credit-card"></i> Pago con Tarjeta
+								<input type="radio" name="metodoPago" ng-model="model.delivery.payment_method" value="credit" required><i class="fa  fa-credit-card"></i> Pago con Tarjeta
 							</label>
 						</div>
 					</div>
 					<div class="panel panel-default">
 						<div class="panel-heading"><b>Instrucciones para el Mensajero</b></div>
 						<div class="panel-body">
-							<textarea class="form-control" ng-model="model.delivery.instructions" required></textarea>
+							<textarea class="form-control" name="instructions" ng-model="model.delivery.instructions" required></textarea>
 						</div>
 					</div>
 				</div>
