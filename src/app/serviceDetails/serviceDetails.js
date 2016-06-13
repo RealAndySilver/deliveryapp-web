@@ -4,7 +4,7 @@
 		var model = this;
 		model.messengerBool = false;
 		model.isSearchMessenger = false;
-		model.reloadBool = false;
+		model.reloadBool = true;
 		model.leftTime = "10s";
 		model.code = "00";
 		model.showCancelButtonBool = true;
@@ -24,7 +24,7 @@
 			$scope.$on("$stateChangeStart",function(){
 				clearInterval(id);
 			});
-			id = setInterval(serviceDetails, 60000);
+			id = setInterval(serviceDetails, 30000);
 
 			model.serviceDetails = serviceDetails;
 
@@ -48,18 +48,12 @@
 
 					if (response.data.messenger_info) {
 						model.messengerBool = true;
-						model.reloadBool = false;
 						model.isSearchMessenger = false;
 					} else {
 						model.messengerBool = false;
-						model.reloadBool = true;
 						model.isSearchMessenger = true;
 					}
 
-					if (!model.reloadBool) {
-						clearInterval(id);
-					}
-					console.log("RELOAD BOOL", model.reloadBool);
 
 					if (response.data.images.length !== 0) {
 						model.imageBool = true;
@@ -98,6 +92,11 @@
 					} else {
 						model.showCancelButtonBool = false;
 					}
+
+					if (!model.reloadBool) {
+						clearInterval(id);
+					}
+					console.log("RELOAD BOOL", model.reloadBool);
 
 					console.log("SHOW CANCEL", model.showCancelButtonBool);
 				});
