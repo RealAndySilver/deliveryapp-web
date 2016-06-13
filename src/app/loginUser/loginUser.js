@@ -74,13 +74,13 @@
 		};
 
 		model.newAccount = function() {
-			console.log("IR A NUEVA CUENTA");
+			//console.log("IR A NUEVA CUENTA");
 			$state.go('createUser');
 		};
 
 		model.recoverPassword = function() {
 			//IR A LA VENTANA DE RECUPERAR CONTRASEÑA
-			console.log("RECUPERAR CONTRASEÑA");
+			//console.log("RECUPERAR CONTRASEÑA");
 			$state.go('recoverPassword');
 		};
 
@@ -93,6 +93,7 @@
 				model.user = {};
 				model.user.email = user.email;
 				model.user.password = atob(user.password);
+				model.loginUser();
 			}
 		};
 
