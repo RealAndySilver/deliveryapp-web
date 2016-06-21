@@ -4,38 +4,50 @@
     </div>
 </div>
 <div class="row">
-	<div class="col-sm-6" ng-repeat="item in model.deliveryItems">
-		<div class="panel panel-default" ng-show="item.status != 'available'">
-			<div class="panel-body">
-				<div class="list-group">
-                    <span class="list-group-item">
-                        <i class="fa fa-gift fa-fw"></i> Pedido
-                        <span class="pull-right text-muted">
-                    		<em>{{item.item_name}}</em>
-                        </span>
-                    </span>
-                    <span class="list-group-item">
-                        <i class="fa fa-map-marker fa-fw"></i> Dirección de Recogida
-                        <span class="pull-right text-muted">
-                    		<em>{{item.pickup_object.address}}</em>
-                        </span>
-                    </span>
-                    <span class="list-group-item">
-                        <i class="fa fa-map-marker fa-fw"></i> Dirección de Entrega
-                        <span class="pull-right text-muted">
-                    		<em>{{item.delivery_object.address}}</em>
-                        </span>
-                    </span>
-                    <span class="list-group-item">
-                        <i class="fa fa-map-marker fa-fw"></i> Dirección de Entrega
-                        <span class="pull-right text-muted">
-                            <em>{{item.date_created | date: 'medium'}}</em>
-                        </span>
-                    </span>
-                </div>
-				<button type="button" class="btn btn-success btn-sm pull-right" ng-click="model.goToServiceDetails(item._id)">Ver Detalles</button>
-			</div>
-		</div>
-	</div>
+    <div class="panel panel-default" style="margin-bottom: 40px; width:100%">
+        <div class="panel panel-default">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Pedido</th>
+                    <th>Fecha</th>
+                    <th>Valor Servicio</th>
+                    <th>Valor Seguro</th>
+                    <th>Valor Total</th>
+                    <th>Detalle</th>
+                </tr>
+                </thead>
+                <tbody>
+                <!--<tr ng-repeat="bin in bins.all">-->
+                <tr ng-repeat="(key, service) in model.deliveryItems" >
+                    <td>{{service.item_name}}</td>
+                    <td>{{service.date_created|date}}</td>
+                    <td>{{service.service_price|currency:"COP$"}}</td>
+                    <td>{{service.insurancevalue|currency:"COP$"}}</td>
+                    <td>{{service.price_to_pay|currency:"COP$"}}</td>
+                    <td><button type="button" class="btn btn-success btn-sm"
+                                ng-click="model.goToServiceDetails(service._id)">Detalle
+                    </button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <paging
+                class="small paging-block post-title"
+                page="model.pagingInfo.currentPage"
+                page-size="model.pagingInfo.pageSize"
+                total="model.pagingInfo.totalRecords"
+                adjacent="{{adjacent}}"
+                dots="{{dots}}"
+                scroll-top="true"
+                hide-if-empty="{{hideIfEmpty}}"
+                ul-class="{{ulClass}}"
+                active-class="{{activeClass}}"
+                disabled-class="{{disabledClass}}"
+                show-prev-next="true"
+                paging-action="model.getCompletedServices(page)">
+        </paging>
+    </div>
 </div>
 

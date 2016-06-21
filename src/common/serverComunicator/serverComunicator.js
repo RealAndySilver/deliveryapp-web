@@ -11,6 +11,7 @@
 
     module.service('ServerComunicator', ['$http', '$q', function ($http, $q) {
         var model = this;
+        var SORT_LIMIT = 10;
         var endpoint = urlList.service;
         //var endpoint = "http://andres.local:2000/api_1.0/";
 
@@ -208,11 +209,17 @@
                 });
             };
 
-            model.getCompletedDeliveryItems = function (idUser) {
+            model.getCompletedDeliveryItems = function (idUser, pageNumber) {
+                var limit = SORT_LIMIT;
+                var skip = pageNumber * limit;
+                var sort = {
+                    'skip': skip,
+                    'limit': limit
+                };
                 return $http({
                     method: 'GET',
                     headers: getHeader(),
-                    url: endpoint + 'User/FinishedDeliveries' + "/" + idUser,
+                    url: endpoint + 'User/FinishedDeliveries' + "/" + idUser+ "/" + JSON.stringify(sort),
                 });
             };
 

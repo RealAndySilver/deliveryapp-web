@@ -7,14 +7,15 @@
 
 		function init() {
 
-			model.getCompletedServices = function(idUser, callback) {
-				var detailsPromise = ServerComunicator.getCompletedDeliveryItems(idUser);
+			model.getCompletedServices = function(idUser,pageNumber, callback) {
+				var detailsPromise = ServerComunicator.getCompletedDeliveryItems(idUser,pageNumber);
 				detailsPromise.then(
 					function success(response) {
 						callback({
 							response: response.data.status,
 							msg: response.data.message|| response.data.error,
 							data: response.data.response,
+							total: response.data.total
 						});
 					},
 					function error(e) {
