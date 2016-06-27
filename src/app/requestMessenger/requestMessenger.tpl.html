@@ -21,21 +21,29 @@
                         <div class="panel-body">
                         	<div class="form-group input-group">
 				                <label class="input-group-addon" for="pickup">Recogida</label>
-				                <input type="text" class="form-control" id="pickup" ng-model="pickup_address" required ng-focus="model.setMapPickupAddress()">
-				                <span class="input-group-btn">
-                                    <button class="btn btn-default" type="button" ng-click="model.enableSearchAddress(pickup_address)"><i class="fa fa-search"></i></button>
-                                </span>
+				                <input type="text" class="form-control" id="pickup" ng-model="pickup_address" ng-change="model.searchGoogleAddresses(true,false,pickup_address)" required ng-blur="model.cleanAddressList();" ng-focus="model.setMapPickupAddress()">
                           	</div>
+							<div ng-show="model.isSearchingPickupAddress" >
+								<li ng-repeat="googleAddress in model.addressListFromGoogle">
+									<spam class="textField">{{googleAddress.formatted_address.replace('Bogotá, Bogotá, Colombia','')}}
+										<a class="textfield" href="" ng-click="model.updateAddressInMap(true,googleAddress)">Seleccionar</a>
+									</spam>
+								</li>
+							</div>
 							<div class="form-group">
 								<input type="text" class="form-control" ng-model="model.delivery.pickup_details" placeholder="Apto, Conjunto, Edificio de Recogida (Opcional)">
 							</div>
                           	<div class="form-group input-group">
 				                <label class="input-group-addon" for="delivery">Entrega</label>
-				                <input type="text" class="form-control" id="delivery" ng-model="delivery_address" required ng-focus="model.setMapDeliveryAddress()">
-				                <span class="input-group-btn">
-                                    <button class="btn btn-default" type="button" ng-click="model.enableSearchAddress(delivery_address)"><i class="fa fa-search"></i></button>
-                                </span>
+				                <input type="text" class="form-control" id="delivery" ng-model="delivery_address" ng-change="model.searchGoogleAddresses(false,true,delivery_address)" required ng-blur="model.cleanAddressList();"  ng-focus="model.setMapDeliveryAddress()">
 				            </div>
+							<div ng-show="model.isSearchingDeliveryAddress" >
+								<li ng-repeat="googleAddress in model.addressListFromGoogle">
+									<spam class="textField">{{googleAddress.formatted_address.replace('Bogotá, Bogotá, Colombia','')}}
+										<a class="textfield" href="" ng-click="model.updateAddressInMap(false,googleAddress)">Seleccionar</a>
+									</spam>
+								</li>
+							</div>
 							<div class="form-group">
 								<input type="text" class="form-control" ng-model="model.delivery.delivery_details" placeholder="Apto, Conjunto, Edificio de Entrega (Opcional)">
 							</div>
@@ -209,7 +217,7 @@
 			<fieldset>
 				<legend>Busqueda de Direcciones</legend>
 				<div class="form-group">
-					<label class="col-sm-4 control-label">Ingrese una Direcion</label>
+					<label class="col-sm-4 control-label">Ingrese una Dirección</label>
 					<div class="col-sm-6">
 						<input type="text" ng-model="model.searchAddressField" ng-change="model.searchGoogleAddresses(model.searchAddressField)" class="form-control" required>
 					</div>

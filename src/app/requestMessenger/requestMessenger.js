@@ -2,7 +2,8 @@
 
 	module.service('GetAllAddressService', ['PickupAddresses', 'DeliveryAddresses', function(PickupAddresses, DeliveryAddresses) {
 		var model = this;
-
+		model.isSearchingPickupAddress=false;
+		model.isSearchingDeliveryAddress=false;
 		var MAX_ADDRESS = 3;
 
 
@@ -118,8 +119,10 @@
 		 * This method makes a search using reverse geocode on google api services
 		 *
 		 * */
-		model.searchGoogleAddresses = function(address){
-			//console.log(address);
+		model.searchGoogleAddresses = function(searchPickup,searchDelivery,address){
+			model.isSearchingPickupAddress=searchPickup;
+			model.isSearchingDeliveryAddress=searchDelivery;
+			model.addressListFromGoogle=[];
 			clearTimeout(model.processId);
 			model.processId = setTimeout(function() {
 				//console.log("Buscando");
@@ -148,6 +151,15 @@
 		};
 
 
+		model.cleanAddressList=function(){
+			var res=setTimeout(function() {
+				model.isSearchingPickupAddress=false;
+				model.isSearchingDeliveryAddress=false;
+				model.addressListFromGoogle=[];
+				$scope.$apply();
+			},100);
+		};
+
 		/**
 		 * This methods refreshes the map when the user selects an address from the window,
 		 * this makes integrations with the directive that displays the map
@@ -159,7 +171,9 @@
 			}else{
 				$rootScope.updateDeliveryMap({lat:googleAddress.geometry.location.lat(),lng:googleAddress.geometry.location.lng()});
 			}
-			$('#searchAddress').modal('hide');
+			model.isSearchingPickupAddress=false;
+			model.isSearchingDeliveryAddress=false;
+			model.addressListFromGoogle=[];
 		};
 
 		model.getPaymentMethods = function(userInfo) {
