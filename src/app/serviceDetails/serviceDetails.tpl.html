@@ -99,6 +99,13 @@
 		                            		<input type="checkbox" aria-label="..." disabled class="view-mode-input" ng-checked="model.deliveryItemInfo.insurance">
 		                                </span>
 		                            </span>
+									<span class="list-group-item">
+		                                <i class="fa fa-ticket fa-fw"></i> Método de Pago
+		                                <span class="pull-right text-muted">
+		                            		<em ng-if="model.deliveryItemInfo.payment_method === 'credit'">Tarjeta de Crédito</em>
+		                            		<em ng-if="model.deliveryItemInfo.payment_method === 'cash'">Corporativo</em>
+		                                </span>
+		                            </span>
 		                        </div>
 	                    	</div>
 	                    </div>
@@ -156,53 +163,46 @@
 							<div class="panel-body">
 								<div class="list-group">
 									<span class="list-group-item">
-		                                <i class="fa fa-ticket fa-fw"></i> Método de Pago
+		                                <i class="fa fa-ticket fa-fw"></i> NIT
 		                                <span class="pull-right text-muted">
-		                            		<em ng-if="model.deliveryItemInfo.payment_method === 'credit'">Tarjeta de Crédito</em>
-		                            		<em ng-if="model.deliveryItemInfo.payment_method === 'cash'">Corporativo</em>
+		                            		<em>900.716.760-8</em>
 		                                </span>
 		                            </span>
 									<span class="list-group-item">
-		                                <i class="fa fa-ticket fa-fw"></i> Costo del Seguro
+		                                <i class="fa fa-ticket fa-fw"></i> Razón Social
 		                                <span class="pull-right text-muted">
-		                            		<em>{{model.deliveryItemInfo.insurance_price|currency:"COP$"}}</em>
+		                            		<em>Grupo Arlo S.A.S</em>
 		                                </span>
 		                            </span>
 									<span class="list-group-item">
-		                                <i class="fa fa-ticket fa-fw"></i> Costo del Servicio
+		                                <i class="fa fa-ticket fa-fw"></i> Valor del Servicio
 		                                <span class="pull-right text-muted">
 		                            		<em>{{model.deliveryItemInfo.service_price|currency:"COP$"}}</em>
 		                                </span>
 		                            </span>
-		                            <span class="list-group-item">
+									<span class="list-group-item">
+		                                <i class="fa fa-ticket fa-fw"></i> Valor del Seguro
+		                                <span class="pull-right text-muted">
+		                            		<em>{{model.deliveryItemInfo.insurancevalue|currency:"COP$"}}</em>
+		                                </span>
+		                            </span>
+									<span class="list-group-item">
+		                                <i class="fa fa-ticket fa-fw"></i> IVA
+		                                <span class="pull-right text-muted">
+		                            		<em>{{0|currency:"COP$"}}</em>
+		                                </span>
+		                            </span>
+									<span class="list-group-item">
 		                                <i class="fa fa-ticket fa-fw"></i> Costo Total
 		                                <span class="pull-right text-muted">
 		                            		<em>{{model.deliveryItemInfo.price_to_pay|currency:"COP$"}}</em>
 		                                </span>
 		                            </span>
-									<span class="list-group-item">
-		                                <i class="fa fa-ticket fa-fw"></i> Valor Asegurado
-		                                <span class="pull-right text-muted">
-		                            		<em>{{model.deliveryItemInfo.insurancevalue|currency:"COP$"}}</em>
-		                                </span>
-		                            </span>
 									<div ng-show="model.deliveryItemInfo.payment_method === 'credit'">
-										<span class="list-group-item">
-											<i class="fa fa-user fa-fw"></i> Referencia
-											<span class="pull-right text-muted">
-												<em>{{model.deliveryItemInfo.trn_ids[0]?model.deliveryItemInfo.trn_ids[0].reference:""}}</em>
-											</span>
-										</span>
-										<span class="list-group-item">
-											<i class="fa fa-phone fa-fw"></i> CUS
-											<span class="pull-right text-muted">
-												<em>{{model.deliveryItemInfo.trn_ids[0]?model.deliveryItemInfo.trn_ids[0].cus:""}}</em>
-											</span>
-										</span>
 										<span class="list-group-item">
 											<i class="fa fa-keyboard-o fa-fw"></i> Fecha
 											<span class="pull-right text-muted">
-												<em>{{model.deliveryItemInfo.trn_ids[0]?model.deliveryItemInfo.trn_ids[0].date_sent:""}}</em>
+												<em>{{(model.deliveryItemInfo.trn_ids[0]?model.deliveryItemInfo.trn_ids[0].date_sent:"")| date:'dd/MM/yyyy hh:mma'}}</em>
 											</span>
 										</span>
 										<span class="list-group-item">
@@ -211,7 +211,51 @@
 												<em>{{model.deliveryItemInfo.trn_ids[0]?model.deliveryItemInfo.trn_ids[0].status_text:""}}</em>
 											</span>
 										</span>
+										<span class="list-group-item" ng-show="model.deliveryItemInfo.trn_ids[0].reject_reason!='Aprobada'">
+											<i class="fa fa-user fa-fw"></i> Motivo rechazo
+											<span class="pull-right text-muted">
+												<em>{{model.deliveryItemInfo.trn_ids[0]?model.deliveryItemInfo.trn_ids[0].reject_reason:""}}</em>
+											</span>
+										</span>
+										<span class="list-group-item">
+											<i class="fa fa-user fa-fw"></i> Franquicia
+											<span class="pull-right text-muted">
+												<em>{{model.deliveryItemInfo.trn_ids[0]?model.deliveryItemInfo.trn_ids[0].franchise:""}}</em>
+											</span>
+										</span>
+										<span class="list-group-item">
+											<i class="fa fa-user fa-fw"></i> Banco
+											<span class="pull-right text-muted">
+												<em>{{model.deliveryItemInfo.trn_ids[0]?model.deliveryItemInfo.trn_ids[0].bank:""}}</em>
+											</span>
+										</span>
+										<span class="list-group-item">
+											<i class="fa fa-phone fa-fw"></i> Autorizacion/CUS
+											<span class="pull-right text-muted">
+												<em>{{model.deliveryItemInfo.trn_ids[0]?model.deliveryItemInfo.trn_ids[0].cus:""}}</em>
+											</span>
+										</span>
+										<span class="list-group-item">
+											<i class="fa fa-phone fa-fw"></i> Recibo
+											<span class="pull-right text-muted">
+												<em>{{model.deliveryItemInfo.trn_ids[0]?model.deliveryItemInfo.trn_ids[0].receipt_number:""}}</em>
+											</span>
+										</span>
+										<span class="list-group-item">
+											<i class="fa fa-user fa-fw"></i> Referencia
+											<span class="pull-right text-muted">
+												<em>{{model.deliveryItemInfo.trn_ids[0]?model.deliveryItemInfo.trn_ids[0].reference:""}}</em>
+											</span>
+										</span>
+										<span class="list-group-item">
+											<i class="fa fa-user fa-fw"></i> Descripción
+											<span class="pull-right text-muted">
+												<em>Pago por servicio {{model.deliveryItemInfo.item_name}}</em>
+											</span>
+										</span>
 									</div>
+									<BR/>
+									<input type="button" align="center" value="Imprimir" onClick="window.print()">
 								</div>
 							</div>
 						</div>

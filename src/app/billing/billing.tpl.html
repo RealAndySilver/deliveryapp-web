@@ -48,7 +48,7 @@
 				<tbody>
 				<!--<tr ng-repeat="bin in bins.all">-->
 				<tr ng-repeat="(key, pmntItem) in model.paymentHistoryArray" title="{{pmntItem.p2p_response}}">
-					<td>{{pmntItem.date_sent}}</td>
+					<td>{{pmntItem.date_sent| date:'dd/MM/yyyy hh:mma'}}</td>
 					<td>{{pmntItem.reference}}</td>
 					<td>{{pmntItem.cus}}</td>
 					<td>{{pmntItem.status_text}}</td>
