@@ -1,14 +1,48 @@
-<div class="modal fade billing-container" id="addBilling" role="dialog" ng-controller="DVAddCreditCardController as model">
+<div class="modal fade billing-container" style="top:180px;" id="addBilling" role="dialog" ng-controller="DVAddCreditCardController as model">
 	<div class="content clearfix model-dialog" role="document">
 		<form class="form-horizontal modal-content" role="form" name="addBilingForm" novalidate>
 			<fieldset>
-				<legend>Medio de Pago</legend>
-				<!--<div class="form-group">
-                    <label class="col-sm-4 control-label" for="card-holder-name">Titular de Tarjeta</label>
-                    <div class="col-sm-6">
-                      <input type="text" ng-model="model.billingInformation.cardHolderName" class="form-control" name="card-holder-name" id="card-holder-name" maxlength="50" placeholder="Titular tarjeta">
-                    </div>
-                  </div>-->
+				<legend>Agregar Medio de Pago</legend>
+				<div class="form-group">
+					<label class="col-sm-4 control-label" for="card-holder-first-name">Nombres Titular</label>
+					<div class="col-sm-6">
+						<input type="text" ng-model="model.billingInformation.cardHolderFirstName" class="form-control" name="card-holder-first-name" id="card-holder-first-name" maxlength="50" placeholder="Nombres" required>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-4 control-label" for="card-holder-last-name">Apellidos Titular</label>
+					<div class="col-sm-6">
+						<input type="text" ng-model="model.billingInformation.cardHolderLastName" class="form-control" name="card-holder-last-name" id="card-holder-last-name" maxlength="50" placeholder="Apellidos" required>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-4 control-label" for="card-holder-doc">Documento Titular</label>
+					<div class="col-sm-2">
+						<select class="form-control col-sm-2" ng-init="model.billingInformation.cardHolderDocType='CC'" ng-model="model.billingInformation.cardHolderDocType" name="doc-type" id="doc_type" required>
+							<option value="CC">CC</option>
+							<option value="CE">CE</option>
+							<option value="TI">TI</option>
+							<option value="NIT">NIT</option>
+							<option value="PPN">Pasaporte</option>
+						</select>
+					</div>
+					<div class="col-sm-4">
+						<input type="text" ng-model="model.billingInformation.cardHolderDocNumber" class="form-control" name="docNumber" id="card-holder-doc" minlength="5" maxlength="10" ng-pattern="/^([0-9]| )+$/" placeholder="Num. Documento" required>
+					</div>
+				</div>
+				<p ng-show="(addBilingForm.docNumber.$error.pattern || addBilingForm.docNumber.$invalid) && !addBilingForm.docNumber.$pristine" class="text-danger info-fix">Ingresa un número de documento válido.</p>
+				<div class="form-group">
+					<label class="col-sm-4 control-label" for="card-holder-city">Ciudad Titular</label>
+					<div class="col-sm-6">
+						<input type="text" ng-model="model.billingInformation.cardHolderCity" class="form-control" name="card-holder-city" id="card-holder-city" maxlength="50" placeholder="Ciudad Residencia" required>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-4 control-label" for="card-holder-address">Dirección Titular</label>
+					<div class="col-sm-6">
+						<input type="text" ng-model="model.billingInformation.cardHolderAddress" class="form-control" name="card-holder-address" id="card-holder-address" maxlength="50" placeholder="Dirección" required=>
+					</div>
+				</div>
 				<div class="form-group" ng-if="!model.isEditing">
 					<label class="col-sm-4 control-label" for="card-number">Número de Tarjeta</label>
 					<div class="col-sm-6">
@@ -45,7 +79,6 @@
 							</div>
 							<div class="col-xs-5">
 								<select class="form-control" ng-model="model.billingInformation.expiryYear" name="expiry-year" required>
-									<option value="15">2015</option>
 									<option value="16">2016</option>
 									<option value="17">2017</option>
 									<option value="18">2018</option>
@@ -55,7 +88,10 @@
 									<option value="22">2022</option>
 									<option value="23">2023</option>
 									<option value="24">2024</option>
-									<option value="25">2525</option>
+									<option value="25">2025</option>
+									<option value="26">2026</option>
+									<option value="27">2027</option>
+									<option value="28">2028</option>
 								</select>
 							</div>
 						</div>

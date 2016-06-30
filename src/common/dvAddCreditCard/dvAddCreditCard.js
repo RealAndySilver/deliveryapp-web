@@ -34,9 +34,13 @@
 			addPaymentRequest.user_id = sessionStorage.id;
 			addPaymentRequest.card_number = billingInformation.cardNumber;
 			addPaymentRequest.exp_date = billingInformation.expiryMonth + '/' + billingInformation.expiryYear;
-			//addPaymentRequest.franchise = 'VISA';
 			addPaymentRequest.cvv = billingInformation.securityCode;
-			//console.log('current payment infotmation ',addPaymentRequest);
+			addPaymentRequest.card_holder_first_name=billingInformation.cardHolderFirstName;
+			addPaymentRequest.card_holder_last_name=billingInformation.cardHolderLastName;
+			addPaymentRequest.card_holder_address=billingInformation.cardHolderAddress;
+			addPaymentRequest.card_holder_city=billingInformation.cardHolderCity;
+			addPaymentRequest.card_holder_doc_type=billingInformation.cardHolderDocType;
+			addPaymentRequest.card_holder_doc_number=billingInformation.cardHolderDocNumber;
 
 			model.isEditing = false;
 
