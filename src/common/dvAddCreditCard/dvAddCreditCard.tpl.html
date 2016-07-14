@@ -6,15 +6,17 @@
 				<div class="form-group">
 					<label class="col-sm-4 control-label" for="card-holder-first-name">Nombres Titular</label>
 					<div class="col-sm-6">
-						<input type="text" ng-model="model.billingInformation.cardHolderFirstName" class="form-control" name="card-holder-first-name" id="card-holder-first-name" maxlength="50" placeholder="Nombres" required>
+						<input type="text" ng-model="model.billingInformation.cardHolderFirstName" class="form-control" ng-pattern="/^[a-zA-Z]+$/" name="cardHolderFirstName" id="card-holder-first-name" maxlength="50" placeholder="Nombres" required>
 					</div>
 				</div>
+				<p ng-show="(addBilingForm.cardHolderFirstName.$error.pattern || addBilingForm.cardHolderFirstName.$invalid) && !addBilingForm.cardHolderFirstName.$pristine" class="text-danger info-fix">Nombre invalido.</p>
 				<div class="form-group">
 					<label class="col-sm-4 control-label" for="card-holder-last-name">Apellidos Titular</label>
 					<div class="col-sm-6">
-						<input type="text" ng-model="model.billingInformation.cardHolderLastName" class="form-control" name="card-holder-last-name" id="card-holder-last-name" maxlength="50" placeholder="Apellidos" required>
+						<input type="text" ng-model="model.billingInformation.cardHolderLastName" class="form-control" ng-pattern="/^[a-zA-Z]+$/" name="cardHolderLastName" id="card-holder-last-name" maxlength="50" placeholder="Apellidos" required>
 					</div>
 				</div>
+				<p ng-show="(addBilingForm.cardHolderLastName.$error.pattern || addBilingForm.cardHolderLastName.$invalid) && !addBilingForm.cardHolderLastName.$pristine" class="text-danger info-fix">Apellidos invalidos.</p>
 				<div class="form-group">
 					<label class="col-sm-4 control-label" for="card-holder-doc">Documento Titular</label>
 					<div class="col-sm-2">

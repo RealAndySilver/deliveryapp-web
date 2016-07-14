@@ -213,8 +213,8 @@
 										</span>
 										<span class="list-group-item" ng-show="model.deliveryItemInfo.trn_ids[0].reject_reason!='Aprobada'">
 											<i class="fa fa-user fa-fw"></i> Motivo rechazo
-											<span class="pull-right text-muted">
-												<em>{{model.deliveryItemInfo.trn_ids[0]?model.deliveryItemInfo.trn_ids[0].reject_reason:""}}</em>
+											<span class="pull-right text-muted" title="{{model.deliveryItemInfo.trn_ids[0]?model.deliveryItemInfo.trn_ids[0].reject_reason:''}}">
+												<em>{{model.deliveryItemInfo.trn_ids[0]?model.deliveryItemInfo.trn_ids[0].reject_reason.substring(0, 55):""}}...</em>
 											</span>
 										</span>
 										<span class="list-group-item">

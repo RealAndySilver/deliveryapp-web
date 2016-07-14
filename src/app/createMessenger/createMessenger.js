@@ -13,10 +13,10 @@
                 model.createMessenger = function () {
                     //console.log(model.messenger);
                     CreateMessengerService.createMessenger(model.messenger, function (response){
+                        console.log(response);
                         if (response.response) {
                             $scope.BootstrapModal.show("Mensajero creado correctamente", "Resultado Operación");
                             model.messenger = {};
-                            console.log(response);
                             //console.log(response.data);
                             //console.log(response.data.response);
                             //console.log(response.data.response._id);

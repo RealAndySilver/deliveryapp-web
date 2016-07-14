@@ -86,6 +86,9 @@
 		});
 
 		model.callbackCurrentPosition = function(position) {
+			console.log("User CURRENT POSITION ",position);
+			$rootScope.userCurrentPositionLatLng={lat:position.coords.latitude,lng:position.coords.longitude};
+			console.log("User CURRENT POSITION LAT LNG ",$rootScope.userCurrentPositionLatLng);
 			centerLatPickup = position.coords.latitude;
 			centerLonPickup = position.coords.longitude;
 

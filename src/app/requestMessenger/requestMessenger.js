@@ -131,9 +131,10 @@
 
 				var googleRequest = {
 					address: address,
+					//location : $rootScope.userCurrentPositionLatLng,
 					componentRestrictions: {
 							country: 'CO',
-							locality: 'Bogotá'
+							locality: 'Bogota'
 					}
 				};
 
