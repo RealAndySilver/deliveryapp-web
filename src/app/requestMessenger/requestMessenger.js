@@ -359,7 +359,21 @@
 							});
 						}
 					} else {
-						$scope.BootstrapModal.show(response.msg);
+						//USUARIO INACTIVO POR PROBLEMAS CON PAGO
+						if (response.msg==='001'){
+							var item=response.data;
+							var message="En este momento su servicio "+item.item_name+" presenta un proceso de pago cuya transacción se encuentra PENDIENTE de " +
+								"recibir confirmación por parte de su entidad financiera. Por favor espere unos" +
+								"minutos y vuelva a consultar más tarde para verificar que su pago fue" +
+								"confirmado de forma exitosa. Si desea mayor información sobre el estado actual" +
+								"de su operación puede comunicarse a nuestras líneas de atención al cliente al" +
+								"teléfono 9999999 o enviar inquietudes al correo soporte@vueltap.com" +
+								" y pregunte por el estado de la transacción "+item.trn_ids[0].cus;
+							$scope.BootstrapModal.show(message);
+						}else{
+							$scope.BootstrapModal.show(response.msg);
+						}
+
 					}
 				});
 			} else {

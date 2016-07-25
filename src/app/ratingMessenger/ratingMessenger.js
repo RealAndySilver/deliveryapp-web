@@ -26,7 +26,9 @@
 					$scope.BootstrapModal.show(response.msg);
 					//AlertsService.showAlert(response.msg, "");
 				}
-				$state.go("requestMessenger");
+				$state.go('serviceDetails', {
+					id: model.deliveryItemId
+				});
 			});
 		};
 

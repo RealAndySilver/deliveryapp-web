@@ -6,14 +6,14 @@
 				<div class="form-group">
 					<label class="col-sm-4 control-label" for="card-holder-first-name">Nombres Titular</label>
 					<div class="col-sm-6">
-						<input type="text" ng-model="model.billingInformation.cardHolderFirstName" class="form-control" ng-pattern="/^[a-zA-Z]+$/" name="cardHolderFirstName" id="card-holder-first-name" maxlength="50" placeholder="Nombres" required>
+						<input type="text" ng-model="model.billingInformation.cardHolderFirstName" class="form-control" ng-pattern="/^[a-zA-Z ]+$/" name="cardHolderFirstName" id="card-holder-first-name" maxlength="50" placeholder="Nombres" required>
 					</div>
 				</div>
 				<p ng-show="(addBilingForm.cardHolderFirstName.$error.pattern || addBilingForm.cardHolderFirstName.$invalid) && !addBilingForm.cardHolderFirstName.$pristine" class="text-danger info-fix">Nombre invalido.</p>
 				<div class="form-group">
 					<label class="col-sm-4 control-label" for="card-holder-last-name">Apellidos Titular</label>
 					<div class="col-sm-6">
-						<input type="text" ng-model="model.billingInformation.cardHolderLastName" class="form-control" ng-pattern="/^[a-zA-Z]+$/" name="cardHolderLastName" id="card-holder-last-name" maxlength="50" placeholder="Apellidos" required>
+						<input type="text" ng-model="model.billingInformation.cardHolderLastName" class="form-control" ng-pattern="/^[a-zA-Z ]+$/" name="cardHolderLastName" id="card-holder-last-name" maxlength="50" placeholder="Apellidos" required>
 					</div>
 				</div>
 				<p ng-show="(addBilingForm.cardHolderLastName.$error.pattern || addBilingForm.cardHolderLastName.$invalid) && !addBilingForm.cardHolderLastName.$pristine" class="text-danger info-fix">Apellidos invalidos.</p>
@@ -34,11 +34,23 @@
 				</div>
 				<p ng-show="(addBilingForm.docNumber.$error.pattern || addBilingForm.docNumber.$invalid) && !addBilingForm.docNumber.$pristine" class="text-danger info-fix">Ingresa un número de documento válido.</p>
 				<div class="form-group">
-					<label class="col-sm-4 control-label" for="card-holder-city">Ciudad Titular</label>
+					<label class="col-sm-4 control-label" for="card-holder-email">Email Titular</label>
 					<div class="col-sm-6">
-						<input type="text" ng-model="model.billingInformation.cardHolderCity" class="form-control" name="card-holder-city" id="card-holder-city" maxlength="50" placeholder="Ciudad Residencia" required>
+						<input type="text" ng-model="model.billingInformation.cardHolderEmail"
+							   class="form-control" name="cardHolderEmail"
+							   id="card-holder-email" maxlength="50"
+							   ng-pattern="/^[A-Za-z0-9._%+]+@[A-Za-z0-9]+\.[A-Za-z]{1,5}$/" placeholder="Correo Electrónico"
+							   required>
 					</div>
 				</div>
+				<p ng-show="(addBilingForm.cardHolderEmail.$error.pattern || addBilingForm.cardHolderEmail.$invalid) && !addBilingForm.cardHolderEmail.$pristine" class="text-danger info-fix">Ingresa un correo electrónico válido.</p>
+				<div class="form-group">
+					<label class="col-sm-4 control-label" for="card-holder-city">Ciudad Titular</label>
+					<div class="col-sm-6">
+						<input type="text" ng-model="model.billingInformation.cardHolderCity" class="form-control" ng-pattern="/^[a-zA-Z ]+$/" name="cardHolderCity" id="card-holder-city" maxlength="50" placeholder="Ciudad Residencia" required>
+					</div>
+				</div>
+				<p ng-show="(addBilingForm.cardHolderCity.$error.pattern || addBilingForm.cardHolderCity.$invalid) && !addBilingForm.cardHolderCity.$pristine" class="text-danger info-fix">Ciudad invalida.</p>
 				<div class="form-group">
 					<label class="col-sm-4 control-label" for="card-holder-address">Dirección Titular</label>
 					<div class="col-sm-6">

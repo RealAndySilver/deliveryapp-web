@@ -199,6 +199,32 @@
 		                                </span>
 		                            </span>
 									<div ng-show="model.deliveryItemInfo.payment_method === 'credit'">
+
+
+										<span class="list-group-item">
+											<i class="fa fa-user fa-fw"></i>Nombre Pagador
+											<span class="pull-right text-muted">
+												<em>{{model.deliveryItemInfo.payment_token_id.card_holder_first_name+' '+model.deliveryItemInfo.payment_token_id.card_holder_last_name}}</em>
+											</span>
+										</span>
+										<span class="list-group-item">
+											<i class="fa fa-user fa-fw"></i> Email Pagador
+											<span class="pull-right text-muted">
+												<em>{{model.deliveryItemInfo.payment_token_id.card_holder_email}}</em>
+											</span>
+										</span>
+										<span class="list-group-item">
+											<i class="fa fa-user fa-fw"></i> Dirección Pagador
+											<span class="pull-right text-muted">
+												<em>{{model.deliveryItemInfo.payment_token_id.card_holder_address+' '+model.deliveryItemInfo.payment_token_id.card_holder_city}}</em>
+											</span>
+										</span>
+										<span class="list-group-item">
+											<i class="fa fa-keyboard-o fa-fw"></i> Tarjeta Número
+											<span class="pull-right text-muted">
+												<em>****{{model.deliveryItemInfo.payment_token_id.card_last4}}</em>
+											</span>
+										</span>
 										<span class="list-group-item">
 											<i class="fa fa-keyboard-o fa-fw"></i> Fecha
 											<span class="pull-right text-muted">
@@ -211,44 +237,44 @@
 												<em>{{model.deliveryItemInfo.trn_ids[0]?model.deliveryItemInfo.trn_ids[0].status_text:""}}</em>
 											</span>
 										</span>
-										<span class="list-group-item" ng-show="model.deliveryItemInfo.trn_ids[0].reject_reason!='Aprobada'">
-											<i class="fa fa-user fa-fw"></i> Motivo rechazo
+										<span class="list-group-item">
+											<i class="fa fa-barcode fa-fw"></i> Motivo
 											<span class="pull-right text-muted" title="{{model.deliveryItemInfo.trn_ids[0]?model.deliveryItemInfo.trn_ids[0].reject_reason:''}}">
-												<em>{{model.deliveryItemInfo.trn_ids[0]?model.deliveryItemInfo.trn_ids[0].reject_reason.substring(0, 55):""}}...</em>
+												<em>{{model.deliveryItemInfo.trn_ids[0]?model.deliveryItemInfo.trn_ids[0].reject_reason_code+'-'+model.deliveryItemInfo.trn_ids[0].reject_reason.substring(0, 52):""}}...</em>
 											</span>
 										</span>
 										<span class="list-group-item">
-											<i class="fa fa-user fa-fw"></i> Franquicia
+											<i class="fa fa-barcode fa-fw"></i> Franquicia
 											<span class="pull-right text-muted">
 												<em>{{model.deliveryItemInfo.trn_ids[0]?model.deliveryItemInfo.trn_ids[0].franchise:""}}</em>
 											</span>
 										</span>
 										<span class="list-group-item">
-											<i class="fa fa-user fa-fw"></i> Banco
+											<i class="fa fa-barcode fa-fw"></i> Banco
 											<span class="pull-right text-muted">
 												<em>{{model.deliveryItemInfo.trn_ids[0]?model.deliveryItemInfo.trn_ids[0].bank:""}}</em>
 											</span>
 										</span>
 										<span class="list-group-item">
-											<i class="fa fa-phone fa-fw"></i> Autorizacion/CUS
+											<i class="fa fa-barcode fa-fw"></i> Autorizacion/CUS
 											<span class="pull-right text-muted">
 												<em>{{model.deliveryItemInfo.trn_ids[0]?model.deliveryItemInfo.trn_ids[0].cus:""}}</em>
 											</span>
 										</span>
 										<span class="list-group-item">
-											<i class="fa fa-phone fa-fw"></i> Recibo
+											<i class="fa fa-barcode fa-fw"></i> Recibo
 											<span class="pull-right text-muted">
 												<em>{{model.deliveryItemInfo.trn_ids[0]?model.deliveryItemInfo.trn_ids[0].receipt_number:""}}</em>
 											</span>
 										</span>
 										<span class="list-group-item">
-											<i class="fa fa-user fa-fw"></i> Referencia
+											<i class="fa fa-barcode fa-fw"></i> Referencia
 											<span class="pull-right text-muted">
 												<em>{{model.deliveryItemInfo.trn_ids[0]?model.deliveryItemInfo.trn_ids[0].reference:""}}</em>
 											</span>
 										</span>
 										<span class="list-group-item">
-											<i class="fa fa-user fa-fw"></i> Descripción
+											<i class="fa fa-barcode fa-fw"></i> Descripción
 											<span class="pull-right text-muted">
 												<em>Pago por servicio {{model.deliveryItemInfo.item_name}}</em>
 											</span>

@@ -5,7 +5,9 @@
 			<div class="row">
 				<div class="col-sm-12">
 					<p>Por favor digita tus datos</p>
-					<p ng-show="createMessengerForm.email.$invalid && !createMessengerForm.email.$pristine" class="text-danger">Ingresa un email valido.</p>
+					<p ng-show="createMessengerForm.name.$invalid && !createMessengerForm.name.$pristine" class="text-danger">Ingresa un nombre válido.</p>
+					<p ng-show="createMessengerForm.lastname.$invalid && !createMessengerForm.lastname.$pristine" class="text-danger">Ingresa un apellido válido.</p>
+					<p ng-show="createMessengerForm.email.$invalid && !createMessengerForm.email.$pristine" class="text-danger">Ingresa un email válido.</p>
 					<p ng-show="createMessengerForm.mobilephone.$error.pattern && !createMessengerForm.mobilephone.$pristine" class="text-danger">Ingresa un número celular válido.</p>
 					<p ng-show="createMessengerForm.identification.$error.pattern && !createMessengerForm.identification.$pristine" class="text-danger">Ingresa un número de identificación válido.</p>
 					<p ng-show="model.messenger.password && model.messenger.repeatPassword &&

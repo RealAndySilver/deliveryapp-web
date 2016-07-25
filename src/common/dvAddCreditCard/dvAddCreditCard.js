@@ -41,6 +41,7 @@
 			addPaymentRequest.card_holder_city=billingInformation.cardHolderCity;
 			addPaymentRequest.card_holder_doc_type=billingInformation.cardHolderDocType;
 			addPaymentRequest.card_holder_doc_number=billingInformation.cardHolderDocNumber;
+			addPaymentRequest.card_holder_email=billingInformation.cardHolderEmail;
 
 			model.isEditing = false;
 
