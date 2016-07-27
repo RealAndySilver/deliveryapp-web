@@ -20,7 +20,7 @@
 				<div class="form-group">
 					<label class="col-sm-4 control-label" for="card-holder-doc">Documento Titular</label>
 					<div class="col-sm-2">
-						<select class="form-control col-sm-2" ng-init="model.billingInformation.cardHolderDocType='CC'" ng-model="model.billingInformation.cardHolderDocType" name="doc-type" id="doc_type" required>
+						<select class="form-control col-sm-2" ng-init="model.billingInformation.cardHolderDocType='CC'" ng-model="model.billingInformation.cardHolderDocType" name="docType" id="doc_type" required ng-change="addBilingForm.docNumber.$validate()">
 							<option value="CC">CC</option>
 							<option value="CE">CE</option>
 							<option value="TI">TI</option>
@@ -29,7 +29,7 @@
 						</select>
 					</div>
 					<div class="col-sm-4">
-						<input type="text" ng-model="model.billingInformation.cardHolderDocNumber" class="form-control" name="docNumber" id="card-holder-doc" minlength="5" maxlength="10" ng-pattern="/^([0-9]| )+$/" placeholder="Num. Documento" required>
+						<input type="text" ng-model="model.billingInformation.cardHolderDocNumber" class="form-control" name="docNumber" id="card-holder-doc" ng-pattern="docNumberPatternValidator" placeholder="Num. Documento" required>
 					</div>
 				</div>
 				<p ng-show="(addBilingForm.docNumber.$error.pattern || addBilingForm.docNumber.$invalid) && !addBilingForm.docNumber.$pristine" class="text-danger info-fix">Ingresa un número de documento válido.</p>

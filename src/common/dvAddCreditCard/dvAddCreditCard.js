@@ -21,6 +21,35 @@
 			model.showErrorMessage=false;
 		}
 
+		/**
+		 * Validates the doc number according to the doc type selected by the user
+		 *
+		 * */
+		$scope.docNumberPatternValidator = (function() {
+			var regExpNIT = /^[1-9]\d{6,8}\-?\d?$/;
+			var regExpCC = /^[1-9]\d{4,9}$/;
+			var regExpCE= /^[a-zA-Z]*[1-9]\d{3,7}$/;
+			var regExpTI = /^\d{2}[0-1][0-9][0-3][0-9]\-\d{5}$/;
+			var regExpPPN = /^\w{4,12}$/;
+
+			return {
+				test: function(value) {
+					switch(model.billingInformation.cardHolderDocType){
+						case ('PPN'):
+							return regExpPPN.test(value);
+						case ('CC'):
+							return regExpCC.test(value);
+						case ('CE'):
+							return regExpCE.test(value);
+						case ('NIT'):
+							return regExpNIT.test(value);
+						case ('TI'):
+							return regExpTI.test(value);
+					}
+				}
+			};
+		})();
+
 		model.cancelAction=function(){
 			$rootScope.creditCardAdded();
 		};

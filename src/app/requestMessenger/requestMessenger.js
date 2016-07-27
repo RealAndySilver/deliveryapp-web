@@ -34,7 +34,7 @@
 
 	}]);
 
-	module.controller('RequestMessengerController', ['$rootScope','$scope', '$mdDialog', 'RequestMessengerService', 'Session', 'GetPrice', '$stateParams', '$state', 'PickupAddresses', 'DeliveryAddresses', 'GetAllAddressService', "AlertsService", 'BillingService', 'ServerComunicator','ValidationService', function($rootScope,$scope, $mdDialog, RequestMessengerService, Session, GetPrice, $stateParams, $state, PickupAddresses, DeliveryAddresses, GetAllAddressService, AlertsService, BillingService, ServerComunicator,ValidationService) {
+	module.controller('RequestMessengerController', ['$rootScope','$scope', '$mdDialog', 'RequestMessengerService', 'Session', 'GetPrice', '$stateParams', '$state', 'PickupAddresses', 'DeliveryAddresses', 'GetAllAddressService', "AlertsService", 'BillingService', 'ServerComunicator', function($rootScope,$scope, $mdDialog, RequestMessengerService, Session, GetPrice, $stateParams, $state, PickupAddresses, DeliveryAddresses, GetAllAddressService, AlertsService, BillingService, ServerComunicator) {
 		var model = this;
 
 		//Funcion llamada por la directiva de adicionar tarjeta y se usa para refrescar lo necesario en este controlador
@@ -60,7 +60,7 @@
 			);
 		});
 
-		init();
+
 
 		model.pickup = {};
 		model.delivery = {insurancevalue:0,insurance:false,insurance_price:0};
@@ -78,9 +78,68 @@
 		model.insuranceSelected=0;
 		var addPaymentRequest = {};
 
+
+		/**
+		 * Checks and display a message indicating that the user has active services currently
+		 *
+		 * */
+		model.checkActiveDeliveryItemsByUser = function(userInfo) {
+			RequestMessengerService.checkExistingDeliveryWithCardByUser(userInfo._id, function(response) {
+				//console.log("RESPONSE HECK ",response);
+				if (response.response){
+					var item=response.data;
+					var message="En este momento su servicio "+item.item_name+" presenta un proceso de pago cuya transacción se encuentra PENDIENTE de " +
+						"recibir confirmación por parte de su entidad financiera. Por favor espere unos " +
+						"minutos y vuelva a consultar más tarde para verificar que su pago fue " +
+						"confirmado de forma exitosa. Si desea mayor información sobre el estado actual " +
+						"de su operación puede comunicarse a nuestras líneas de atención al cliente al " +
+						"teléfono 9999999 o enviar inquietudes al correo soporte@vueltap.com " +
+						" y pregunte por el estado de la transacción "+item.trn_ids[0].cus;
+					$scope.BootstrapModal.show(message);
+
+				}
+			});
+		};
+
+		/**
+		 * Loads the payment methods associated to the user
+		 * */
+		model.getPaymentMethods = function(userInfo) {
+			//console.log('CURRENT USER DATA ', userInfo);
+
+			BillingService.getPaymentMethods(userInfo._id, function(response) {
+				//console.log('getPaymentMethods ->', response);
+
+				if (response.data) {
+					model.currentBillingInformation = response.data;
+					if (model.currentBillingInformation[0]){
+						model.showBillingModal = false;
+						model.defaultPaymentMethod = model.currentBillingInformation[0]._id;
+						//console.log('defaultPaymentMethod --> ', model.defaultPaymentMethod);
+					}
+				} else {
+					//$scope.BootstrapModal.show("Ha ocurrido un error al agregar método de pago, intenta mas tarde");
+					//$state.go('requestMessenger');
+				}
+
+			});
+		};
+
+		model.getCurrentUser = function() {
+			$scope.currentUser = Session.getUser();
+
+			if ($scope.currentUser) {
+				model.getPaymentMethods($scope.currentUser);
+				model.checkActiveDeliveryItemsByUser($scope.currentUser);
+			}
+		};
+
+
 		function init() {
+			model.getCurrentUser();
 		}
 
+		init();
 
 		/**
 		 * Se integra con la directiva del mapa para ubicar el map en la direccion de recogida
@@ -176,37 +235,6 @@
 			model.isSearchingDeliveryAddress=false;
 			model.addressListFromGoogle=[];
 		};
-
-		model.getPaymentMethods = function(userInfo) {
-			//console.log('CURRENT USER DATA ', userInfo);
-
-			BillingService.getPaymentMethods(userInfo._id, function(response) {
-				console.log('getPaymentMethods ->', response);
-
-				if (response.data) {
-					model.currentBillingInformation = response.data;
-					if (model.currentBillingInformation[0]){
-						model.showBillingModal = false;
-						model.defaultPaymentMethod = model.currentBillingInformation[0]._id;
-						console.log('defaultPaymentMethod --> ', model.defaultPaymentMethod);
-					}
-				} else {
-					//$scope.BootstrapModal.show("Ha ocurrido un error al agregar método de pago, intenta mas tarde");
-					//$state.go('requestMessenger');
-				}
-
-			});
-		};
-
-		model.getCurrentUser = function() {
-			$scope.currentUser = Session.getUser();
-
-			if ($scope.currentUser) {
-				model.getPaymentMethods($scope.currentUser);
-			}
-		};
-
-		model.getCurrentUser();
 
 		$scope.pickupLat = 0;
 		$scope.pickupLon = 0;

@@ -111,6 +111,13 @@
                 });
             };
 
+            model.checkExistingDeliveryWithCardByUser = function (userId) {
+                return $http({
+                    method: 'GET',
+                    headers: getHeader(),
+                    url: endpoint + 'DeliveryItem' + '/CheckExisting/' + userId,
+                });
+            };
 
             model.requestMessenger = function (delivery) {
                 return $http({
