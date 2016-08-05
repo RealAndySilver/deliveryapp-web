@@ -193,7 +193,7 @@
 					//location : $rootScope.userCurrentPositionLatLng,
 					componentRestrictions: {
 							country: 'CO',
-							locality: 'Cali'
+							locality: 'Bogota'
 					}
 				};
 
