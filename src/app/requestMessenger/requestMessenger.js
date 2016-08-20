@@ -171,7 +171,8 @@
 			if(!model.delivery.insurance){
 				model.delivery.insurancevalue=0;
 			}
-			model.delivery.insurance_price=model.delivery.insurancevalue*0.02;
+			model.delivery.insurance_price=parseInt(model.delivery.insurancevalue);
+			console.log("PRECIO ",model.delivery.insurance_price);
 		};
 
 		/**
@@ -310,19 +311,22 @@
 			var loc1 = '';
 			var loc2 = '';
 			if (destinationLat !== 0) {
-				loc1 = pickupLat + "," + pickupLon;
-				loc2 = destinationLat + "," + destinationLon;
-				GetPrice.getPrice(loc1, loc2, function(response) {
-					if (response.response) {
-						$scope.currency = true;
-						$scope.deliveryPrice = response.data;
-					}
-				});
+				model.calculatePrice();
 			} else {
 				console.log('no estan todos los parámetros requeridos');
 			}
 		}
 
+		model.calculatePrice= function(){
+			loc1 = $scope.pickupLat  + "," + $scope.pickupLon;
+			loc2 = $scope.deliverLat + "," + $scope.deliverLon;
+			GetPrice.getPrice(loc1, loc2,model.delivery.roundtrip, function(response) {
+				if (response.response) {
+					$scope.currency = true;
+					$scope.deliveryPrice = response.data;
+				}
+			});
+		};
 
 		model.requireAddCreditCard = function(){
 			if (model.delivery.payment_method === 'credit' && model.currentBillingInformation.length === 0) {

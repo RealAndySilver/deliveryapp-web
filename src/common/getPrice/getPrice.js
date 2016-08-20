@@ -7,10 +7,10 @@
 
 		function init() {
 
-			model.getPrice = function(loc1, loc2, callback) {
+			model.getPrice = function(loc1, loc2,is_rountrip, callback) {
 				//console.log("LOC 1",loc1);
 				//console.log("LOC 2",loc2);
-				var getPricePromise = ServerComunicator.getPrice(loc1, loc2);
+				var getPricePromise = ServerComunicator.getPrice(loc1, loc2,is_rountrip);
 				getPricePromise.then(
 					function success(response) {
 						callback({
