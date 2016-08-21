@@ -2,9 +2,8 @@
 
 	module.service('GetAllAddressService', ['PickupAddresses', 'DeliveryAddresses', function(PickupAddresses, DeliveryAddresses) {
 		var model = this;
-		model.isSearchingPickupAddress=false;
-		model.isSearchingDeliveryAddress=false;
 		var MAX_ADDRESS = 3;
+		model.updatedByUser=false;
 
 
 		model.save = function(pickupItem, deliveryItem) {
@@ -93,7 +92,7 @@
 						"minutos y vuelva a consultar más tarde para verificar que su pago fue " +
 						"confirmado de forma exitosa. Si desea mayor información sobre el estado actual " +
 						"de su operación puede comunicarse a nuestras líneas de atención al cliente al " +
-						"teléfono 9999999 o enviar inquietudes al correo soporte@vueltap.com " +
+						"teléfono 3168776746 o enviar inquietudes al correo soporte@vueltap.com " +
 						" y pregunte por el estado de la transacción "+item.trn_ids[0].cus;
 					$scope.BootstrapModal.show(message);
 
@@ -179,10 +178,8 @@
 		 * This method makes a search using reverse geocode on google api services
 		 *
 		 * */
-		model.searchGoogleAddresses = function(searchPickup,searchDelivery,address){
-			model.isSearchingPickupAddress=searchPickup;
-			model.isSearchingDeliveryAddress=searchDelivery;
-			model.addressListFromGoogle=[];
+		model.searchGoogleAddresses = function(address){
+			//console.log(address);
 			clearTimeout(model.processId);
 			model.processId = setTimeout(function() {
 				//console.log("Buscando");
@@ -212,29 +209,22 @@
 		};
 
 
-		model.cleanAddressList=function(){
-			var res=setTimeout(function() {
-				model.isSearchingPickupAddress=false;
-				model.isSearchingDeliveryAddress=false;
-				model.addressListFromGoogle=[];
-				$scope.$apply();
-			},100);
-		};
-
 		/**
 		 * This methods refreshes the map when the user selects an address from the window,
 		 * this makes integrations with the directive that displays the map
 		 *
 		 * */
 		model.updateAddressInMap=function(updatePickup,googleAddress){
+			console.log("GOOGLE ADDRESS ",googleAddress);
+			model.updatedByUser=true;
 			if (updatePickup){
+				$scope.pickup_address = googleAddress.formatted_address;
 				$rootScope.updatePickupMap({lat:googleAddress.geometry.location.lat(),lng:googleAddress.geometry.location.lng()});
 			}else{
+				$scope.delivery_address = googleAddress.formatted_address;
 				$rootScope.updateDeliveryMap({lat:googleAddress.geometry.location.lat(),lng:googleAddress.geometry.location.lng()});
 			}
-			model.isSearchingPickupAddress=false;
-			model.isSearchingDeliveryAddress=false;
-			model.addressListFromGoogle=[];
+			$('#searchAddress').modal('hide');
 		};
 
 		$scope.pickupLat = 0;
@@ -246,11 +236,18 @@
 		$scope.delivery_address = '';
 
 		function assignToPickupAddress(value) {
-			$scope.pickup_address = value;
+			if (!model.updatedByUser){
+				$scope.pickup_address = value;
+			}
+			model.updatedByUser=false;
+
 		}
 
 		function assignToDeliveryAddress(value) {
-			$scope.delivery_address = value;
+			if (!model.updatedByUser){
+				$scope.delivery_address = value;
+			}
+			model.updatedByUser=false;
 		}
 
 		function closeToMe(lat, lon){
@@ -399,7 +396,7 @@
 								"minutos y vuelva a consultar más tarde para verificar que su pago fue" +
 								"confirmado de forma exitosa. Si desea mayor información sobre el estado actual" +
 								"de su operación puede comunicarse a nuestras líneas de atención al cliente al" +
-								"teléfono 9999999 o enviar inquietudes al correo soporte@vueltap.com" +
+								"teléfono 3168776746 o enviar inquietudes al correo soporte@vueltap.com" +
 								" y pregunte por el estado de la transacción "+item.trn_ids[0].cus;
 							$scope.BootstrapModal.show(message);
 						}else{
