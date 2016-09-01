@@ -126,8 +126,8 @@
                         </label>
 		            </div>
 					<div class="form-group input-group">
-						<label class="input-group-addon" for="insurance" ng-click="model.insuranceSelectionChanged()">
-							<input type="checkbox" id="insurance" ng-model="model.delivery.insurance" ng-click="model.insuranceSelectionChanged()">
+						<label class="input-group-addon" for="insurance" ng-click="model.delivery.insurancevalue=0;model.calculatePrice()">
+							<input type="checkbox" id="insurance" ng-model="model.delivery.insurance" ng-click="model.delivery.insurancevalue=0;model.calculatePrice()">
 						</label>
 						<label class="form-control" for="insurance">
 							<i class="fa fa-edit"></i> Asegurar
