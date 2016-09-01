@@ -45,7 +45,7 @@
                         this.config.title = title;
                     }
                     //this.config.content = content;
-                    console.log("sdf", modalElement);
+                    //console.log("sdf", modalElement);
                     modalElement.modal("show");
                     this.config.content = $sce.trustAsHtml(content);
                 },

@@ -140,7 +140,7 @@
                         </div>
                         <div class="panel-body">
 							<div class="form-group">
-								<select class="form-control" ng-disabled="!model.delivery.insurance" ng-model="model.delivery.insurancevalue" ng-change="model.insuranceSelectionChanged()">
+								<select class="form-control" ng-disabled="!model.delivery.insurance" ng-model="model.delivery.insurancevalue" ng-change="model.calculatePrice()">
 									<option value="0">Elige el valor a asegurar</option>
 									<option value="100000">Hasta $100.000</option>
 									<option value="200000">Hasta $200.000</option>

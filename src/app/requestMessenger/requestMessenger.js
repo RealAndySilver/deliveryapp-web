@@ -161,19 +161,6 @@
 		};
 		//$scope.showAlert();
 
-
-		/**
-		 * Recalcula el valor a pagar del seguro
-		 *
-		 * */
-		model.insuranceSelectionChanged=function(){
-			if(!model.delivery.insurance){
-				model.delivery.insurancevalue=0;
-			}
-			model.delivery.insurance_price=parseInt(model.delivery.insurancevalue);
-			console.log("PRECIO ",model.delivery.insurance_price);
-		};
-
 		/**
 		 * This method makes a search using reverse geocode on google api services
 		 *
@@ -317,10 +304,13 @@
 		model.calculatePrice= function(){
 			loc1 = $scope.pickupLat  + "," + $scope.pickupLon;
 			loc2 = $scope.deliverLat + "," + $scope.deliverLon;
-			GetPrice.getPrice(loc1, loc2,model.delivery.roundtrip, function(response) {
+			console.log("INSURANCE VALUE ",model.delivery.insurancevalue);
+			GetPrice.getPrice(loc1, loc2,model.delivery.roundtrip,model.delivery.insurancevalue, function(response) {
 				if (response.response) {
 					$scope.currency = true;
-					$scope.deliveryPrice = response.data;
+					console.log("PRICE ",response.data);
+					$scope.deliveryPrice = response.data.value;
+					model.delivery.insurance_price =response.data.insurance;
 				}
 			});
 		};

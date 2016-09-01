@@ -141,7 +141,7 @@
                 });
             };
 
-            model.getPrice = function (loc1, loc2,is_roundtrip) {
+            model.getPrice = function (loc1, loc2,is_roundtrip,insurance_value) {
                 return $http({
                     method: 'GET',
                     data: {
@@ -149,7 +149,7 @@
                         loc2: loc2,
                     },
                     headers: getHeader(),
-                    url: endpoint + 'GetPrice' + "/" + loc1 + "/" + loc2+"/"+is_roundtrip,
+                    url: endpoint + 'GetPrice' + "/" + loc1 + "/" + loc2+"/"+is_roundtrip+"/"+insurance_value,
                 });
             };
 
